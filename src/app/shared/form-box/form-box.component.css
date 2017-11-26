@@ -1,0 +1,6 @@
+:host {
+  width: 100%;
+}
+.removeMargin {
+  margin-left: 0 !important;
+}

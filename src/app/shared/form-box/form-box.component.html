@@ -1,0 +1,9 @@
+<div class="block" [ngClass]="{'removeMargin': isFirstChild}">
+  <div class="block-form">
+    <ng-content select="header"></ng-content>
+
+    <app-title-box></app-title-box>
+
+  <ng-content select="body"></ng-content>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+$main-color: #035393;
+$back-item-color: #f2f2f2;
+
+.button-box {
+  display: flex;
+  align-items: center;
+  width: calc(100% / 5);
+  float: left;
+  border: none;
+  background: none;
+  height: 45px;
+  border-bottom: solid 2px gray;
+  font-weight: bolder;
+  font-size: 15px;
+  margin-bottom: 28px;
+  color: gray;
+}
+
+.button-box-active {
+  border-bottom: solid 2px $main-color;
+  color: black;
+}
+
+@for $i from 1 through 4 {
+  .b-box-lit-#{$i} {
+    opacity: calc(#{$i} / 3);
+  }
+}
+
+.blue-box {
+  background-color: $main-color;
+  width: 20%;
+  border-radius: 5px;
+  margin-right: 70px;
+  color: white;
+  padding: 5px;
+}
