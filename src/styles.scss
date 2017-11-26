@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css?family=Rajdhani:400,500,600,700');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Rajdhani', sans-serif;
+}
+
+@import "assets/partials/variables";
+@import "assets/partials/leafs";
+
+@import "assets/partials/buttons";
+@import "assets/partials/inputs";
+@import "assets/partials/table";
+
+@import "assets/partials/header";
+
+.main-section {
+  width: 100%;
+
+  display: flex;
+
+  @import "assets/partials/sidebar";
+  @import "assets/partials/content";
+
+}
+
