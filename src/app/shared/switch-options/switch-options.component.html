@@ -1,1 +1,4 @@
-<button *ngFor="let button of buttons" [ngClass]="{'active':button.active}">{{button.name}}</button>
+<button *ngFor="let button of buttons; let i = index" 
+	[ngClass]="{'active':button.active}" 
+	
+	(click)="value.emit(button.value)">{{button.name}} {{i}}</button>

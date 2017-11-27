@@ -11,10 +11,12 @@ import { FormBoxComponent } from './form-box/form-box.component';
 import { SelectBoxComponent } from './select-box/select-box.component';
 import { TitleBoxComponent } from './title-box/title-box.component';
 import { SwitchOptionsComponent } from './switch-options/switch-options.component';
+import { AppRoutingModule } from ".././app-routing.module";
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    AppRoutingModule
   ],
   declarations: [
     HeaderComponent,
