@@ -4,8 +4,8 @@ import {Component, OnInit,} from '@angular/core';
   selector: 'app-left',
   template: `
     <ul class="nav-links left">
-      <li class="nav-link"><a class="link-left" routerLink="/a">STATISTICS</a></li>
-      <li class="nav-link"><a class="link-left" routerLink="b">USER</a></li>
+      <li class="nav-link"><a class="link-left">STATISTICS</a></li>
+      <li class="nav-link"><a class="link-left">USER</a></li>
     </ul>
   `,
   styles: [``]
