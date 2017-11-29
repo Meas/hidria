@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-catalogue',
@@ -77,16 +78,10 @@ export class CatalogueComponent implements OnInit {
   ngOnInit() {
   }
 
-  selectItemsForCatalogue(slug: string): void {
-    this.sections.filter((section) => {
-      if (section.slug === slug) {
-        return section;
-      } else {
-        return this.sections;
-      }
-    })
+  onItemSelected(slug: string): void {
+    console.log(slug)
 
-    console.log(this.sections);
+    console.log(_.filter(this.sections, { items: { slug: slug } }));
   }
 
   onFilterSelected(event): void {

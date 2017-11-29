@@ -11,8 +11,17 @@ export class FiltersComponent implements OnInit {
   @Input() activeFilter = 'all';
   @Output() filterSelected: EventEmitter<string> = new EventEmitter();
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
+  }
+
+  totalModels(): number {
+    let total = 0;
+    this.filters.forEach((item) => {
+      total += item.items.length;
+    });
+    return total;
   }
 }

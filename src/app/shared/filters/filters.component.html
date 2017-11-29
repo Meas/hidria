@@ -4,7 +4,7 @@
           [ngClass]="{'button-box-active': 'all' === activeFilter}">
     All Models
     <span style="flex: 1 1 auto"></span>
-    <span class="blue-box b-box-lit-1">100</span>
+    <span class="blue-box b-box-lit-1">{{totalModels()}}</span>
   </button>
   <button *ngFor="let filter of filters; let i = index" class="button-box" type="button"
           (click)="filterSelected.emit(filter.slug)"
