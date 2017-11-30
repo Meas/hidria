@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-select-box',
@@ -6,8 +6,7 @@ import { Component, OnInit } from '@angular/core';
     <label for="options">Text</label>
     <select name="options">
       <option>Select option</option>
-      <option value="1">One</option>
-      <option value="2">Two</option>
+      <option *ngFor="let obj of items" value="obj.value">{{obj.name}}</option>
     </select>
   `,
   styles: [`
@@ -25,7 +24,7 @@ import { Component, OnInit } from '@angular/core';
   `]
 })
 export class SelectBoxComponent implements OnInit {
-
+  @Input() items;
   constructor() { }
 
   ngOnInit() {

@@ -11,9 +11,9 @@
 	    			{{item.label}}
 	    		</td>
 	    		<td>
-			    	<!-- <div *ngIf="item.type === 'select'">
+			    	<div *ngIf="item.type === 'select'">
 		  				<app-select-box [items]="item.obj"></app-select-box>    	
-			    	</div> -->
+			    	</div>
 			    	<div *ngIf="item.type === 'radio'">
 			      		<app-switch-options (value)="saveInputResult($event, item.id)" [buttons]="item.obj"></app-switch-options>    	
 			    	</div>

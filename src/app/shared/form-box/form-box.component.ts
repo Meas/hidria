@@ -36,7 +36,7 @@ export class FormBoxComponent implements OnInit {
   }
 
 	saveInputResult(value, id) {
-		this.results[id] = {'id' : id, 'value': value};
+		this.results[id] = {'id' : id, 'value': value, 'type': 'radio'};
 		/*console.log(this.results);*/
 		/*var a = Array();
 		a[id] = {'id': id, 'value': value};*/

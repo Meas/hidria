@@ -117,7 +117,8 @@ export class ParametersComponent implements OnInit {
         type: "select",
         obj: [
           {name: 'one', value: 1},
-          {name: 'two', value: 2}
+          {name: 'two', value: 2},
+          {name: 'three', value: 3}
         ]
       },
     ]
