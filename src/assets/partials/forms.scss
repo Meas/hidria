@@ -8,7 +8,6 @@
     min-height: 600px;
     margin-left: 10px;
 
-    background: #eff3f5;
 
     .select-header {
       display: flex;
@@ -23,11 +22,12 @@
     .block-form {
       padding: 10px;
       width: calc(100% - 20px);
+      background: $form-item-color;
 
       .block-header {
         width: 100%;
         display: flex;
-        border-bottom: solid 1px $main-color;
+        border-bottom: solid 2px $main-border-item;
 
         .left {
           width: 70%;
@@ -64,7 +64,7 @@
             width: calc(100% - 15px);
             margin-left: 15px;
             height: 35px;
-            background-color: $main-color;
+            background-color: $main-border-item;
             display: flex;
             align-items: center;
             justify-content: center;
