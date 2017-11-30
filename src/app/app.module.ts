@@ -1,20 +1,20 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {FormsModule} from '@angular/forms';
 
+import { SharedModule } from './shared/shared.module';
+import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { ViewAComponent } from './components/view-a/view-a.component';
-import { ViewBComponent } from './components/view-b/view-b.component';
-import {SharedModule} from "./shared/shared.module";
-import {AppRoutingModule} from "./app-routing.module";
-import {FormsModule} from "@angular/forms";
+import { CatalogueComponent } from './components/catalogue/catalogue.component';
+import { ParametersComponent } from './components/parameters/parameters.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ViewAComponent,
-    ViewBComponent
+    CatalogueComponent,
+    ParametersComponent
   ],
   imports: [
     FormsModule,

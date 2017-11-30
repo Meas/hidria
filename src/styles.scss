@@ -6,6 +6,19 @@ body {
   font-family: 'Rajdhani', sans-serif;
 }
 
+::-webkit-scrollbar-track {
+  background-color: #ffffff;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  background-color: #ffffff;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #cdcdcd;
+}
+
 @import "assets/partials/variables";
 @import "assets/partials/leafs";
 
@@ -24,4 +37,15 @@ body {
   @import "assets/partials/content";
 
 }
+::-webkit-scrollbar-track {
+  background-color: #ffffff;
+}
 
+::-webkit-scrollbar {
+  width: 7px;
+  background-color: #ffffff;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #cdcdcd;
+}

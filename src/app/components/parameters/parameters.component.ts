@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-view-b',
-  templateUrl: './view-b.component.html',
-  styleUrls: ['./view-b.component.css']
+  selector: 'app-parameters',
+  templateUrl: './parameters.component.html',
+  styleUrls: ['./parameters.component.css']
 })
-export class ViewBComponent implements OnInit {
+export class ParametersComponent implements OnInit {
 
   sections= [
   {
@@ -55,8 +55,8 @@ export class ViewBComponent implements OnInit {
   ngOnInit() {
   }
 
-  /*onValueEmitted(event, index) {
-    this.formBoxes[index] = event;
-  }*/
 
+  onValueEmitted(event) {
+    console.log(event);
+  }
 }
