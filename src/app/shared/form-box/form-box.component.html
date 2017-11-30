@@ -4,6 +4,23 @@
 
     <app-title-box></app-title-box>
 
-  <ng-content select="body"></ng-content>
+    <table class="table-buttons">
+    	<tbody *ngIf="section">
+	    	<tr *ngFor="let item of section.formFields">
+	    		<td *ngIf="item.label">
+	    			{{item.label}}
+	    		</td>
+	    		<td>
+			    	<!-- <div *ngIf="item.type === 'select'">
+		  				<app-select-box [items]="item.obj"></app-select-box>    	
+			    	</div> -->
+			    	<div *ngIf="item.type === 'radio'">
+			      		<app-switch-options (value)="saveInputResult($event, item.id)" [buttons]="item.obj"></app-switch-options>    	
+			    	</div>
+	    		</td>
+		    </tr>
+	    </tbody>
+    </table>
+
   </div>
 </div>

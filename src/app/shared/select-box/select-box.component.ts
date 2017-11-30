@@ -6,8 +6,7 @@ import { Component, OnInit } from '@angular/core';
     <label for="options">Text</label>
     <select name="options">
       <option></option>
-      <option value="1">One</option>
-      <option value="2">Two</option>
+      <option value="">One</option>
     </select>
   `,
   styles: [`

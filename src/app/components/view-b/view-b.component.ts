@@ -7,35 +7,56 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewBComponent implements OnInit {
 
-section= [
-    {
-      buttons: [
-        {name: 'one', active: true, value: 1},
-        {name: 'two', active: false, value: 2}
-      ]
-    },
-    {
-      buttons: [
-        {name: 'one', active: true, value: 1},
-        {name: 'two', active: false, value: 2},
-        {name: 'three', active: false, value: 3}
-      ]
-    },
-    {
-      buttons: [
-        {name: 'one 1', active: true, value: 1},
-        {name: 'two 2', active: false, value: 2},
-        {name: 'three 3', active: false, value: 3}
-      ]
-    },
-  ]
+  sections= [
+  {
+    name: "section 1",
+    formFields: [
+      {
+        id: 0,
+        type: "radio",
+        obj: [
+          {name: 'one', active: true, value: 1},
+          {name: 'two', active: false, value: 2}
+        ]
+      },
+      {
+        id: 1,
+        type: "radio",
+        obj: [
+          {name: 'one', active: true, value: 1},
+          {name: 'two', active: false, value: 2},
+          {name: 'three', active: false, value: 3}
+        ]
+      },
+      {
+        id: 2,
+        type: "radio",
+        obj: [
+          {name: 'one', active: true, value: 1},
+          {name: 'two', active: false, value: 2}
+        ]
+      },
+      {
+        id: 3,
+        type: "select",
+        obj: [
+          {name: 'one', value: 1},
+          {name: 'two', value: 2}
+        ]
+      },
+    ]
+  }
+  ];
+  formBoxes=[
+  ];
+
   constructor() { }
 
   ngOnInit() {
   }
 
-  onValueEmitted(event) {
-    console.log(event);
-  }
+  /*onValueEmitted(event, index) {
+    this.formBoxes[index] = event;
+  }*/
 
 }
