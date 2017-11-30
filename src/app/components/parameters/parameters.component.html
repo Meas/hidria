@@ -1,13 +1,9 @@
 <div class="content">
   <div class="forms-section">
-    <app-form-box [section]="sections[0]" (formValues)="saveFormResults($event, 0)">
-    </app-form-box>
-    <app-form-box [section]="sections[0]" (formValues)="saveFormResults($event, 1)">
-    </app-form-box>
-    <app-form-box [section]="sections[0]" (formValues)="saveFormResults($event, 2)">
-    </app-form-box>
-
-      
+    <app-form-box *ngFor="let section of sections; let i = index"
+      [section]="sections[0]" 
+      (formValues)="saveFormResults($event, i)">
+    </app-form-box>     
   </div>
 </div>
 
