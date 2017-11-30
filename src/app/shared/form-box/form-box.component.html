@@ -12,10 +12,14 @@
 	    		</td>
 	    		<td>
 			    	<div *ngIf="item.type === 'select'">
-		  				<app-select-box [items]="item.obj"></app-select-box>    	
+		  				<app-select-box 
+		  					(value)="saveInputResult($event, item.id, item.type)" 
+		  					[select]="item.obj"></app-select-box>    	
 			    	</div>
 			    	<div *ngIf="item.type === 'radio'">
-			      		<app-switch-options (value)="saveInputResult($event, item.id)" [buttons]="item.obj"></app-switch-options>    	
+			      		<app-switch-options 
+			      		(value)="saveInputResult($event, item.id, item.type)" 
+			      		[buttons]="item.obj"></app-switch-options>    	
 			    	</div>
 	    		</td>
 		    </tr>

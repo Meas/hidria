@@ -1,12 +1,13 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
+import * as _ from "lodash"
 
 @Component({
   selector: 'app-select-box',
   template: `
     <label for="options">Text</label>
-    <select name="options">
-      <option>Select option</option>
-      <option *ngFor="let obj of items" value="obj.value">{{obj.name}}</option>
+    <select name="options" (change)="onChange($event.target.value)">
+      <option disabled>Select option</option>
+      <option *ngFor="let obj of localSelect" value="obj.value">{{obj.name}}</option>
     </select>
   `,
   styles: [`
@@ -24,10 +25,23 @@ import { Component, OnInit, Input } from '@angular/core';
   `]
 })
 export class SelectBoxComponent implements OnInit {
+  localSelect: Array<object>;
+  @Input() set select(data: Array<object>) {
+    if (data) {
+      this.localSelect = _.cloneDeep(data);
+    }
+  }
+
+  @Output() value: EventEmitter<number> = new EventEmitter();
+
   @Input() items;
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onChange(value) {
+    this.value.emit(value);
   }
 
 }

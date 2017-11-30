@@ -35,8 +35,8 @@ export class FormBoxComponent implements OnInit {
   ngOnInit() {
   }
 
-	saveInputResult(value, id) {
-		this.results[id] = {'id' : id, 'value': value, 'type': 'radio'};
+	saveInputResult(value, id, type) {
+		this.results[id] = {'id' : id, 'value': value, 'type': type};
 		/*console.log(this.results);*/
 		/*var a = Array();
 		a[id] = {'id': id, 'value': value};*/
