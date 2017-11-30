@@ -1,6 +1,7 @@
 import {Component, Input, Output, OnInit, EventEmitter} from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 
 import 'rxjs/add/observable/of';
 
@@ -18,25 +19,31 @@ export class FormBoxComponent implements OnInit {
   };
 
 
-  @Output() emitter: EventEmitter<{}> = new EventEmitter();
+  @Output() formValues: EventEmitter<any> = new EventEmitter();
 
 /*  results: Observable<{}>;*/
-  results: Observable<Array<{}>> = Observable.of([]);
+  /*results = new Subject<any>;*/
+  results = Array();
   constructor() {
-  	console.log(this.results);
-	this.results.subscribe((data) => {
-		this.emitter.emit(data)
-	})
+  	
+	/*this.results.subscribe((data) => {
+		console.log(data);
+		this.formValues.emit(data)
+	});*/
   }
 
   ngOnInit() {
   }
 
 	saveInputResult(value, id) {
+		this.results[id] = {'id' : id, 'value': value};
+		/*console.log(this.results);*/
 		/*var a = Array();
 		a[id] = {'id': id, 'value': value};*/
-		this.results[id] = {'id': id, 'value': value};
-		console.log(this.results);
+		this.formValues.emit(this.results);
+		/*results[id] = value;*/
+		/*console.log(this.results);*/
+
 	}
 
 
