@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   template: `
     <label for="options">Text</label>
     <select name="options">
-      <option></option>
+      <option>Select option</option>
       <option value="1">One</option>
       <option value="2">Two</option>
     </select>
@@ -13,9 +13,9 @@ import { Component, OnInit } from '@angular/core';
   styles: [`
     select {
       width: 100%;
-      height: 35px;
+      height: 40px;
       font-size: 15px;
-      border: none;
+      border: solid 1px $main-border-item;
       background: white;
       text-align-last: center;
     }
