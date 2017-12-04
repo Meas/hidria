@@ -8,13 +8,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CatalogueComponent } from './components/catalogue/catalogue.component';
 import { ParametersComponent } from './components/parameters/parameters.component';
+import { TestPdfComponent } from './components/test-pdf/test-pdf.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     CatalogueComponent,
-    ParametersComponent
+    ParametersComponent,
+    TestPdfComponent,
   ],
   imports: [
     FormsModule,

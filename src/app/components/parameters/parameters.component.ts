@@ -9,11 +9,11 @@ export class ParametersComponent implements OnInit {
 
   sections= [
   {
-    name: "section 1",
+    name: 'section 1',
     formFields: [
       {
         id: 0,
-        type: "radio",
+        type: 'radio',
         obj: [
           {name: 'one', active: true, value: 1},
           {name: 'two', active: false, value: 2}
@@ -21,7 +21,7 @@ export class ParametersComponent implements OnInit {
       },
       {
         id: 1,
-        type: "radio",
+        type: 'radio',
         obj: [
           {name: 'one', active: true, value: 1},
           {name: 'two', active: false, value: 2},
@@ -30,7 +30,7 @@ export class ParametersComponent implements OnInit {
       },
       {
         id: 2,
-        type: "radio",
+        type: 'radio',
         obj: [
           {name: 'one', active: true, value: 1},
           {name: 'two', active: false, value: 2}
@@ -38,7 +38,7 @@ export class ParametersComponent implements OnInit {
       },
       {
         id: 3,
-        type: "select",
+        type: 'select',
         obj: [
           {name: 'one', value: 1},
           {name: 'two', value: 2}
@@ -47,11 +47,11 @@ export class ParametersComponent implements OnInit {
     ]
   },
   {
-    name: "section 2",
+    name: 'section 2',
     formFields: [
       {
         id: 0,
-        type: "radio",
+        type: 'radio',
         obj: [
           {name: 'one', active: true, value: 1},
           {name: 'two', active: false, value: 2}
@@ -59,7 +59,7 @@ export class ParametersComponent implements OnInit {
       },
       {
         id: 1,
-        type: "radio",
+        type: 'radio',
         obj: [
           {name: 'one', active: true, value: 1},
           {name: 'two', active: false, value: 2},
@@ -68,7 +68,7 @@ export class ParametersComponent implements OnInit {
       },
       {
         id: 2,
-        type: "radio",
+        type: 'radio',
         obj: [
           {name: 'one', active: true, value: 1},
           {name: 'two', active: false, value: 2}
@@ -76,7 +76,7 @@ export class ParametersComponent implements OnInit {
       },
       {
         id: 3,
-        type: "select",
+        type: 'select',
         obj: [
           {name: 'one', value: 1},
           {name: 'two', value: 2}
@@ -85,11 +85,11 @@ export class ParametersComponent implements OnInit {
     ]
   },
   {
-    name: "section 3",
+    name: 'section 3',
     formFields: [
       {
         id: 0,
-        type: "radio",
+        type: 'radio',
         obj: [
           {name: 'one', active: true, value: 1},
           {name: 'two', active: false, value: 2}
@@ -97,7 +97,7 @@ export class ParametersComponent implements OnInit {
       },
       {
         id: 1,
-        type: "radio",
+        type: 'radio',
         obj: [
           {name: 'one', active: true, value: 1},
           {name: 'two', active: false, value: 2},
@@ -106,7 +106,7 @@ export class ParametersComponent implements OnInit {
       },
       {
         id: 2,
-        type: "radio",
+        type: 'radio',
         obj: [
           {name: 'one', active: true, value: 1},
           {name: 'two', active: false, value: 2}
@@ -114,7 +114,7 @@ export class ParametersComponent implements OnInit {
       },
       {
         id: 3,
-        type: "select",
+        type: 'select',
         obj: [
           {name: 'one', value: 1},
           {name: 'two', value: 2},
@@ -124,7 +124,7 @@ export class ParametersComponent implements OnInit {
     ]
   }
   ];
-  formBoxes=[
+  formBoxes= [
   ];
 
   constructor() { }
