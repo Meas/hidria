@@ -14,6 +14,7 @@ $back-item-color: #f2f2f2;
   font-size: 15px;
   margin-bottom: 28px;
   color: gray;
+  outline: none;
 }
 
 .button-box-active {
@@ -31,7 +32,7 @@ $back-item-color: #f2f2f2;
   background-color: $main-color;
   width: 20%;
   border-radius: 5px;
-  margin-right: 70px;
+  margin-right: 10px;
   color: white;
   padding: 5px;
 }

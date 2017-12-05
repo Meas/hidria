@@ -1,5 +1,6 @@
 button {
   font-family: 'Rajdhani', sans-serif;
+  outline: none;
 }
 
 .mini-button {
@@ -12,6 +13,7 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
+    outline: none;
     img {
       width: 15px;
       filter: invert(100%);
@@ -24,6 +26,8 @@ button {
   align-items: center;
   justify-content: space-between;
   padding: 50px 10px;
+  outline: none;
+
 
   button {
     width: 48%;

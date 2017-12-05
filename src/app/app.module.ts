@@ -9,7 +9,14 @@ import { AppComponent } from './app.component';
 import { CatalogueComponent } from './components/catalogue/catalogue.component';
 import { ParametersComponent } from './components/parameters/parameters.component';
 import { TestPdfComponent } from './components/test-pdf/test-pdf.component';
+import { ChartComponent } from './components/chart/chart.component';
 
+import { NvD3Module } from 'ng2-nvd3';
+
+// d3 and nvd3 should be included somewhere
+import 'd3';
+import 'nvd3';
+import { FanDetailsComponent } from './components/fan-details/fan-details.component';
 
 @NgModule({
   declarations: [
@@ -17,12 +24,15 @@ import { TestPdfComponent } from './components/test-pdf/test-pdf.component';
     CatalogueComponent,
     ParametersComponent,
     TestPdfComponent,
+    FanDetailsComponent,
+    ChartComponent
   ],
   imports: [
     FormsModule,
     BrowserModule,
     SharedModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NvD3Module
   ],
   providers: [],
   bootstrap: [AppComponent]

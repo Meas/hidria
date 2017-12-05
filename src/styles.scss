@@ -25,7 +25,6 @@ body {
 @import "assets/partials/buttons";
 @import "assets/partials/inputs";
 @import "assets/partials/table";
-
 @import "assets/partials/header";
 
 .main-section {
@@ -33,7 +32,6 @@ body {
 
   display: flex;
 
-  @import "assets/partials/sidebar";
   @import "assets/partials/content";
 
 }

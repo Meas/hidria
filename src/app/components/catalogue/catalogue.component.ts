@@ -64,12 +64,34 @@ export class CatalogueComponent implements OnInit {
     {
       slug: 'axial_fans_for_ventialtion',
       title: 'Axial fans for Ventilation',
-      items: []
+      items: [
+        {
+          slug: 'slick_blades',
+          title: 'Test',
+          description: 'Desc'
+        },
+        {
+          slug: 'slick_blades_1',
+          title: 'Test',
+          description: 'Desc'
+        }
+      ]
     },
     {
       slug: 'ec_axial_fans',
       title: 'EC Axial fans',
-      items: []
+      items: [
+        {
+          slug: 'slick_blades',
+          title: 'Test',
+          description: 'Desc'
+        },
+        {
+          slug: 'slick_blades_1',
+          title: 'Test',
+          description: 'Desc'
+        }
+      ]
     }
   ]
 
