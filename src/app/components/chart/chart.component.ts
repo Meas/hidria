@@ -45,6 +45,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
             data: [],
             fill: true
         },
+        ]
     };
 
     Chart.pluginService.register({
