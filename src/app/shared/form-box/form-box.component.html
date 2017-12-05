@@ -1,26 +1,50 @@
 <div class="block" [ngClass]="{'removeMargin': isFirstChild}">
   <div class="block-form">
-    <ng-content select="header"></ng-content>
+    <div *ngIf="section.header" class="select-header">
+      <table class="table-buttons">
+        <tbody>
+          <tr *ngFor="let item of section.header">
+            <td>
+              <div *ngIf="item.type === 'select'">
+                <label for="">{{item.label}}</label>
+                <app-select-box
+                  (value)="saveInputResult($event, item.id, item.type)"
+                  [select]="item.options"></app-select-box>
+              </div>
+              <div>
+                <app-accordion-input></app-accordion-input>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
     <app-title-box></app-title-box>
 
     <table class="table-buttons">
     	<tbody *ngIf="section">
 	    	<tr *ngFor="let item of section.formFields">
-	    		<td *ngIf="item.label">
-	    			{{item.label}}
-	    		</td>
+	    		<!--<td *ngIf="item.label">-->
+	    			<!--{{item.label}}-->
+	    		<!--</td>-->
 	    		<td>
-			    	<div *ngIf="item.type === 'select'">
-		  				<app-select-box 
-		  					(value)="saveInputResult($event, item.id, item.type)" 
-		  					[select]="item.obj"></app-select-box>    	
+            <div *ngIf="item.type === 'select'">
+              <label for="">{{item.label}}</label>
+		  				<app-select-box
+		  					(value)="saveInputResult($event, item.id, item.type)"
+		  					[select]="item.options"></app-select-box>
 			    	</div>
 			    	<div *ngIf="item.type === 'radio'">
-			      		<app-switch-options 
-			      		(value)="saveInputResult($event, item.id, item.type)" 
-			      		[buttons]="item.obj"></app-switch-options>    	
+              <label for="">{{item.label}}</label>
+              <app-switch-options
+			      		(value)="saveInputResult($event, item.id, item.type)"
+			      		[buttons]="item.options"></app-switch-options>
 			    	</div>
+            <div *ngIf="item.type === 'input'">
+              <label for="form-input">{{item.label}}</label>
+              <input class="full-size" type="" name="form-input" [value]="item.value">
+            </div>
 	    		</td>
 		    </tr>
 	    </tbody>
