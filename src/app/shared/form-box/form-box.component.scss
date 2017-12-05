@@ -1,5 +1,15 @@
+$main-color: #1D4686;
+
 :host {
   width: 100%;
+}
+
+.block-form {
+  min-height: 500px;
+}
+.select-header {
+  background: $main-color;
+  margin-bottom: 10px;
 }
 .removeMargin {
   margin-left: 0 !important;

@@ -12,6 +12,7 @@ import { SelectBoxComponent } from './select-box/select-box.component';
 import { TitleBoxComponent } from './title-box/title-box.component';
 import { SwitchOptionsComponent } from './switch-options/switch-options.component';
 import { AppRoutingModule } from ".././app-routing.module";
+import { AccordionInputComponent } from './accordion-input/accordion-input.component';
 
 @NgModule({
   imports: [
@@ -30,6 +31,7 @@ import { AppRoutingModule } from ".././app-routing.module";
     SelectBoxComponent,
     TitleBoxComponent,
     SwitchOptionsComponent,
+    AccordionInputComponent,
   ],
   exports: [
     HeaderComponent,
@@ -39,6 +41,7 @@ import { AppRoutingModule } from ".././app-routing.module";
     FormBoxComponent,
     SelectBoxComponent,
     SwitchOptionsComponent
+    AccordionInputComponent,
   ]
 })
 export class SharedModule { }

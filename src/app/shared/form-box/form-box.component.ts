@@ -15,6 +15,7 @@ export class FormBoxComponent implements OnInit {
   @Input() isFirstChild = false;
   @Input() section: {
   	name: string,
+    header?: Array<{}>,
   	formFields: Array<{}>
   };
 
@@ -25,7 +26,7 @@ export class FormBoxComponent implements OnInit {
   /*results = new Subject<any>;*/
   results = Array();
   constructor() {
-  	
+
 	/*this.results.subscribe((data) => {
 		console.log(data);
 		this.formValues.emit(data)
