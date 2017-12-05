@@ -2,7 +2,10 @@
   <app-filters [filters]="sections" (filterSelected)="onFilterSelected($event)"></app-filters>
   <div class="scroll-content">
     <div *ngFor="let section of sections">
-      <app-body-section *ngIf="section.items.length !== 0" [title]="section.title" [items]="section.items" (selectItem)="onItemSelected($event)"></app-body-section>
+      <app-body-section *ngIf="section.items.length !== 0"
+                        [items]="section.items"
+                        [title]="section.title"
+                        (selectItem)="onItemSelected($event)"></app-body-section>
     </div>
   </div>
 </div>
