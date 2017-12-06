@@ -6,13 +6,25 @@ body {
   font-family: 'Rajdhani', sans-serif;
 }
 
+::-webkit-scrollbar-track {
+  background-color: #ffffff;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  background-color: #ffffff;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #cdcdcd;
+}
+
 @import "assets/partials/variables";
 @import "assets/partials/leafs";
 
 @import "assets/partials/buttons";
 @import "assets/partials/inputs";
 @import "assets/partials/table";
-
 @import "assets/partials/header";
 
 .main-section {
@@ -20,7 +32,6 @@ body {
 
   display: flex;
 
-  @import "assets/partials/sidebar";
   @import "assets/partials/content";
 
 }

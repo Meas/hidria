@@ -1,0 +1,26 @@
+$main-color: #1D4686;
+
+.accordion-box {
+  display: flex;
+  justify-content: space-between;
+
+  .input-box {
+    width: calc(100% - 55px);
+  }
+
+  .accordion-button {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: rgba(29,70,134,0.3);
+  }
+}
+
+.panel {
+  padding: 0 18px;
+  height: 0;
+  transition: ease .3s;
+  color: white;
+  overflow: hidden;
+  background-color: rgba(29,70,134,0.3);
+}

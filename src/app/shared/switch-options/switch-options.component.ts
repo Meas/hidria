@@ -1,12 +1,18 @@
 import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
+import * as _ from "lodash"
 
 @Component({
   selector: 'app-switch-options',
   templateUrl: './switch-options.component.html',
-  styleUrls: ['./switch-options.component.css']
+  styleUrls: ['./switch-options.component.scss']
 })
 export class SwitchOptionsComponent implements OnInit {
-  @Input() buttons: Array<object>
+  localButtons: Array<object>;
+  @Input() set buttons(data: Array<object>) {
+    if (data) {
+      this.localButtons = _.cloneDeep(data);
+    }
+  }
 
   @Output() value: EventEmitter<number> = new EventEmitter();
 
@@ -15,9 +21,14 @@ export class SwitchOptionsComponent implements OnInit {
   ngOnInit() {
   }
 
-  durp(button, buttons) {
-  	console.log(button)
-  	button.active = true;
+  changeSelected(button, buttons) {
+    this.value.emit(button.value);
+    buttons.map(oneButton => {
+      if(oneButton == button)
+        oneButton.active = true;
+      else
+        oneButton.active = false;
+    });
   }
 
 }

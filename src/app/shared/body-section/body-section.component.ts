@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-body-section',
@@ -9,6 +9,7 @@ export class BodySectionComponent implements OnInit {
 
   @Input() title: string;
   @Input() items: Array<{}>;
+  @Output() selectItem: EventEmitter<string> = new EventEmitter();
 
   constructor() { }
 

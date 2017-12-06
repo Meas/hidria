@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-filters',
@@ -7,9 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FiltersComponent implements OnInit {
 
-  constructor() { }
+  @Input() filters;
+  @Input() activeFilter = 'all';
+  @Output() filterSelected: EventEmitter<string> = new EventEmitter();
+
+  constructor() {
+  }
 
   ngOnInit() {
   }
 
+  totalModels(): number {
+    let total = 0;
+    this.filters.forEach((item) => {
+      total += item.items.length;
+    });
+    return total;
+  }
 }

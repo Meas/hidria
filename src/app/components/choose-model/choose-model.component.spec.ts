@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ViewBComponent } from './view-b.component';
+import { ChooseModelComponent } from './choose-model.component';
 
-describe('ViewBComponent', () => {
-  let component: ViewBComponent;
-  let fixture: ComponentFixture<ViewBComponent>;
+describe('ChooseModelComponent', () => {
+  let component: ChooseModelComponent;
+  let fixture: ComponentFixture<ChooseModelComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ViewBComponent ]
+      declarations: [ ChooseModelComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ViewBComponent);
+    fixture = TestBed.createComponent(ChooseModelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

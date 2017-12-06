@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {HeaderComponent} from './header/header.component';
 import { FiltersComponent } from './filters/filters.component';
@@ -12,6 +12,7 @@ import { SelectBoxComponent } from './select-box/select-box.component';
 import { TitleBoxComponent } from './title-box/title-box.component';
 import { SwitchOptionsComponent } from './switch-options/switch-options.component';
 import { AppRoutingModule } from ".././app-routing.module";
+import { AccordionInputComponent } from './accordion-input/accordion-input.component';
 
 @NgModule({
   imports: [
@@ -30,6 +31,7 @@ import { AppRoutingModule } from ".././app-routing.module";
     SelectBoxComponent,
     TitleBoxComponent,
     SwitchOptionsComponent,
+    AccordionInputComponent,
   ],
   exports: [
     HeaderComponent,
@@ -38,7 +40,9 @@ import { AppRoutingModule } from ".././app-routing.module";
     BodySectionComponent,
     FormBoxComponent,
     SelectBoxComponent,
-    SwitchOptionsComponent
-  ]
+    SwitchOptionsComponent,
+    AccordionInputComponent,
+  ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class SharedModule { }

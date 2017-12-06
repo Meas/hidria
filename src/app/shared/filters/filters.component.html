@@ -1,13 +1,14 @@
 <div class="button-item">
-  <button class="button-box" type="button">All Models <span style="flex: 1 1 auto"></span><span
-    class="blue-box b-box-lit-1">133</span></button>
-  <button class="button-box button-box-active" type="button">AC Axial fans <span
-    style="flex: 1 1 auto"></span><span class="blue-box b-box-lit-2">23</span></button>
-  <button class="button-box" type="button">EC Axial fans <span style="flex: 1 1 auto"></span><span
-    class="blue-box b-box-lit-3">17</span></button>
-  <button class="button-box" type="button">Axial fans for Ventilation <span
-    style="flex: 1 1 auto"></span><span class="blue-box b-box-lit-4">63</span></button>
-  <button class="button-box" type="button">EC Axial fans <span style="flex: 1 1 auto"></span><span
-    class="blue-box b-box-lit-1">5</span></button>
-  <!-- TODO <button class="button-box" type="button">EC Axial fans<span class="blue-box">17</span></button> -->
+  <button class="button-box" type="button"
+          (click)="filterSelected.emit('all')"
+          [ngClass]="{'button-box-active': 'all' === activeFilter}">
+    <span class="blue-box b-box-lit-1">{{totalModels()}}</span>
+    All Models
+  </button>
+  <button *ngFor="let filter of filters; let i = index" class="button-box" type="button"
+          (click)="filterSelected.emit(filter.slug)"
+          [ngClass]="{'button-box-active': 'button-box-active' === activeFilter}">
+    <span class="blue-box b-box-lit-{{i + 1}}">{{filter.items.length}}</span>
+    {{filter.title}}
+  </button>
 </div>
