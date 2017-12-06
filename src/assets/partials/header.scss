@@ -70,6 +70,7 @@ header {
     .link-left {
       text-decoration: none;
       color: #87a0c0;
+      cursor: pointer;
     }
   }
 }
@@ -84,9 +85,11 @@ header {
     border: none;
     background-color: white;
     border: solid 1px $main-color;
+    cursor: pointer;
   }
   .meters-active {
     background-color: $main-color;
+    cursor: pointer;
     color: white;
     &:before {
       content: '';
@@ -98,10 +101,12 @@ header {
       border-width: 6px 10px 6px 0;
       transform: rotateY(180deg);
       border-color: rgba(0, 0, 0, 0) $main-color rgba(0, 0, 0, 0);
+      cursor: pointer;
     }
   }
   .feets-active {
     background-color: $main-color;
+    cursor: pointer;
     color: white;
     &:before {
       content: '';
@@ -112,6 +117,7 @@ header {
       border-style: solid;
       border-width: 6px 10px 6px 0;
       border-color: rgba(0, 0, 0, 0) $main-color rgba(0, 0, 0, 0);
+      cursor: pointer;
     }
   }
 }
