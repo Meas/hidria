@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-parameters',
   templateUrl: './parameters.component.html',
-  styleUrls: ['./parameters.component.css']
+  styleUrls: ['./parameters.component.scss']
 })
 export class ParametersComponent implements OnInit {
 
@@ -95,6 +95,7 @@ export class ParametersComponent implements OnInit {
       {
         id: 0,
         type: 'radio',
+        label: 'Test label',
         options: [
           {name: 'one', active: true, value: 1},
           {name: 'two', active: false, value: 2}
@@ -103,6 +104,7 @@ export class ParametersComponent implements OnInit {
       {
         id: 1,
         type: 'radio',
+        label: 'Test label',
         options: [
           {name: 'one', active: true, value: 1},
           {name: 'two', active: false, value: 2},
@@ -112,6 +114,7 @@ export class ParametersComponent implements OnInit {
       {
         id: 2,
         type: 'radio',
+        label: 'Test label',
         options: [
           {name: 'one', active: true, value: 1},
           {name: 'two', active: false, value: 2}
@@ -120,6 +123,7 @@ export class ParametersComponent implements OnInit {
       {
         id: 0,
         type: 'radio',
+        label: 'Test label',
         options: [
           {name: 'one', active: true, value: 1},
           {name: 'two', active: false, value: 2}
@@ -128,6 +132,7 @@ export class ParametersComponent implements OnInit {
       {
         id: 0,
         type: 'radio',
+        label: 'Test label',
         options: [
           {name: 'one', active: true, value: 1},
           {name: 'two', active: false, value: 2}

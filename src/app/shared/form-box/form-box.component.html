@@ -46,11 +46,15 @@
                 (value)="saveInputResult($event, item.id, item.type)"
                 [select]="item.options"></app-select-box>
             </div>
-            <div *ngIf="item.type === 'radio'">
-              <label for="">{{item.label}}</label>
-              <app-switch-options
-                (value)="saveInputResult($event, item.id, item.type)"
-                [buttons]="item.options"></app-switch-options>
+            <div class="switch-option-box" *ngIf="item.type === 'radio'">
+              <div class="switch-option-label">
+                <label for="">{{item.label}}</label>
+              </div>
+              <div class="switch-option-buttons">
+                <app-switch-options
+                  (value)="saveInputResult($event, item.id, item.type)"
+                  [buttons]="item.options"></app-switch-options>
+              </div>
             </div>
             <div *ngIf="item.type === 'input'">
               <label for="form-input">{{item.label}}</label>

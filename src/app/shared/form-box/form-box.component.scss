@@ -27,3 +27,15 @@ $main-color: #1D4686;
     }
   }
 }
+
+.switch-option-box {
+  display: flex;
+  width: 100%;
+
+  .switch-option-label {
+    width: 30%;
+  }
+  .switch-option-buttons {
+    width: 70%;
+  }
+}
