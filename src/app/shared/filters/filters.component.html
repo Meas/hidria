@@ -3,14 +3,12 @@
           (click)="filterSelected.emit('all')"
           [ngClass]="{'button-box-active': 'all' === activeFilter}">
     <span class="blue-box b-box-lit-1">{{totalModels()}}</span>
-    <span style="flex: 1 1 auto"></span>
     All Models
   </button>
   <button *ngFor="let filter of filters; let i = index" class="button-box" type="button"
           (click)="filterSelected.emit(filter.slug)"
           [ngClass]="{'button-box-active': 'button-box-active' === activeFilter}">
     <span class="blue-box b-box-lit-{{i + 1}}">{{filter.items.length}}</span>
-    <span style="flex: 1 1 auto"></span>
     {{filter.title}}
   </button>
 </div>

@@ -1,4 +1,7 @@
 <div class="section-title">{{title}}</div>
 <div class="section-for-items">
-  <app-items *ngFor="let item of items" [item]="item" (click)="selectItem.emit(item.slug)"></app-items>
+  <app-items *ngFor="let item of items; let i = index"
+             [index]="i"
+             [item]="item"
+             (click)="selectItem.emit(item.slug)"></app-items>
 </div>

@@ -15,8 +15,8 @@ export class CatalogueComponent implements OnInit {
       items: [
         {
           slug: 'slick_blades',
-          title: 'Test',
-          description: 'Desc',
+          title: 'AC Axial fans',
+          description: 'Sickled blades\n',
           items: [
             {
               title: 'Test 1',
@@ -30,18 +30,18 @@ export class CatalogueComponent implements OnInit {
         },
         {
           slug: 'slick_blades_1',
-          title: 'Test',
-          description: 'Desc'
+          title: 'AC Axial fans',
+          description: 'Blades with composite material (PP/AP)es'
         },
         {
           slug: 'slick_blades_2',
-          title: 'Test',
-          description: 'Desc'
+          title: 'AC Axial fans',
+          description: 'Paddle blades'
         },
         {
           slug: 'slick_blades_3',
-          title: 'Test',
-          description: 'Desc'
+          title: 'UL listed Axial Fans',
+          description: ''
         }
       ]
     },
@@ -51,13 +51,18 @@ export class CatalogueComponent implements OnInit {
       items: [
         {
           slug: 'slick_blades',
-          title: 'Test',
-          description: 'Desc'
+          title: 'H-ROOF fans',
+          description: ''
         },
         {
           slug: 'slick_blades_1',
-          title: 'Test',
-          description: 'Desc'
+          title: 'H-TUBE fans',
+          description: ''
+        },
+        {
+          slug: 'slick_blades_1',
+          title: 'SQUARE PLATE fans',
+          description: ''
         }
       ]
     },
@@ -67,13 +72,13 @@ export class CatalogueComponent implements OnInit {
       items: [
         {
           slug: 'slick_blades',
-          title: 'Test',
-          description: 'Desc'
+          title: 'H-ROOF fans',
+          description: ''
         },
         {
           slug: 'slick_blades_1',
-          title: 'Test',
-          description: 'Desc'
+          title: 'H-TUBE fans',
+          description: ''
         }
       ]
     },
