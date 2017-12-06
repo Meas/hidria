@@ -4,7 +4,7 @@ $back-item-color: #f2f2f2;
 .button-box {
   display: flex;
   align-items: center;
-  width: calc(100% / 5);
+  min-width: calc(100% / 5);
   float: left;
   border: none;
   background: none;
@@ -15,6 +15,7 @@ $back-item-color: #f2f2f2;
   margin-bottom: 28px;
   color: gray;
   outline: none;
+  cursor: pointer;
 }
 
 .button-box-active {
