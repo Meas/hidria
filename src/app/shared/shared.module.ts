@@ -40,7 +40,7 @@ import { AccordionInputComponent } from './accordion-input/accordion-input.compo
     BodySectionComponent,
     FormBoxComponent,
     SelectBoxComponent,
-    SwitchOptionsComponent
+    SwitchOptionsComponent,
     AccordionInputComponent,
   ]
 })
