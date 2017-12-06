@@ -17,6 +17,7 @@ import { NvD3Module } from 'ng2-nvd3';
 import 'd3';
 import 'nvd3';
 import { FanDetailsComponent } from './components/fan-details/fan-details.component';
+import {ChooseModelComponent} from "./components/choose-model/choose-model.component";
 
 @NgModule({
   declarations: [
@@ -25,7 +26,9 @@ import { FanDetailsComponent } from './components/fan-details/fan-details.compon
     ParametersComponent,
     TestPdfComponent,
     FanDetailsComponent,
-    ChartComponent
+    ChartComponent,
+    ChooseModelComponent
+
   ],
   imports: [
     FormsModule,
