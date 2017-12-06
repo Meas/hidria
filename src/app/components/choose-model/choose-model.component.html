@@ -3,16 +3,20 @@
 </div>
 <div class="wrapper">
   <div class="model">
-    <img class="model-img" src="/assets/images/fan.png" alt="">
-    <div class="model-info">
-      <h3>R09</h3>
-      <p>AC Axial fan sickled blades, AC Axial fan sickled blades, AC Axial fan sickled blades</p>
-    </div>
+    <app-fan-info [fanInfo]="fanOne"></app-fan-info>
   </div>
   <div class="graf">
     <chart-component [canvasId]="'canvas1'"></chart-component>
   </div>
   <div class="fan-table">
-
+    <table>
+      <tbody>
+        <tr *ngFor="let i of [1,2,3,4,5,6,7,8,9,10,1,2,3,4,5,6,7,8,9,10]">
+          <td>TEST</td>
+          <td>TEST</td>
+          <td>TEST</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>

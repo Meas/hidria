@@ -1,34 +1,27 @@
+//:host {
+//  display: block;
+//  width: 68%;
+//}
+
 .wrapper {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  grid-template-areas: "model-info fan-table"
+  grid-template-areas: "model fan-table"
                        "graf fan-table";
 }
 .title-model {
-  width: 1210px;
+  width: 100%;
   display: flex;
   border-bottom: 2px solid #cdcdcd;
+  margin-top: 0;
 }
 
-.model-img {
-  float: left;
-  height: 70px;
-}
-model-info{
-  float: right;
-  grid-area: model-info;
-  display: flex;
+.model {
+  grid-area: model;
 }
 .graf{
   grid-area: graf;
-  display: block;
-  overflow: hidden;
 }
 .fan-table {
   grid-area: fan-table;
-}
-.model{
-  display: flex;
-  border: 1px solid #cdcdcd;
-  align-content: center;
 }

@@ -23,11 +23,8 @@
 
       <table class="table-buttons">
         <tbody *ngIf="section">
-        <tr *ngFor="let item of section.formFields">
-          <!--<td *ngIf="item.label">-->
-          <!--{{item.label}}-->
-          <!--</td>-->
-          <td>
+          <tr *ngFor="let item of section.formFields">
+          <td class="space-bellow">
             <div *ngIf="item.type === 'accordion'">
               <app-accordion-input>
                 <accordion-content>

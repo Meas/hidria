@@ -7,6 +7,11 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class ChooseModelComponent implements OnInit {
 
+  fanOne = {
+    name: 'Some Name',
+    description: 'Description',
+    image: 'assets/images/fan.png'
+  }
   constructor() { }
 
   ngOnInit() {
