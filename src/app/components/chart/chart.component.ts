@@ -8,6 +8,7 @@ import Chart from 'chart.js';
   selector: 'chart-component',
   template: `
   	<div style="background: #fff !important">
+    .I.
 	    <canvas [id]="canvasId" width="content-box" height="100"></canvas>
 	  </div>
   `,
