@@ -24,6 +24,12 @@ export class ParametersComponent implements OnInit {
     formFields: [
       {
         id: 0,
+        type: 'accordion',
+        label: 'Some Input',
+        value: 'Default'
+      },
+      {
+        id: 0,
         type: 'input',
         label: 'Some Input',
         value: 'Default'
