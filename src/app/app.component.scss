@@ -1,16 +1,16 @@
 .main-section {
   display: block;
-  width: calc(100% - 13.5%);
+  width: calc(100% - 20%);
 
   .main-content {
     display: flex;
     width: 100%;
 
     .sidebar {
-      width: 13.5%;
+      width: 20%;
     }
     .main {
-      width: calc(100% - 13.5%);
+      width: calc(100% - 20%);
     }
   }
 }
