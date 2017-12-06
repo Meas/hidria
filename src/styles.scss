@@ -24,15 +24,11 @@ body {
 
 @import "assets/partials/buttons";
 @import "assets/partials/inputs";
-@import "assets/partials/table";
-@import "assets/partials/header";
 
 .main-section {
   width: 100%;
 
   display: flex;
-
-  @import "assets/partials/content";
 
 }
 ::-webkit-scrollbar-track {

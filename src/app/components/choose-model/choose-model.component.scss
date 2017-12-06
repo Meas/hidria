@@ -1,5 +1,27 @@
-.title{
-  display: block;
-  border-bottom: 3px solid grey;
-  padding: 15px 300px;
+//:host {
+//  display: block;
+//  width: 68%;
+//}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-areas: "model fan-table"
+                       "graf fan-table";
+}
+.title-model {
+  width: 100%;
+  display: flex;
+  border-bottom: 2px solid #cdcdcd;
+  margin-top: 0;
+}
+
+.model {
+  grid-area: model;
+}
+.graf{
+  grid-area: graf;
+}
+.fan-table {
+  grid-area: fan-table;
 }

@@ -1,0 +1,40 @@
+@import "../../../assets/partials/variables.scss";
+
+.block-header {
+  width: 100%;
+  display: flex;
+  border-bottom: solid 2px $main-border-item;
+
+  .left {
+    width: 70%;
+
+    h5 {
+      font-size: 15px;
+      margin: 5px;
+    }
+  }
+  .right {
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .mini-button {
+    button {
+      width: 20px;
+      height: 20px;
+      background-color: $main-color;
+      border: none;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      outline: none;
+      img {
+        width: 15px;
+        filter: invert(100%);
+      }
+    }
+  }
+
+}

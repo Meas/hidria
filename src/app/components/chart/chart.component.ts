@@ -7,8 +7,7 @@ import Chart from 'chart.js';
 @Component({
   selector: 'chart-component',
   template: `
-  	<div style="background: #fff !important">
-    .I.  .I. 
+  	<div style="background: #fff !important"> 
 	    <canvas [id]="canvasId" width="content-box" height="100"></canvas>
 	  </div>
   `,
