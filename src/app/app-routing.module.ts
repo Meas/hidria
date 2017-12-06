@@ -14,7 +14,6 @@ const routes: Routes = [
   { path: 'test-pdf', component: TestPdfComponent },
   { path: 'details', component: FanDetailsComponent },
   { path: 'choose-model', component: ChooseModelComponent },
-
 ];
 
 @NgModule({

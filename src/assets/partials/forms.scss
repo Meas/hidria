@@ -1,3 +1,7 @@
+.form-content {
+  padding: 10px;
+}
+
 .forms-section {
   width: 100%;
   display: flex;
@@ -7,7 +11,6 @@
   .block {
     min-height: 600px;
     margin-left: 10px;
-
 
     .select-header {
       display: flex;
@@ -20,7 +23,7 @@
     }
 
     .block-form {
-      padding: 10px;
+      padding: 0;
       width: calc(100% - 20px);
       background: $form-item-color;
 
@@ -39,10 +42,10 @@
         }
         .right {
           width: 30%;
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
 
-          button {
-            float: right;
-          }
         }
       }
 

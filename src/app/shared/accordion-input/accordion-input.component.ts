@@ -16,10 +16,10 @@ export class AccordionInputComponent implements AfterViewInit {
     acc.onclick = function(){
       this.classList.toggle('active');
       const panel = document.getElementById('panel');
-      if (panel.style.height === '100px') {
+      if (panel.style.height === '200px') {
         panel.style.height = '0';
       } else {
-        panel.style.height = '100px';
+        panel.style.height = '200px';
       }
     }
   }
