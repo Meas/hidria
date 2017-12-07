@@ -121,7 +121,7 @@ export class CatalogueComponent implements OnInit {
   constructor(private catalogueService: CatalogueService, private router: Router) { }
 
   ngOnInit() {
-    // this.getItems();
+    this.getItems();
   }
 
   getItems(): void {

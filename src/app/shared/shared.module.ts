@@ -12,6 +12,7 @@ import { SwitchOptionsComponent } from './switch-options/switch-options.componen
 import { AppRoutingModule } from '.././app-routing.module';
 import { AccordionInputComponent } from './accordion-input/accordion-input.component';
 import { FanInfoComponent } from './fan-info/fan-info.component';
+import { TabsComponent } from './tabs/tabs.component';
 
 @NgModule({
   imports: [
@@ -30,6 +31,7 @@ import { FanInfoComponent } from './fan-info/fan-info.component';
     SwitchOptionsComponent,
     AccordionInputComponent,
     FanInfoComponent,
+    TabsComponent,
   ],
   exports: [
     HeaderComponent,
@@ -41,6 +43,8 @@ import { FanInfoComponent } from './fan-info/fan-info.component';
     SwitchOptionsComponent,
     AccordionInputComponent,
     FanInfoComponent,
+    TabsComponent,
+
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
