@@ -20,6 +20,10 @@
 .button-box-active {
   border-bottom: solid 2px $main-color;
   color: black;
+
+  span {
+    opacity: 1 !important;
+  }
 }
 
 @for $i from 1 through 4 {

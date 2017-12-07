@@ -2,11 +2,11 @@
   <app-filters [filters]="sections" [activeFilter]="slug" (filterSelected)="onFilterSelected($event)"></app-filters>
   <div class="scroll-content">
     <div *ngIf="subSections.length === 0">
-      <div *ngFor="let section of sections | filter:['slug', slug]">
+      <div *ngFor="let section of sections | sort:['title'] | filter:['slug', slug]">
         <app-body-section *ngIf="section.items.length !== 0"
                           [items]="section.items"
                           [title]="section.title"
-                          (selectItem)="onItemSelected($event)">
+                          (selectItem)="onSectionSelected($event)">
         </app-body-section>
       </div>
     </div>

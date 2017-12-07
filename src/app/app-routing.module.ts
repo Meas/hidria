@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'parameter', component: ParametersComponent },
   { path: 'test-pdf', component: TestPdfComponent },
   { path: 'details', component: FanDetailsComponent },
-  { path: 'choose-model', component: ChooseModelComponent },
+  { path: 'choose-model/:slug', component: ChooseModelComponent },
 ];
 
 @NgModule({

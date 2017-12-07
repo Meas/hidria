@@ -20,6 +20,7 @@ import { CatalogueService } from './services/catalogue/catalogue.service';
 import { HelperService } from './services/helper/helper.service';
 
 import { FilterPipe } from './pipes/filter/filter.pipe';
+import { SortPipe } from './pipes/sort/sort.pipe';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { FilterPipe } from './pipes/filter/filter.pipe';
     FanDetailsComponent,
     ChartComponent,
     ChooseModelComponent,
-    FilterPipe
+    FilterPipe,
+    SortPipe
   ],
   imports: [
     FormsModule,

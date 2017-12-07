@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as _ from 'lodash';
 import {CatalogueService} from "../../services/catalogue/catalogue.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-catalogue',
@@ -117,7 +118,7 @@ export class CatalogueComponent implements OnInit {
   ];
   subSections = [];
 
-  constructor(private catalogueService: CatalogueService) { }
+  constructor(private catalogueService: CatalogueService, private router: Router) { }
 
   ngOnInit() {
     // this.getItems();
@@ -129,21 +130,24 @@ export class CatalogueComponent implements OnInit {
     });
   }
 
-  onItemSelected(slug: string): void {
+  onSectionSelected(slug: string): void {
 
     this.sections.forEach(section => {
       section.items.forEach((item) => {
         console.log(slug, item.slug);
         if (item.slug === slug) {
           this.subSections = [item];
-          console.log(this.subSections);
         }
       });
     });
+  }
 
+  onItemSelected(event): void {
+    this.router.navigate(['choose-model', event]);
   }
 
   onFilterSelected(event): void {
     this.slug = event;
+    this.subSections = [];
   }
 }
