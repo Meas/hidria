@@ -7,7 +7,7 @@
   </button>
   <button *ngFor="let filter of filters; let i = index" class="button-box" type="button"
           (click)="filterSelected.emit(filter.slug)"
-          [ngClass]="{'button-box-active': 'button-box-active' === activeFilter}">
+          [ngClass]="{'button-box-active': filter.slug === activeFilter}">
     <span class="blue-box b-box-lit-{{i + 1}}">{{filter.items.length}}</span>
     {{filter.title}}
   </button>

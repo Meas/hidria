@@ -1,4 +1,4 @@
-import { Headers } from '@angular/http';
+import { HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 
 export class HelperService {
@@ -33,8 +33,8 @@ export class HelperService {
    * @param headers
    * @returns headers
    */
-  createAuthorizationHeader(headers: Headers): any {
-    headers.append('Authorization', 'Bearer ' + localStorage.getItem('access_token'));
+  createAuthorizationHeader(headers: HttpHeaders): any {
+    headers.set('Authorization', 'Bearer ' + localStorage.getItem('access_token'));
   }
 
   /**
@@ -44,16 +44,11 @@ export class HelperService {
    * @returns response
    */
   checkDataValidity(response): any {
+    console.log(response);
     if (response.hasOwnProperty('status')) {
-      if (response.status === 400) {
-        setTimeout(() => {
-          // location.reload();
-        }, 2000);
-        return { data: [] };
-      } else {
-        return response;
-      }
+      return response;
     } else {
+      // TODO return error
       return response;
     }
   }

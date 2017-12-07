@@ -18,17 +18,17 @@ export class MainService {
    *
    * @param route
    * @param queryParams
-   * @returns {Observable<R>}
+   * @returns {Observable<any>}
    */
   get(route: string, queryParams?: {}): Observable<any> {
 
-    const headers = new Headers();
+    const headers = new HttpHeaders();
     this.helper.createAuthorizationHeader(headers);
 
     return this.http.get(this.helper.generateRoute(route, queryParams), {
       headers: headers
     })
-      .map((res: Response) => this.helper.checkDataValidity(res.json()))
+      .map((res: HttpResponse<any>) => this.helper.checkDataValidity(res.body))
       .catch((err: any) => {
         return Observable.of(err);
       });
@@ -40,17 +40,17 @@ export class MainService {
    * @param route
    * @param data
    * @param queryParams
-   * @returns {Observable<R>}
+   * @returns {Observable<any>}
    */
   post(route: string, data?: {}, queryParams?: {}): any {
 
-    const headers = new Headers();
+    const headers = new HttpHeaders();
     this.helper.createAuthorizationHeader(headers);
 
     return this.http.post(this.helper.generateRoute(route, queryParams), data, {
       headers: headers
     })
-      .map((res: Response) => this.helper.checkDataValidity(res.json()))
+      .map((res: HttpResponse<any>) => this.helper.checkDataValidity(res.body))
       .catch((err: Error) => {
         return Observable.of(err);
       });
@@ -62,17 +62,17 @@ export class MainService {
    * @param route
    * @param data
    * @param queryParams
-   * @returns {Observable<R>}
+   * @returns {Observable<any>}
    */
   put(route: string, data?: {}, queryParams?: {}) {
 
-    const headers = new Headers();
+    const headers = new HttpHeaders();
     this.helper.createAuthorizationHeader(headers);
 
     return this.http.put(this.helper.generateRoute(route, queryParams), data, {
       headers: headers
     })
-      .map((res: Response) => this.helper.checkDataValidity(res.json()))
+      .map((res: HttpResponse<any>) => this.helper.checkDataValidity(res.body))
       .catch((err: Error) => {
         return Observable.of(err);
       });
@@ -83,17 +83,17 @@ export class MainService {
    *
    * @param route
    * @param queryParams
-   * @returns {Observable<R>}
+   * @returns {Observable<any>}
    */
   delete(route: string, queryParams?: {}) {
 
-    const headers = new Headers();
+    const headers = new HttpHeaders();
     this.helper.createAuthorizationHeader(headers);
 
     return this.http.delete(this.helper.generateRoute(route, queryParams), {
       headers: headers
     })
-      .map((res: Response) => this.helper.checkDataValidity(res.json()))
+      .map((res: HttpResponse<any>) => this.helper.checkDataValidity(res.body))
       .catch((err: Error) => {
         return Observable.of(err);
       });

@@ -1,12 +1,22 @@
 <div class="content">
-  <app-filters [filters]="sections" (filterSelected)="onFilterSelected($event)"></app-filters>
+  <app-filters [filters]="sections" [activeFilter]="slug" (filterSelected)="onFilterSelected($event)"></app-filters>
   <div class="scroll-content">
-    <div *ngFor="let section of sections">
-      <app-body-section *ngIf="section.items.length !== 0"
-                        [items]="section.items"
-                        [title]="section.title"
-                        (selectItem)="onItemSelected($event)">
-      </app-body-section>
+    <div *ngIf="subSections.length === 0">
+      <div *ngFor="let section of sections | filter:['slug', slug]">
+        <app-body-section *ngIf="section.items.length !== 0"
+                          [items]="section.items"
+                          [title]="section.title"
+                          (selectItem)="onItemSelected($event)">
+        </app-body-section>
+      </div>
+    </div>
+    <div *ngIf="subSections.length !== 0">
+      <div *ngFor="let section of subSections">
+        <app-body-section [items]="section.items"
+                          [title]="section.title"
+                          (selectItem)="onItemSelected($event)">
+        </app-body-section>
+      </div>
     </div>
   </div>
 </div>
