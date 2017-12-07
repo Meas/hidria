@@ -18,9 +18,12 @@ import { ChooseModelComponent } from './components/choose-model/choose-model.com
 import { MainService } from './services/main.service';
 import { CatalogueService } from './services/catalogue/catalogue.service';
 import { HelperService } from './services/helper/helper.service';
+import { SecurityService } from './services/security/security.service';
+import { AuthService } from './services/auth/auth.service';
 
 import { FilterPipe } from './pipes/filter/filter.pipe';
 import { SortPipe } from './pipes/sort/sort.pipe';
+import { RouteNotFoundComponent } from './components/route-not-found/route-not-found.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,8 @@ import { SortPipe } from './pipes/sort/sort.pipe';
     ChartComponent,
     ChooseModelComponent,
     FilterPipe,
-    SortPipe
+    SortPipe,
+    RouteNotFoundComponent
   ],
   imports: [
     FormsModule,
@@ -45,7 +49,9 @@ import { SortPipe } from './pipes/sort/sort.pipe';
   providers: [
     MainService,
     HelperService,
-    CatalogueService
+    CatalogueService,
+    SecurityService,
+    AuthService
   ],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
