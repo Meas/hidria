@@ -16,7 +16,7 @@ import Chart from 'chart.js';
         <span>test</span>
         <span style="float:right">test</span>
       </div>
-      <chart-component [canvasId]="'canvas1'"></chart-component>
+      <app-chart-component [canvasId]="'canvas1'"></app-chart-component>
     </div>
     <button (click)="downloadPdf()">DOWNLOAD</button>
   `,
