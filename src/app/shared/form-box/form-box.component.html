@@ -1,21 +1,21 @@
 <div class="block" [ngClass]="{'removeMargin': isFirstChild}">
   <div class="block-form">
-    <div *ngIf="section.header" class="select-header">
-      <table class="table-buttons">
-        <tbody>
-          <tr *ngFor="let item of section.header">
-            <td>
-              <div *ngIf="item.type === 'select'">
-                <label for="">{{item.label}}</label>
-                <app-select-box
-                  (value)="saveInputResult($event, item.id, item.type)"
-                  [select]="item.options"></app-select-box>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <!--<div *ngIf="section.header" class="select-header">-->
+      <!--<table class="table-buttons">-->
+        <!--<tbody>-->
+          <!--<tr *ngFor="let item of section.header">-->
+            <!--<td>-->
+              <!--<div *ngIf="item.type === 'select'">-->
+                <!--<label for="">{{item.name}}</label>-->
+                <!--<app-select-box-->
+                  <!--(value)="saveInputResult($event, item.id, item.type)"-->
+                  <!--[select]="item.options"></app-select-box>-->
+              <!--</div>-->
+            <!--</td>-->
+          <!--</tr>-->
+        <!--</tbody>-->
+      <!--</table>-->
+    <!--</div>-->
 
     <div class="form-content">
 
@@ -23,13 +23,13 @@
 
       <table class="table-buttons">
         <tbody *ngIf="section">
-          <tr *ngFor="let item of section.formFields">
+          <tr *ngFor="let item of section.children">
           <td class="space-bellow">
             <div *ngIf="item.type === 'accordion'">
               <app-accordion-input>
                 <accordion-content>
                   <div>
-                    <label for="">{{item.label}}</label>
+                    <label for="">{{item.name}}</label>
                     <app-select-box
                       (value)="saveInputResult($event, item.id, item.type)"
                       [select]="item.options"></app-select-box>
@@ -38,24 +38,28 @@
               </app-accordion-input>
             </div>
             <div *ngIf="item.type === 'select'">
-              <label for="">{{item.label}}</label>
+              <label for="">{{item.name}}</label>
               <app-select-box
                 (value)="saveInputResult($event, item.id, item.type)"
                 [select]="item.options"></app-select-box>
             </div>
             <div class="switch-option-box" *ngIf="item.type === 'radio'">
               <div class="switch-option-label">
-                <label for="">{{item.label}}</label>
+                <label for="">{{item.name}}</label>
               </div>
               <div class="switch-option-buttons">
                 <app-switch-options
                   (value)="saveInputResult($event, item.id, item.type)"
-                  [buttons]="item.options"></app-switch-options>
+                  [buttons]="item.options" [defaultValue]="item.defaultValue"></app-switch-options>
               </div>
             </div>
-            <div *ngIf="item.type === 'input'">
-              <label for="form-input">{{item.label}}</label>
-              <input class="full-size" type="" name="form-input" [value]="item.value">
+            <div *ngIf="item.type === 'input-text'">
+              <label for="form-input">{{item.name}}</label>
+              <input class="full-size" type="text" name="form-input" [value]="item.default">
+            </div>
+            <div *ngIf="item.type === 'input-number'">
+              <label for="form-input">{{item.name}}</label>
+              <input class="full-size" type="number" name="form-input" [value]="item.default">
             </div>
           </td>
         </tr>

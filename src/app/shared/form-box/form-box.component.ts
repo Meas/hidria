@@ -13,39 +13,15 @@ import 'rxjs/add/observable/of';
 export class FormBoxComponent implements OnInit {
 
   @Input() isFirstChild = false;
-  @Input() section: {
-  	name: string,
-    header?: Array<{}>,
-  	formFields: Array<{}>
-  };
-
+  @Input() section;
 
   @Output() formValues: EventEmitter<any> = new EventEmitter();
 
-/*  results: Observable<{}>;*/
-  /*results = new Subject<any>;*/
-  results = Array();
-  constructor() {
+  constructor() {}
 
-	/*this.results.subscribe((data) => {
-		console.log(data);
-		this.formValues.emit(data)
-	});*/
+  ngOnInit() {}
+
+  saveInputResult(event, id?, type?): void {
+    console.log(event, id, type);
   }
-
-  ngOnInit() {
-  }
-
-	saveInputResult(value, id, type) {
-		this.results[id] = {'id' : id, 'value': value, 'type': type};
-		/*console.log(this.results);*/
-		/*var a = Array();
-		a[id] = {'id': id, 'value': value};*/
-		this.formValues.emit(this.results);
-		/*results[id] = value;*/
-		/*console.log(this.results);*/
-
-	}
-
-
 }

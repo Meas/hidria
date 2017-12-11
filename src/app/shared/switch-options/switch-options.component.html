@@ -1,2 +1,5 @@
-<button *ngFor="let button of localButtons; let i = index" 
-	[ngClass]="{'active':button.active}" (click)="changeSelected(button, localButtons);">{{button.name}}</button>
+<button *ngFor="let button of localButtons"
+	      [ngClass]="button.value === defaultValue ? 'active' : ''"
+        (click)="changeSelected(button, localButtons);">
+  {{button.text}}
+</button>

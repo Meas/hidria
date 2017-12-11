@@ -8,6 +8,7 @@ import * as _ from "lodash"
 })
 export class SwitchOptionsComponent implements OnInit {
   localButtons: Array<object>;
+  @Input() defaultValue;
   @Input() set buttons(data: Array<object>) {
     if (data) {
       this.localButtons = _.cloneDeep(data);

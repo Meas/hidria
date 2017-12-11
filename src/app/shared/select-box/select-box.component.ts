@@ -7,7 +7,7 @@ import * as _ from 'lodash';
     <label for="options">Text</label>
     <select name="options" (change)="onChange($event.target.value)">
       <option disabled>Select option</option>
-      <option *ngFor="let obj of localSelect" value="obj.value">{{obj.name}}</option>
+      <option *ngFor="let obj of localSelect" value="obj.value">{{obj.text}}</option>
     </select>
   `,
   styles: [`
