@@ -13,6 +13,7 @@ import { AppRoutingModule } from '.././app-routing.module';
 import { AccordionInputComponent } from './accordion-input/accordion-input.component';
 import { FanInfoComponent } from './fan-info/fan-info.component';
 import { TabsComponent } from './tabs/tabs.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   imports: [
@@ -32,6 +33,7 @@ import { TabsComponent } from './tabs/tabs.component';
     AccordionInputComponent,
     FanInfoComponent,
     TabsComponent,
+    FooterComponent,
   ],
   exports: [
     HeaderComponent,
@@ -44,6 +46,7 @@ import { TabsComponent } from './tabs/tabs.component';
     AccordionInputComponent,
     FanInfoComponent,
     TabsComponent,
+    FooterComponent
 
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
