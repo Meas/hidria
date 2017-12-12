@@ -1,9 +1,9 @@
 @import "../../../assets/partials/variables.scss";
 
 .item {
-  width: calc((100% / 4) - 10px);
+  width: calc((100% / 4) - 20px);
   min-height: 400px;
-  margin: 10px 10px 20px 0;
+  margin: 10px 20px 20px 0;
   background: $back-item-color;
   float: left;
   cursor: pointer;
@@ -33,7 +33,7 @@
     }
   }
   .info {
-    height: 40%;
+    height: 30%;
     text-align: center;
 
     .title {
