@@ -1,9 +1,9 @@
 .footer{
-  padding: 10px 300px;
+  width: 100%;
   display: flex;
-
 }
 .footer-info{
+  width: calc(100% - 115px);
   display: flex;
   justify-content: space-between;
   color: #87a0c0;
@@ -11,4 +11,10 @@
   font-size: 12px;
 }
 .footer-logo{
+  width: 100px;
+  margin-right: 15px;
+
+  img {
+    width: 100%;
+  }
 }
