@@ -13,11 +13,7 @@ import 'rxjs/add/observable/of';
 export class FormBoxComponent implements OnInit {
 
   @Input() isFirstChild = false;
-  @Input() section: {
-  	name: string,
-    header?: Array<{}>,
-  	formFields: Array<{}>
-  };
+  @Input() featureObject;
 
 
   @Output() formValues: EventEmitter<any> = new EventEmitter();

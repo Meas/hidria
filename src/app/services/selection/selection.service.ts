@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { MainService } from '../main.service';
 
 @Injectable()
-export class CatalogueService {
+export class SelectionService {
 
   constructor(private service: MainService) { }
 
@@ -13,15 +13,6 @@ export class CatalogueService {
    * @returns {Observable<any>}
    */
   getItems(): Observable<any> {
-    return this.service.get('catalogue');
-  }
-
-  /**
-   * Gets single item
-   * @param id
-   * @returns {Observable<any>}
-   */
-  getItem(id): Observable<any> {
-    return this.service.get(`fans/${id}`);
+    return this.service.get('selection');
   }
 }

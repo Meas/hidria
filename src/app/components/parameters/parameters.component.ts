@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {SelectionService} from "../../services/selection/selection.service";
 
 @Component({
   selector: 'app-parameters',
@@ -150,14 +151,22 @@ export class ParametersComponent implements OnInit {
     ]
   }
   ];
+  feature;
   formBoxes= [
   ];
 
-  constructor() { }
+  constructor(private selectionService: SelectionService) { }
 
   ngOnInit() {
+    this.getItems();
   }
 
+  getItems(): void {
+    this.selectionService.getItems().subscribe((response: any) => {
+      console.log(response);
+      this.feature = response;
+    });
+  }
 
   saveFormResults(formBox, id) {
     this.formBoxes[id] = formBox;

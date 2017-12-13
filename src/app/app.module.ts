@@ -19,6 +19,7 @@ import { MainService } from './services/main.service';
 import { CatalogueService } from './services/catalogue/catalogue.service';
 import { HelperService } from './services/helper/helper.service';
 import { SecurityService } from './services/security/security.service';
+import { SelectionService } from './services/selection/selection.service';
 import { AuthService } from './services/auth/auth.service';
 
 import { FilterPipe } from './pipes/filter/filter.pipe';
@@ -51,6 +52,7 @@ import { RouteNotFoundComponent } from './components/route-not-found/route-not-f
     HelperService,
     CatalogueService,
     SecurityService,
+    SelectionService,
     AuthService
   ],
   bootstrap: [AppComponent],
