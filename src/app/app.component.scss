@@ -7,7 +7,7 @@
     width: 100%;
 
     .sidebar {
-      width: 10%;
+      width: 15%;
     }
     .main {
       width: calc(100% - 10%);
@@ -17,6 +17,6 @@
 
 }
 .router-outlet{
-  padding-left: 5%;
+  //padding-left: 5%;
   width: 80%;
 }
