@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
 })
 export class CatalogueComponent implements OnInit {
 
-  slug = 'ac_axial_fans';
+  slug = 'all';
   sections = [
     {
       slug: 'ac_axial_fans',
@@ -116,6 +116,7 @@ export class CatalogueComponent implements OnInit {
       ]
     }
   ];
+  feature= [];
   subSections = [];
 
   constructor(private catalogueService: CatalogueService, private router: Router) { }
@@ -126,24 +127,25 @@ export class CatalogueComponent implements OnInit {
 
   getItems(): void {
     this.catalogueService.getItems().subscribe((response: any) => {
-      console.log(response);
+      this.feature=response;
     });
   }
 
-  onSectionSelected(slug: string): void {
-
-    this.sections.forEach(section => {
+  onSectionSelected(subCategory): void {
+    /*this.sections.forEach(section => {
       section.items.forEach((item) => {
         console.log(slug, item.slug);
         if (item.slug === slug) {
           this.subSections = [item];
         }
       });
-    });
+    });*/
+    console.log(subCategory);
+    this.subSections = subCategory;
   }
 
   onItemSelected(event): void {
-    this.router.navigate(['choose-model', event]);
+    this.router.navigate(['choose-model', event.slug]);
   }
 
   onFilterSelected(event): void {
