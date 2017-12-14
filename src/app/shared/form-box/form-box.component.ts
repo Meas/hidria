@@ -43,4 +43,12 @@ export class FormBoxComponent implements OnInit {
 
   }
 
+  setSourceOptions(options): Array<number | string> {
+    const parsedOptions = [];
+    if (options) {
+      options.forEach(option => parsedOptions.push(option.value));
+    }
+    return parsedOptions;
+  }
+
 }

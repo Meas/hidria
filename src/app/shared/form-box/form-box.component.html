@@ -34,8 +34,13 @@
                 [buttons]="parameter.options" [defaultOption]="parameter.defaultOption"></app-switch-options>
             </div>
             <div *ngIf="parameter.tag === 'input'">
-              <input class="full-size" [type]="parameter.type" name="form-input"
-                     [value]="parameter.defaultOption ? parameter.defaultOption : ''">
+              <!--<input class="full-size" [type]="parameter.type" name="form-input"-->
+                     <!--[value]="parameter.defaultOption ? parameter.defaultOption : ''">-->
+              <input class="full-size"
+                     auto-complete
+                     [type]="parameter.type"
+                     [(ngModel)]="parameter.defaultOption"
+                     [source]="setSourceOptions(parameter.options)" />
             </div>
           </td>
         </tr>

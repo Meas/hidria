@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { NvD3Module } from 'ng2-nvd3';
+
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -45,7 +46,7 @@ import { RouteNotFoundComponent } from './components/route-not-found/route-not-f
     SharedModule,
     AppRoutingModule,
     NvD3Module,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     MainService,

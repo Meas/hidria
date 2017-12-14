@@ -1,5 +1,8 @@
-import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { Ng2AutoCompleteModule } from 'ng2-auto-complete';
+
 import {HeaderComponent} from './header/header.component';
 import { FiltersComponent } from './filters/filters.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -18,7 +21,9 @@ import { FooterComponent } from './footer/footer.component';
 @NgModule({
   imports: [
     CommonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    Ng2AutoCompleteModule
   ],
   declarations: [
     HeaderComponent,
