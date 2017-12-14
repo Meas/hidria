@@ -149,6 +149,7 @@ export class CatalogueComponent implements OnInit {
   }
 
   onFilterSelected(event): void {
+    console.log(event);
     this.slug = event;
     this.subSections = [];
   }
