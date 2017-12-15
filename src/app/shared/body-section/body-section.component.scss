@@ -9,3 +9,15 @@
   width: 100%;
   height: auto;
 }
+.parentSlug {
+	cursor: pointer;
+  color: #1D4686;
+  &:hover {
+    color: #19376e;
+  }
+}
+.separetor {
+	border-right: 2px solid #bbb;
+	margin-left: 10px;
+	margin-right: 10px;
+}

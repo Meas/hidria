@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { NvD3Module } from 'ng2-nvd3';
+
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -19,6 +20,7 @@ import { MainService } from './services/main.service';
 import { CatalogueService } from './services/catalogue/catalogue.service';
 import { HelperService } from './services/helper/helper.service';
 import { SecurityService } from './services/security/security.service';
+import { SelectionService } from './services/selection/selection.service';
 import { AuthService } from './services/auth/auth.service';
 
 import { FilterPipe } from './pipes/filter/filter.pipe';
@@ -44,13 +46,14 @@ import { RouteNotFoundComponent } from './components/route-not-found/route-not-f
     SharedModule,
     AppRoutingModule,
     NvD3Module,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     MainService,
     HelperService,
     CatalogueService,
     SecurityService,
+    SelectionService,
     AuthService
   ],
   bootstrap: [AppComponent],

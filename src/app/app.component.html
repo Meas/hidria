@@ -6,7 +6,7 @@
     <div class="main">
       <app-header (changeMetricsClick)="onChangeMetrics($event)" [measure]="measure"></app-header>
       <div class="router-outlet">
-        <div class="content-space">
+        <div style="min-height: 1600px">
           <router-outlet></router-outlet>
         </div>
         <app-footer></app-footer>
@@ -14,5 +14,4 @@
     </div>
   </div>
 </div>
-
 

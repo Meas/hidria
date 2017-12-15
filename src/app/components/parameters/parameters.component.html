@@ -1,13 +1,13 @@
 <div class="content">
-  <div class="forms-section">
-    <app-form-box *ngFor="let section of sections; let i = index"
-      [section]="section"
-      (formValues)="saveFormResults($event, i)">
+  <div class="forms-section" *ngIf="feature">
+    <app-form-box *ngFor="let featureObject of feature.featureObjects; let i = index"
+                  [featureObject]="featureObject"
+                  (formValues)="saveFormResults($event, i)">
     </app-form-box>
   </div>
 
   <div class="function-buttons">
-    <button class="btn disabled">DEFAULT VALUES</button>
+    <button class="btn" (click)="setToDefault()">DEFAULT VALUES</button>
     <button class="btn">SEARCH</button>
   </div>
 </div>

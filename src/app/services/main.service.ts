@@ -28,7 +28,7 @@ export class MainService {
     return this.http.get(this.helper.generateRoute(route, queryParams), {
       headers: headers
     })
-      .map((res: HttpResponse<any>) => this.helper.checkDataValidity(res.body))
+      .map((res: HttpResponse<any>) => this.helper.checkDataValidity(res))
       .catch((err: any) => {
         return Observable.of(err);
       });
@@ -50,7 +50,7 @@ export class MainService {
     return this.http.post(this.helper.generateRoute(route, queryParams), data, {
       headers: headers
     })
-      .map((res: HttpResponse<any>) => this.helper.checkDataValidity(res.body))
+      .map((res: HttpResponse<any>) => this.helper.checkDataValidity(res))
       .catch((err: Error) => {
         return Observable.of(err);
       });
@@ -72,7 +72,7 @@ export class MainService {
     return this.http.put(this.helper.generateRoute(route, queryParams), data, {
       headers: headers
     })
-      .map((res: HttpResponse<any>) => this.helper.checkDataValidity(res.body))
+      .map((res: HttpResponse<any>) => this.helper.checkDataValidity(res))
       .catch((err: Error) => {
         return Observable.of(err);
       });
@@ -93,7 +93,7 @@ export class MainService {
     return this.http.delete(this.helper.generateRoute(route, queryParams), {
       headers: headers
     })
-      .map((res: HttpResponse<any>) => this.helper.checkDataValidity(res.body))
+      .map((res: HttpResponse<any>) => this.helper.checkDataValidity(res))
       .catch((err: Error) => {
         return Observable.of(err);
       });

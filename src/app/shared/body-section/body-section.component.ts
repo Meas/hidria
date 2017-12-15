@@ -8,12 +8,21 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 export class BodySectionComponent implements OnInit {
 
   @Input() title: string;
+  @Input() addParentSlug: string;
+  @Input() parentSlug: string;
+  @Input() parentDescription: string;
   @Input() items: Array<{}>;
-  @Output() selectItem: EventEmitter<string> = new EventEmitter();
+  @Output() selectItem: EventEmitter<any> = new EventEmitter();
+  @Output() filterSelected: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  selectFunction(item) {
+  	item.parentSlug = this.addParentSlug;
+  	item.parentDescription = this.title;
+  	this.selectItem.emit(item)
+  }
 }

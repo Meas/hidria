@@ -4,10 +4,9 @@ import * as _ from 'lodash';
 @Component({
   selector: 'app-select-box',
   template: `
-    <label for="options">Text</label>
     <select name="options" (change)="onChange($event.target.value)">
       <option disabled>Select option</option>
-      <option *ngFor="let obj of localSelect" value="obj.value">{{obj.name}}</option>
+      <option *ngFor="let obj of localSelect" value="obj.value" [selected]="obj.id == selectedOption">{{obj.description}}</option>
     </select>
   `,
   styles: [`
@@ -19,6 +18,7 @@ import * as _ from 'lodash';
       background: white;
       text-align-last: center;
     }
+
     select option {
       text-align: center;
     }
@@ -26,6 +26,13 @@ import * as _ from 'lodash';
 })
 export class SelectBoxComponent implements OnInit {
   localSelect: Array<object>;
+  selectedOption: number;
+
+  @Input() set defaultOption(data: number) {
+    if (data) {
+      this.selectedOption = _.cloneDeep(data);
+    }
+  }
   @Input() set select(data: Array<object>) {
     if (data) {
       this.localSelect = _.cloneDeep(data);
@@ -33,9 +40,10 @@ export class SelectBoxComponent implements OnInit {
   }
 
   @Output() value: EventEmitter<number> = new EventEmitter();
-
   @Input() items;
-  constructor() { }
+
+  constructor() {
+  }
 
   ngOnInit() {
   }

@@ -9,7 +9,7 @@ export class ItemsComponent implements OnInit {
 
   @Input() index: number;
   @Input() item: {
-    title: string;
+    name: string;
     description: string;
   }
 

@@ -20,7 +20,7 @@ export class FiltersComponent implements OnInit {
   totalModels(): number {
     let total = 0;
     this.filters.forEach((item) => {
-      total += item.items.length;
+      total += item.subCategories.length;
     });
     return total;
   }
