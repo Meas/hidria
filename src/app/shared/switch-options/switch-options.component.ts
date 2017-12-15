@@ -8,6 +8,13 @@ import * as _ from "lodash"
 })
 export class SwitchOptionsComponent implements OnInit {
   localButtons: Array<object>;
+  selectedOption: number;
+
+  @Input() set defaultOption(data: number) {
+    if (data) {
+      this.selectedOption = _.cloneDeep(data);
+    }
+  }
   @Input() set buttons(data: Array<object>) {
     if (data) {
       this.localButtons = _.cloneDeep(data);
@@ -21,14 +28,9 @@ export class SwitchOptionsComponent implements OnInit {
   ngOnInit() {
   }
 
-  changeSelected(button, buttons) {
-    this.value.emit(button.value);
-    buttons.map(oneButton => {
-      if(oneButton == button)
-        oneButton.active = true;
-      else
-        oneButton.active = false;
-    });
+  changeSelected(id) {
+    this.value.emit(id);
+    this.selectedOption = id;
   }
 
 }

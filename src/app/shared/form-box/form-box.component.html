@@ -3,43 +3,44 @@
 
     <div class="form-content">
 
-      <app-title-box></app-title-box>
+      <!--<app-title-box></app-title-box>-->
 
       <table class="table-buttons">
         <tbody *ngIf="featureObject">
-          <tr *ngFor="let parameter of featureObject.parameters">
-          <td class="space-bellow">
+        <tr *ngFor="let parameter of featureObject.parameters">
+          <td class="parameter-section space-bellow">
+            <label *ngIf="parameter.description" for="form-input">
+              {{parameter.description}}
+              <span *ngIf="parameter.unit">({{parameter.unit}})</span>
+              <span class="tooltip">?</span>
+            </label>
             <div *ngIf="parameter.tag === 'accordion'">
               <app-accordion-input>
                 <accordion-content>
-                  <div>
-                    <label for="form-input">{{parameter.description}} <span *ngIf="parameter.unit">{{parameter.unit}}</span></label>
-                    <app-select-box
-                      (value)="saveInputResult($event, parameter.id, parameter.tag)"
-                      [select]="parameter.options"></app-select-box>
-                  </div>
+                  <app-select-box
+                    (value)="saveInputResult($event, parameter.id, parameter.tag)"
+                    [select]="parameter.options"></app-select-box>
                 </accordion-content>
               </app-accordion-input>
             </div>
             <div *ngIf="parameter.tag === 'select'">
-              <label for="form-input">{{parameter.description}} <span *ngIf="parameter.unit">{{parameter.unit}}</span></label>
               <app-select-box
                 (value)="saveInputResult($event, parameter.id, parameter.tag)"
-                [select]="parameter.options"></app-select-box>
+                [select]="parameter.options" [defaultOption]="parameter.defaultOption"></app-select-box>
             </div>
             <div class="switch-option-box" *ngIf="parameter.tag === 'radio'">
-              <div class="switch-option-label">
-                <label for="form-input">{{parameter.description}} <span *ngIf="parameter.unit">{{parameter.unit}}</span></label>
-              </div>
-              <div class="switch-option-buttons">
-                <app-switch-options
-                  (value)="saveInputResult($event, parameter.id, parameter.tag)"
-                  [buttons]="parameter.options"></app-switch-options>
-              </div>
+              <app-switch-options
+                (value)="saveInputResult($event, parameter.id, parameter.tag)"
+                [buttons]="parameter.options" [defaultOption]="parameter.defaultOption"></app-switch-options>
             </div>
             <div *ngIf="parameter.tag === 'input'">
-              <label for="form-input">{{parameter.description}} <span *ngIf="parameter.unit">{{parameter.unit}}</span></label>
-              <input class="full-size" tag="" name="form-input" [value]="parameter.value">
+              <!--<input class="full-size" [type]="parameter.type" name="form-input"-->
+                     <!--[value]="parameter.defaultOption ? parameter.defaultOption : ''">-->
+              <input class="full-size"
+                     auto-complete
+                     [type]="parameter.type"
+                     [(ngModel)]="parameter.defaultOption"
+                     [source]="setSourceOptions(parameter.options)" />
             </div>
           </td>
         </tr>
