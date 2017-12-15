@@ -11,6 +11,10 @@
 }
 .parent-slug {
 	cursor: pointer;
+  color: #1D4686;
+  &:hover {
+    color: #19376e;
+  }
 }
 .separetor {
 	border-right: 2px solid #bbb;

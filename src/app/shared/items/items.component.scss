@@ -8,6 +8,8 @@
   float: left;
   cursor: pointer;
   transition: ease .3s;
+  overflow: hidden;
+
   @media (max-width: 1024px) {
     width: calc((100% / 3) - 30px)
   }
@@ -34,6 +36,7 @@
   }
   .info {
     height: 30%;
+    padding: 10px;
     text-align: center;
 
     .title {
