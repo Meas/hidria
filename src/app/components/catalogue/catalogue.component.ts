@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
 })
 export class CatalogueComponent implements OnInit {
 
-  slug = 'all';
+  categoryId = 0;
   feature = [];
   subSections = [];
 
@@ -41,12 +41,12 @@ export class CatalogueComponent implements OnInit {
   }
 
   onItemSelected(event): void {
-    this.router.navigate(['choose-model', event.slug]);
+    this.router.navigate(['choose-model', event.id]);
   }
 
   onFilterSelected(event): void {
     console.log(event);
-    this.slug = event;
+    this.categoryId = event;
     this.subSections = [];
   }
 }

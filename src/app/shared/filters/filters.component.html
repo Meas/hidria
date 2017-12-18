@@ -1,14 +1,14 @@
 <div class="button-item">
   <button class="button-box" type="button"
-          (click)="filterSelected.emit('all')"
-          [ngClass]="{'button-box-active': 'all' === activeFilter}">
+          (click)="filterSelected.emit(0)"
+          [ngClass]="{'button-box-active': 0 === activeFilter}">
     <span class="blue-box b-box-lit-1">{{totalModels()}}</span>
-    All Models
+    All Models {{activeFilter}}
   </button>
   <button *ngFor="let filter of filters; let i = index" class="button-box" type="button"
-          (click)="filterSelected.emit(filter.slug)"
-          [ngClass]="{'button-box-active': filter.slug === activeFilter}">
+          (click)="filterSelected.emit(filter.id)"
+          [ngClass]="{'button-box-active': filter.id === activeFilter}">
     <span class="blue-box b-box-lit-{{i + 1}}">{{filter.subCategories.length}}</span>
-    {{filter.description}}
+    {{filter.name}}
   </button>
 </div>
