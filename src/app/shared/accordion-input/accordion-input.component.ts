@@ -1,4 +1,4 @@
-import { Component, AfterViewInit } from '@angular/core';
+import {Component, AfterViewInit, Input} from '@angular/core';
 
 
 @Component({
@@ -7,6 +7,8 @@ import { Component, AfterViewInit } from '@angular/core';
   styleUrls: ['./accordion-input.component.scss']
 })
 export class AccordionInputComponent implements AfterViewInit {
+
+  @Input() parameterMainChild;
 
   constructor() { }
 
