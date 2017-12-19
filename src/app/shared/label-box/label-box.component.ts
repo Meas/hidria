@@ -5,7 +5,7 @@ import { Component, Input } from '@angular/core';
   template: `
     <label class="section-label" *ngIf="parameter.description" for="form-input">
       {{parameter.description}}
-      <span *ngIf="parameter.unit">({{parameter.unit}})</span>
+      <span *ngIf="parameter.unit" class="unit">({{parameter.unit}})</span>
       <span class="tooltip">?<span class="tooltiptext">some text here</span></span>
     </label>
   `,

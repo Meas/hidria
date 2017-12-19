@@ -15,3 +15,9 @@
          [(ngModel)]="parameter.defaultOption"
          [source]="setSourceOptions(parameter.options)" />
 </div>
+<div *ngIf="parameter.tag === 'image'">
+  <img width="50" src="assets/images/cube.png" alt="">
+</div>
+<div *ngIf="parameter.tag === 'button'">
+  <button class="btn">{{parameter.description}}</button>
+</div>
