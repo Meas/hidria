@@ -22,6 +22,7 @@ import { HelperService } from './services/helper/helper.service';
 import { SecurityService } from './services/security/security.service';
 import { SelectionService } from './services/selection/selection.service';
 import { AuthService } from './services/auth/auth.service';
+import {ChooseModelService} from "./services/chooseModel/chooseModel.service";
 
 import { FilterPipe } from './pipes/filter/filter.pipe';
 import { SortPipe } from './pipes/sort/sort.pipe';
@@ -54,7 +55,8 @@ import { RouteNotFoundComponent } from './components/route-not-found/route-not-f
     CatalogueService,
     SecurityService,
     SelectionService,
-    AuthService
+    AuthService,
+    ChooseModelService
   ],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

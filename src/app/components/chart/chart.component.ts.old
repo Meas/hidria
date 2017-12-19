@@ -8,14 +8,14 @@ import Chart from 'chart.js';
   selector: 'app-chart-component',
   template: `
     <div style="background: #fff !important">
-      <canvas [id]="canvasId" width="content-box" height="300"></canvas>
+      <canvas [id]="canvasId" width="content-box" height="100"></canvas>
     </div>
   `,
   styleUrls: ['./chart.component.css']
 })
 export class ChartComponent implements OnInit, AfterViewInit {
   @Input() canvasId: string;
-  @Input() chartData;
+  @Input() chart;
 
   constructor() {
   }
@@ -25,14 +25,34 @@ export class ChartComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.generateGraph();
+    /*let helpers = myBarChart.helpers;
+
+     helpers.bindEvents(myBarChart, ["mousemove", "touchstart", "touchmove", "mouseout"], function(evt){
+     if ((evt.type === 'mouseout')) {
+     console.log("mouse out");
+     return;
+     }
+     let activeSegments = myBarChart.getSegmentsAtEvent(evt);
+     if (!activeSegments.length) return;
+
+     console.log("mousemove", activeSegments[0])
+     });*/
+    /*document.getElementById(this.canvasId).onclick = function(evt){
+     console.log(myBarChart.getElementsAtEvent(evt));
+     let activePoints = myBarChart.getElementsAtEvent(evt);
+     let firstPoint = activePoints[1];
+     let label = myBarChart.data.labels[firstPoint._index];
+     let value = myBarChart.data.datasets[firstPoint._datasetIndex].data[firstPoint._index];
+     alert(label + ": " + value);
+     };*/
   }
 
   generateGraph() {
     const canvas = <HTMLCanvasElement> document.getElementById(this.canvasId);
     const ctx: CanvasRenderingContext2D = canvas.getContext('2d');
-    console.log(this.chartData);
+
     const data = this.getGraphData();
-    /*Chart.pluginService.register({
+    Chart.pluginService.register({
       beforeInit: function (chart) {
         const data = chart.config.data;
         for (let i = 0; i < data.datasets.length; i++) {
@@ -44,7 +64,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
           }
         }
       }
-    });*/
+    });
     const options = this.getOptions();
 
     const myBarChart = new Chart(ctx, {
@@ -55,19 +75,12 @@ export class ChartComponent implements OnInit, AfterViewInit {
   }
 
   getGraphData() {
-    var data: any = {};
-    data.labels = this.chartData.xPoints;
-    data.datasets = [];
-    for(let i=0; i< this.chartData.yPoints.length; i++) {
-      data.datasets.push({
-        "label": this.chartData.labels[i],
-        "data": this.chartData.yPoints[i],
-        "borderColor": this.chartData.borderColor[i],
-        "fill": true
-      });
+    const array = [];
+    for (let i = 0; i <= 1000; i++) {
+      array.push(i / 100);
     }
-    return data;
-    /*return {
+
+    return {
       labels: array,
       datasets: [{
         label: 'f(x) = x',
@@ -88,7 +101,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
           fill: true
         },
       ]
-    };*/
+    };
   }
 
   getOptions() {
@@ -109,7 +122,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
                return label;
                }
                },*/
-              maxTicksLimit: 10,
+              maxTicksLimit: 5,
             }
           }],
           xAxes: [{
