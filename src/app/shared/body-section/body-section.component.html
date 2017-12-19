@@ -1,8 +1,8 @@
 <div class="section-title">
-	<span *ngIf="parentSlug" class="parentSlug" (click)="filterSelected.emit(parentSlug)">
-		{{parentDescription}}
+	<span *ngIf="parentId" class="parent-name" (click)="filterSelected.emit(parentId)">
+		{{parentName}}
 	</span>
-	<span *ngIf="parentSlug" class="separetor"></span>
+	<span *ngIf="parentId" class="separetor"></span>
 	<span> {{title}} </span>
 </div>
 <div class="section-for-items">
