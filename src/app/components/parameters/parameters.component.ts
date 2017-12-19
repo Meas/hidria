@@ -35,4 +35,8 @@ export class ParametersComponent implements OnInit {
   setToDefault(): void {
     this.feature = _.cloneDeep(this.defaultSections);
   }
+
+  getValues(): void {
+    console.log(this.feature);
+  }
 }
