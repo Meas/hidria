@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-fan-info',
@@ -6,10 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./fan-info.component.css']
 })
 export class FanInfoComponent implements OnInit {
-
+  @Input() fanInfo;
   constructor() { }
 
   ngOnInit() {
+  	console.log(this.fanInfo);
   }
 
 }

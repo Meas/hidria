@@ -26,9 +26,9 @@
   }
 }
 
-@for $i from 1 through 4 {
+@for $i from 1 through 10 {
   .b-box-lit-#{$i} {
-    opacity: calc(#{$i} / 3);
+    opacity: calc(1 / 3);
   }
 }
 
