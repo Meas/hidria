@@ -17,6 +17,8 @@ import { AccordionInputComponent } from './accordion-input/accordion-input.compo
 import { FanInfoComponent } from './fan-info/fan-info.component';
 import { TabsComponent } from './tabs/tabs.component';
 import { FooterComponent } from './footer/footer.component';
+import { LabelBoxComponent } from './label-box/label-box.component';
+import { FeatureItemsComponent } from './feature-items/feature-items.component';
 
 @NgModule({
   imports: [
@@ -39,6 +41,8 @@ import { FooterComponent } from './footer/footer.component';
     FanInfoComponent,
     TabsComponent,
     FooterComponent,
+    LabelBoxComponent,
+    FeatureItemsComponent,
   ],
   exports: [
     HeaderComponent,
