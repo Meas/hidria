@@ -9,5 +9,10 @@
   background: $main-color;
   color: white;
   cursor: pointer;
-  height: 30px;
+  height: 40px;
+}
+.image-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
