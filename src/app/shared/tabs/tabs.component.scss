@@ -2,6 +2,7 @@
   width: 100%;
   border-collapse: collapse;
   .parameter-table-body{
+    text-align: center;
     th{
       color: white;
       background-color: #2ca02c;
@@ -10,7 +11,7 @@
     }
     .sub-header{
       td {
-        color: black !important;
+        color: #fff !important;
         background-color: #1D4686 !important;
       }
     }
@@ -49,4 +50,7 @@
   .active{
     background-color: #2ca02c;
   }
+}
+.pointer {
+  cursor: pointer;
 }
