@@ -1,7 +1,8 @@
   <ng-container *ngFor="let item of tableData.children; let i = index">
     <div class="tabs" *ngIf="item.type == 'tabs'">
-      <ng-container *ngFor="let tab of item.children; let j = index">
-        <button class="tab {{tab.classUI}}" id="tab{{j}}"
+      <ng-container  *ngFor="let tab of item.children; let j = index">
+        <button class="tab {{tab.classUI}}" 
+          [ngClass]="'tab'+j==selectedTab ? 'active' : ''"
           (click)="selectTable('tab'+j, tab.selectTable)">
           {{tab.name}}
         </button>
@@ -9,7 +10,7 @@
     </div>
     <table class="parameter-table" 
       *ngIf="item.type == 'table'"
-      [hidden]="item.name != selectedTable"
+      [ngClass]="item.name != selectedTable ? 'hidden-table' : ''"
       >
       <tbody class="parameter-table-body">
         <ng-container *ngFor="let row of item.rows">

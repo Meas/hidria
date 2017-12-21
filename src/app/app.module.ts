@@ -12,9 +12,9 @@ import { AppComponent } from './app.component';
 import { CatalogueComponent } from './components/catalogue/catalogue.component';
 import { ParametersComponent } from './components/parameters/parameters.component';
 import { TestPdfComponent } from './components/test-pdf/test-pdf.component';
-import { ChartComponent } from './components/chart/chart.component';
 import { FanDetailsComponent } from './components/fan-details/fan-details.component';
 import { ChooseModelComponent } from './components/choose-model/choose-model.component';
+import { OperatingPointComponent } from './components/operating-point/operating-point.component';
 
 import { MainService } from './services/main.service';
 import { CatalogueService } from './services/catalogue/catalogue.service';
@@ -35,10 +35,10 @@ import { RouteNotFoundComponent } from './components/route-not-found/route-not-f
     ParametersComponent,
     TestPdfComponent,
     FanDetailsComponent,
-    ChartComponent,
     ChooseModelComponent,
     FilterPipe,
     SortPipe,
+    OperatingPointComponent,
     RouteNotFoundComponent
   ],
   imports: [

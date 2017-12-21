@@ -2,11 +2,11 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ChooseModelService} from "../../services/chooseModel/chooseModel.service";
 
 @Component({
-  selector: 'app-choose-model',
-  templateUrl: './choose-model.component.html',
-  styleUrls: ['./choose-model.component.scss']
+  selector: 'app-operating-point',
+  templateUrl: './operating-point.component.html',
+  styleUrls: ['./operating-point.component.scss']
 })
-export class ChooseModelComponent implements OnInit {
+export class OperatingPointComponent implements OnInit {
 
   fanOne = {
     name: 'Some Name',

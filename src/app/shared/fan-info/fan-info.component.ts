@@ -10,7 +10,6 @@ export class FanInfoComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-  	console.log(this.fanInfo);
   }
 
 }

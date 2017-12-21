@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import * as _ from 'lodash'
 
 @Component({
   selector: 'app-tabs',
@@ -10,26 +11,22 @@ export class TabsComponent implements OnInit {
 
   @Input() tableData;
   selectedTable;
+  selectedTab='tab0';
   constructor(private router: Router) { }
 
   ngOnInit() {
-  }
-  ngAfterViewInit() {
-  	setTimeout(function() {
-  		document.getElementById('tab0').click();
-  	});
+  	let tabs: any = (_.filter(this.tableData.children, function(obj) {
+  		return obj.type == 'tabs';
+  	}));
+  	this.selectedTable = (tabs[0].children[0].selectTable);
   }
 
   selectTable(tabId, tableName) {
   	this.selectedTable=tableName;
-  	var tabs =  document.getElementsByClassName('tab');
-  	for (var i = 0; i < tabs.length; i++) {
-  	    (tabs[i].id == tabId) ? tabs[i].classList.add('active') : tabs[i].classList.remove('active');
-  	}
+  	this.selectedTab=tabId;
   }
   routeTo(link) {
   	if(link)
   		this.router.navigate([link]);
   }
-
 }
