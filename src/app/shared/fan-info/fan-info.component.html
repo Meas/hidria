@@ -1,5 +1,8 @@
 <div class="fan-info col-lg-12">
 	<div class="fan-info-border row">
+    <div *ngIf="fanInfo.price" class="fan-info-price">
+      {{fanInfo.price}}
+    </div>
 		<div class="col-lg-4">
 			<img src="{{fanInfo.image}}">
 		</div>

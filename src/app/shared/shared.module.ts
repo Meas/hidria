@@ -20,6 +20,7 @@ import { FooterComponent } from './footer/footer.component';
 import { LabelBoxComponent } from './label-box/label-box.component';
 import { FeatureItemsComponent } from './feature-items/feature-items.component';
 import { ChartComponent } from './chart/chart.component';
+import { OperatingPointsInputsComponent } from './operating-points-inputs/operating-points-inputs.component';
 
 @NgModule({
   imports: [
@@ -45,6 +46,7 @@ import { ChartComponent } from './chart/chart.component';
     LabelBoxComponent,
     FeatureItemsComponent,
     ChartComponent,
+    OperatingPointsInputsComponent,
   ],
   exports: [
     HeaderComponent,
@@ -59,6 +61,7 @@ import { ChartComponent } from './chart/chart.component';
     TabsComponent,
     FooterComponent,
     ChartComponent,
+    OperatingPointsInputsComponent,
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

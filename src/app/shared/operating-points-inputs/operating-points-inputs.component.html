@@ -1,0 +1,17 @@
+<div class="operating-points-container container">
+  <div class="row input-row" *ngFor="let item of inputData.children">
+	  	<div class="col-lg-2">
+	  		{{item.name}}
+	  	</div>
+	  	<div class="col-lg-8">
+	  		<input type="text" value="{{item.default}}" name="{{item.id}}" class="input"
+	  		  [style.color]="item.color ? item.color : ''">
+	  	</div>
+	  	<div class="col-lg-2 input-description">
+	  		{{item.description}}
+	  	</div>
+  </div>
+  <div class="row input-row">
+  	<input type="submit" disabled="disabled" class="change-button" value="change">
+  </div>
+</div>

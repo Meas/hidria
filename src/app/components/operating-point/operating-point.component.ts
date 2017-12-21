@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ChooseModelService} from "../../services/chooseModel/chooseModel.service";
+import { OperatingPointService } from "../../services/operating-point/operating-point.service";
 
 @Component({
   selector: 'app-operating-point',
@@ -15,14 +15,14 @@ export class OperatingPointComponent implements OnInit {
   }
   feature = [];
 
-  constructor(private chooseModelService: ChooseModelService) { }
+  constructor(private operatingPointService: OperatingPointService) { }
 
   ngOnInit() {
     this.getItems();
   }
 
   getItems(): void {
-    this.chooseModelService.getItems().subscribe((response: any) => {
+    this.operatingPointService.getItems().subscribe((response: any) => {
       this.feature = response;
     });
   }

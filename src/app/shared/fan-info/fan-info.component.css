@@ -1,5 +1,5 @@
 .fan-info {
-	padding-right: 25px;
+	margin-bottom: 20px;
 }
 .fan-info-border {
 	border: 1px solid #999;
@@ -16,4 +16,15 @@
 	color: #666;
 	font-size: 14px;
 	font-weight: 600;
+}
+.fan-info-price {
+	position: absolute;
+	background: #1D4686;
+	color: #fff;
+	font-weight: 600;
+	font-size: 18px;
+	padding: 5px 10px 5px 10px;
+	z-index: 100;
+	left: 5px;
+	border-radius: 5px;
 }

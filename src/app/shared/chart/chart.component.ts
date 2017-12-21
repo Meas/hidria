@@ -8,7 +8,7 @@ import Chart from 'chart.js';
   selector: 'app-chart-component',
   template: `
     <div style="background: #fff !important">
-      <canvas [id]="canvasId" width="content-box" height="300"></canvas>
+      <canvas [id]="canvasId" width="content-box" height="200"></canvas>
     </div>
   `,
   styleUrls: ['./chart.component.css']
