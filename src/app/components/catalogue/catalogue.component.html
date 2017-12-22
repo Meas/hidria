@@ -1,25 +1,30 @@
 <div class="content">
-  <app-filters [filters]="feature.featureObjects" [activeFilter]="categoryId" (filterSelected)="onFilterSelected($event)"
-  *ngIf="feature.featureObjects"></app-filters>
-  <div class="scroll-content">
-    <div *ngIf="subSections.length === 0">
-      <div *ngFor="let section of feature.featureObjects | sort:['title'] | filter:['id', categoryId]">
-        <app-body-section *ngIf="section.subCategories.length !== 0"
-                          [items]="section.subCategories"
-                          [title]="section.name"
-                          [addParentId]="section.id"
-                          (selectItem)="onSectionSelected($event)">
+  <div class="loading-box" *ngIf="feature.length === 0">
+    <app-loading></app-loading>
+  </div>
+  <div *ngIf="feature.length !== 0">
+    <app-filters [filters]="feature.featureObjects" [activeFilter]="categoryId" (filterSelected)="onFilterSelected($event)"
+                 *ngIf="feature.featureObjects"></app-filters>
+    <div class="scroll-content">
+      <div *ngIf="subSections.length === 0">
+        <div *ngFor="let section of feature.featureObjects | sort:['title'] | filter:['id', categoryId]">
+          <app-body-section *ngIf="section.subCategories.length !== 0"
+                            [items]="section.subCategories"
+                            [title]="section.name"
+                            [addParentId]="section.id"
+                            (selectItem)="onSectionSelected($event)">
+          </app-body-section>
+        </div>
+      </div>
+      <div *ngIf="subSections.length !== 0">
+        <app-body-section [items]="subSections.models"
+                          [title]="subSections.name"
+                          [parentId]="subSections.parentId"
+                          [parentName]="subSections.parentName"
+                          (selectItem)="onItemSelected($event)"
+                          (filterSelected)="onFilterSelected($event)">
         </app-body-section>
       </div>
-    </div>
-    <div *ngIf="subSections.length !== 0">
-      <app-body-section [items]="subSections.models"
-                        [title]="subSections.name"
-                        [parentId]="subSections.parentId"
-                        [parentName]="subSections.parentName"
-                        (selectItem)="onItemSelected($event)"
-                        (filterSelected)="onFilterSelected($event)">
-      </app-body-section>
     </div>
   </div>
 </div>

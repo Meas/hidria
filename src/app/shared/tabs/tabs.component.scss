@@ -1,3 +1,5 @@
+@import "../../../assets/partials/variables.scss";
+
 .parameter-table{
   width: 100%;
   border-collapse: collapse;
@@ -5,27 +7,31 @@
     text-align: center;
     th{
       color: white;
-      background-color: #2ca02c;
-      border: 1px solid black;
+      background-color: $main-border-item;
+      border: 1px solid $main-color;
       border-top-width: 0;
+      font-weight: 400 !important;
+      //border-left: 0 !important;
     }
     .sub-header{
       td {
-        color: #fff !important;
-        background-color: #1D4686 !important;
+        color: black !important;
+        background-color: $form-item-color !important;
       }
     }
     tr{
       height: 30px;
+      justify-content: center;
       td{
         &:first-child{
-          background-color: #1D4686;
+          background-color: $form-item-color;
+          //border-left: none !important;
         }
         &:last-child{
           color: white;
-          background-color: #2ca02c;
+          background-color: $main-border-item;
         }
-        border: 1px solid black;
+        border: 1px solid $main-color;
       }
     }
   }
@@ -44,11 +50,11 @@
     width: 150px;
     cursor: pointer;
     &:hover{
-      background-color: #207220;
+      background-color: #7990B0;
     }
   }
   .active{
-    background-color: #2ca02c;
+    background-color: $main-border-item;
   }
 }
 .pointer {

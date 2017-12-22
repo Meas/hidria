@@ -22,6 +22,7 @@ import { FeatureItemsComponent } from './feature-items/feature-items.component';
 import { ChartComponent } from './chart/chart.component';
 import { OperatingPointsInputsComponent } from './operating-points-inputs/operating-points-inputs.component';
 import { ParameterListComponent } from './parameter-list/parameter-list.component';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   imports: [
@@ -49,6 +50,7 @@ import { ParameterListComponent } from './parameter-list/parameter-list.componen
     ChartComponent,
     OperatingPointsInputsComponent,
     ParameterListComponent,
+    LoadingComponent,
   ],
   exports: [
     HeaderComponent,
@@ -65,6 +67,7 @@ import { ParameterListComponent } from './parameter-list/parameter-list.componen
     ChartComponent,
     OperatingPointsInputsComponent,
     ParameterListComponent,
+    LoadingComponent,
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
