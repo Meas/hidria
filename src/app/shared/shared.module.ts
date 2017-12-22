@@ -21,6 +21,7 @@ import { LabelBoxComponent } from './label-box/label-box.component';
 import { FeatureItemsComponent } from './feature-items/feature-items.component';
 import { ChartComponent } from './chart/chart.component';
 import { OperatingPointsInputsComponent } from './operating-points-inputs/operating-points-inputs.component';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   imports: [
@@ -47,6 +48,7 @@ import { OperatingPointsInputsComponent } from './operating-points-inputs/operat
     FeatureItemsComponent,
     ChartComponent,
     OperatingPointsInputsComponent,
+    LoadingComponent,
   ],
   exports: [
     HeaderComponent,
@@ -62,6 +64,7 @@ import { OperatingPointsInputsComponent } from './operating-points-inputs/operat
     FooterComponent,
     ChartComponent,
     OperatingPointsInputsComponent,
+    LoadingComponent,
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

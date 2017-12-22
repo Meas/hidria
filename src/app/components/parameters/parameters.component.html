@@ -1,17 +1,22 @@
 <div class="content">
-  <div class="forms-section" *ngIf="feature">
-    <div *ngFor="let featureObject of feature.featureObjects; let i = index" [ngClass]="featureObject.classesUI">
-      <app-form-box
-        [featureObject]="featureObject"
-        (formValues)="saveFormResults($event, i)">
-      </app-form-box>
+  <div class="loading-box" *ngIf="feature === undefined">
+    <app-loading></app-loading>
+  </div>
+  <div *ngIf="feature !== undefined">
+    <div class="forms-section" *ngIf="feature">
+      <div *ngFor="let featureObject of feature.featureObjects; let i = index" [ngClass]="featureObject.classesUI">
+        <app-form-box
+          [featureObject]="featureObject"
+          (formValues)="saveFormResults($event, i)">
+        </app-form-box>
+      </div>
+
     </div>
 
-  </div>
-
-  <div class="function-buttons">
-    <button class="btn" (click)="setToDefault()">DEFAULT VALUES</button>
-    <button class="btn" (click)="getValues()">SEARCH</button>
+    <div class="function-buttons">
+      <button class="btn" (click)="setToDefault()">DEFAULT VALUES</button>
+      <button class="btn" (click)="getValues()">SEARCH</button>
+    </div>
   </div>
 </div>
 
