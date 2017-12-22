@@ -3,7 +3,7 @@
 //  width: 68%;
 //}
 
-.wrapper {
+/* .wrapper {
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-template-areas: "model fan-table"
@@ -27,6 +27,22 @@
 }
 table {
   border: 1px solid black;
+} */
+.operating-points-buttons {
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
-
-
+.button {
+  background: #1E4686;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+}
+.select-points {
+  color: red;
+  text-align: center;
+  font-weight: 500;
+}

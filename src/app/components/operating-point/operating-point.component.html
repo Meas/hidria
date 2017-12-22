@@ -1,13 +1,13 @@
 <div>
   <p class="title-model">Chose model | Operating point</p>
 </div>
-<div class="wrapper">
-  <div *ngFor="let containers of feature.featureObjects">
+<div class="row">
+  <div *ngFor="let containers of feature.featureObjects" class="{{containers.classUI}}">
     <div *ngFor="let child of containers.children">
       <div class="model" *ngIf="child.type==='card'">
         <app-fan-info [fanInfo]="child"></app-fan-info>
       </div>
-      <div class="graf" *ngIf="child.type==='graph'">
+      <div class="graf col-lg-12" *ngIf="child.type==='graph'">
         <app-chart-component [canvasId]="'canvas1'" [chartData]="child"></app-chart-component>
       </div>
       <div class="fan-table" *ngIf="child.type==='tableComponent'">
@@ -15,6 +15,29 @@
       </div>
       <div *ngIf="child.type==='operatingPointsInputs'">
         <app-operating-points-inputs [inputData]="child"></app-operating-points-inputs>
+      </div>
+        <div *ngIf="child.type==='parameterList'">
+          <app-parameter-list [inputData]="child"></app-parameter-list>
+        </div>
+    </div>
+  </div>
+  <div class="col-lg-12 operating-points-buttons row">
+    <div class="col-lg-12 select-points">
+      Select Q / Ps operating point
+    </div>
+    <div class="col-lg-4">
+      <div class="button">
+        ADD TO COMPARE
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="button">
+        ADD TO PROJECT
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="button">
+        GENERATE CARD
       </div>
     </div>
   </div>
