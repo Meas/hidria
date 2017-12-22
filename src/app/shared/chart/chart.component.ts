@@ -1,4 +1,4 @@
-import {Component, OnInit, AfterViewInit, Input} from '@angular/core';
+import {Component, OnInit, AfterViewInit, Input, Output, EventEmitter} from '@angular/core';
 import * as _ from 'lodash';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
@@ -16,6 +16,8 @@ import Chart from 'chart.js';
 export class ChartComponent implements OnInit, AfterViewInit {
   @Input() canvasId: string;
   @Input() chartData;
+  @Input() interactive: boolean;
+  @Output() points: EventEmitter<Array<string>> = new EventEmitter();
 
   constructor() {
   }
@@ -48,6 +50,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
       data.datasets.push({
         "label": this.chartData.labels[i],
         "data": this.chartData.yPoints[i],
+        "graphValue": this.chartData.graphValue[i],
         "borderColor": this.chartData.borderColor[i],
         "fill": true
       });
@@ -56,6 +59,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
   }
 
   getOptions() {
+    var self=this;
     {
       return {
         elements: {
@@ -88,8 +92,12 @@ export class ChartComponent implements OnInit, AfterViewInit {
           intersect: false
         },
         onClick: function (clickEvt, activeElems) {
-          const x = this.data.labels[activeElems[0]._index];
-          const y = this.data.datasets[activeElems[0]._datasetIndex].data[activeElems[0]._index];
+          let x = this.data.labels[activeElems[0]._index];
+          let y = this.data.datasets[activeElems[0]._datasetIndex].data[activeElems[0]._index];
+          let graphValue = this.data.datasets[activeElems[0]._datasetIndex].graphValue;
+          if(self.interactive) {
+            self.points.emit([x,y,graphValue])
+          }
         },
       };
     }

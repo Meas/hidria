@@ -8,6 +8,8 @@ import {Component, Input, OnInit} from '@angular/core';
 export class OperatingPointsInputsComponent implements OnInit {
 
   @Input() inputData;
+  @Input() graphData;
+  
   constructor() {
   }
 

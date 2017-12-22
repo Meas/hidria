@@ -1,10 +1,13 @@
 <div class="operating-points-container container">
-  <div class="row input-row" *ngFor="let item of inputData.children">
+  <div class="row input-row" *ngFor="let item of inputData.children; let i = index">
 	  	<div class="col-lg-2">
 	  		{{item.name}}
 	  	</div>
 	  	<div class="col-lg-8">
-	  		<input type="text" value="{{item.default}}" name="{{item.id}}" class="input"
+	  		<input type="text" 
+	  		  [ngModel]="(graphData && graphData[i] !== undefined) ? graphData[i] : item.default" 
+	  		  name="{{item.id}}" 
+	  		  class="input"
 	  		  [style.color]="item.color ? item.color : ''">
 	  	</div>
 	  	<div class="col-lg-2 input-description">

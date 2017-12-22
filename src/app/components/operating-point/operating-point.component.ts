@@ -8,12 +8,8 @@ import { OperatingPointService } from "../../services/operating-point/operating-
 })
 export class OperatingPointComponent implements OnInit {
 
-  fanOne = {
-    name: 'Some Name',
-    description: 'Description',
-    image: 'assets/images/fan.png'
-  }
   feature = [];
+  graphData;
 
   constructor(private operatingPointService: OperatingPointService) { }
 
@@ -25,6 +21,10 @@ export class OperatingPointComponent implements OnInit {
     this.operatingPointService.getItems().subscribe((response: any) => {
       this.feature = response;
     });
+  }
+
+  onPointSelected(event): void {
+    this.graphData = event;
   }
 
 }
