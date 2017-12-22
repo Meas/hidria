@@ -8,7 +8,7 @@
     th{
       color: white;
       background-color: $main-border-item;
-      border: 1px solid #EFF2F4;
+      border: 1px solid $main-color;
       border-top-width: 0;
       font-weight: 400 !important;
       //border-left: 0 !important;
@@ -25,13 +25,13 @@
       td{
         &:first-child{
           background-color: $form-item-color;
-          border-left: none !important;
+          //border-left: none !important;
         }
         &:last-child{
           color: white;
           background-color: $main-border-item;
         }
-        border: 1px solid grey;
+        border: 1px solid $main-color;
       }
     }
   }
