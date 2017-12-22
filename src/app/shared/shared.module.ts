@@ -19,6 +19,8 @@ import { TabsComponent } from './tabs/tabs.component';
 import { FooterComponent } from './footer/footer.component';
 import { LabelBoxComponent } from './label-box/label-box.component';
 import { FeatureItemsComponent } from './feature-items/feature-items.component';
+import { ChartComponent } from './chart/chart.component';
+import { OperatingPointsInputsComponent } from './operating-points-inputs/operating-points-inputs.component';
 
 @NgModule({
   imports: [
@@ -43,6 +45,8 @@ import { FeatureItemsComponent } from './feature-items/feature-items.component';
     FooterComponent,
     LabelBoxComponent,
     FeatureItemsComponent,
+    ChartComponent,
+    OperatingPointsInputsComponent,
   ],
   exports: [
     HeaderComponent,
@@ -55,8 +59,9 @@ import { FeatureItemsComponent } from './feature-items/feature-items.component';
     AccordionInputComponent,
     FanInfoComponent,
     TabsComponent,
-    FooterComponent
-
+    FooterComponent,
+    ChartComponent,
+    OperatingPointsInputsComponent,
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

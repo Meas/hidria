@@ -1,32 +1,49 @@
-<div class="tabs">
-  <button class="active">Air flow</button>
-  <button>Electric motor</button>
-  <button>Construction data</button>
-</div>
-<table class="parameter-table">
-  <tbody class="parameter-table-body">
-  <tr>
-    <th></th>
-    <th colspan="3">Operating point</th>
-    <th colspan="2">Nominal parameters</th>
-    <th rowspan="2">Price</th>
-  </tr>
-  <tr class="sub-header">
-    <td>Type</td>
-    <td>TEST</td>
-    <td>TEST</td>
-    <td>TEST</td>
-    <td>TEST</td>
-    <td>TEST</td>
-  </tr>
-  <tr *ngFor="let item of [1,2,3,4,5,6,7,8,9]">
-    <td>params</td>
-    <td>TEST</td>
-    <td>TEST</td>
-    <td>TEST</td>
-    <td>TEST</td>
-    <td>TEST</td>
-    <td>TEST</td>
-  </tr>
-  </tbody>
-</table>
+  <ng-container *ngFor="let item of tableData.children; let i = index">
+    <div class="tabs" *ngIf="item.type == 'tabs'">
+      <ng-container  *ngFor="let tab of item.children; let j = index">
+        <button class="tab {{tab.classUI}}" 
+          [ngClass]="'tab'+j==selectedTab ? 'active' : ''"
+          (click)="selectTable('tab'+j, tab.selectTable)">
+          {{tab.name}}
+        </button>
+      </ng-container>
+    </div>
+    <table class="parameter-table" 
+      *ngIf="item.type == 'table'"
+      [ngClass]="item.name != selectedTable ? 'hidden-table' : ''"
+      >
+      <tbody class="parameter-table-body">
+        <ng-container *ngFor="let row of item.rows">
+          <tr class="{{row.classUI}}" *ngIf="row.type == 'header'">
+            <ng-container *ngFor="let item of row.children">
+              <th
+                [attr.colspan]="item.colspan"
+                [attr.rowspan]="item.rowspan">
+                  <div>
+                    {{item.name}}
+                  </div>
+                  <div>
+                    {{item.description}}
+                  </div>
+              </th>
+
+            </ng-container>
+          </tr>
+            <tr class="{{row.classUI}}" *ngIf="row.type == 'entry'" [ngClass]="row.link ? 'pointer' : ''" (click)="routeTo(row.link)">
+              <ng-container *ngFor="let item of row.children">
+                <td
+                  [attr.colspan]="item.colspan"
+                  [attr.rowspan]="item.rowspan">
+                    <div>
+                      {{item.name}}
+                    </div>
+                    <div>
+                      {{item.description}}
+                    </div>
+                </td>
+              </ng-container>
+            </tr>
+        </ng-container>
+      </tbody>
+    </table>
+</ng-container>

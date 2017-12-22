@@ -12,9 +12,9 @@ import { AppComponent } from './app.component';
 import { CatalogueComponent } from './components/catalogue/catalogue.component';
 import { ParametersComponent } from './components/parameters/parameters.component';
 import { TestPdfComponent } from './components/test-pdf/test-pdf.component';
-import { ChartComponent } from './components/chart/chart.component';
 import { FanDetailsComponent } from './components/fan-details/fan-details.component';
 import { ChooseModelComponent } from './components/choose-model/choose-model.component';
+import { OperatingPointComponent } from './components/operating-point/operating-point.component';
 
 import { MainService } from './services/main.service';
 import { CatalogueService } from './services/catalogue/catalogue.service';
@@ -22,6 +22,8 @@ import { HelperService } from './services/helper/helper.service';
 import { SecurityService } from './services/security/security.service';
 import { SelectionService } from './services/selection/selection.service';
 import { AuthService } from './services/auth/auth.service';
+import { ChooseModelService } from "./services/chooseModel/chooseModel.service";
+import { OperatingPointService } from "./services/operating-point/operating-point.service";
 
 import { FilterPipe } from './pipes/filter/filter.pipe';
 import { SortPipe } from './pipes/sort/sort.pipe';
@@ -34,10 +36,10 @@ import { RouteNotFoundComponent } from './components/route-not-found/route-not-f
     ParametersComponent,
     TestPdfComponent,
     FanDetailsComponent,
-    ChartComponent,
     ChooseModelComponent,
     FilterPipe,
     SortPipe,
+    OperatingPointComponent,
     RouteNotFoundComponent
   ],
   imports: [
@@ -54,7 +56,9 @@ import { RouteNotFoundComponent } from './components/route-not-found/route-not-f
     CatalogueService,
     SecurityService,
     SelectionService,
-    AuthService
+    AuthService,
+    ChooseModelService,
+    OperatingPointService
   ],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

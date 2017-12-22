@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {ChooseModelService} from "../../services/chooseModel/chooseModel.service";
 
 @Component({
   selector: 'app-choose-model',
@@ -12,9 +13,18 @@ export class ChooseModelComponent implements OnInit {
     description: 'Description',
     image: 'assets/images/fan.png'
   }
-  constructor() { }
+  feature = [];
+
+  constructor(private chooseModelService: ChooseModelService) { }
 
   ngOnInit() {
+    this.getItems();
+  }
+
+  getItems(): void {
+    this.chooseModelService.getItems().subscribe((response: any) => {
+      this.feature = response;
+    });
   }
 
 }

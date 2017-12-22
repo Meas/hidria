@@ -1,0 +1,18 @@
+@import "../../../assets/partials/variables.scss";
+
+:host {
+  overflow: hidden;
+}
+.btn {
+  width: 100%;
+  border: none;
+  background: $main-color;
+  color: white;
+  cursor: pointer;
+  height: 40px;
+}
+.image-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

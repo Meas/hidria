@@ -1,9 +1,12 @@
 <div class="content">
   <div class="forms-section" *ngIf="feature">
-    <app-form-box *ngFor="let featureObject of feature.featureObjects; let i = index"
-                  [featureObject]="featureObject"
-                  (formValues)="saveFormResults($event, i)">
-    </app-form-box>
+    <div *ngFor="let featureObject of feature.featureObjects; let i = index" [ngClass]="featureObject.classesUI">
+      <app-form-box
+        [featureObject]="featureObject"
+        (formValues)="saveFormResults($event, i)">
+      </app-form-box>
+    </div>
+
   </div>
 
   <div class="function-buttons">

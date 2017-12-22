@@ -1,8 +1,20 @@
+:host {
+  display: block;
+  height: 15px;
+  margin: 5px 0;
+}
+
 .section-label {
   display: flex;
+  width: 400px;
+  overflow: hidden;
   align-items: center;
 
-.tooltip {
+  .unit {
+    margin-left: 5px;
+  }
+
+  .tooltip {
     width: 13px;
     height: 13px;
     color: white;
@@ -14,11 +26,11 @@
     float: left;
     margin-left: 10px;
 
-  &:hover .tooltiptext {
+    &:hover .tooltiptext {
       visibility: visible;
     }
 
-  .tooltiptext {
+    .tooltiptext {
       visibility: hidden;
       min-width: 120px;
       width: auto;

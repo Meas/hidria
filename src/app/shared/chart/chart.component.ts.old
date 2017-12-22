@@ -15,6 +15,7 @@ import Chart from 'chart.js';
 })
 export class ChartComponent implements OnInit, AfterViewInit {
   @Input() canvasId: string;
+  @Input() chart;
 
   constructor() {
   }

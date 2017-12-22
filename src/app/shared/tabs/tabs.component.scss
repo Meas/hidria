@@ -4,6 +4,7 @@
   width: 100%;
   border-collapse: collapse;
   .parameter-table-body{
+    text-align: center;
     th{
       color: white;
       background-color: $main-border-item;
@@ -55,4 +56,10 @@
   .active{
     background-color: $main-border-item;
   }
+}
+.pointer {
+  cursor: pointer;
+}
+.hidden-table {
+  display: none;
 }
