@@ -5,9 +5,10 @@
 	  	</div>
 	  	<div class="col-lg-8">
 	  		<input type="text" 
-	  		  [ngModel]="(graphData && graphData[i] !== undefined) ? graphData[i] : item.default" 
+	  		  [(ngModel)]="graphData[i]" 
 	  		  name="{{item.id}}" 
 	  		  class="input"
+	  		  (ngModelChange)="inputChanged()"
 	  		  [style.color]="item.color ? item.color : ''">
 	  	</div>
 	  	<div class="col-lg-2 input-description">
@@ -15,6 +16,11 @@
 	  	</div>
   </div>
   <div class="row input-row">
-  	<input type="submit" disabled="disabled" class="change-button" value="change">
+  	<input type="submit"
+  	  [disabled]="changeButtonDisabled" 
+  	  class="change-button" 
+  	  value="change"
+  	  [ngClass]="changeButtonDisabled ? 'change-button-disabled' : ''"
+  	  (click)="changeClick()">
   </div>
 </div>

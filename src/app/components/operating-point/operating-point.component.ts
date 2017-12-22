@@ -9,7 +9,7 @@ import { OperatingPointService } from "../../services/operating-point/operating-
 export class OperatingPointComponent implements OnInit {
 
   feature = [];
-  graphData;
+  graphData= [];
 
   constructor(private operatingPointService: OperatingPointService) { }
 
@@ -24,7 +24,7 @@ export class OperatingPointComponent implements OnInit {
   }
 
   onPointSelected(event): void {
-    this.graphData = event;
+    this.graphData = [...event];
   }
 
 }

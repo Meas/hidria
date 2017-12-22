@@ -8,12 +8,30 @@ import {Component, Input, OnInit} from '@angular/core';
 export class OperatingPointsInputsComponent implements OnInit {
 
   @Input() inputData;
-  @Input() graphData;
+  @Input() set graphDataInput(graphData: any) {
+
+   this.graphData = graphData;
+   this.changeButtonDisabled = false;
+
+  };
+  graphData;
+  changeButtonDisabled=true;
   
   constructor() {
   }
 
   ngOnInit() {
+  	for(let i=0; i < this.inputData.children.length; i++)
+  		this.graphData.push(this.inputData.children[i].default);
+  	this.changeButtonDisabled=true;
+  }
+
+  inputChanged() {
+  	this.changeButtonDisabled = false;
+  }
+
+  changeClick() {
+  	this.changeButtonDisabled = true;
   }
 
 }
