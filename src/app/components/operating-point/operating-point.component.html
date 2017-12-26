@@ -17,7 +17,8 @@
       <div *ngIf="child.type==='operatingPointsInputs'">
         <app-operating-points-inputs
           [inputData]="child"
-          [graphDataInput]="graphData"></app-operating-points-inputs>
+          [graphDataInput]="graphData"
+          (onChange)="onChange($event)"></app-operating-points-inputs>
       </div>
         <div *ngIf="child.type==='parameterList'">
           <app-parameter-list [inputData]="child"></app-parameter-list>

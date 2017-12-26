@@ -5,7 +5,7 @@
 	  	</div>
 	  	<div class="col-lg-8">
 	  		<input type="text" 
-	  		  [(ngModel)]="graphData[i]" 
+	  		  [(ngModel)]="graphData[i].value" 
 	  		  name="{{item.id}}" 
 	  		  class="input"
 	  		  (ngModelChange)="inputChanged()"
@@ -19,7 +19,7 @@
   	<input type="submit"
   	  [disabled]="changeButtonDisabled" 
   	  class="change-button" 
-  	  value="change"
+  	  value="calculate"
   	  [ngClass]="changeButtonDisabled ? 'change-button-disabled' : ''"
   	  (click)="changeClick()">
   </div>

@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { OperatingPointService } from "../../services/operating-point/operating-point.service";
+import * as _ from 'lodash'
 
 @Component({
   selector: 'app-operating-point',
@@ -8,7 +9,7 @@ import { OperatingPointService } from "../../services/operating-point/operating-
 })
 export class OperatingPointComponent implements OnInit {
 
-  feature = [];
+  feature={};
   graphData= [];
 
   constructor(private operatingPointService: OperatingPointService) { }
@@ -27,4 +28,23 @@ export class OperatingPointComponent implements OnInit {
     this.graphData = [...event];
   }
 
+  onChange(event): void {
+    
+    this.operatingPointService.changeParameterList(event).subscribe((response: any) => {
+      this.findAndReplace(this.feature, 'parameterList', response);
+    });
+  }
+
+    findAndReplace(object, value, replaceValue) {
+      for (var x in object) {
+        if (object.hasOwnProperty(x)) {
+          if (typeof object[x] == 'object') {
+            this.findAndReplace(object[x], value, replaceValue);
+          }
+          if (object[x] == value && x == 'type') { 
+            object['children'] = replaceValue['children'];
+          }
+        }
+      }
+    }
 }

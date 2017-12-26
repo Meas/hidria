@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, EventEmitter, Output} from '@angular/core';
 
 @Component({
   selector: 'app-operating-points-inputs',
@@ -8,21 +8,21 @@ import {Component, Input, OnInit} from '@angular/core';
 export class OperatingPointsInputsComponent implements OnInit {
 
   @Input() inputData;
-  @Input() set graphDataInput(graphData: any) {
-
-   this.graphData = graphData;
-   this.changeButtonDisabled = false;
-
+  @Input() set graphDataInput(graphDataInput: any) {
+	for(let i=0; i < graphDataInput.length; i++)
+		this.graphData[i].value = graphDataInput[i];
+	this.changeButtonDisabled = false;
   };
-  graphData;
+  graphData=[];
   changeButtonDisabled=true;
+  @Output() onChange: EventEmitter<{}> = new EventEmitter();
   
   constructor() {
   }
 
   ngOnInit() {
   	for(let i=0; i < this.inputData.children.length; i++)
-  		this.graphData.push(this.inputData.children[i].default);
+  		this.graphData.push(this.inputData.children[i]);
   	this.changeButtonDisabled=true;
   }
 
@@ -32,6 +32,7 @@ export class OperatingPointsInputsComponent implements OnInit {
 
   changeClick() {
   	this.changeButtonDisabled = true;
+  	this.onChange.emit(this.graphData);
   }
 
 }
