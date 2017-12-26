@@ -62,6 +62,9 @@ export class ChartComponent implements OnInit, AfterViewInit {
     var self=this;
     {
       return {
+        legend: {
+          display: false
+        },
         elements: {
           point: {
             radius: 0
@@ -73,6 +76,10 @@ export class ChartComponent implements OnInit, AfterViewInit {
             ticks: {
               beginAtZero: true,
               maxTicksLimit: 10,
+            },
+            scaleLabel: {
+              display: true,
+              labelString: self.chartData.yUnit
             }
           }],
           xAxes: [{
@@ -80,6 +87,10 @@ export class ChartComponent implements OnInit, AfterViewInit {
               beginAtZero: true,
               maxRotation: 0,
               maxTicksLimit: 5,
+            },
+            scaleLabel: {
+              display: true,
+              labelString: self.chartData.xUnit
             }
           }]
         },
