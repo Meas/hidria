@@ -23,6 +23,7 @@ import { ChartComponent } from './chart/chart.component';
 import { OperatingPointsInputsComponent } from './operating-points-inputs/operating-points-inputs.component';
 import { ParameterListComponent } from './parameter-list/parameter-list.component';
 import { LoadingComponent } from './loading/loading.component';
+import { DisplayOptionsComponent } from './display-options/display-options.component';
 
 @NgModule({
   imports: [
@@ -51,6 +52,7 @@ import { LoadingComponent } from './loading/loading.component';
     OperatingPointsInputsComponent,
     ParameterListComponent,
     LoadingComponent,
+    DisplayOptionsComponent,
   ],
   exports: [
     HeaderComponent,
@@ -68,6 +70,7 @@ import { LoadingComponent } from './loading/loading.component';
     OperatingPointsInputsComponent,
     ParameterListComponent,
     LoadingComponent,
+    DisplayOptionsComponent,
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

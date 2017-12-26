@@ -1,0 +1,17 @@
+.button {
+	border: 1px solid #1F4887;
+	color: #1F4887;
+	text-align: center;
+	padding: 5px;
+	font-weight: 500;
+	cursor: pointer;
+	transition: background-color 0.5s ease;
+}
+.outer-button {
+	padding-left: 10px;
+	margin-bottom: 10px;
+	font-size: 12px;
+}
+.button:hover {
+	background-color: #cdcdcd;
+}

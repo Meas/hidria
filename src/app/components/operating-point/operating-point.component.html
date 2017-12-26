@@ -1,6 +1,12 @@
-<div>
-  <p class="title-model">Chose model | Operating point</p>
+<div class="row title-model no-gutters align-items-center">
+  <div class="col-lg-4">
+    <div>Chose model | Operating point</div>
+  </div>
+  <div class="col-lg-4 offset-lg-4">
+    <app-display-options></app-display-options>
+  </div>
 </div>
+<hr class="title-line">
 <div class="row">
   <div *ngFor="let containers of feature.featureObjects" class="{{containers.classUI}}">
     <div *ngFor="let child of containers.children">
