@@ -23,19 +23,11 @@ export class CatalogueComponent implements OnInit {
   getItems(): void {
     this.catalogueService.getItems().subscribe((response: any) => {
       this.feature = response;
-      console.log(this.feature)
+      console.log(this.feature);
     });
   }
 
   onSectionSelected(subCategory): void {
-    /*this.sections.forEach(section => {
-      section.items.forEach((item) => {
-        console.log(slug, item.slug);
-        if (item.slug === slug) {
-          this.subSections = [item];
-        }
-      });
-    });*/
     console.log(subCategory);
     this.subSections = subCategory;
   }

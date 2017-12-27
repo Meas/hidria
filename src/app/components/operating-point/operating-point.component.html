@@ -13,9 +13,9 @@
       <div class="model" *ngIf="child.type==='card'">
         <app-fan-info [fanInfo]="child"></app-fan-info>
       </div>
-      <div class="graf col-lg-12" *ngIf="child.type==='graph'">
-        <app-chart-component [canvasId]="'canvas1'" 
-          [chartData]="child" 
+      <div class="col-lg-12" *ngIf="child.type==='graph'">
+        <app-chart-component [canvasId]="'canvas1'"
+          [chartData]="child"
           [interactive]="true"
           (points)="onPointSelected($event)"
           ></app-chart-component>
