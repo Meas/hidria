@@ -13,12 +13,12 @@
       <div class="model" *ngIf="child.type==='card'">
         <app-fan-info [fanInfo]="child"></app-fan-info>
       </div>
-      <div class="col-lg-12" *ngIf="child.type==='graph'">
-        <app-chart-component [canvasId]="'canvas1'"
+      <div class="col-lg-12" *ngIf="child.type==='graph-area'">
+        <app-chart-area-component [canvasId]="'canvas1'"
           [chartData]="child"
           [interactive]="true"
           (points)="onPointSelected($event)"
-          ></app-chart-component>
+          ></app-chart-area-component>
       </div>
       <div *ngIf="child.type==='operatingPointsInputs'">
         <app-operating-points-inputs

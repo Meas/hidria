@@ -1,19 +1,19 @@
 import {Component, OnInit, AfterViewInit, Input, Output, EventEmitter} from '@angular/core';
-import * as _ from 'lodash';
+/*import * as _ from 'lodash';
 import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';
+import jsPDF from 'jspdf';*/
 import Chart from 'chart.js';
 
 @Component({
-  selector: 'app-chart-component',
+  selector: 'app-chart-area-component',
   template: `
     <div style="background: #fff !important">
       <canvas [id]="canvasId" width="content-box" height="200"></canvas>
     </div>
   `,
-  styleUrls: ['./chart.component.css']
+  styleUrls: ['./chart-area.component.css']
 })
-export class ChartComponent implements OnInit, AfterViewInit {
+export class ChartAreaComponent implements OnInit, AfterViewInit {
   @Input() canvasId: string;
   @Input() chartData;
   @Input() interactive: boolean;
@@ -23,6 +23,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+
   }
 
   ngAfterViewInit() {
@@ -35,7 +36,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
     const data = this.getGraphData();
     const options = this.getOptions();
 
-    const myBarChart = new Chart(ctx, {
+    const areaChart = new Chart(ctx, {
       type: 'line',
       data: data,
       options: options,
@@ -47,13 +48,23 @@ export class ChartComponent implements OnInit, AfterViewInit {
     data.labels = this.chartData.xPoints;
     data.datasets = [];
     for (let i = 0; i < this.chartData.yPoints.length; i++) {
-      data.datasets.push({
-        'label': this.chartData.labels[i],
-        'data': this.chartData.yPoints[i],
-        /*'graphValue': this.chartData.graphValue[i],*/
-        'borderColor': this.chartData.borderColor[i],
-        'fill': true
-      });
+      for (let j = 100; j > 1; j--) {
+        const borderColor = j === 100 ? this.chartData.borderColor[i] : 'rgba(0,0,0,0)';
+        const fill = j === 100;
+        const dataValue = this.chartData.yPoints[i].map(x => Math.round(x * j) / 100);
+        data.datasets.push({
+          'label': this.chartData.labels[i],
+          'data': dataValue,
+          'yValue': dataValue,
+          'xValue': this.chartData.xPoints,
+          'yLabel': this.chartData.yLabel,
+          'xLabel': this.chartData.xLabel,
+          'percentageLabel': this.chartData.percentage,
+          'percentage': j,
+          'borderColor': borderColor,
+          'fill': fill
+        });
+      }
     }
     return data;
   }
@@ -97,6 +108,15 @@ export class ChartComponent implements OnInit, AfterViewInit {
         tooltips: {
           mode: 'nearest',
           intersect: false,
+          callbacks: {
+            label: function(tooltipItem, data) {
+              return [
+                data.datasets[tooltipItem.datasetIndex].percentageLabel + ': ' + data.datasets[tooltipItem.datasetIndex].percentage + '%',
+                data.datasets[tooltipItem.datasetIndex].xLabel + ': ' + data.datasets[tooltipItem.datasetIndex].xValue[tooltipItem.index],
+                data.datasets[tooltipItem.datasetIndex].yLabel + ': ' + data.datasets[tooltipItem.datasetIndex].yValue[tooltipItem.index],
+              ];
+            },
+          }
         },
         hover: {
           mode: 'nearest',

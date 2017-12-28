@@ -37,10 +37,10 @@ export class OperatingPointComponent implements OnInit {
     findAndReplace(object, value, replaceValue) {
       for (let x in object) {
         if (object.hasOwnProperty(x)) {
-          if (typeof object[x] == 'object') {
+          if (typeof object[x] === 'object') {
             this.findAndReplace(object[x], value, replaceValue);
           }
-          if (object[x] == value && x == 'type') {
+          if (object[x] === value && x === 'type') {
             object['children'] = replaceValue['children'];
           }
         }
