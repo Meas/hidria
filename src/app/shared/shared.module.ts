@@ -25,7 +25,7 @@ import { ParameterListComponent } from './parameter-list/parameter-list.componen
 import { LoadingComponent } from './loading/loading.component';
 import { DisplayOptionsComponent } from './display-options/display-options.component';
 import { ChartAreaComponent } from './chart-area/chart-area.component';
-import {ChartServiceService} from '../services/chart-service.service';
+import {ChartServiceService} from '../services/chart-service/chart-service.service';
 
 @NgModule({
   imports: [

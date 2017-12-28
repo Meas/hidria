@@ -1,7 +1,7 @@
 import {Component, OnInit, Input, OnDestroy, ChangeDetectionStrategy, NgZone, ChangeDetectorRef} from '@angular/core';
 import { Router } from '@angular/router';
 import * as _ from 'lodash';
-import {ChartServiceService} from '../../services/chart-service.service';
+import {ChartServiceService} from '../../services/chart-service/chart-service.service';
 import {Subscription} from 'rxjs/Subscription';
 
 @Component({
