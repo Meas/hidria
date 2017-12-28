@@ -14,7 +14,6 @@ export class ChooseModelComponent implements OnInit {
     image: 'assets/images/fan.png'
   };
   feature: any = [];
-  hovered = '';
 
   constructor(private chooseModelService: ChooseModelService) { }
 
@@ -27,10 +26,4 @@ export class ChooseModelComponent implements OnInit {
       this.feature = response;
     });
   }
-
-  hoveredEvent(event): void {
-    /*this.hovered = event;*/
-    console.log(event);
-  }
-
 }
