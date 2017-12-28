@@ -20,7 +20,6 @@ export class ChartComponent implements OnInit, AfterViewInit {
   @Input() chartData;
   @Input() interactive: boolean;
   @Output() points: EventEmitter<Array<string>> = new EventEmitter();
-  @Output() hoveredEvent: EventEmitter<string> = new EventEmitter(true);
   hovered = '';
 
   constructor(private chartService: ChartServiceService, private router: Router) {
