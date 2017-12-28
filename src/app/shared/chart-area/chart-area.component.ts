@@ -108,6 +108,11 @@ export class ChartAreaComponent implements OnInit, AfterViewInit {
         tooltips: {
           mode: 'nearest',
           intersect: false,
+          custom: function(tooltip) {
+            if (!tooltip) return;
+            // disable displaying the color box;
+            tooltip.displayColors = false;
+          },
           callbacks: {
             label: function(tooltipItem, data) {
               return [
@@ -116,6 +121,9 @@ export class ChartAreaComponent implements OnInit, AfterViewInit {
                 data.datasets[tooltipItem.datasetIndex].yLabel + ': ' + data.datasets[tooltipItem.datasetIndex].yValue[tooltipItem.index],
               ];
             },
+            title: function(tooltipItem, data) {
+              return;
+            }
           }
         },
         hover: {
