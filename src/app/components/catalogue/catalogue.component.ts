@@ -23,12 +23,10 @@ export class CatalogueComponent implements OnInit {
   getItems(): void {
     this.catalogueService.getItems().subscribe((response: any) => {
       this.feature = response;
-      console.log(this.feature);
     });
   }
 
   onSectionSelected(subCategory): void {
-    console.log(subCategory);
     this.subSections = subCategory;
   }
 

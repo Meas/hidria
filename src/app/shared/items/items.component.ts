@@ -11,6 +11,8 @@ export class ItemsComponent implements OnInit {
   @Input() item: {
     name: string;
     description: string;
+    state: string;
+    image: string;
   }
 
   constructor() { }

@@ -58,6 +58,8 @@ export class ChartAreaComponent implements OnInit, AfterViewInit {
           'yValue': dataValue,
           'xValue': this.chartData.xPoints,
           'yLabel': this.chartData.yLabel,
+          'xUnit': this.chartData.xUnit,
+          'yUnit': this.chartData.yUnit,
           'xLabel': this.chartData.xLabel,
           'percentageLabel': this.chartData.percentage,
           'percentage': j,
@@ -117,8 +119,10 @@ export class ChartAreaComponent implements OnInit, AfterViewInit {
             label: function(tooltipItem, data) {
               return [
                 data.datasets[tooltipItem.datasetIndex].percentageLabel + ': ' + data.datasets[tooltipItem.datasetIndex].percentage + '%',
-                data.datasets[tooltipItem.datasetIndex].xLabel + ': ' + data.datasets[tooltipItem.datasetIndex].xValue[tooltipItem.index],
-                data.datasets[tooltipItem.datasetIndex].yLabel + ': ' + data.datasets[tooltipItem.datasetIndex].yValue[tooltipItem.index],
+                data.datasets[tooltipItem.datasetIndex].xLabel + ' ' + data.datasets[tooltipItem.datasetIndex].xUnit
+                + ': ' + data.datasets[tooltipItem.datasetIndex].xValue[tooltipItem.index],
+                data.datasets[tooltipItem.datasetIndex].yLabel + ' ' + data.datasets[tooltipItem.datasetIndex].yUnit
+                + ': ' + data.datasets[tooltipItem.datasetIndex].yValue[tooltipItem.index],
               ];
             },
             title: function(tooltipItem, data) {

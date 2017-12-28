@@ -1,5 +1,5 @@
 <div>
-  <p class="title-model">Chose model</p>
+  <p class="title-model">Chose model {{hovered}}</p>
 </div>
 <div class="wrapper">
   <div *ngFor="let containers of feature.featureObjects">
@@ -8,10 +8,13 @@
         <app-fan-info [fanInfo]="child"></app-fan-info>
       </div>
       <div class="graf" *ngIf="child.type==='graph'">
-        <app-chart-component [canvasId]="'canvas1'" [chartData]="child"></app-chart-component>
+        <app-chart-component
+          [canvasId]="'canvas1'"
+          [chartData]="child"
+          (hoveredEvent)="hoveredEvent($event)"></app-chart-component>
       </div>
       <div class="fan-table" *ngIf="child.type==='tableComponent'">
-        <app-tabs [tableData]="child"></app-tabs>
+        <app-tabs [tableData]="child" [hovered]="hovered"></app-tabs>
       </div>
     </div>
   </div>

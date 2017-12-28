@@ -25,6 +25,7 @@ import { ParameterListComponent } from './parameter-list/parameter-list.componen
 import { LoadingComponent } from './loading/loading.component';
 import { DisplayOptionsComponent } from './display-options/display-options.component';
 import { ChartAreaComponent } from './chart-area/chart-area.component';
+import {ChartServiceService} from '../services/chart-service.service';
 
 @NgModule({
   imports: [
@@ -74,6 +75,9 @@ import { ChartAreaComponent } from './chart-area/chart-area.component';
     LoadingComponent,
     DisplayOptionsComponent,
     ChartAreaComponent,
+  ],
+  providers:[
+    ChartServiceService
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

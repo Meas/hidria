@@ -59,6 +59,19 @@
 }
 .pointer {
   cursor: pointer;
+  td {
+    transition: background 0.2s ease;
+  }
+  &:hover {
+    & > td {
+      background-color: lightseagreen !important;
+    }
+  }
+}
+.hovered {
+  & > td {
+    background-color: lightseagreen !important;
+  }
 }
 .hidden-table {
   display: none;
