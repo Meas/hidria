@@ -111,7 +111,7 @@ export class ChartAreaComponent implements OnInit, AfterViewInit {
           mode: 'nearest',
           intersect: false,
           custom: function(tooltip) {
-            if (!tooltip) return;
+            if (!tooltip) { return; }
             // disable displaying the color box;
             tooltip.displayColors = false;
           },
