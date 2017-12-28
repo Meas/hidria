@@ -4,6 +4,7 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import Chart from 'chart.js';
 import {ChartServiceService} from '../../services/chart-service.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-chart-component',
@@ -22,7 +23,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
   @Output() hoveredEvent: EventEmitter<string> = new EventEmitter(true);
   hovered = '';
 
-  constructor(private chartService: ChartServiceService) {
+  constructor(private chartService: ChartServiceService, private router: Router) {
   }
 
   ngOnInit() {
@@ -60,6 +61,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
         'yUnit': this.chartData.yUnit,
         'xLabel': this.chartData.xLabel,
         'borderColor': this.chartData.borderColor[i],
+        'links': this.chartData.links[i],
         'fill': true
       });
     }
@@ -130,18 +132,15 @@ export class ChartComponent implements OnInit, AfterViewInit {
           intersect: false
         },
         onClick: function (clickEvt, activeElements) {
-          const x = this.data.labels[activeElements[0]._index];
-          const y = this.data.datasets[activeElements[0]._datasetIndex].data[activeElements[0]._index];
-          if (self.interactive) {
-            self.points.emit([x, y]);
-          }
+          const link = this.data.datasets[activeElements[0]._datasetIndex].links;
+          console.log(link);
+          self.router.navigate([link]);
         },
         onHover: function(hoverEvt, activeElements) {
           const hovered = activeElements[0] ? this.data.datasets[activeElements[0]._datasetIndex].label : '';
           if (hovered !== self.hovered) {
             self.hovered = hovered;
             self.chartService.changeFanSelect(hovered);
-            //self.hoveredEvent.emit(hovered);
           }
         }
       };

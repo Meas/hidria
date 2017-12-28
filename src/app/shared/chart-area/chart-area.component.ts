@@ -49,7 +49,7 @@ export class ChartAreaComponent implements OnInit, AfterViewInit {
     data.datasets = [];
     for (let i = 0; i < this.chartData.yPoints.length; i++) {
       for (let j = 100; j > 1; j--) {
-        const borderColor = j === 100 ? this.chartData.borderColor[i] : 'rgba(0,0,0,0)';
+        const borderColor = j === 100 ? this.chartData.borderColor[i] : j % 10 === 0 ? 'rgba(200,200,200,0.5)' : 'rgba(0,0,0,0)';
         const fill = j === 100;
         const dataValue = this.chartData.yPoints[i].map(x => Math.round(x * j) / 100);
         data.datasets.push({

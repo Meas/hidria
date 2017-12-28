@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as _ from 'lodash';
-import {CatalogueService} from "../../services/catalogue/catalogue.service";
-import {Router} from "@angular/router";
+import {CatalogueService} from '../../services/catalogue/catalogue.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-catalogue',
