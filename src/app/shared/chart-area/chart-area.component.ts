@@ -133,9 +133,8 @@ export class ChartAreaComponent implements OnInit, AfterViewInit {
         onClick: function (clickEvt, activeElements) {
           const x = this.data.labels[activeElements[0]._index];
           const y = this.data.datasets[activeElements[0]._datasetIndex].data[activeElements[0]._index];
-          const graphValue = this.data.datasets[activeElements[0]._datasetIndex].graphValue;
           if (self.interactive) {
-            self.points.emit([x, y, graphValue]);
+            self.points.emit([x, y]);
           }
         },
       };
