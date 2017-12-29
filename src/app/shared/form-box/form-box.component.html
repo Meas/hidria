@@ -12,12 +12,17 @@
               <app-accordion-input [parameterMainChild]="parameter.options[0]">
                 <accordion-content>
                   <div class="container">
-                    <div class="row test">
-                      <div *ngFor="let parameterChildren of parameter.options; let i = index" [ngClass]="parameterChildren.classesUI">
-                        <div *ngIf="i !== 0">
-                          <app-label-box [parameter]="parameterChildren"></app-label-box>
-                          <app-feature-items [parameter]="parameterChildren"></app-feature-items>
+                    <div class="row">
+                      <div class="col-8">
+                        <div class="row test">
+                          <div *ngFor="let parameterChildren of parameter.options; let i = index" [ngClass]="parameterChildren.classesUI">
+                            <app-label-box [parameter]="parameterChildren"></app-label-box>
+                            <app-feature-items [parameter]="parameterChildren"></app-feature-items>
+                          </div>
                         </div>
+                      </div>
+                      <div class="col-4">
+                        <img width="50" src="assets/images/cube.png" alt="">
                       </div>
                     </div>
                   </div>
