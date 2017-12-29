@@ -1,15 +1,18 @@
-import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
-import * as _ from "lodash"
+import {Component, Input, OnInit, Output, EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef, NgZone} from '@angular/core';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-display-options',
   templateUrl: './display-options.component.html',
   styleUrls: ['./display-options.component.scss']
 })
 export class DisplayOptionsComponent implements OnInit {
 
+  @Input() selectedTab;
+  @Output() tab: EventEmitter<string> = new EventEmitter(true);
 
-  constructor() { }
+  constructor(private zone: NgZone,
+              private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
   }

@@ -26,6 +26,7 @@ import { LoadingComponent } from './loading/loading.component';
 import { DisplayOptionsComponent } from './display-options/display-options.component';
 import { ChartAreaComponent } from './chart-area/chart-area.component';
 import {ChartServiceService} from '../services/chart-service/chart-service.service';
+import { ChartPerformanceCurveComponent } from './chart-performance-curve/chart-performance-curve.component';
 
 @NgModule({
   imports: [
@@ -56,6 +57,7 @@ import {ChartServiceService} from '../services/chart-service/chart-service.servi
     LoadingComponent,
     DisplayOptionsComponent,
     ChartAreaComponent,
+    ChartPerformanceCurveComponent,
   ],
   exports: [
     HeaderComponent,
@@ -75,6 +77,7 @@ import {ChartServiceService} from '../services/chart-service/chart-service.servi
     LoadingComponent,
     DisplayOptionsComponent,
     ChartAreaComponent,
+    ChartPerformanceCurveComponent,
   ],
   providers:[
     ChartServiceService

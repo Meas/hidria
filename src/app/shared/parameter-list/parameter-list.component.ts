@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-parameter-list',
@@ -8,6 +8,7 @@ import {Component, Input, OnInit} from '@angular/core';
 export class ParameterListComponent implements OnInit {
 
   @Input() inputData;
+
   constructor() {
   }
 

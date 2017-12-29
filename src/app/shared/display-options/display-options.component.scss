@@ -6,12 +6,20 @@
 	font-weight: 500;
 	cursor: pointer;
 	transition: background-color 0.5s ease;
+  &:hover {
+    background-color: #cdcdcd;
+  }
 }
 .outer-button {
 	padding-left: 10px;
 	margin-bottom: 10px;
 	font-size: 12px;
 }
-.button:hover {
-	background-color: #cdcdcd;
+.selected-tab {
+  color: #fff;
+  background-color: #1E4686;
+  &:hover {
+    color: #fff;
+    background-color: #1E4686;
+  }
 }

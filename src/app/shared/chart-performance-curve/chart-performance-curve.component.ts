@@ -1,21 +1,18 @@
 import {Component, OnInit, AfterViewInit, Input, Output, EventEmitter} from '@angular/core';
-import * as _ from 'lodash';
-import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';
 import Chart from 'chart.js';
 import {ChartServiceService} from '../../services/chart-service/chart-service.service';
 import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-chart-component',
+  selector: 'app-chart-performance-curve-component',
   template: `
     <div style="background: #fff !important">
       <canvas [id]="canvasId" width="content-box" height="200"></canvas>
     </div>
   `,
-  styleUrls: ['./chart.component.css']
+  styleUrls: ['./chart-performance-curve.component.css']
 })
-export class ChartComponent implements OnInit, AfterViewInit {
+export class ChartPerformanceCurveComponent implements OnInit, AfterViewInit {
   @Input() canvasId: string;
   @Input() chartData;
   @Input() interactive: boolean;

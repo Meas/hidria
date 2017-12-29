@@ -1,8 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, NgZone, OnInit} from '@angular/core';
 import { OperatingPointService } from '../../services/operating-point/operating-point.service';
 import * as _ from 'lodash';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-operating-point',
   templateUrl: './operating-point.component.html',
   styleUrls: ['./operating-point.component.scss']
@@ -11,8 +12,11 @@ export class OperatingPointComponent implements OnInit {
 
   feature: any = {};
   graphData = [];
+  selectedTab: String = 'data-sheet';
 
-  constructor(private operatingPointService: OperatingPointService) { }
+  constructor(private operatingPointService: OperatingPointService,
+              private zone: NgZone,
+              private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.getItems();
@@ -21,6 +25,7 @@ export class OperatingPointComponent implements OnInit {
   getItems(): void {
     this.operatingPointService.getItems().subscribe((response: any) => {
       this.feature = response;
+      this.zone.run(() => this.cd.markForCheck());
     });
   }
 
@@ -31,11 +36,12 @@ export class OperatingPointComponent implements OnInit {
   onChange(event): void {
     this.operatingPointService.changeParameterList(event).subscribe((response: any) => {
       this.findAndReplace(this.feature, 'parameterList', response);
+      this.zone.run(() => this.cd.markForCheck());
     });
   }
 
     findAndReplace(object, value, replaceValue) {
-      for (let x in object) {
+      for (const x in object) {
         if (object.hasOwnProperty(x)) {
           if (typeof object[x] === 'object') {
             this.findAndReplace(object[x], value, replaceValue);
@@ -46,4 +52,7 @@ export class OperatingPointComponent implements OnInit {
         }
       }
     }
+  selectTab(newTab) {
+    this.selectedTab = newTab;
+  }
 }

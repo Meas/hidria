@@ -1,17 +1,27 @@
 <div class="row no-gutters">
   <div class="col-lg outer-button">
-    <div class="button">Diagrams</div>
+    <div class="button"
+        (click)="this.tab.emit('diagrams')"
+        [ngClass]="this.selectedTab == 'diagrams' ? 'selected-tab' : ''">DIAGRAMS</div>
   </div>
 	<div class="col-lg outer-button">
-		<div class="button">DRAWINGS</div>
+		<div class="button"
+         (click)="this.tab.emit('drawings')"
+         [ngClass]="this.selectedTab == 'drawings' ? 'selected-tab' : ''">DRAWINGS</div>
 	</div>
 	<div class="col-lg outer-button">
-		<div class="button"> CONNECTIONS</div>
+		<div class="button"
+         (click)="this.tab.emit('connections')"
+         [ngClass]="this.selectedTab == 'connections' ? 'selected-tab' : ''"> CONNECTIONS</div>
 	</div>
 	<div class="col-lg outer-button">
-		<div class="button">INSTRUCTIONS</div>
+		<div class="button"
+         (click)="this.tab.emit('instructions')"
+         [ngClass]="this.selectedTab == 'instructions' ? 'selected-tab' : ''">INSTRUCTIONS</div>
 	</div>
 	<div class="col-lg outer-button">
-		<div class="button">DATA SHEET</div>
+		<div class="button"
+         (click)="this.tab.emit('data-sheet')"
+         [ngClass]="this.selectedTab == 'data-sheet' ? 'selected-tab' : ''">DATA SHEET</div>
 	</div>
 </div>

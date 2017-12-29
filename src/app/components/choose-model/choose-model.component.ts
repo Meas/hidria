@@ -8,11 +8,6 @@ import {ChooseModelService} from '../../services/chooseModel/chooseModel.service
 })
 export class ChooseModelComponent implements OnInit {
 
-  fanOne = {
-    name: 'Some Name',
-    description: 'Description',
-    image: 'assets/images/fan.png'
-  };
   feature: any = [];
 
   constructor(private chooseModelService: ChooseModelService) { }
