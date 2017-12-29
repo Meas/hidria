@@ -36,6 +36,14 @@
       <div *ngIf="child.type==='instructions' && selectedTab == 'instructions'">
         <img [src]="child.image">
       </div>
+      <div *ngIf="child.type==='diagrams' && selectedTab == 'diagrams'">
+        <div class="row">
+          <div class="{{graph.classUI}}" *ngFor="let graph of child.children; let i = index;">
+            <app-chart-performance-curve-component [canvasId]="'canvas'+graph.name"
+                                                   [chartData]="graph"></app-chart-performance-curve-component>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="col-lg-12 operating-points-buttons row">

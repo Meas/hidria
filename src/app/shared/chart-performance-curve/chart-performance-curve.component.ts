@@ -15,9 +15,6 @@ import {Router} from '@angular/router';
 export class ChartPerformanceCurveComponent implements OnInit, AfterViewInit {
   @Input() canvasId: string;
   @Input() chartData;
-  @Input() interactive: boolean;
-  @Output() points: EventEmitter<Array<string>> = new EventEmitter();
-  hovered = '';
 
   constructor(private chartService: ChartServiceService, private router: Router) {
   }
@@ -47,7 +44,6 @@ export class ChartPerformanceCurveComponent implements OnInit, AfterViewInit {
     data.labels = this.chartData.xPoints;
     data.datasets = [];
     for (let i = 0; i < this.chartData.yPoints.length; i++) {
-      const fill = i === 0;
       data.datasets.push({
         'label': this.chartData.labels[i],
         'data': this.chartData.yPoints[i],
@@ -58,8 +54,7 @@ export class ChartPerformanceCurveComponent implements OnInit, AfterViewInit {
         'yUnit': this.chartData.yUnit,
         'xLabel': this.chartData.xLabel,
         'borderColor': this.chartData.borderColor[i],
-        'links': this.chartData.links[i],
-        'fill': fill
+        'fill': false
       });
     }
     return data;
@@ -128,17 +123,9 @@ export class ChartPerformanceCurveComponent implements OnInit, AfterViewInit {
           mode: 'nearest',
           intersect: false
         },
-        onClick: function (clickEvt, activeElements) {
-          const link = this.data.datasets[activeElements[0]._datasetIndex].links;
-          console.log(link);
-          self.router.navigate([link]);
-        },
-        onHover: function(hoverEvt, activeElements) {
-          const hovered = activeElements[0] ? this.data.datasets[activeElements[0]._datasetIndex].label : '';
-          if (hovered !== self.hovered) {
-            self.hovered = hovered;
-            self.chartService.changeFanSelect(hovered);
-          }
+        title: {
+          display: true,
+          text: this.chartData.name
         }
       };
     }
