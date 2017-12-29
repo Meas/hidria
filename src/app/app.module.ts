@@ -28,6 +28,7 @@ import { OperatingPointService } from "./services/operating-point/operating-poin
 import { FilterPipe } from './pipes/filter/filter.pipe';
 import { SortPipe } from './pipes/sort/sort.pipe';
 import { RouteNotFoundComponent } from './components/route-not-found/route-not-found.component';
+import { AuthComponent } from './components/auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { RouteNotFoundComponent } from './components/route-not-found/route-not-f
     FilterPipe,
     SortPipe,
     OperatingPointComponent,
-    RouteNotFoundComponent
+    RouteNotFoundComponent,
+    AuthComponent
   ],
   imports: [
     FormsModule,

@@ -9,10 +9,12 @@ import { OperatingPointComponent } from './components/operating-point/operating-
 import { RouteNotFoundComponent } from './components/route-not-found/route-not-found.component';
 
 import {SecurityService} from './services/security/security.service';
+import {AuthComponent} from './components/auth/auth.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: '/catalogue', pathMatch: 'full' },
+  { path: 'login', component: AuthComponent },
   { path: 'catalogue', component: CatalogueComponent },
   // { path: 'parameter', component: ParametersComponent, canActivate: [SecurityService] },
   { path: 'parameter', component: ParametersComponent },
