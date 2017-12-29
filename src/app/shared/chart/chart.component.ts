@@ -1,11 +1,10 @@
-import {Component, OnInit, AfterViewInit, Input, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, AfterViewInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import * as _ from 'lodash';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import Chart from 'chart.js';
 import {ChartServiceService} from '../../services/chart-service/chart-service.service';
 import {Router} from '@angular/router';
-import { ChangeDetectionStrategy } from '@angular/core/src/change_detection/constants';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
