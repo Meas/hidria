@@ -9,7 +9,7 @@ export class FiltersComponent implements OnInit {
 
   @Input() filters;
   @Input() activeFilter;
-  @Output() filterSelected: EventEmitter<string> = new EventEmitter();
+  @Output() filterSelected: EventEmitter<any> = new EventEmitter();
 
   constructor() {
   }

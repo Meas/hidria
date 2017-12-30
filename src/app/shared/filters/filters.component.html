@@ -1,6 +1,6 @@
 <div class="button-item">
   <button class="button-box" type="button"
-          (click)="filterSelected.emit('0')"
+          (click)="filterSelected.emit(0)"
           [ngClass]="{'button-box-active': 0 === activeFilter}">
     <span class="blue-box b-box-lit-1">{{totalModels()}}</span>
     All Models
