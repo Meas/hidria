@@ -15,8 +15,8 @@ export class OperatingPointService {
   getItems(): Observable<any> {
     return this.service.get('choose-model/operating-point/id');
   }
-  changeParameterList(event): Observable<any> {
-  	//ToDo format data from event and send request appropriately
-  	return this.service.get('choose-model/operating-point/parameter-list/id');
+  calculate(event): Observable<any> {
+    // ToDo format data from event and send request appropriately
+    return this.service.get('choose-model/operating-point/calculate/id');
   }
 }

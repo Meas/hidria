@@ -34,20 +34,26 @@ export class OperatingPointComponent implements OnInit {
   }
 
   onChange(event): void {
-    this.operatingPointService.changeParameterList(event).subscribe((response: any) => {
-      this.findAndReplace(this.feature, 'parameterList', response);
+    this.operatingPointService.calculate(event).subscribe((response: any) => {
+      this.findAndReplace(this.feature, ['parameterList', 'diagrams'], response);
       this.zone.run(() => this.cd.markForCheck());
     });
   }
 
-    findAndReplace(object, value, replaceValue) {
+    findAndReplace(object, types, replaceValues) {
       for (const x in object) {
         if (object.hasOwnProperty(x)) {
           if (typeof object[x] === 'object') {
-            this.findAndReplace(object[x], value, replaceValue);
+            this.findAndReplace(object[x], types, replaceValues);
           }
-          if (object[x] === value && x === 'type') {
-            object['children'] = replaceValue['children'];
+          for (const type of types) {
+            if (object[x] === type && x === 'type') {
+              for (const replaceValue of replaceValues) {
+                if (object[x] === replaceValue['type']) {
+                  object['children'] = replaceValue['children'];
+                }
+              }
+            }
           }
         }
       }
