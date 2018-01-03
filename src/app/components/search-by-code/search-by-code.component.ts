@@ -17,9 +17,12 @@ export class SearchByCodeComponent implements OnInit {
               private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe((params: Params) => {
-      const code = params['code'];
-      console.log(code);
+    this.activatedRoute.queryParams.subscribe((params: Params) => {
+      const paramCode = params['code'];
+      if(paramCode) {
+        this.code = paramCode;
+        this.searchSubmit();
+      }
     });
   }
 
@@ -30,7 +33,7 @@ export class SearchByCodeComponent implements OnInit {
   searchSubmit() {
     this.searchButtonDisabled = true;
     const params = 'search-by-code?code=' + this.code;
-    window.history.pushState('', '', params);
+    window.history.replaceState('', '', params);
     this.searchByCodeService.search().subscribe((response: any) => {
       this.items = response;
     });

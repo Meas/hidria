@@ -1,8 +1,8 @@
 <div>
-  <div class="loading-box" *ngIf="!feature">
+  <div class="loading-box" *ngIf="!feature['FeatureName']">
     <app-loading></app-loading>
   </div>
-  <div *ngIf="feature.length !== 0 && feature">
+  <div *ngIf="feature['FeatureName']">
     <div class="row title-model no-gutters align-items-center">
       <div class="col-lg-4">
         <div>Choose model | Operating point</div>
