@@ -62,6 +62,7 @@ import { ChartPerformanceCurveComponent } from './chart-performance-curve/chart-
   exports: [
     HeaderComponent,
     FiltersComponent,
+    ItemsComponent,
     SidebarComponent,
     BodySectionComponent,
     FormBoxComponent,

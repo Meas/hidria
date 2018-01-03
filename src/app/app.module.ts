@@ -22,13 +22,15 @@ import { HelperService } from './services/helper/helper.service';
 import { SecurityService } from './services/security/security.service';
 import { SelectionService } from './services/selection/selection.service';
 import { AuthService } from './services/auth/auth.service';
-import { ChooseModelService } from "./services/chooseModel/chooseModel.service";
-import { OperatingPointService } from "./services/operating-point/operating-point.service";
+import { ChooseModelService } from './services/chooseModel/chooseModel.service';
+import { OperatingPointService } from './services/operating-point/operating-point.service';
+import { SearchByCodeService } from './services/search-by-code/search-by-code.service';
 
 import { FilterPipe } from './pipes/filter/filter.pipe';
 import { SortPipe } from './pipes/sort/sort.pipe';
 import { RouteNotFoundComponent } from './components/route-not-found/route-not-found.component';
 import { AuthComponent } from './components/auth/auth.component';
+import { SearchByCodeComponent } from './components/search-by-code/search-by-code.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,8 @@ import { AuthComponent } from './components/auth/auth.component';
     SortPipe,
     OperatingPointComponent,
     RouteNotFoundComponent,
-    AuthComponent
+    AuthComponent,
+    SearchByCodeComponent
   ],
   imports: [
     FormsModule,
@@ -60,7 +63,8 @@ import { AuthComponent } from './components/auth/auth.component';
     SelectionService,
     AuthService,
     ChooseModelService,
-    OperatingPointService
+    OperatingPointService,
+    SearchByCodeService
   ],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

@@ -10,6 +10,7 @@ import { RouteNotFoundComponent } from './components/route-not-found/route-not-f
 
 import {SecurityService} from './services/security/security.service';
 import {AuthComponent} from './components/auth/auth.component';
+import { SearchByCodeComponent } from './components/search-by-code/search-by-code.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'details', component: FanDetailsComponent },
   { path: 'choose-model/:slug', component: ChooseModelComponent },
   { path: 'choose-model/operating-point/:id', component: OperatingPointComponent },
+  { path: 'search-by-code', component: SearchByCodeComponent },
   { path: '**', component: RouteNotFoundComponent }
 ];
 

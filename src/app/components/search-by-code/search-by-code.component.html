@@ -1,0 +1,32 @@
+<div>
+  <div class="title-model">
+    <div>Search by code</div>
+  </div>
+  <hr class="title-line">
+  <div class="input-outer col-lg-4">
+    <div class="col-lg-12">
+      Fan code:
+    </div>
+    <div class="col-lg-12">
+      <input type="text"
+             class="input"
+             [(ngModel)]="code"
+             (ngModelChange)="inputChanged()">
+    </div>
+    <div class="col-lg-12">
+      <input type="submit"
+             value="search"
+             class="search-button"
+             [disabled]="searchButtonDisabled"
+             [ngClass]="searchButtonDisabled ? 'search-button-disabled' : ''"
+             (click)="searchSubmit()">
+    </div>
+  </div>
+</div>
+<div>
+  <app-items *ngFor="let item of items; let i = index"
+             [index]="i"
+             [item]="item"
+             [routerLink]="'/choose-model/'+item.id">
+  </app-items>
+</div>
