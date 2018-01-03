@@ -9,6 +9,7 @@ import {Component, Input, OnInit, Output, EventEmitter, ChangeDetectionStrategy,
 export class DisplayOptionsComponent implements OnInit {
 
   @Input() selectedTab;
+  @Input() downloads;
   @Output() tab: EventEmitter<string> = new EventEmitter(true);
 
   constructor(private zone: NgZone,

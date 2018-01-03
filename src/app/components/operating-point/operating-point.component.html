@@ -1,15 +1,17 @@
 <div>
-  <div class="loading-box" *ngIf="feature.length === 0">
+  <div class="loading-box" *ngIf="!feature">
     <app-loading></app-loading>
   </div>
-  <div *ngIf="feature.length !== 0">
+  <div *ngIf="feature.length !== 0 && feature">
     <div class="row title-model no-gutters align-items-center">
       <div class="col-lg-4">
         <div>Chose model | Operating point</div>
       </div>
-      <div class="col-lg-5 offset-lg-3">
+      <div class="col-lg-6 offset-lg-2">
         <app-display-options [selectedTab]="selectedTab"
-                             (tab)="selectTab($event)"></app-display-options>
+                             (tab)="selectTab($event)"
+                             [downloads]="downloads"
+        ></app-display-options>
       </div>
     </div>
     <hr class="title-line">
