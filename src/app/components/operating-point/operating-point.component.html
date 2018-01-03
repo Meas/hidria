@@ -1,68 +1,79 @@
-<div class="row title-model no-gutters align-items-center">
-  <div class="col-lg-4">
-    <div>Chose model | Operating point</div>
+<div>
+  <div class="loading-box" *ngIf="feature.length === 0">
+    <app-loading></app-loading>
   </div>
-  <div class="col-lg-5 offset-lg-3">
-    <app-display-options [selectedTab]="selectedTab"
-                         (tab)="selectTab($event)"></app-display-options>
-  </div>
-</div>
-<hr class="title-line">
-<div class="row">
-  <div *ngFor="let containers of feature.featureObjects" class="{{containers.classUI}}">
-    <div *ngFor="let child of containers.children">
-      <div class="model" *ngIf="child.type==='card'">
-        <app-fan-info [fanInfo]="child"></app-fan-info>
+  <div *ngIf="feature.length !== 0">
+    <div class="row title-model no-gutters align-items-center">
+      <div class="col-lg-4">
+        <div>Chose model | Operating point</div>
       </div>
-      <div class="col-lg-12" *ngIf="child.type==='graph-area'">
-        <app-chart-area-component [canvasId]="'canvas1'"
-          [chartData]="child"
-          [interactive]="true"
-          (points)="onPointSelected($event)"
-          ></app-chart-area-component>
+      <div class="col-lg-5 offset-lg-3">
+        <app-display-options [selectedTab]="selectedTab"
+                             (tab)="selectTab($event)"></app-display-options>
       </div>
-      <div *ngIf="child.type==='operatingPointsInputs'">
-        <app-operating-points-inputs
-          [inputData]="child"
-          [graphDataInput]="graphData"
-          (onChange)="onChange($event)"></app-operating-points-inputs>
-      </div>
-      <div *ngIf="child.type==='parameterList' && selectedTab == 'data-sheet'">
-        <app-parameter-list [inputData]="child"></app-parameter-list>
-      </div>
-      <div *ngIf="child.type==='drawings' && selectedTab == 'drawings'">
-        <img [src]="child.image">
-      </div>
-      <div *ngIf="child.type==='instructions' && selectedTab == 'instructions'">
-        <img [src]="child.image">
-      </div>
-      <div *ngIf="child.type==='diagrams' && selectedTab == 'diagrams'">
-        <div class="row">
-          <div class="{{graph.classUI}}" *ngFor="let graph of child.children; let i = index;">
-            <app-chart-performance-curve-component [canvasId]="'canvas'+graph.name"
-                                                   [chartData]="graph"></app-chart-performance-curve-component>
+    </div>
+    <hr class="title-line">
+    <div class="row">
+      <div *ngFor="let containers of feature.featureObjects" class="{{containers.classUI}}">
+        <div *ngFor="let child of containers.children">
+          <div class="model" *ngIf="child.type==='card'">
+            <app-fan-info [fanInfo]="child"></app-fan-info>
+          </div>
+          <div class="col-lg-12" *ngIf="child.type==='graph-area'">
+            <app-chart-area-component [canvasId]="'canvas1'"
+              [chartData]="child"
+              [interactive]="true"
+              (points)="onPointSelected($event)"
+              ></app-chart-area-component>
+          </div>
+          <div *ngIf="child.type==='operatingPointsInputs'">
+            <app-operating-points-inputs
+              [inputData]="child"
+              [graphDataInput]="graphData"
+              (onChange)="onChange($event)"></app-operating-points-inputs>
+          </div>
+          <div *ngIf="child.type==='parameterList' && selectedTab == 'data-sheet'">
+            <app-parameter-list [inputData]="child"></app-parameter-list>
+          </div>
+          <div *ngIf="child.type==='drawings' && selectedTab == 'drawings'">
+            <img [src]="child.image">
+          </div>
+          <div *ngIf="child.type==='instructions' && selectedTab == 'instructions'">
+            <img [src]="child.image">
+          </div>
+          <div *ngIf="child.type==='diagrams' && selectedTab == 'diagrams'">
+            <div class="row">
+              <div class="{{graph.classUI}}" *ngFor="let graph of child.children; let i = index;">
+                <app-chart-performance-curve-component [canvasId]="'canvas'+graph.name"
+                                                       [chartData]="graph"></app-chart-performance-curve-component>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="col-lg-12 operating-points-buttons row">
-    <div class="col-lg-12 select-points">
-      Select Q / Ps operating point
-    </div>
-    <div class="col-lg-4">
-      <div class="button">
-        ADD TO COMPARE
-      </div>
-    </div>
-    <div class="col-lg-4">
-      <div class="button">
-        ADD TO PROJECT
-      </div>
-    </div>
-    <div class="col-lg-4">
-      <div class="button">
-        GENERATE CARD
+      <div class="col-lg-12 operating-points-buttons row">
+        <div class="col-lg-12 select-points">
+          Select Q / Ps operating point
+        </div>
+        <div class="col-lg-4">
+          <div class="button">
+            ADD TO COMPARE
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="button">
+            ADD TO PROJECT
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <ng-container *ngFor="let download of downloads.children">
+            <a *ngIf="download.name == 'generate-card'" href="{{download.link}}" download>
+              <div class="button">
+                GENERATE CARD
+              </div>
+            </a>
+          </ng-container>
+        </div>
       </div>
     </div>
   </div>

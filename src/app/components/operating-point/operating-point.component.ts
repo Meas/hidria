@@ -11,6 +11,7 @@ import * as _ from 'lodash';
 export class OperatingPointComponent implements OnInit {
 
   feature: any = {};
+  downloads: any = {};
   graphData = [];
   selectedTab: String = 'data-sheet';
 
@@ -24,7 +25,8 @@ export class OperatingPointComponent implements OnInit {
 
   getItems(): void {
     this.operatingPointService.getItems().subscribe((response: any) => {
-      this.feature = response;
+      this.feature = response[0];
+      this.downloads = response[1];
       this.zone.run(() => this.cd.markForCheck());
     });
   }

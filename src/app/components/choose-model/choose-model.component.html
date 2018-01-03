@@ -1,19 +1,26 @@
 <div>
-  <p class="title-model">Chose model</p>
-</div>
-<div class="wrapper">
-  <div *ngFor="let containers of feature.featureObjects">
-    <div *ngFor="let child of containers.children">
-      <div class="model" *ngIf="child.type==='card'">
-        <app-fan-info [fanInfo]="child"></app-fan-info>
-      </div>
-      <div class="graf" *ngIf="child.type==='graph'">
-        <app-chart-component
-          [canvasId]="'canvas1'"
-          [chartData]="child"></app-chart-component>
-      </div>
-      <div class="fan-table" *ngIf="child.type==='tableComponent'">
-        <app-tabs [tableData]="child"></app-tabs>
+  <div class="loading-box" *ngIf="feature.length === 0">
+    <app-loading></app-loading>
+  </div>
+  <div *ngIf="feature.length !== 0">
+    <div>
+      <p class="title-model">Chose model</p>
+    </div>
+    <div class="wrapper">
+      <div *ngFor="let containers of feature.featureObjects">
+        <div *ngFor="let child of containers.children">
+          <div class="model" *ngIf="child.type==='card'">
+            <app-fan-info [fanInfo]="child"></app-fan-info>
+          </div>
+          <div class="graf" *ngIf="child.type==='graph'">
+            <app-chart-component
+              [canvasId]="'canvas1'"
+              [chartData]="child"></app-chart-component>
+          </div>
+          <div class="fan-table" *ngIf="child.type==='tableComponent'">
+            <app-tabs [tableData]="child"></app-tabs>
+          </div>
+        </div>
       </div>
     </div>
   </div>
