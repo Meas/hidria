@@ -26,7 +26,8 @@ export class MainService {
     this.helper.createAuthorizationHeader(headers);
 
     return this.http.get(this.helper.generateRoute(route, queryParams), {
-      headers: headers
+      headers: headers,
+      observe: 'response'
     })
       .map((res: HttpResponse<any>) => this.helper.checkDataValidity(res))
       .catch((err: any) => {

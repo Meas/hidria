@@ -44,7 +44,7 @@ export class HelperService {
    * @returns response
    */
   checkDataValidity(response): any {
-    return response;
+    return response.body;
   }
 
 }
