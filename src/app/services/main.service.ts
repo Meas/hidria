@@ -6,12 +6,14 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 import {HelperService} from './helper/helper.service';
+import { ErrorMessagesService } from './error-messages/error-messages.service';
 
 
 @Injectable()
 export class MainService {
 
-  constructor(private http: HttpClient, private helper: HelperService) { }
+  constructor(private http: HttpClient, private helper: HelperService,
+              private errorMessages: ErrorMessagesService) { }
 
   /**
    * Get Request
@@ -31,7 +33,8 @@ export class MainService {
     })
       .map((res: HttpResponse<any>) => this.helper.checkDataValidity(res))
       .catch((err: any) => {
-        return Observable.of(err);
+        this.errorMessages.getError(err);
+        return Observable.of(err.error);
       });
   }
 

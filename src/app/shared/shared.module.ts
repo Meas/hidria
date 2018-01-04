@@ -27,6 +27,8 @@ import { DisplayOptionsComponent } from './display-options/display-options.compo
 import { ChartAreaComponent } from './chart-area/chart-area.component';
 import {ChartServiceService} from '../services/chart-service/chart-service.service';
 import { ChartPerformanceCurveComponent } from './chart-performance-curve/chart-performance-curve.component';
+import { ErrorMessageComponent } from './error-message/error-message.component';
+import { NotificationsService } from 'angular2-notifications';
 
 @NgModule({
   imports: [
@@ -58,6 +60,7 @@ import { ChartPerformanceCurveComponent } from './chart-performance-curve/chart-
     DisplayOptionsComponent,
     ChartAreaComponent,
     ChartPerformanceCurveComponent,
+    ErrorMessageComponent
   ],
   exports: [
     HeaderComponent,
@@ -79,9 +82,11 @@ import { ChartPerformanceCurveComponent } from './chart-performance-curve/chart-
     DisplayOptionsComponent,
     ChartAreaComponent,
     ChartPerformanceCurveComponent,
+    ErrorMessageComponent
   ],
-  providers:[
-    ChartServiceService
+  providers: [
+    ChartServiceService,
+    NotificationsService
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

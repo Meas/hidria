@@ -22,12 +22,7 @@ export class ParametersComponent implements OnInit {
 
   getItems(): void {
     this.selectionService.getItems().subscribe((response: any) => {
-      if (response['status'] && response['status'] === 400) {
-        this.feature = response.error;
-        console.log(response);
-      } else {
-        this.feature = response;
-      }
+      this.feature = response;
       this.defaultSections = _.cloneDeep(this.feature);
     });
   }

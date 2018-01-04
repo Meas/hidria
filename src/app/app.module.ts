@@ -25,6 +25,7 @@ import { AuthService } from './services/auth/auth.service';
 import { ChooseModelService } from './services/chooseModel/chooseModel.service';
 import { OperatingPointService } from './services/operating-point/operating-point.service';
 import { SearchByCodeService } from './services/search-by-code/search-by-code.service';
+import { ErrorMessagesService } from './services/error-messages/error-messages.service';
 
 import { FilterPipe } from './pipes/filter/filter.pipe';
 import { SortPipe } from './pipes/sort/sort.pipe';
@@ -64,7 +65,8 @@ import { SearchByCodeComponent } from './components/search-by-code/search-by-cod
     AuthService,
     ChooseModelService,
     OperatingPointService,
-    SearchByCodeService
+    SearchByCodeService,
+    ErrorMessagesService
   ],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
