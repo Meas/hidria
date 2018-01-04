@@ -28,14 +28,15 @@ import { ChartAreaComponent } from './chart-area/chart-area.component';
 import {ChartServiceService} from '../services/chart-service/chart-service.service';
 import { ChartPerformanceCurveComponent } from './chart-performance-curve/chart-performance-curve.component';
 import { ErrorMessageComponent } from './error-message/error-message.component';
-import { NotificationsService } from 'angular2-notifications';
+import { SimpleNotificationsModule } from 'angular2-notifications';
 
 @NgModule({
   imports: [
     CommonModule,
     AppRoutingModule,
     FormsModule,
-    Ng2AutoCompleteModule
+    Ng2AutoCompleteModule,
+    SimpleNotificationsModule.forRoot()
   ],
   declarations: [
     HeaderComponent,
@@ -85,8 +86,7 @@ import { NotificationsService } from 'angular2-notifications';
     ErrorMessageComponent
   ],
   providers: [
-    ChartServiceService,
-    NotificationsService
+    ChartServiceService
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

@@ -4,10 +4,10 @@ import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import { NotificationsService } from 'angular2-notifications';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-error-message-component',
-  providers: [NotificationsService],
   template: `
-  <simple-notifications *ngIf="_visible" (onCreate)="created($event)"></simple-notifications>
+  <simple-notifications [options]="options"></simple-notifications>
   `,
   styleUrls: ['./error-message.component.css']
 })
@@ -16,9 +16,8 @@ export class ErrorMessageComponent implements OnInit, OnDestroy {
   subscription: any;
 
   options: {} = {
-    timeOut: 1000
+    timeOut: 3000
   };
-  _visible: Boolean = true;
 
   constructor(private errorMessageService: ErrorMessagesService,
               private _notification: NotificationsService) {}
@@ -28,15 +27,11 @@ export class ErrorMessageComponent implements OnInit, OnDestroy {
   }
 
   handleError(error) {
-    console.log('error');
-    this._notification.error('lalallaa');
+    this._notification.remove();
+    this._notification.error('An error occurred!', error.statusText);
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
-  }
-
-  created(event) {
-    console.log(event);
   }
 }

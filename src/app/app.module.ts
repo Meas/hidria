@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NvD3Module } from 'ng2-nvd3';
 
@@ -33,6 +34,8 @@ import { RouteNotFoundComponent } from './components/route-not-found/route-not-f
 import { AuthComponent } from './components/auth/auth.component';
 import { SearchByCodeComponent } from './components/search-by-code/search-by-code.component';
 
+import { SimpleNotificationsModule } from 'angular2-notifications';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +49,7 @@ import { SearchByCodeComponent } from './components/search-by-code/search-by-cod
     OperatingPointComponent,
     RouteNotFoundComponent,
     AuthComponent,
-    SearchByCodeComponent
+    SearchByCodeComponent,
   ],
   imports: [
     FormsModule,
@@ -55,6 +58,7 @@ import { SearchByCodeComponent } from './components/search-by-code/search-by-cod
     AppRoutingModule,
     NvD3Module,
     HttpClientModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     MainService,
