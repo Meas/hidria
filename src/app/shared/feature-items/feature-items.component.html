@@ -11,7 +11,8 @@
          auto-complete
          [type]="parameter.type"
          [(ngModel)]="parameter.defaultOption"
-         [source]="setSourceOptions(parameter.options)" />
+         [source]="setSourceOptions(parameter.options)" 
+         [formControlName]="name"/>
 </div>
 <div *ngIf="parameter.tag === 'image'" class="image-box">
   <img width="50" src="assets/images/cube.png" alt="">

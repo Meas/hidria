@@ -1,6 +1,5 @@
 import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import * as _ from 'lodash';
-import { SaveInputService } from '../../services/save-input/save-input.service';
 
 @Component({
   selector: 'app-switch-options',
@@ -24,7 +23,7 @@ export class SwitchOptionsComponent implements OnInit {
 
   @Output() value: EventEmitter<number> = new EventEmitter();
 
-  constructor(saveInputService: SaveInputService) { }
+  constructor() { }
 
   ngOnInit() {
   }

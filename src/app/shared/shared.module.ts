@@ -1,6 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ng2AutoCompleteModule } from 'ng2-auto-complete';
 
 import {HeaderComponent} from './header/header.component';
@@ -29,7 +29,6 @@ import {ChartServiceService} from '../services/chart-service/chart-service.servi
 import { ChartPerformanceCurveComponent } from './chart-performance-curve/chart-performance-curve.component';
 import { ErrorMessageComponent } from './error-message/error-message.component';
 import { SimpleNotificationsModule } from 'angular2-notifications';
-import { SaveInputService } from '../services/save-input/save-input.service';
 
 @NgModule({
   imports: [
@@ -37,7 +36,8 @@ import { SaveInputService } from '../services/save-input/save-input.service';
     AppRoutingModule,
     FormsModule,
     Ng2AutoCompleteModule,
-    SimpleNotificationsModule.forRoot()
+    SimpleNotificationsModule.forRoot(),
+    ReactiveFormsModule
   ],
   declarations: [
     HeaderComponent,
@@ -87,8 +87,7 @@ import { SaveInputService } from '../services/save-input/save-input.service';
     ErrorMessageComponent
   ],
   providers: [
-    ChartServiceService,
-    SaveInputService
+    ChartServiceService
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
