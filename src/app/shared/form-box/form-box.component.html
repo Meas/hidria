@@ -17,7 +17,8 @@
                         <div class="row test">
                           <div *ngFor="let parameterChildren of parameter.options; let i = index" [ngClass]="parameterChildren.classesUI">
                             <app-label-box [parameter]="parameterChildren"></app-label-box>
-                            <app-feature-items [parameter]="parameterChildren"></app-feature-items>
+                            <app-feature-items [parameter]="parameterChildren"
+                            [name]="parameter.parameter"></app-feature-items>
                           </div>
                         </div>
                       </div>
@@ -29,7 +30,8 @@
                 </accordion-content>
               </app-accordion-input>
             </div>
-            <app-feature-items [parameter]="parameter"></app-feature-items>
+            <app-feature-items [parameter]="parameter"
+            [name]="parameter.parameter"></app-feature-items>
           </div>
         </div>
       </div>

@@ -1,11 +1,9 @@
 <div *ngIf="parameter.tag === 'select'">
   <app-select-box
-    (value)="saveInputResult($event, parameter.id, parameter.tag)"
     [select]="parameter.options" [defaultOption]="parameter.defaultOption"></app-select-box>
 </div>
 <div class="switch-option-box" *ngIf="parameter.tag === 'radio'">
   <app-switch-options
-    (value)="saveInputResult($event, parameter.id, parameter.tag)"
     [buttons]="parameter.options" [defaultOption]="parameter.defaultOption"></app-switch-options>
 </div>
 <div *ngIf="parameter.tag === 'input'">

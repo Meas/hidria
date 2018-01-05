@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SelectionService } from '../../services/selection/selection.service';
 import * as _ from 'lodash';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-parameters',
@@ -14,7 +15,10 @@ export class ParametersComponent implements OnInit {
   formBoxes= [
   ];
 
-  constructor(private selectionService: SelectionService) { }
+  paramsForm: FormGroup;
+
+  formValues= {};
+  constructor(private selectionService: SelectionService, private fb: FormBuilder) {}
 
   ngOnInit() {
     this.getItems();
@@ -24,7 +28,20 @@ export class ParametersComponent implements OnInit {
     this.selectionService.getItems().subscribe((response: any) => {
       this.feature = response;
       this.defaultSections = _.cloneDeep(this.feature);
+      console.log(this.feature);
+      this.fillFormValues();
+      this.createForm();
     });
+  }
+
+  createForm() {
+    this.paramsForm = this.fb.group({
+      param_qa: ['', Validators.required ],
+    });
+  }
+
+  onSubmit() {
+    console.log(this.paramsForm);
   }
 
   saveFormResults(formBox, id) {
@@ -37,5 +54,21 @@ export class ParametersComponent implements OnInit {
 
   getValues(): void {
     console.log(this.feature);
+  }
+
+  fillFormValues(): void {
+    for (const featureObject of this.feature.featureObjects) {
+      for (const parameter of featureObject.parameters) {
+        this.formValues[parameter.parameter] = {
+          'id': parameter.id,
+          'min': parameter.min,
+          'max': parameter.max,
+          'defaultOption': parameter.defaultOption,
+          'required': parameter.required,
+          'value': parameter.defaultOption
+        };
+      }
+    }
+    console.log(this.formValues);
   }
 }

@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NvD3Module } from 'ng2-nvd3';
@@ -59,6 +59,7 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
     NvD3Module,
     HttpClientModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule
   ],
   providers: [
     MainService,

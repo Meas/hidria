@@ -29,6 +29,7 @@ import {ChartServiceService} from '../services/chart-service/chart-service.servi
 import { ChartPerformanceCurveComponent } from './chart-performance-curve/chart-performance-curve.component';
 import { ErrorMessageComponent } from './error-message/error-message.component';
 import { SimpleNotificationsModule } from 'angular2-notifications';
+import { SaveInputService } from '../services/save-input/save-input.service';
 
 @NgModule({
   imports: [
@@ -86,7 +87,8 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
     ErrorMessageComponent
   ],
   providers: [
-    ChartServiceService
+    ChartServiceService,
+    SaveInputService
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
