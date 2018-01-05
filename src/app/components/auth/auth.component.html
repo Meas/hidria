@@ -1,26 +1,3 @@
-<div class="login">
-  <div class="container">
-    <div class="row border">
-      <div class="col-12">
-        <h4 class="text-center">Member Login</h4>
-      </div>
-      <div class="col-12">
-        <app-label-box [parameter]="{ description: 'Email'}"></app-label-box>
-        <input class="full-size"/>
-      </div>
-      <div class="col-12">
-        <app-label-box [parameter]="{ description: 'Password'}"></app-label-box>
-        <input class="full-size"/>
-      </div>
-    </div>
-    <div class="row">
-      <div class="function-buttons">
-        <button class="btn full-size">LOGIN</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 <div class="password-reset">
   <div class="container">
     <div class="row border">
@@ -64,3 +41,28 @@
     </div>
   </div>
 </div>
+
+<app-modal>
+  <div class="login">
+    <div class="container">
+      <div class="row border">
+        <div class="col-12">
+          <h4 class="text-center">Member Login</h4>
+        </div>
+        <div class="col-12">
+          <app-label-box [parameter]="{ description: 'Email'}"></app-label-box>
+          <input class="full-size"/>
+        </div>
+        <div class="col-12">
+          <app-label-box [parameter]="{ description: 'Password'}"></app-label-box>
+          <input class="full-size"/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="function-buttons">
+          <button class="btn full-size">LOGIN</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-modal>

@@ -29,6 +29,7 @@ import {ChartServiceService} from '../services/chart-service/chart-service.servi
 import { ChartPerformanceCurveComponent } from './chart-performance-curve/chart-performance-curve.component';
 import { ErrorMessageComponent } from './error-message/error-message.component';
 import { SimpleNotificationsModule } from 'angular2-notifications';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   imports: [
@@ -61,7 +62,8 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
     DisplayOptionsComponent,
     ChartAreaComponent,
     ChartPerformanceCurveComponent,
-    ErrorMessageComponent
+    ErrorMessageComponent,
+    ModalComponent
   ],
   exports: [
     HeaderComponent,
@@ -83,7 +85,8 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
     DisplayOptionsComponent,
     ChartAreaComponent,
     ChartPerformanceCurveComponent,
-    ErrorMessageComponent
+    ErrorMessageComponent,
+    ModalComponent
   ],
   providers: [
     ChartServiceService
