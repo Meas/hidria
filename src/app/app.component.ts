@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {AuthService} from './services/auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +10,11 @@ export class AppComponent {
 
   title = 'app';
   measure = 'm';
+  loggedIn = false;
 
-  constructor() {}
+  constructor(private authService: AuthService) {
+    this.loggedIn = authService.isLoggedIn();
+  }
 
   onChangeMetrics(event): void {
     this.measure = event;

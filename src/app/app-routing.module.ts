@@ -11,19 +11,20 @@ import { RouteNotFoundComponent } from './components/route-not-found/route-not-f
 import {SecurityService} from './services/security/security.service';
 import {AuthComponent} from './components/auth/auth.component';
 import { SearchByCodeComponent } from './components/search-by-code/search-by-code.component';
+import { MyProjectsComponent } from './components/my-projects/my-projects.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: '/catalogue', pathMatch: 'full' },
   { path: 'login', component: AuthComponent },
-  { path: 'catalogue', component: CatalogueComponent },
-  // { path: 'parameter', component: ParametersComponent, canActivate: [SecurityService] },
-  { path: 'parameter', component: ParametersComponent },
-  { path: 'test-pdf', component: TestPdfComponent },
-  { path: 'details', component: FanDetailsComponent },
-  { path: 'choose-model/:slug', component: ChooseModelComponent },
-  { path: 'choose-model/operating-point/:id', component: OperatingPointComponent },
-  { path: 'search-by-code', component: SearchByCodeComponent },
+  { path: 'catalogue', component: CatalogueComponent, canActivate: [SecurityService] },
+  { path: 'parameter', component: ParametersComponent, canActivate: [SecurityService] },
+  { path: 'test-pdf', component: TestPdfComponent, canActivate: [SecurityService] },
+  { path: 'details', component: FanDetailsComponent, canActivate: [SecurityService] },
+  { path: 'choose-model/:slug', component: ChooseModelComponent, canActivate: [SecurityService] },
+  { path: 'choose-model/operating-point/:id', component: OperatingPointComponent, canActivate: [SecurityService] },
+  { path: 'my-projects', component: MyProjectsComponent, canActivate: [SecurityService] },
+  { path: 'search-by-code', component: SearchByCodeComponent, canActivate: [SecurityService] },
   { path: '**', component: RouteNotFoundComponent }
 ];
 
