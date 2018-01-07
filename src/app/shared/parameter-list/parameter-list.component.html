@@ -1,22 +1,26 @@
 <div class="parameter-list-container row">
   <div class="{{table.classUI}}" *ngFor="let table of inputData.children">
-    <div class="row col-lg-12" *ngFor="let item of table.children">
-      <div class="col-lg-12 parameter-list-header" *ngIf="item.type == 'header'">
-        {{item.name}}
-      </div>
-      <div class="col-lg-8 parameter-list-name" *ngIf="item.type == 'entry'">
-        <div class="row">
-          <div class="col-lg-10">
-            {{item.name}}
-          </div>
-          <div class="col-lg-2">
-            {{item.short}}
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 parameter-list-value" *ngIf="item.type == 'entry'">
-        {{item.value}}
-      </div>
-    </div>
+    <table>
+      <thead>
+        <tr *ngFor="let item of table.children.slice(0,1)">
+          <th colspan="2" >{{item.name}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of table.children.slice(1,table.children.leading)">
+          <td>
+            <div class="item-name">
+              {{item.name}}
+            </div>
+            <div class="item-short">
+              {{item.short}}
+            </div>
+          </td>
+          <td *ngIf="item.type == 'entry'">
+            {{item.value}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
