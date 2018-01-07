@@ -27,6 +27,7 @@ import { ChooseModelService } from './services/chooseModel/chooseModel.service';
 import { OperatingPointService } from './services/operating-point/operating-point.service';
 import { SearchByCodeService } from './services/search-by-code/search-by-code.service';
 import { ErrorMessagesService } from './services/error-messages/error-messages.service';
+import { MyProjectsService } from './services/my-projects/my-projects.service';
 
 import { FilterPipe } from './pipes/filter/filter.pipe';
 import { SortPipe } from './pipes/sort/sort.pipe';
@@ -35,6 +36,7 @@ import { AuthComponent } from './components/auth/auth.component';
 import { SearchByCodeComponent } from './components/search-by-code/search-by-code.component';
 
 import { SimpleNotificationsModule } from 'angular2-notifications';
+import { MyProjectsComponent } from './components/my-projects/my-projects.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,7 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
     RouteNotFoundComponent,
     AuthComponent,
     SearchByCodeComponent,
+    MyProjectsComponent
   ],
   imports: [
     FormsModule,
@@ -70,7 +73,8 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
     ChooseModelService,
     OperatingPointService,
     SearchByCodeService,
-    ErrorMessagesService
+    ErrorMessagesService,
+    MyProjectsService
   ],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
