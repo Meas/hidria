@@ -1,0 +1,14 @@
+<div class="search-outer">
+  <div class="row no-gutters">
+    <div class="col-lg-11 no-gutters">
+      <input type="text" class="input" [(ngModel)]="searchTerm"
+      (ngModelChange)="nameChange.emit(searchTerm)">
+    </div>
+    <div class="col-lg-1 no-gutters search-button">
+      <img src="assets/icons/Search.png">
+    </div>
+  </div>
+  <div class="col-lg-12 no-gutters sort-by-button">
+    Sort by
+  </div>
+</div>

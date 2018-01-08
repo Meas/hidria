@@ -1,9 +1,8 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, NgZone, OnInit} from '@angular/core';
+import {Component, Input, NgZone, OnInit} from '@angular/core';
 import * as _ from 'lodash';
 import { MyProjectsService } from './../../services/my-projects/my-projects.service';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-my-projects',
   templateUrl: './my-projects.component.html',
   styleUrls: ['./my-projects.component.scss']
@@ -11,10 +10,10 @@ import { MyProjectsService } from './../../services/my-projects/my-projects.serv
 export class MyProjectsComponent implements OnInit {
 
   feature: any = {};
+  searchTerm: String = '';
+  selectedProject: {};
 
-  constructor(public myProjectsService: MyProjectsService,
-              private zone: NgZone,
-              private cd: ChangeDetectorRef) { }
+  constructor(public myProjectsService: MyProjectsService) { }
 
   ngOnInit() {
     this.getItems();
@@ -23,30 +22,29 @@ export class MyProjectsComponent implements OnInit {
   getItems(): void {
     this.myProjectsService.getItems().subscribe((response: any) => {
       this.feature = response;
-      this.zone.run(() => this.cd.markForCheck());
+      this.findByType(this.feature, 'project-list', this.selectedProject);
     });
   }
 
 
-  onChange(event): void {
+  onNameChange(event): void {
+    this.searchTerm = event.toLowerCase();
   }
 
-    findAndReplace(object, types, replaceValues) {
-      for (const x in object) {
-        if (object.hasOwnProperty(x)) {
-          if (typeof object[x] === 'object') {
-            this.findAndReplace(object[x], types, replaceValues);
-          }
-          for (const type of types) {
-            if (object[x] === type && x === 'type') {
-              for (const replaceValue of replaceValues) {
-                if (object[x] === replaceValue['type']) {
-                  object['children'] = replaceValue['children'];
-                }
-              }
-            }
-          }
+  onSelectProject(event): void {
+    this.selectedProject = Object.assign({}, event);
+  }
+
+  findByType(object, type, assignee): void {
+    for (const x in object) {
+      if (object.hasOwnProperty(x)) {
+        if (typeof object[x] === 'object') {
+          this.findByType(object[x], type, assignee);
+        }
+        if (x === 'type' && object[x] === type) {
+          this.selectedProject = Object.assign({}, object.children[0]);
         }
       }
     }
+  }
 }
