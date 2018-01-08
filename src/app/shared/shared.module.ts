@@ -100,7 +100,8 @@ import { FilterByStringPipe } from '../pipes/filter-by-string/filter-by-string.p
     SearchMyProjectsComponent,
     MyProjectsListComponent,
     MyProjectsTitleComponent,
-    MyProjectsModelListComponent
+    MyProjectsModelListComponent,
+    LabelBoxComponent,
   ],
   providers: [
     ChartServiceService

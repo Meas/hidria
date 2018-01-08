@@ -1,7 +1,7 @@
-<div class="modal" (click)="hideModal()" *ngIf="visible">
+<div class="modal" *ngIf="visible">
   <div class="modal-box">
     <div class="header">
-
+      <button (click)="hideModal()">CLOSE</button>
     </div>
     <div class="content">
       <ng-content></ng-content>
