@@ -1,6 +1,8 @@
+@import "../../../assets/partials/variables.scss";
+
 .title-outer {
-    border: 2px solid #999;
-    padding: 15px 0px 15px 0px;
+    border: 1px solid $main-color;
+    padding: 10px 0px 10px 0px;
 }
 .entry-number {
     color: #fff;

@@ -8,7 +8,6 @@
 	color: #fff;
 	background: #1E4686;
 	border-bottom: 1px solid #999;
-
 }
 .parameter-list-value {
 	text-align: center;
@@ -26,7 +25,8 @@
 }
 table {
   width: 100%;
-  border-spacing: 0;
+  //border-spacing: 0;
+  border-collapse: collapse !important;
 
   thead {
     tr {
@@ -56,8 +56,11 @@ table {
         padding: 5px 0;
       }
       td {
+        //border-spacing: none;
         border-bottom: solid 2px $main-border-item;
         text-align: center;
+        margin: 0 !important;
+        padding: 0 !important;
       }
     }
   }
