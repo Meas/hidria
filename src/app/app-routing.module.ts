@@ -17,8 +17,8 @@ import { MyProjectsComponent } from './components/my-projects/my-projects.compon
 const routes: Routes = [
   { path: '', redirectTo: '/catalogue', pathMatch: 'full' },
   { path: 'login', component: AuthComponent },
-  { path: 'catalogue', component: CatalogueComponent, canActivate: [SecurityService] },
-  { path: 'parameter', component: ParametersComponent, canActivate: [SecurityService] },
+  { path: 'catalogue', component: CatalogueComponent },
+  { path: 'parameter', component: ParametersComponent },
   { path: 'test-pdf', component: TestPdfComponent, canActivate: [SecurityService] },
   { path: 'details', component: FanDetailsComponent, canActivate: [SecurityService] },
   { path: 'choose-model/:slug', component: ChooseModelComponent, canActivate: [SecurityService] },

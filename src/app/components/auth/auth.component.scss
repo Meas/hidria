@@ -1,11 +1,31 @@
 @import "../../../assets/partials/variables.scss";
 
 .login {
-  width: 300px;
-  color: white;
+  width: 350px;
+
+  .title {
+    color: $main-color;
+    text-align: center;
+  }
 
   .col-12 {
     margin: 10px 0;
+  }
+}
+.login-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 350px;
+
+  .login-btn {
+    width: 30%;
+    height: 20px;
+    background: #cdcdcd;
+    border: none;
+    font-size: 11px;
+    cursor: pointer;
   }
 }
 
@@ -38,4 +58,11 @@
   .disabled {
     opacity: 0.5;
   }
+}
+
+.center-elements {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
