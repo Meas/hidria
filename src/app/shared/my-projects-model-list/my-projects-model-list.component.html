@@ -1,31 +1,33 @@
-<div class="row no-gutters header">
-  <div class="col-lg-1">
-    No.
-  </div>
-  <div class="col-lg-2">
-    Position No.
-  </div>
-  <div class="col-lg-5">
-    Model
-  </div>
-  <div class="col-lg-1">
-    Items
-  </div>
-  <div class="col-lg-2">
-    Note
-  </div>
-  <div class="col-lg-1">
+<table>
+  <thead>
+  <tr>
+    <th>
+      No.
+    </th>
+    <th>
+      Position No.
+    </th>
+    <th>
+      Model
+    </th>
+    <th>
+      Items
+    </th>
+    <th>
+      Note
+  </th>
+    <th>
+    </th>
+  </tr>
+  </thead>
+</table>
 
-  </div>
-</div>
-<div class="row no-gutters" *ngFor="let model of selectedProject.children">
-  <div class="col-lg-1 entry-box">
+<tbody>
+<tr *ngFor="let model of selectedProject.children">
+  <td>
     {{model.id}}
-  </div>
-  <div class="col-lg-2 entry-box">
-    
-  </div>
-  <div class="col-lg-5 no-gutters model-box">
+  </td>
+  <td>
     <div class="row no-gutters">
       <div class="col-lg-3 image-outer">
         <img src="{{model.image}}">
@@ -41,26 +43,29 @@
           {{model.name2}}
         </div>
         <div class="description">
-            {{model.description2}}
+          {{model.description2}}
         </div>
       </div>
       <div class="col-lg-3 image-outer cursor-pointer">
         <a href="{{model.link}}" download>
-            <img src="assets/icons/Download.png">
+          <img src="assets/icons/Download.png">
         </a>
       </div>
     </div>
-  </div>
-  <div class="col-lg-1 entry-box">
+  </td>
+  <td>
+  </td>
+  <td>
     1
-  </div>
-  <div class="col-lg-2 entry-box">
-    
-  </div>
-  <div class="col-lg-1 entry-box cursor-pointer">
+  </td>
+  <td>
+  </td>
+  <td>
     <img src="assets/icons/delete.png">
-  </div>
-</div>
+  </td>
+</tr>
+
+</tbody>
 <div *ngIf="!selectedProject.children">
   NO MODELS FOUND IN THIS PROJECT
 </div>
