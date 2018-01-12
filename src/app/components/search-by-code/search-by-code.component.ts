@@ -19,7 +19,7 @@ export class SearchByCodeComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe((params: Params) => {
       const paramCode = params['code'];
-      if(paramCode) {
+      if (paramCode) {
         this.code = paramCode;
         this.searchSubmit();
       }
