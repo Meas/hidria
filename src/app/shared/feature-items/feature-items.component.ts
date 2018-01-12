@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-feature-items',
@@ -9,6 +10,7 @@ export class FeatureItemsComponent implements OnInit {
 
   @Input() parameter;
   @Input() name;
+  @Input() paramsForm;
 
   constructor() { }
 

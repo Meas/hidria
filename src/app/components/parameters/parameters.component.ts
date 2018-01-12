@@ -35,9 +35,9 @@ export class ParametersComponent implements OnInit {
   }
 
   createForm() {
-    this.paramsForm = this.fb.group({
-      param_qa: ['', Validators.required ],
-    });
+    this.paramsForm = this.fb.group(
+      this.formValues
+    );
   }
 
   onSubmit() {
@@ -59,14 +59,15 @@ export class ParametersComponent implements OnInit {
   fillFormValues(): void {
     for (const featureObject of this.feature.featureObjects) {
       for (const parameter of featureObject.parameters) {
-        this.formValues[parameter.parameter] = {
+        this.formValues[parameter.parameter] = ['', Validators.required ];
+        /* this.formValues[parameter.parameter] = {
           'id': parameter.id,
           'min': parameter.min,
           'max': parameter.max,
           'defaultOption': parameter.defaultOption,
           'required': parameter.required,
           'value': parameter.defaultOption
-        };
+        }; */
       }
     }
     console.log(this.formValues);

@@ -2,6 +2,7 @@ import {Component, Input, Output, OnInit, EventEmitter} from '@angular/core';
 
 import {Observable} from 'rxjs/Observable';
 import {Subject} from 'rxjs/Subject';
+import { FormGroup } from '@angular/forms';
 
 import 'rxjs/add/observable/of';
 
@@ -14,6 +15,7 @@ export class FormBoxComponent implements OnInit {
 
   @Input() isFirstChild = false;
   @Input() featureObject;
+  @Input() paramsForm;
 
   @Output() formValues: EventEmitter<any> = new EventEmitter();
 
@@ -30,6 +32,7 @@ export class FormBoxComponent implements OnInit {
   }
 
   ngOnInit() {
+
   }
 
   saveInputResult(value, id, type) {

@@ -1,22 +1,26 @@
-<div *ngIf="parameter.tag === 'select'">
-  <app-select-box
-    [select]="parameter.options" [defaultOption]="parameter.defaultOption"></app-select-box>
-</div>
-<div class="switch-option-box" *ngIf="parameter.tag === 'radio'">
-  <app-switch-options
-    [buttons]="parameter.options" [defaultOption]="parameter.defaultOption"></app-switch-options>
-</div>
-<div *ngIf="parameter.tag === 'input'">
-  <input class="full-size"
-         auto-complete
-         [type]="parameter.type"
-         [(ngModel)]="parameter.defaultOption"
-         [source]="setSourceOptions(parameter.options)" 
-         [formControlName]="name"/>
-</div>
-<div *ngIf="parameter.tag === 'image'" class="image-box">
-  <img width="50" src="assets/images/cube.png" alt="">
-</div>
-<div *ngIf="parameter.tag === 'button'">
-  <button class="btn">CALCULATE</button>
+<div [formGroup]="paramsForm">
+  <div *ngIf="parameter.tag === 'select'">
+    <app-select-box
+      [select]="parameter.options" [defaultOption]="parameter.defaultOption"
+      [paramsForm]="paramsForm"
+      [name]="name"></app-select-box>
+  </div>
+  <div class="switch-option-box" *ngIf="parameter.tag === 'radio'">
+    <app-switch-options
+      [buttons]="parameter.options" [defaultOption]="parameter.defaultOption"></app-switch-options>
+  </div>
+  <div *ngIf="parameter.tag === 'input'">
+    <input class="full-size"
+          auto-complete
+          [type]="parameter.type"
+          [(ngModel)]="parameter.defaultOption"
+          [source]="setSourceOptions(parameter.options)" 
+          [formControlName]="name"/>
+  </div>
+  <div *ngIf="parameter.tag === 'image'" class="image-box">
+    <img width="50" src="assets/images/cube.png" alt="">
+  </div>
+  <div *ngIf="parameter.tag === 'button'">
+    <button class="btn">CALCULATE</button>
+  </div>
 </div>

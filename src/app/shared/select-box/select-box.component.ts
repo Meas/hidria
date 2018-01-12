@@ -4,10 +4,13 @@ import * as _ from 'lodash';
 @Component({
   selector: 'app-select-box',
   template: `
-    <select name="options" (change)="onChange($event.target.value)">
-      <option disabled>Select option</option>
-      <option *ngFor="let obj of localSelect" value="obj.value" [selected]="obj.id == selectedOption">{{obj.description}}</option>
+  <div [formGroup]="paramsForm">
+    <select name="options" (change)="onChange($event.target.value)"
+    [formControlName]="name">
+      <option disabled value="">Select option</option>
+      <option *ngFor="let obj of localSelect" [value]="obj.value">{{ obj.description }}</option>
     </select>
+  </div>
   `,
   styles: [`
     select {
@@ -26,7 +29,8 @@ import * as _ from 'lodash';
 })
 export class SelectBoxComponent implements OnInit {
   localSelect: Array<object>;
-  selectedOption: number;
+  selectedOption: Number;
+
 
   @Input() set defaultOption(data: number) {
     if (data) {
@@ -41,11 +45,16 @@ export class SelectBoxComponent implements OnInit {
 
   @Output() value: EventEmitter<number> = new EventEmitter();
   @Input() items;
+  @Input() paramsForm;
+  @Input() name;
 
   constructor() {
   }
 
   ngOnInit() {
+    //this.paramsForm.get('param_Category').setValue(this.localSelect[0].value);
+  /* this.paramsForm.get(this.name).setValue(this.localSelect[0].value);
+  console.log(this.paramsForm.get('param_Category').value); */
   }
 
   onChange(value) {
