@@ -9,7 +9,9 @@
           <div *ngFor="let parameter of featureObject.parameters" [ngClass]="parameter.classesUI" class="parameter-section space-bellow">
             <app-label-box [parameter]="parameter"></app-label-box>
             <div *ngIf="parameter.tag === 'accordion'">
-              <app-accordion-input [parameterMainChild]="parameter.options[0]">
+              <app-accordion-input [parameterMainChild]="parameter.options[0]"
+              [paramsForm]="paramsForm"
+              [name]="parameter.parameter">
                 <accordion-content>
                   <div class="container">
                     <div class="row">
@@ -17,7 +19,9 @@
                         <div class="row test">
                           <div *ngFor="let parameterChildren of parameter.options; let i = index" [ngClass]="parameterChildren.classesUI">
                             <app-label-box [parameter]="parameterChildren"></app-label-box>
-                            <app-feature-items [parameter]="parameterChildren"></app-feature-items>
+                            <app-feature-items [parameter]="parameterChildren"
+                            [name]="parameter.parameter"
+                            [paramsForm]="paramsForm"></app-feature-items>
                           </div>
                         </div>
                       </div>
@@ -29,7 +33,9 @@
                 </accordion-content>
               </app-accordion-input>
             </div>
-            <app-feature-items [parameter]="parameter"></app-feature-items>
+            <app-feature-items [parameter]="parameter"
+            [name]="parameter.parameter"
+            [paramsForm]="paramsForm"></app-feature-items>
           </div>
         </div>
       </div>

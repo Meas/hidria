@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-feature-items',
@@ -8,10 +9,21 @@ import {Component, Input, OnInit} from '@angular/core';
 export class FeatureItemsComponent implements OnInit {
 
   @Input() parameter;
+  @Input() name;
+  @Input() paramsForm;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  hasRequiredError() {
+    return this.paramsForm.submitted && this.paramsForm.get(this.name).errors && this.paramsForm.get(this.name).errors.required;
+  }
+
+  hasMinMaxError() {
+    return this.paramsForm.submitted && this.paramsForm.get(this.name).errors &&
+    (this.paramsForm.get(this.name).errors.max || this.paramsForm.get(this.name).errors.min);
   }
 
   setSourceOptions(options): Array<number | string> {

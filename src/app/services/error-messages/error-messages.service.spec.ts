@@ -2,7 +2,7 @@ import { TestBed, inject } from '@angular/core/testing';
 
 import { ErrorMessagesService } from './error-messages.service';
 
-describe('CatalogueService', () => {
+describe('ErrorMessagesService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [ErrorMessagesService]

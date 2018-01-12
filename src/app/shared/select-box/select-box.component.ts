@@ -4,10 +4,14 @@ import * as _ from 'lodash';
 @Component({
   selector: 'app-select-box',
   template: `
-    <select name="options" (change)="onChange($event.target.value)">
-      <option disabled>Select option</option>
-      <option *ngFor="let obj of localSelect" value="obj.value" [selected]="obj.id == selectedOption">{{obj.description}}</option>
+  <div [formGroup]="paramsForm">
+    <div *ngIf="hasRequiredError()" class="error-input">*Field is required</div>
+    <select (change)="onChange($event.target.value)"
+    [formControlName]="name">
+      <option disabled value="">Select option</option>
+      <option *ngFor="let obj of localSelect" [value]="obj.value">{{ obj.description }}</option>
     </select>
+  </div>
   `,
   styles: [`
     select {
@@ -26,7 +30,8 @@ import * as _ from 'lodash';
 })
 export class SelectBoxComponent implements OnInit {
   localSelect: Array<object>;
-  selectedOption: number;
+  selectedOption: Number;
+
 
   @Input() set defaultOption(data: number) {
     if (data) {
@@ -41,15 +46,26 @@ export class SelectBoxComponent implements OnInit {
 
   @Output() value: EventEmitter<number> = new EventEmitter();
   @Input() items;
+  @Input() paramsForm;
+  @Input() name;
 
   constructor() {
   }
 
   ngOnInit() {
+    for (const obj of this.localSelect) {
+      if (obj['id'] == this.selectedOption) {
+        this.paramsForm.get(this.name).setValue(obj['value']);
+      }
+    }
   }
 
   onChange(value) {
     this.value.emit(value);
+  }
+
+  hasRequiredError() {
+    return this.paramsForm.submitted && this.paramsForm.get(this.name).errors && this.paramsForm.get(this.name).errors.required;
   }
 
 }

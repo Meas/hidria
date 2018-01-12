@@ -22,6 +22,7 @@ const routes: Routes = [
   { path: 'test-pdf', component: TestPdfComponent, canActivate: [SecurityService] },
   { path: 'details', component: FanDetailsComponent, canActivate: [SecurityService] },
   { path: 'choose-model/:slug', component: ChooseModelComponent, canActivate: [SecurityService] },
+  { path: 'choose-model', component: ChooseModelComponent, canActivate: [SecurityService] },
   { path: 'choose-model/operating-point/:id', component: OperatingPointComponent, canActivate: [SecurityService] },
   { path: 'my-projects', component: MyProjectsComponent, canActivate: [SecurityService] },
   { path: 'search-by-code', component: SearchByCodeComponent, canActivate: [SecurityService] },

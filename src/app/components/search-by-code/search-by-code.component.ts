@@ -30,6 +30,12 @@ export class SearchByCodeComponent implements OnInit {
     this.searchButtonDisabled = false;
   }
 
+  keyDownFunction(event) {
+    if (event.keyCode === 13 && !this.searchButtonDisabled) {
+      this.searchSubmit();
+    }
+  }
+
   searchSubmit() {
     this.searchButtonDisabled = true;
     const params = 'search-by-code?code=' + this.code;

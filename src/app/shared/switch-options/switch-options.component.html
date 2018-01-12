@@ -5,9 +5,12 @@
 <!--</button>-->
 
 
-<div class="switch-field">
+<div class="switch-field" [formGroup]="paramsForm">
+  <div *ngIf="hasRequiredError()" class="error-input">*Field is required</div>
   <div *ngFor="let button of localButtons">
-    <input type="radio" id="switch_3_left" name="switch_3" value="yes" [checked]="button.id == selectedOption ? 'active' : ''"/>
-    <label for="switch_3_left">{{button.description}}</label>
+    <input type="radio" [id]="button.id" [formControlName]="name"
+    [checked]="button.id == selectedOption"
+    [value]="button.value"/>
+    <label [for]="button.id">{{button.description}}</label>
   </div>
 </div>

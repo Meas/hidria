@@ -1,7 +1,7 @@
 import { MyProjectsModelListComponent } from './my-projects-model-list/my-projects-model-list.component';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ng2AutoCompleteModule } from 'ng2-auto-complete';
 
 import {HeaderComponent} from './header/header.component';
@@ -42,7 +42,8 @@ import { FilterByStringPipe } from '../pipes/filter-by-string/filter-by-string.p
     AppRoutingModule,
     FormsModule,
     Ng2AutoCompleteModule,
-    SimpleNotificationsModule.forRoot()
+    SimpleNotificationsModule.forRoot(),
+    ReactiveFormsModule
   ],
   declarations: [
     HeaderComponent,

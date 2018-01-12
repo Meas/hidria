@@ -3,12 +3,13 @@
     <app-loading></app-loading>
   </div>
   <div *ngIf="feature !== undefined">
-    <form (ngSubmit)="onSubmit()">
+    <form [formGroup]="paramsForm" (ngSubmit)="onSubmit()">
       <div class="forms-section" *ngIf="feature">
         <div *ngFor="let featureObject of feature.featureObjects; let i = index" [ngClass]="featureObject.classesUI">
           <app-form-box
             [featureObject]="featureObject"
-            (formValues)="saveFormResults($event, i)">
+            (formValues)="saveFormResults($event, i)"
+            [paramsForm]="paramsForm">
           </app-form-box>
         </div>
       </div>
