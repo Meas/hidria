@@ -1,8 +1,9 @@
-<div class="ui accordion">
+<div class="ui accordion" [formGroup]="paramsForm">
   <div class="title">
     <div class="accordion-box">
-      <app-feature-items class="full-size input-box" [parameter]="parameterMainChild"></app-feature-items>
-      <button id="accordion" class="accordion-button">+</button>
+      <app-feature-items class="full-size input-box" [parameter]="parameterMainChild"
+      [paramsForm]="paramsForm" [name]="name"></app-feature-items>
+      <button id="accordion" class="accordion-button" type="button">+</button>
     </div>
   </div>
   <div id="panel" class="panel">

@@ -5,7 +5,8 @@ import * as _ from 'lodash';
   selector: 'app-select-box',
   template: `
   <div [formGroup]="paramsForm">
-    <select name="options" (change)="onChange($event.target.value)"
+    <div *ngIf="hasRequiredError()" class="error-input">*Field is required</div>
+    <select (change)="onChange($event.target.value)"
     [formControlName]="name">
       <option disabled value="">Select option</option>
       <option *ngFor="let obj of localSelect" [value]="obj.value">{{ obj.description }}</option>
@@ -52,13 +53,19 @@ export class SelectBoxComponent implements OnInit {
   }
 
   ngOnInit() {
-    //this.paramsForm.get('param_Category').setValue(this.localSelect[0].value);
-  /* this.paramsForm.get(this.name).setValue(this.localSelect[0].value);
-  console.log(this.paramsForm.get('param_Category').value); */
+    for (const obj of this.localSelect) {
+      if (obj['id'] == this.selectedOption) {
+        this.paramsForm.get(this.name).setValue(obj['value']);
+      }
+    }
   }
 
   onChange(value) {
     this.value.emit(value);
+  }
+
+  hasRequiredError() {
+    return this.paramsForm.submitted && this.paramsForm.get(this.name).errors && this.paramsForm.get(this.name).errors.required;
   }
 
 }

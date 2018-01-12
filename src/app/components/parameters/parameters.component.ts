@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SelectionService } from '../../services/selection/selection.service';
 import * as _ from 'lodash';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-parameters',
@@ -18,7 +19,8 @@ export class ParametersComponent implements OnInit {
   paramsForm: FormGroup;
 
   formValues= {};
-  constructor(private selectionService: SelectionService, private fb: FormBuilder) {}
+  constructor(private selectionService: SelectionService, private fb: FormBuilder,
+    private router: Router) {}
 
   ngOnInit() {
     this.getItems();
@@ -28,7 +30,6 @@ export class ParametersComponent implements OnInit {
     this.selectionService.getItems().subscribe((response: any) => {
       this.feature = response;
       this.defaultSections = _.cloneDeep(this.feature);
-      console.log(this.feature);
       this.fillFormValues();
       this.createForm();
     });
@@ -38,12 +39,13 @@ export class ParametersComponent implements OnInit {
     this.paramsForm = this.fb.group(
       this.formValues
     );
-    console.log(this.paramsForm);
   }
 
   onSubmit() {
-    this.paramsForm.submitted = true;
-    console.log(this.paramsForm);
+    this.paramsForm['submitted'] = true;
+    if (this.paramsForm.valid) {
+      this.onValidForm();
+    }
   }
 
   saveFormResults(formBox, id) {
@@ -55,23 +57,38 @@ export class ParametersComponent implements OnInit {
   }
 
   getValues(): void {
-    console.log(this.feature);
+  }
+
+  maxValue(max) {
+    return (input: FormControl) => {
+      return input.value <= max ? null : {max: true};
+    };
+  }
+
+  minValue(min) {
+    return (input: FormControl) => {
+      return input.value >= min ? null : {max: true};
+    };
   }
 
   fillFormValues(): void {
     for (const featureObject of this.feature.featureObjects) {
       for (const parameter of featureObject.parameters) {
-        this.formValues[parameter.parameter] = ['', Validators.required ];
-        /* this.formValues[parameter.parameter] = {
-          'id': parameter.id,
-          'min': parameter.min,
-          'max': parameter.max,
-          'defaultOption': parameter.defaultOption,
-          'required': parameter.required,
-          'value': parameter.defaultOption
-        }; */
+        this.formValues[parameter.parameter] = ['', []];
+        if (parameter.required) {
+          this.formValues[parameter.parameter][1].push(Validators.required);
+        }
+        if (parameter.max) {
+          this.formValues[parameter.parameter][1].push(this.maxValue(parameter.max));
+        }
+        if (parameter.min) {
+          this.formValues[parameter.parameter][1].push(this.minValue(parameter.min));
+        }
       }
     }
-    console.log(this.formValues);
+  }
+
+  onValidForm():  void {
+    this.router.navigate(['choose-model'], { queryParams: this.paramsForm.value });
   }
 }

@@ -29,3 +29,6 @@
 	left: 5px;
 	border-radius: 5px;
 }
+.image img {
+	width:100%;
+}

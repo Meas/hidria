@@ -9,6 +9,8 @@ import {Component, AfterViewInit, Input} from '@angular/core';
 export class AccordionInputComponent implements AfterViewInit {
 
   @Input() parameterMainChild;
+  @Input() paramsForm;
+  @Input() name;
 
   constructor() { }
 

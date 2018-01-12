@@ -28,10 +28,19 @@ export class SwitchOptionsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    for (const obj of this.localButtons) {
+      if (obj['id'] == this.selectedOption) {
+        this.paramsForm.get(this.name).setValue(obj['value']);
+      }
+    }
   }
 
   changeSelected(id) {
     this.selectedOption = id;
+  }
+
+  hasRequiredError() {
+    return this.paramsForm.submitted && this.paramsForm.get(this.name).errors && this.paramsForm.get(this.name).errors.required;
   }
 
 }

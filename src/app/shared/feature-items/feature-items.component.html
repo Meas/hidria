@@ -13,6 +13,8 @@
   <div *ngIf="parameter.tag === 'input'">
     <div *ngIf="hasRequiredError()" class="error-input"
       >*Field is required</div>
+      <div *ngIf="hasMinMaxError()" class="error-input"
+      >*Value should be between {{parameter.min}} and {{parameter.max}}</div>
     <input class="full-size"
           auto-complete
           [type]="parameter.type"
@@ -24,6 +26,6 @@
     <img width="50" src="assets/images/cube.png" alt="">
   </div>
   <div *ngIf="parameter.tag === 'button'">
-    <button class="btn">CALCULATE</button>
+    <button class="btn" type="button">CALCULATE</button>
   </div>
 </div>

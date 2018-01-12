@@ -7,10 +7,11 @@
       <div *ngIf="featureObject" class="table-buttons container">
         <div class="row">
           <div *ngFor="let parameter of featureObject.parameters" [ngClass]="parameter.classesUI" class="parameter-section space-bellow">
-            <app-label-box [parameter]="parameter" [paramsForm]="paramsForm"></app-label-box>
+            <app-label-box [parameter]="parameter"></app-label-box>
             <div *ngIf="parameter.tag === 'accordion'">
               <app-accordion-input [parameterMainChild]="parameter.options[0]"
-              [paramsForm]="paramsForm">
+              [paramsForm]="paramsForm"
+              [name]="parameter.parameter">
                 <accordion-content>
                   <div class="container">
                     <div class="row">
