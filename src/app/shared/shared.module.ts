@@ -1,3 +1,4 @@
+import { MyProjectsModelListComponent } from './my-projects-model-list/my-projects-model-list.component';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -29,6 +30,11 @@ import {ChartServiceService} from '../services/chart-service/chart-service.servi
 import { ChartPerformanceCurveComponent } from './chart-performance-curve/chart-performance-curve.component';
 import { ErrorMessageComponent } from './error-message/error-message.component';
 import { SimpleNotificationsModule } from 'angular2-notifications';
+import { ModalComponent } from './modal/modal.component';
+import { SearchMyProjectsComponent } from './search-my-projects/search-my-projects.component';
+import { MyProjectsListComponent } from './my-projects-list/my-projects-list.component';
+import { MyProjectsTitleComponent } from './my-projects-title/my-projects-title.component';
+import { FilterByStringPipe } from '../pipes/filter-by-string/filter-by-string.pipe';
 
 @NgModule({
   imports: [
@@ -62,7 +68,13 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
     DisplayOptionsComponent,
     ChartAreaComponent,
     ChartPerformanceCurveComponent,
-    ErrorMessageComponent
+    ErrorMessageComponent,
+    ModalComponent,
+    SearchMyProjectsComponent,
+    MyProjectsListComponent,
+    MyProjectsTitleComponent,
+    MyProjectsModelListComponent,
+    FilterByStringPipe
   ],
   exports: [
     HeaderComponent,
@@ -84,7 +96,13 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
     DisplayOptionsComponent,
     ChartAreaComponent,
     ChartPerformanceCurveComponent,
-    ErrorMessageComponent
+    ErrorMessageComponent,
+    ModalComponent,
+    SearchMyProjectsComponent,
+    MyProjectsListComponent,
+    MyProjectsTitleComponent,
+    MyProjectsModelListComponent,
+    LabelBoxComponent,
   ],
   providers: [
     ChartServiceService

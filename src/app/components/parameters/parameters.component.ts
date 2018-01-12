@@ -38,9 +38,11 @@ export class ParametersComponent implements OnInit {
     this.paramsForm = this.fb.group(
       this.formValues
     );
+    console.log(this.paramsForm);
   }
 
   onSubmit() {
+    this.paramsForm.submitted = true;
     console.log(this.paramsForm);
   }
 

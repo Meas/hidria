@@ -1,0 +1,35 @@
+@import "../../../assets/partials/variables.scss";
+
+.title-model {
+  width: 100%;
+  display: flex;
+  margin-top: 0;
+}
+.operating-points-buttons {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.button {
+  background: #1E4686;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+}
+.select-points {
+  color: red;
+  text-align: center;
+  font-weight: 500;
+}
+.title-line {
+  margin-top: 0;
+  margin-bottom: 25px;
+  border: 2px solid #cdcdcd;
+}
+.list-outer {
+  background-color: #d3d3d3;
+  padding: 20px 10px 20px 10px;
+  margin-top: 5px;
+}

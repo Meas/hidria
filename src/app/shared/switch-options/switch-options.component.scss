@@ -1,19 +1,65 @@
 @import "../../../assets/partials/variables.scss";
+//
+//:host {
+//  display: flex;
+//  width: 100%
+//}
+//
+//button {
+//  width: calc(100% / 3);
+//  height: 30px;
+//  margin: 0;
+//  border: solid 1px rgba(189, 193, 243, 0.5);
+//  background: white;
+//  float: left;
+//}
+//.active {
+//  background: $main-color;
+//  color: white;
+//}
 
-:host {
-  display: flex;
-  width: 100%
+
+.switch-field {
+  overflow: hidden;
 }
 
-button {
-  width: calc(100% / 3);
-  height: 30px;
-  margin: 0;
-  border: solid 1px rgba(189, 193, 243, 0.5);
-  background: white;
+.switch-title {
+  margin-bottom: 6px;
+}
+
+.switch-field input {
+  position: absolute !important;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  width: 1px;
+  border: 0;
+  overflow: hidden;
+}
+
+.switch-field label {
   float: left;
 }
-.active {
-  background: $main-color;
-  color: white;
+
+.switch-field label {
+  display: inline-block;
+  width: calc(100% / 3);
+  background-color: white;
+  font-size: 14px;
+  font-weight: normal;
+  text-align: center;
+  text-shadow: none;
+  padding: 6px 14px;
+  border:  solid 1px rgba($main-color, 0.5);
+  transition:         all 0.1s ease-in-out;
+}
+
+.switch-field label:hover {
+  cursor: pointer;
+}
+
+.switch-field input:checked + label {
+  background-color: $main-color;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  color: #fff;
 }

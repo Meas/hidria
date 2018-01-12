@@ -1,5 +1,15 @@
-<button *ngFor="let button of localButtons"
-	[ngClass]="button.id == selectedOption ? 'active' : ''"
-  (click)="changeSelected(button.id)">
-  {{button.description}}
-</button>
+<!--<button-->
+	<!--[ngClass]=""-->
+  <!--(click)="changeSelected(button.id)">-->
+
+<!--</button>-->
+
+
+<div class="switch-field">
+  <div *ngFor="let button of localButtons">
+    <input type="radio" [id]="button.id" [name]="name" value="yes"
+    [checked]="button.id == selectedOption ? 'active' : ''"
+    [value]="button.value"/>
+    <label [for]="button.id">{{button.description}}</label>
+  </div>
+</div>

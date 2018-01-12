@@ -7,9 +7,12 @@
   </div>
   <div class="switch-option-box" *ngIf="parameter.tag === 'radio'">
     <app-switch-options
-      [buttons]="parameter.options" [defaultOption]="parameter.defaultOption"></app-switch-options>
+      [buttons]="parameter.options" [defaultOption]="parameter.defaultOption"
+      [paramsForm]="paramsForm" [name]="name"></app-switch-options>
   </div>
   <div *ngIf="parameter.tag === 'input'">
+    <div *ngIf="hasRequiredError()" class="error-input"
+      >*Field is required</div>
     <input class="full-size"
           auto-complete
           [type]="parameter.type"

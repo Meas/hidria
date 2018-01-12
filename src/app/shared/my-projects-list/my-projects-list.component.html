@@ -1,0 +1,20 @@
+<div class="list-outer" *ngFor="let item of projectsList.children | filterByString:['name', searchTerm]">
+  <div class="one-project" (click)="selectProject.emit(item)">
+    <div class="entry-number">
+      #{{item.id}}
+    </div>
+    <div class="row no-gutters project-name-outer">
+      <div class="project-name col-lg-6">
+        {{item.name}}
+      </div>
+      <div class="col-lg-6 project-created-outer">
+        <div class="project-created">
+          Created
+        </div>
+        <div class="project-date">
+          {{item.created}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

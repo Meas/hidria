@@ -20,6 +20,8 @@ export class SwitchOptionsComponent implements OnInit {
       this.localButtons = _.cloneDeep(data);
     }
   }
+  @Input() paramsForm;
+  @Input() name;
 
   @Output() value: EventEmitter<number> = new EventEmitter();
 

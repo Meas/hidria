@@ -15,6 +15,12 @@ export class FeatureItemsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log(this.name);
+    console.log(this.paramsForm.get(this.name).errors.required);
+  }
+
+  hasRequiredError() {
+    return this.paramsForm.submitted && this.paramsForm.get(this.name).errors && this.paramsForm.get(this.name).errors.required;
   }
 
   setSourceOptions(options): Array<number | string> {

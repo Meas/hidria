@@ -1,0 +1,43 @@
+<div>
+  <div class="loading-box" *ngIf="!feature['FeatureName']">
+    <app-loading></app-loading>
+  </div>
+  <div *ngIf="feature['FeatureName']">
+    <div class="row no-gutter">
+      <div class="col-lg-2">
+          My Projects
+      </div>
+      <div class="col-lg-2">
+          Add new project
+      </div>
+      <div class="col-lg-2">
+          Add new fan
+      </div>
+    </div>
+    <hr class="title-line">
+    <div class="row no-gutter">
+      <div *ngFor="let container of feature['featureObjects']" class="{{container.classUI}} no-gutter">
+          <ng-container *ngFor="let child of container.children">
+            <div *ngIf="child.type === 'search'">
+              <app-search-my-projects [searchTerm]="searchTerm" 
+                (nameChange)="onNameChange($event)"></app-search-my-projects>
+            </div>
+            <div *ngIf="child.type === 'project-list'">
+              <div class="list-outer">
+                <app-my-projects-list [projectsList]="child" 
+                  (selectProject)="onSelectProject($event)"
+                  [searchTerm]="searchTerm">
+                </app-my-projects-list>
+              </div>
+            </div>
+            <div *ngIf="child.type === 'title'">
+              <app-my-projects-title [project]="selectedProject"></app-my-projects-title>
+            </div>
+            <div *ngIf="child.type === 'model-list'">
+              <app-my-projects-model-list [selectedProject]="selectedProject"></app-my-projects-model-list>
+            </div>
+          </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
