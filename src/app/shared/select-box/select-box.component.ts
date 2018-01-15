@@ -53,11 +53,6 @@ export class SelectBoxComponent implements OnInit {
   }
 
   ngOnInit() {
-    for (const obj of this.localSelect) {
-      if (obj['id'] == this.selectedOption) {
-        this.paramsForm.get(this.name).setValue(obj['value']);
-      }
-    }
   }
 
   onChange(value) {

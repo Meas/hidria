@@ -134,7 +134,6 @@ export class ChartComponent implements OnInit, AfterViewInit {
         },
         onClick: function (clickEvt, activeElements) {
           const link = this.data.datasets[activeElements[0]._datasetIndex].links;
-          console.log(link);
           self.router.navigate([link]);
         },
         onHover: function(hoverEvt, activeElements) {
