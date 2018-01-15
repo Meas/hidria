@@ -12,6 +12,7 @@ export class MyProjectsComponent implements OnInit {
   feature: any = {};
   searchTerm: String = '';
   selectedProject: {};
+  sortBy: String = '';
 
   constructor(public myProjectsService: MyProjectsService) { }
 
@@ -46,5 +47,9 @@ export class MyProjectsComponent implements OnInit {
         }
       }
     }
+  }
+
+  onSortChange(event): void {
+    this.sortBy = event;
   }
 }

@@ -7,12 +7,6 @@
       <div class="col-lg-2">
           My Projects
       </div>
-      <div class="col-lg-2">
-          Add new project
-      </div>
-      <div class="col-lg-2">
-          Add new fan
-      </div>
     </div>
     <hr class="title-line">
     <div class="row no-gutter">
@@ -20,13 +14,15 @@
           <ng-container *ngFor="let child of container.children">
             <div *ngIf="child.type === 'search'">
               <app-search-my-projects [searchTerm]="searchTerm" 
-                (nameChange)="onNameChange($event)"></app-search-my-projects>
+                (nameChange)="onNameChange($event)"
+                (sortChange)="onSortChange($event)"></app-search-my-projects>
             </div>
             <div *ngIf="child.type === 'project-list'">
               <div class="list-outer">
                 <app-my-projects-list [projectsList]="child" 
                   (selectProject)="onSelectProject($event)"
-                  [searchTerm]="searchTerm">
+                  [searchTerm]="searchTerm"
+                  [sortBy]="sortBy">
                 </app-my-projects-list>
               </div>
             </div>

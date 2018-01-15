@@ -1,4 +1,5 @@
-<div class="list-outer" *ngFor="let item of projectsList.children | filterByString:['name', searchTerm]">
+<div class="list-outer" *ngFor="let item of projectsList.children | 
+  filterByString:['name', searchTerm] | sortByString:sortBy">
   <div class="one-project" (click)="selectProject.emit(item)">
     <div class="entry-number">
       #{{item.id}}
@@ -12,7 +13,7 @@
           Created
         </div>
         <div class="project-date">
-          {{item.created}}
+          {{dateFromTimestamp(item.created)}}
         </div>
       </div>
     </div>

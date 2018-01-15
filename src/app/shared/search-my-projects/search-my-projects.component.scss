@@ -24,4 +24,11 @@
 .sort-by-button {
     margin-top: 10px;
     opacity: 1;
+    padding: 0px;
+}
+.sort-by-select, .sort-by-select option {
+    background-color: #1D4686;
+    color: #fff;
+    text-align: center;
+    font-weight: 600;
 }

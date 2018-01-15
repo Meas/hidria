@@ -8,7 +8,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class SearchMyProjectsComponent implements OnInit {
 
   @Input() searchTerm;
+  sortBy: String = '';
   @Output() nameChange: EventEmitter<String> = new EventEmitter<String>();
+  @Output() sortChange: EventEmitter<String> = new EventEmitter<String>();
   constructor() {
   }
 

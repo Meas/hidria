@@ -35,6 +35,7 @@ import { SearchMyProjectsComponent } from './search-my-projects/search-my-projec
 import { MyProjectsListComponent } from './my-projects-list/my-projects-list.component';
 import { MyProjectsTitleComponent } from './my-projects-title/my-projects-title.component';
 import { FilterByStringPipe } from '../pipes/filter-by-string/filter-by-string.pipe';
+import { SortByStringPipe } from '../pipes/sort-by-string/sort-by-string.pipe';
 
 @NgModule({
   imports: [
@@ -74,7 +75,8 @@ import { FilterByStringPipe } from '../pipes/filter-by-string/filter-by-string.p
     MyProjectsListComponent,
     MyProjectsTitleComponent,
     MyProjectsModelListComponent,
-    FilterByStringPipe
+    FilterByStringPipe,
+    SortByStringPipe
   ],
   exports: [
     HeaderComponent,

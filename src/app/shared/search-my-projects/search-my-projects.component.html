@@ -9,6 +9,13 @@
     </div>
   </div>
   <div class="col-lg-12 no-gutters sort-by-button">
-    Sort by
+    <select class="sort-by-select" [(ngModel)]="sortBy"
+    (ngModelChange)="sortChange.emit(sortBy)">
+      <option disabled hidden value="">Sort By</option>
+      <option value="name-asc">Name Ascending</option>
+      <option value="name-desc">Name Descending</option>
+      <option value="date-desc">Date (newest first)</option>
+      <option value="date-asc">Date (oldest first)</option>
+    </select>
   </div>
 </div>
