@@ -45,8 +45,6 @@ export class ParametersComponent implements OnInit {
     this.paramsForm = this.fb.group(
       this.formValues
     );
-    console.log(this.formValues);
-    console.log(this.paramsForm);
   }
 
   onSubmit() {
@@ -61,7 +59,8 @@ export class ParametersComponent implements OnInit {
   }
 
   setToDefault(): void {
-    this.feature = _.cloneDeep(this.defaultSections);
+    this.fillFormValues(true);
+    this.paramsForm.setValue(this.formValues);
   }
 
   getValues(): void {
@@ -79,22 +78,27 @@ export class ParametersComponent implements OnInit {
     };
   }
 
-  fillFormValues(): void {
+  fillFormValues(defaultValues: Boolean = false): void {
     for (const featureObject of this.feature.featureObjects) {
       for (const parameter of featureObject.parameters) {
-        const value = this.preselectedValues[parameter.parameter] ?
+        let value;
+        if (defaultValues) {
+          value = parameter.defaultOption ? parameter.defaultOption : '';
+          this.formValues[parameter.parameter] = value;
+        } else {
+          value = this.preselectedValues[parameter.parameter] ?
           this.preselectedValues[parameter.parameter] : (parameter.defaultOption ?
           parameter.defaultOption : '');
-        console.log(value);
-        this.formValues[parameter.parameter] = [value, []];
-        if (parameter.required) {
-          this.formValues[parameter.parameter][1].push(Validators.required);
-        }
-        if (parameter.max) {
-          this.formValues[parameter.parameter][1].push(this.maxValue(parameter.max));
-        }
-        if (parameter.min) {
-          this.formValues[parameter.parameter][1].push(this.minValue(parameter.min));
+          this.formValues[parameter.parameter] = [value, []];
+          if (parameter.required) {
+            this.formValues[parameter.parameter][1].push(Validators.required);
+          }
+          if (parameter.max) {
+            this.formValues[parameter.parameter][1].push(this.maxValue(parameter.max));
+          }
+          if (parameter.min) {
+            this.formValues[parameter.parameter][1].push(this.minValue(parameter.min));
+          }
         }
       }
     }
