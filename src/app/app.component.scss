@@ -7,18 +7,26 @@
     width: 100%;
 
     .sidebar {
-      width: 15%;
+      width: 100px;
     }
     .main {
-      width: calc(100% - 10%);
-
+      width: calc(100% - 100px);
     }
   }
 
 }
 .router-outlet{
-  width: 80%;
-  margin-bottom: 20px;
+  width: 100%;
+  height: calc(100vh - 100px);
+  overflow-y: scroll;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .router-outlet-content {
+    width: 70%;
+    height: 100%;
+  }
 }
 .content-space{
   //min-height: 1000px;
