@@ -15,7 +15,7 @@
     .logo {
       display: block;
       width: 80%;
-
+      cursor: pointer;
       img {
         width: 100%;
       }
@@ -33,14 +33,15 @@
       background: transparent;
       opacity: 0.5;
       cursor: pointer;
-      transition: ease .3s;
+      transition: all ease .3s;
       color: white;
       display: flex;
       flex-direction: column;
       outline: none;
 
       &:hover {
-        opacity: 0.8;
+        opacity: 0.9;
+        background: #696969;
       }
 
       .icon {
@@ -64,8 +65,11 @@
       }
     }
     .active {
-      background: darkgrey;
+      background: #4e4c4c;
       opacity: 1;
+      &:hover {
+        opacity: 1;
+      }
     }
   }
 }
