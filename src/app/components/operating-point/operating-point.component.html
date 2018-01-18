@@ -2,7 +2,7 @@
   <div class="loading-box" *ngIf="!feature['FeatureName']">
     <app-loading></app-loading>
   </div>
-  <div *ngIf="feature['FeatureName']">
+  <div *ngIf="feature['FeatureName'] && view==='feature'">
     <div class="row title-model no-gutters align-items-center">
       <div class="col-lg-4">
         <div>Choose model | Operating point</div>
@@ -63,7 +63,7 @@
           </div>
         </div>
         <div class="col-lg-4">
-          <div class="button">
+          <div class="button" (click)="view='add-to-project'">
             ADD TO PROJECT
           </div>
         </div>
@@ -78,5 +78,8 @@
         </div>
       </div>
     </div>
+  </div>
+  <div *ngIf="view==='add-to-project'">
+    <app-add-to-project [feature]="addToProject"></app-add-to-project>
   </div>
 </div>

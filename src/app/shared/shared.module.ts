@@ -1,3 +1,4 @@
+import { AddToProjectComponent } from './add-to-project/add-to-project.component';
 import { MyProjectsModelListComponent } from './my-projects-model-list/my-projects-model-list.component';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -76,7 +77,8 @@ import { SortByStringPipe } from '../pipes/sort-by-string/sort-by-string.pipe';
     MyProjectsTitleComponent,
     MyProjectsModelListComponent,
     FilterByStringPipe,
-    SortByStringPipe
+    SortByStringPipe,
+    AddToProjectComponent
   ],
   exports: [
     HeaderComponent,
@@ -105,6 +107,7 @@ import { SortByStringPipe } from '../pipes/sort-by-string/sort-by-string.pipe';
     MyProjectsTitleComponent,
     MyProjectsModelListComponent,
     LabelBoxComponent,
+    AddToProjectComponent
   ],
   providers: [
     ChartServiceService

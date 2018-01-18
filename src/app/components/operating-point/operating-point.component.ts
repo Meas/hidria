@@ -12,7 +12,9 @@ export class OperatingPointComponent implements OnInit {
 
   feature: any = {};
   downloads: any = {};
+  addToProject: any = {};
   graphData = [];
+  view = 'add-to-project';
   selectedTab: String = 'data-sheet';
 
   constructor(private operatingPointService: OperatingPointService,
@@ -27,6 +29,7 @@ export class OperatingPointComponent implements OnInit {
     this.operatingPointService.getItems().subscribe((response: any) => {
       this.feature = response[0];
       this.downloads = response[1];
+      this.addToProject = response[2];
       this.zone.run(() => this.cd.markForCheck());
     });
   }
