@@ -6,11 +6,13 @@
     <div class="main">
       <app-header (changeMetricsClick)="onChangeMetrics($event)" [measure]="measure" *ngIf="loggedIn"></app-header>
       <div class="router-outlet">
-        <div class="content-space">
-          <router-outlet></router-outlet>
+        <div class="router-outlet-content">
+          <div class="content-space">
+            <router-outlet></router-outlet>
+          </div>
+          <app-footer *ngIf="loggedIn"></app-footer>
+          <app-error-message-component></app-error-message-component>
         </div>
-        <app-footer *ngIf="loggedIn"></app-footer>
-        <app-error-message-component></app-error-message-component>
       </div>
     </div>
   </div>

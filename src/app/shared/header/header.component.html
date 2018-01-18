@@ -1,36 +1,28 @@
 <header>
   <div class="navigation">
-    <div class="section-right">
-      <div class="section-content">
+    <ul class="nav-links left">
+      <li class="nav-link"><a class="link-left">STATISTICS</a></li>
+      <li class="nav-link"><a class="link-left">USER</a></li>
+    </ul>
 
-        <ul class="nav-links left">
-          <li class="nav-link"><a class="link-left">STATISTICS</a></li>
-          <li class="nav-link"><a class="link-left">USER</a></li>
+    <ul class="nav-links right">
+      <li class="nav-link"><a class="link" href="">HISTORY</a></li>
+      <li class="nav-link"><a class="link" href="">HELP</a></li>
+      <li class="nav-link"><a class="link" href="">REGISTER / LOGIN</a></li>
+      <li class="nav-link measures">
+        <button [ngClass]="measure === 'm' ? 'meters-active' : ''" (click)="changeMetricsClick.emit('m')">m</button>
+        <button [ngClass]="measure === 'ft' ? 'feets-active' : ''" (click)="changeMetricsClick.emit('ft')">ft</button>
+      </li>
+      <li class="nav-link languages">
+        <ul class="languagepicker roundborders">
+          <a href="#en">
+            <li><img src="assets/images/flag-gb.png"/>EN</li>
+          </a>
+          <a href="#it">
+            <li><img src="assets/images/flag-italy.png"/>IT</li>
+          </a>
         </ul>
-
-        <ul class="nav-links right">
-          <li class="nav-link"><a class="link" href="">HISTORY</a></li>
-          <li class="nav-link"><a class="link" href="">HELP</a></li>
-          <li class="nav-link"><a class="link" href="">REGISTER / LOGIN</a></li>
-          <li class="nav-link measures">
-            <button [ngClass]="measure === 'm' ? 'meters-active' : ''" (click)="changeMetricsClick.emit('m')">m</button>
-            <button [ngClass]="measure === 'ft' ? 'feets-active' : ''" (click)="changeMetricsClick.emit('ft')">ft</button>
-          </li>
-          <li class="nav-link languages">
-            <ul class="languagepicker roundborders">
-              <a href="#en">
-                <li><img src="assets/images/flag-gb.png"/>EN</li>
-              </a>
-              <a href="#it">
-                <li><img src="assets/images/flag-italy.png"/>IT</li>
-              </a>
-            </ul>
-          </li>
-        </ul>
-      </div>
-
-      <div class="blue-track"></div>
-
-    </div>
+      </li>
+    </ul>
   </div>
 </header>
