@@ -80,6 +80,6 @@
     </div>
   </div>
   <div *ngIf="view==='add-to-project'">
-    <app-add-to-project [feature]="addToProject"></app-add-to-project>
+    <app-add-to-project [feature]="addToProject" (cancel)="view='feature'"></app-add-to-project>
   </div>
 </div>

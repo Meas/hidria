@@ -14,7 +14,7 @@ export class OperatingPointComponent implements OnInit {
   downloads: any = {};
   addToProject: any = {};
   graphData = [];
-  view = 'add-to-project';
+  view = 'feature';
   selectedTab: String = 'data-sheet';
 
   constructor(private operatingPointService: OperatingPointService,

@@ -1,8 +1,26 @@
 .title {
 	font-weight: 700;
 	font-size: 20px;
+	margin-bottom: 30px;
 }
 .form-block {
 	background: #EFF2F4;
 	padding: 15px;
+	height:100%;
+}
+.button {
+	background: #1E4686;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align: center;
+	color: #fff;
+	cursor: pointer;
+	font-weight: 600;
+}
+.buttons-outer {
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+.half-opacity {
+	opacity: 0.5;
 }

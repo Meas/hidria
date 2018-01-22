@@ -1,17 +1,36 @@
 <div>
-	<div class="title">
-		Add to project
+	<div class="title" *ngIf="localFeature">
+		{{localFeature.title}}
 	</div>
-	<div class="row no-gutters">
-		<div *ngFor="let container of feature.children" [class]="container.classUI">
-			<div *ngFor="let row of container.children" class="row">
-				<div  *ngFor="let element of row.children" [class]="element.classUI">
-					<app-label-box [parameter]="element"></app-label-box>
-					<app-feature-items [parameter]="parameter"
-            			[name]="parameter.parameter"
-            			[paramsForm]="paramsForm"></app-feature-items>
+	<form [formGroup]="paramsForm" (ngSubmit)="onSubmit()" *ngIf="localFeature">
+		<div class="row no-gutters">
+			<div *ngFor="let container of localFeature.children" [class]="container.classUI">
+				<div *ngFor="let row of container.children" class="row">
+					<div *ngFor="let element of row.children" [class]="element.classUI">
+						<ng-container *ngIf="element.tag === 'input'">
+							<app-label-box [parameter]="element"></app-label-box>
+							<app-feature-items [parameter]="element"
+								[name]="element.parameter"
+								[paramsForm]="paramsForm"></app-feature-items>
+						</ng-container>
+						<ng-container *ngIf="element.tag === 'card'">
+							<app-fan-info [fanInfo]="element"></app-fan-info>
+						</ng-container>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+		<div class="row buttons-outer">
+			<div class="col-lg-6">
+				<div class="button half-opacity" (click)="cancel.emit('cancel')">
+					Cancel
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<div class="button" (click)="onSubmit()">
+					ADD TO PROJECT
+				</div>
+			</div>
+		</div>
+	</form>
 <div>
