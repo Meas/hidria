@@ -13,6 +13,7 @@ export class OperatingPointComponent implements OnInit {
   feature: any = {};
   downloads: any = {};
   addToProject: any = {};
+  addToComparison: any = {};
   graphData = [];
   view = 'feature';
   selectedTab: String = 'data-sheet';
@@ -30,6 +31,7 @@ export class OperatingPointComponent implements OnInit {
       this.feature = response[0];
       this.downloads = response[1];
       this.addToProject = response[2];
+      this.addToComparison = response[3];
       this.zone.run(() => this.cd.markForCheck());
     });
   }

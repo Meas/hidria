@@ -63,21 +63,19 @@ export class AddToProjectComponent implements OnInit {
     for (const featureObject of this.localFeature.children) {
       for (const row of featureObject.children) {
         for (const parameter of row.children) {
-          let value;
-          if (defaultValues) {
-            value = parameter.defaultOption ? parameter.defaultOption : '';
-            this.formValues[parameter.parameter] = value;
-          } else {
-            this.formValues[parameter.parameter] = [value, []];
-            if (parameter.required) {
-              this.formValues[parameter.parameter][1].push(Validators.required);
-            }
-            if (parameter.max) {
-              this.formValues[parameter.parameter][1].push(this.maxValue(parameter.max));
-            }
-            if (parameter.min) {
-              this.formValues[parameter.parameter][1].push(this.minValue(parameter.min));
-            }
+          if (parameter.parameter) {
+            let value;
+              value = parameter.defaultOption ? parameter.defaultOption : '';
+              this.formValues[parameter.parameter] = [value, []];
+              if (parameter.required) {
+                this.formValues[parameter.parameter][1].push(Validators.required);
+              }
+              if (parameter.max) {
+                this.formValues[parameter.parameter][1].push(this.maxValue(parameter.max));
+              }
+              if (parameter.min) {
+                this.formValues[parameter.parameter][1].push(this.minValue(parameter.min));
+              }
           }
         }
       }

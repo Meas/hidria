@@ -31,6 +31,7 @@
 }
 .image img {
 	width:100%;
+	max-width:100px;
 }
 .big-padding {
 	padding-left: 100px;

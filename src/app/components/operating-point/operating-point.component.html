@@ -2,7 +2,7 @@
   <div class="loading-box" *ngIf="!feature['FeatureName']">
     <app-loading></app-loading>
   </div>
-  <div *ngIf="feature['FeatureName'] && view==='feature'">
+  <div [hidden]="!(feature['FeatureName'] && view==='feature')">
     <div class="row title-model no-gutters align-items-center">
       <div class="col-lg-4">
         <div>Choose model | Operating point</div>
@@ -58,7 +58,7 @@
           Select Q / Ps operating point
         </div>
         <div class="col-lg-4">
-          <div class="button">
+          <div class="button" (click)="view='add-to-comparison'">
             ADD TO COMPARE
           </div>
         </div>
@@ -79,7 +79,10 @@
       </div>
     </div>
   </div>
-  <div *ngIf="view==='add-to-project'">
+  <div *ngIf="view ==='add-to-project'">
     <app-add-to-project [feature]="addToProject" (cancel)="view='feature'"></app-add-to-project>
   </div>
+  <div *ngIf="view ==='add-to-comparison'">
+      <app-add-to-project [feature]="addToComparison" (cancel)="view='feature'"></app-add-to-project>
+    </div>
 </div>
