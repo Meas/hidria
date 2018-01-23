@@ -15,7 +15,8 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class ErrorMessageComponent implements OnInit, OnDestroy {
 
-  subscription: Subscription;
+  errorSubscription: Subscription;
+  successSubscription: Subscription;
   pluginSubscription: Subscription;
   redirectSubscription: Subscription;
 
@@ -30,9 +31,10 @@ export class ErrorMessageComponent implements OnInit, OnDestroy {
               private router: Router, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
-    this.subscription = this.errorMessageService.errorEmit.subscribe(error => this.handleError(error));
+    this.errorSubscription = this.errorMessageService.errorEmit.subscribe(error => this.handleError(error));
+    this.successSubscription = this.errorMessageService.successEmit.subscribe(success => this.handleSuccess(success));
     this.pluginSubscription = this._notification.emitter.subscribe(event => {
-      if (event.add === false) {
+      if (event.add === false && event.notification.type === 'error') {
         this.handleClose();
       }
     });
@@ -43,8 +45,13 @@ export class ErrorMessageComponent implements OnInit, OnDestroy {
     this._notification.error('An error occurred!', error.statusText);
   }
 
+  handleSuccess(success) {
+    this._notification.remove();
+    this._notification.success(success);
+  }
+
   handleClose() {
-    if (this.router.url.indexOf('choose-model')) {
+    if (this.router.url.indexOf('choose-model') !== -1) {
       this.redirectSubscription = this.activatedRoute.queryParams.subscribe((params: Params) => {
         this.zone.run(() => this.router.navigate(['parameter'], { queryParams: params }));
       });
@@ -52,7 +59,8 @@ export class ErrorMessageComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.errorSubscription.unsubscribe();
+    this.successSubscription.unsubscribe();
     this.pluginSubscription.unsubscribe();
     this.redirectSubscription.unsubscribe();
   }

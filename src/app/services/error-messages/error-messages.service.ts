@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 export class ErrorMessagesService {
 
   errorEmit: EventEmitter<string> = new EventEmitter();
+  successEmit: EventEmitter<string> = new EventEmitter();
   constructor() { }
 
   getError(error) {
@@ -12,5 +13,10 @@ export class ErrorMessagesService {
       this.errorEmit.emit(error);
     }
   }
+  getSuccess(message) {
+    this.successEmit.emit(message);
+  }
+
+
 
 }

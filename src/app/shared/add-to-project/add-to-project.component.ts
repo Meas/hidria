@@ -1,5 +1,6 @@
 import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { ErrorMessagesService } from '../../services/error-messages/error-messages.service';
 import * as _ from 'lodash';
 
 @Component({
@@ -25,7 +26,7 @@ export class AddToProjectComponent implements OnInit {
 
   formValues= {};
 
-  constructor( private fb: FormBuilder ) {}
+  constructor( private fb: FormBuilder, private _notification: ErrorMessagesService ) {}
 
   ngOnInit() {}
 
@@ -44,7 +45,10 @@ export class AddToProjectComponent implements OnInit {
   }
 
   onValidForm():  void {
-    console.log(this.paramsForm);
+    console.log(this.localFeature.FeatureName.indexOf('project'));
+    const type = (this.localFeature.FeatureName.indexOf('project') !== -1) ? 'project' : 'comparison';
+    this._notification.getSuccess(`Successfully added to ${type}!`);
+    this.cancel.emit('cancel');
   }
 
   maxValue(max) {
