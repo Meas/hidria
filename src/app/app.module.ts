@@ -26,7 +26,7 @@ import { AuthService } from './services/auth/auth.service';
 import { ChooseModelService } from './services/chooseModel/chooseModel.service';
 import { OperatingPointService } from './services/operating-point/operating-point.service';
 import { SearchByCodeService } from './services/search-by-code/search-by-code.service';
-import { ErrorMessagesService } from './services/error-messages/error-messages.service';
+import { CustomNotificationsService } from './services/notifications/notifications.service';
 import { MyProjectsService } from './services/my-projects/my-projects.service';
 
 import { FilterPipe } from './pipes/filter/filter.pipe';
@@ -74,7 +74,7 @@ import { MyProjectsComponent } from './components/my-projects/my-projects.compon
     ChooseModelService,
     OperatingPointService,
     SearchByCodeService,
-    ErrorMessagesService,
+    CustomNotificationsService,
     MyProjectsService
   ],
   bootstrap: [AppComponent],

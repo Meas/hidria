@@ -2,7 +2,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
-export class ErrorMessagesService {
+export class CustomNotificationsService {
 
   errorEmit: EventEmitter<string> = new EventEmitter();
   successEmit: EventEmitter<string> = new EventEmitter();

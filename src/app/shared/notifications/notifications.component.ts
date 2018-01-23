@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, NgZone } from '@angular/core';
-import { ErrorMessagesService } from '../../services/error-messages/error-messages.service';
+import { CustomNotificationsService } from '../../services/notifications/notifications.service';
 import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import { NotificationsService } from 'angular2-notifications';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -7,13 +7,13 @@ import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  selector: 'app-error-message-component',
+  selector: 'app-notifications-component',
   template: `
   <simple-notifications [options]="options"></simple-notifications>
   `,
-  styleUrls: ['./error-message.component.css']
+  styleUrls: ['./notifications.component.css']
 })
-export class ErrorMessageComponent implements OnInit, OnDestroy {
+export class NotificationsComponent implements OnInit, OnDestroy {
 
   errorSubscription: Subscription;
   successSubscription: Subscription;
@@ -24,15 +24,15 @@ export class ErrorMessageComponent implements OnInit, OnDestroy {
     timeOut: 3000
   };
 
-  constructor(private errorMessageService: ErrorMessagesService,
+  constructor(private customNotificationsService: CustomNotificationsService,
               private _notification: NotificationsService,
               private zone: NgZone,
               private cd: ChangeDetectorRef,
               private router: Router, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
-    this.errorSubscription = this.errorMessageService.errorEmit.subscribe(error => this.handleError(error));
-    this.successSubscription = this.errorMessageService.successEmit.subscribe(success => this.handleSuccess(success));
+    this.errorSubscription = this.customNotificationsService.errorEmit.subscribe(error => this.handleError(error));
+    this.successSubscription = this.customNotificationsService.successEmit.subscribe(success => this.handleSuccess(success));
     this.pluginSubscription = this._notification.emitter.subscribe(event => {
       if (event.add === false && event.notification.type === 'error') {
         this.handleClose();

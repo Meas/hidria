@@ -29,7 +29,7 @@ import { DisplayOptionsComponent } from './display-options/display-options.compo
 import { ChartAreaComponent } from './chart-area/chart-area.component';
 import {ChartServiceService} from '../services/chart-service/chart-service.service';
 import { ChartPerformanceCurveComponent } from './chart-performance-curve/chart-performance-curve.component';
-import { ErrorMessageComponent } from './error-message/error-message.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { ModalComponent } from './modal/modal.component';
 import { SearchMyProjectsComponent } from './search-my-projects/search-my-projects.component';
@@ -70,7 +70,7 @@ import { SortByStringPipe } from '../pipes/sort-by-string/sort-by-string.pipe';
     DisplayOptionsComponent,
     ChartAreaComponent,
     ChartPerformanceCurveComponent,
-    ErrorMessageComponent,
+    NotificationsComponent,
     ModalComponent,
     SearchMyProjectsComponent,
     MyProjectsListComponent,
@@ -100,7 +100,7 @@ import { SortByStringPipe } from '../pipes/sort-by-string/sort-by-string.pipe';
     DisplayOptionsComponent,
     ChartAreaComponent,
     ChartPerformanceCurveComponent,
-    ErrorMessageComponent,
+    NotificationsComponent,
     ModalComponent,
     SearchMyProjectsComponent,
     MyProjectsListComponent,

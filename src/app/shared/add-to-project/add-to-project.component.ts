@@ -1,6 +1,6 @@
 import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { ErrorMessagesService } from '../../services/error-messages/error-messages.service';
+import { CustomNotificationsService } from '../../services/notifications/notifications.service';
 import * as _ from 'lodash';
 
 @Component({
@@ -26,7 +26,7 @@ export class AddToProjectComponent implements OnInit {
 
   formValues= {};
 
-  constructor( private fb: FormBuilder, private _notification: ErrorMessagesService ) {}
+  constructor( private fb: FormBuilder, private _notification: CustomNotificationsService ) {}
 
   ngOnInit() {}
 
