@@ -12,6 +12,7 @@ import {SecurityService} from './services/security/security.service';
 import {AuthComponent} from './components/auth/auth.component';
 import { SearchByCodeComponent } from './components/search-by-code/search-by-code.component';
 import { MyProjectsComponent } from './components/my-projects/my-projects.component';
+import { ComparisonComponent } from './components/comparison/comparison.component';
 
 
 const routes: Routes = [
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'choose-model/operating-point/:id', component: OperatingPointComponent, canActivate: [SecurityService] },
   { path: 'my-projects', component: MyProjectsComponent, canActivate: [SecurityService] },
   { path: 'search-by-code', component: SearchByCodeComponent, canActivate: [SecurityService] },
+  { path: 'comparisons', component: ComparisonComponent, canActivate: [SecurityService] },
   { path: '**', component: RouteNotFoundComponent }
 ];
 

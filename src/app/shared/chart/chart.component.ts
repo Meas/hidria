@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Input, Output, EventEmitter } from '@angular/core';
 import * as _ from 'lodash';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
@@ -7,7 +7,6 @@ import {ChartServiceService} from '../../services/chart-service/chart-service.se
 import {Router} from '@angular/router';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-chart-component',
   template: `
     <div style="background: #fff !important">
@@ -18,8 +17,17 @@ import {Router} from '@angular/router';
 })
 export class ChartComponent implements OnInit, AfterViewInit {
   @Input() canvasId: string;
-  @Input() chartData;
-  @Input() interactive: boolean;
+  chartData: any = {};
+  viewInit: Boolean = false;
+  myBarChart: any;
+  @Input() set setChartData(data: any) {
+    this.chartData = data;
+    if (this.viewInit) {
+      this.myBarChart.destroy();
+      this.generateGraph();
+    }
+  }
+  @Input() toFill: boolean;
   @Output() points: EventEmitter<Array<string>> = new EventEmitter();
   hovered = '';
 
@@ -31,6 +39,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.generateGraph();
+    this.viewInit = true;
   }
 
   generateGraph() {
@@ -39,7 +48,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
     const data = this.getGraphData();
     const options = this.getOptions();
 
-    const myBarChart = new Chart(ctx, {
+    this.myBarChart = new Chart(ctx, {
       type: 'line',
       data: data,
       options: options,
@@ -51,7 +60,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
     data.labels = this.chartData.xPoints;
     data.datasets = [];
     for (let i = 0; i < this.chartData.yPoints.length; i++) {
-      const fill = i === 0;
+      const fill = (i === 0 && this.toFill);
       data.datasets.push({
         'label': this.chartData.labels[i],
         'data': this.chartData.yPoints[i],

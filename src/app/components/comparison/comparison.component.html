@@ -1,0 +1,40 @@
+<div>
+  <div class="loading-box" *ngIf="!feature['FeatureName']">
+    <app-loading></app-loading>
+  </div>
+  <div *ngIf="feature['FeatureName'] !== 0">
+    <div class="row no-gutters">
+      <div *ngFor="let container of feature.featureObjects" [class]="container.classUI">
+        <div class="row">
+          <div *ngFor="let child of container.children" [class]="child.classUI">
+              <app-filters *ngIf="child.type === 'filters'"
+              [filters]="child.children" [activeFilter]="filterSelected" (filterSelected)="onFilterSelected($event)"
+              [showAllModels]="false" [title]="'Comparisons'"></app-filters>
+            
+              <app-search-my-projects *ngIf="child.type === 'search'"
+                [searchTerm]="searchTerm" 
+                (nameChange)="onNameChange($event)"
+                (sortChange)="onSortChange($event)"></app-search-my-projects>
+
+              <div class="list-outer" *ngIf="child.type === 'comparison-list'">
+                <app-my-projects-list [projectsList]="child" 
+                  (selectProject)="onSelectComparison($event)"
+                  [searchTerm]="searchTerm"
+                  [sortBy]="sortBy">
+                </app-my-projects-list>
+              </div>
+              <div *ngIf="child.type === 'graph'">
+                <app-chart-component
+                  [canvasId]="'canvas1'"
+                  [setChartData]="graph"
+                  [toFill]="false"></app-chart-component>
+              </div>
+              <!-- <app-chart-component *ngIf="child.type === 'graph'"
+              [canvasId]="'canvas1'"
+              [chartData]="graph"></app-chart-component> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

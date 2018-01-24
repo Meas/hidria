@@ -9,6 +9,8 @@ export class FiltersComponent implements OnInit {
 
   @Input() filters;
   @Input() activeFilter;
+  @Input() showAllModels;
+  @Input() title;
   @Output() filterSelected: EventEmitter<any> = new EventEmitter();
 
   constructor() {

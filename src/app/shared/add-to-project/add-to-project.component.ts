@@ -15,7 +15,6 @@ export class AddToProjectComponent implements OnInit {
   @Input() set feature(data: any) {
     if (data.FeatureName) {
       this.localFeature = _.cloneDeep(data);
-      console.log(this.localFeature);
       this.fillFormValues();
       this.createForm();
     }
@@ -34,7 +33,6 @@ export class AddToProjectComponent implements OnInit {
     this.paramsForm = this.fb.group(
       this.formValues
     );
-    console.log(this.paramsForm);
   }
 
   onSubmit() {
@@ -45,7 +43,6 @@ export class AddToProjectComponent implements OnInit {
   }
 
   onValidForm():  void {
-    console.log(this.localFeature.FeatureName.indexOf('project'));
     const type = (this.localFeature.FeatureName.indexOf('project') !== -1) ? 'project' : 'comparison';
     this._notification.getSuccess(`Successfully added to ${type}!`);
     this.cancel.emit('cancel');

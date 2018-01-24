@@ -28,6 +28,7 @@ import { OperatingPointService } from './services/operating-point/operating-poin
 import { SearchByCodeService } from './services/search-by-code/search-by-code.service';
 import { CustomNotificationsService } from './services/notifications/notifications.service';
 import { MyProjectsService } from './services/my-projects/my-projects.service';
+import { ComparisonService } from './services/comparison/comparison.service';
 
 import { FilterPipe } from './pipes/filter/filter.pipe';
 import { SortPipe } from './pipes/sort/sort.pipe';
@@ -37,6 +38,7 @@ import { SearchByCodeComponent } from './components/search-by-code/search-by-cod
 
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { MyProjectsComponent } from './components/my-projects/my-projects.component';
+import { ComparisonComponent } from './components/comparison/comparison.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,8 @@ import { MyProjectsComponent } from './components/my-projects/my-projects.compon
     RouteNotFoundComponent,
     AuthComponent,
     SearchByCodeComponent,
-    MyProjectsComponent
+    MyProjectsComponent,
+    ComparisonComponent
   ],
   imports: [
     FormsModule,
@@ -75,7 +78,8 @@ import { MyProjectsComponent } from './components/my-projects/my-projects.compon
     OperatingPointService,
     SearchByCodeService,
     CustomNotificationsService,
-    MyProjectsService
+    MyProjectsService,
+    ComparisonService
   ],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

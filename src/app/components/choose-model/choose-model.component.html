@@ -15,7 +15,8 @@
           <div class="graf" *ngIf="child.type==='graph'">
             <app-chart-component
               [canvasId]="'canvas1'"
-              [chartData]="child"></app-chart-component>
+              [setChartData]="child"
+              [toFill]="true"></app-chart-component>
           </div>
           <div class="fan-table" *ngIf="child.type==='tableComponent'">
             <app-tabs [tableData]="child"></app-tabs>
