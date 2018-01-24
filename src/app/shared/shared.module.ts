@@ -35,6 +35,7 @@ import { ModalComponent } from './modal/modal.component';
 import { SearchMyProjectsComponent } from './search-my-projects/search-my-projects.component';
 import { MyProjectsListComponent } from './my-projects-list/my-projects-list.component';
 import { MyProjectsTitleComponent } from './my-projects-title/my-projects-title.component';
+import { ComparisonTableComponent } from './comparison-table/comparison-table.component';
 import { FilterByStringPipe } from '../pipes/filter-by-string/filter-by-string.pipe';
 import { SortByStringPipe } from '../pipes/sort-by-string/sort-by-string.pipe';
 
@@ -78,7 +79,8 @@ import { SortByStringPipe } from '../pipes/sort-by-string/sort-by-string.pipe';
     MyProjectsModelListComponent,
     FilterByStringPipe,
     SortByStringPipe,
-    AddToProjectComponent
+    AddToProjectComponent,
+    ComparisonTableComponent
   ],
   exports: [
     HeaderComponent,
@@ -107,7 +109,8 @@ import { SortByStringPipe } from '../pipes/sort-by-string/sort-by-string.pipe';
     MyProjectsTitleComponent,
     MyProjectsModelListComponent,
     LabelBoxComponent,
-    AddToProjectComponent
+    AddToProjectComponent,
+    ComparisonTableComponent
   ],
   providers: [
     ChartServiceService
