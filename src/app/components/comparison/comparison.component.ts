@@ -5,7 +5,7 @@ import { ComparisonService } from '../../services/comparison/comparison.service'
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-comparison',
   templateUrl: './comparison.component.html',
-  styleUrls: ['./comparison.component.css']
+  styleUrls: ['./comparison.component.scss']
 })
 export class ComparisonComponent implements OnInit {
 
@@ -16,6 +16,7 @@ export class ComparisonComponent implements OnInit {
   sortBy: String = '';
 
   graph: any = {};
+  tables: any = {};
 
   constructor(private comparisonService: ComparisonService,
               private zone: NgZone,
@@ -30,6 +31,7 @@ export class ComparisonComponent implements OnInit {
       this.feature = response[0];
       this.filters = response[0].featureObjects[0];
       this.graph = response[1];
+      this.tables = response[2];
       this.zone.run(() => this.cd.markForCheck());
     });
   }
@@ -49,12 +51,12 @@ export class ComparisonComponent implements OnInit {
     this.comparisonService.getOneComparison(event.id).subscribe((response: any) => {
       response.map(obj => {
         if (obj.FeatureName === 'graph') {
-          console.log(obj);
           this.graph = Object.assign({}, obj);
-          console.log('graph', this.graph);
-          this.zone.run(() => this.cd.markForCheck());
+        } else if (obj.FeatureName === 'table') {
+          this.tables = Object.assign({}, obj);
         }
-      })
+        this.zone.run(() => this.cd.markForCheck());
+      });
     });
   }
 }

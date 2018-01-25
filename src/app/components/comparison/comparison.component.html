@@ -23,15 +23,14 @@
                   [sortBy]="sortBy">
                 </app-my-projects-list>
               </div>
-              <div *ngIf="child.type === 'graph'">
-                <app-chart-component
-                  [canvasId]="'canvas1'"
-                  [setChartData]="graph"
-                  [toFill]="false"></app-chart-component>
-              </div>
-              <!-- <app-chart-component *ngIf="child.type === 'graph'"
-              [canvasId]="'canvas1'"
-              [chartData]="graph"></app-chart-component> -->
+
+              <app-chart-component *ngIf="child.type === 'graph'"
+                [canvasId]="'canvas1'"
+                [setChartData]="graph"
+                [toFill]="false"></app-chart-component>
+
+              <app-comparison-table *ngIf="child.type === 'table'"
+                [tables]="tables" [filterSelected]="filterSelected"></app-comparison-table>
           </div>
         </div>
       </div>
