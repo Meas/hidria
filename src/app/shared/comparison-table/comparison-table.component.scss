@@ -1,5 +1,12 @@
 @import "../../../assets/partials/variables.scss";
 
+.outer-table {
+    float: left;
+    overflow-y: hidden;
+    width: 100%;
+    white-space: nowrap;
+    margin-top: 70px;
+}
 .one-table-header {
     float: left;
     width: 260px;
@@ -16,8 +23,9 @@
     }
 }
 .one-table-entry {
-    float: left;
+    display: inline-block;
     width: 160px;
+    position: relative;
     & > .first-row {
         font-size: 12px;
         display: block;
@@ -53,4 +61,15 @@
     & > img {
         width: 100%;
     }
+}
+.x-button-outer {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    width: 26px;
+    text-align: center;
+    color: #fff;
+    background: #000;
+    font-size: 20px;
+    cursor: pointer;
 }

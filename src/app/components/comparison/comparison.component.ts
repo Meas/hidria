@@ -1,5 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, NgZone } from '@angular/core';
 import { ComparisonService } from '../../services/comparison/comparison.service';
+import swal, { SweetAlertOptions } from 'sweetalert2';
+import * as _ from 'lodash';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -58,5 +60,67 @@ export class ComparisonComponent implements OnInit {
         this.zone.run(() => this.cd.markForCheck());
       });
     });
+  }
+  onDeleteFromComparison (id) {
+    const self = this;
+    swal({
+      title: 'Are you sure?',
+      text: 'This will delete the item from comparison!',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonClass: 'btn-danger',
+      confirmButtonText: 'Yes, delete it!'
+    }).then(function(e: any){
+      if (e.value) {
+        self.removeFromTable(id, self.tables);
+        self.removeFromGraph(id, self.graph);
+        swal({
+          title: 'Deleted!',
+          text: 'Item has been removed from comparison.',
+          type: 'success',
+          timer: 1500,
+          showConfirmButton: false
+        });
+      }
+    });
+  }
+  removeFromTable(id, object) {
+    for (const x in object) {
+      if (object.hasOwnProperty(x)) {
+        if (typeof object[x] === 'object') {
+          this.removeFromTable(id, object[x]);
+        } else if (object[x] === 'tab' && x === 'type') {
+          object.children = object.children.filter(child => {
+            return (child.type === 'header' || child.id !== id);
+          });
+        }
+      }
+    }
+    this.zone.run(() => this.cd.markForCheck());
+  }
+  removeFromGraph(id, object) {
+    let indexToRemove;
+    const tempGraph = _.cloneDeep(object);
+    tempGraph.ids = object.ids.filter((value, index) => {
+      if (value === id) {
+        indexToRemove = index;
+        return false;
+      }
+      return true;
+    });
+    tempGraph.yPoints = object.yPoints.filter((value, index) => {
+      return index !== indexToRemove;
+    });
+    tempGraph.labels = object.labels.filter((value, index) => {
+      return index !== indexToRemove;
+    });
+    tempGraph.borderColor = object.borderColor.filter((value, index) => {
+      return index !== indexToRemove;
+    });
+    tempGraph.links = object.links.filter((value, index) => {
+      return index !== indexToRemove;
+    });
+    this.graph = Object.assign({}, tempGraph);
+    this.zone.run(() => this.cd.markForCheck());
   }
 }

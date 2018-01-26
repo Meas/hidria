@@ -19,6 +19,10 @@
 			<div class="one-table-entry" *ngIf="entry.type == 'entry'">
 				<ng-container *ngFor="let row of entry.children">
 					<div class="one-table-row {{row.classUI}}" *ngIf="row.image">
+						<div class="x-button-outer" [style.background-color]="row.color"
+						  (click)="deleteFromComparison.emit(entry.id)">
+							<i class="fa fa-times" aria-hidden="true"></i>
+						</div>
 						<div class="image-outer">
 							<img src="{{row.image}}">
 						</div>

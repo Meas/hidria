@@ -30,7 +30,8 @@
                 [toFill]="false"></app-chart-component>
 
               <app-comparison-table *ngIf="child.type === 'table'"
-                [tables]="tables" [filterSelected]="filterSelected"></app-comparison-table>
+                [tables]="tables" [filterSelected]="filterSelected"
+                (deleteFromComparison)="onDeleteFromComparison($event)"></app-comparison-table>
           </div>
         </div>
       </div>
