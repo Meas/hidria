@@ -8,13 +8,16 @@
       <div class="project-name col-lg-6">
         {{item.name}}
       </div>
-      <div class="col-lg-6 project-created-outer">
+      <div class="col-lg-5 project-created-outer">
         <div class="project-created">
           Created
         </div>
         <div class="project-date">
           {{dateFromTimestamp(item.created)}}
         </div>
+      </div>
+      <div class="col-lg-1 outer-arrow">
+        <i class="fa fa-caret-right"></i>
       </div>
     </div>
   </div>

@@ -10,11 +10,12 @@
     height:35px;
 }
 .search-button, .sort-by-button {
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: #fff;
     background: #1D4686;
     height:35px;
-    line-height: 35px;
     opacity: 0.5;
     cursor: pointer;
     & img {
