@@ -37,7 +37,10 @@ header {
     background: linear-gradient(90deg, #87a0c0 50px, $main-color);
   }
   .track {
-    width: 100%;
+    position: absolute;
+    left: 0;
+    margin-top: 50px;
+    width: calc(50% - 500px);
     height: 30px;
     background: #87a0c0;
 

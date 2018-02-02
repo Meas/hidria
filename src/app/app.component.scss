@@ -7,17 +7,18 @@
     width: 100%;
 
     .sidebar {
-      width: 15%;
+      width: 100px;
+      position: absolute;
     }
     .main {
-      width: calc(100% - 10%);
-
+      width: calc( 100% - 150px);
+      margin-left: 150px;
     }
   }
 
 }
 .router-outlet{
-  width: 80%;
+  /* width: 80%; */
   margin-bottom: 20px;
 }
 .content-space{

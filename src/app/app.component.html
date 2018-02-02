@@ -5,7 +5,7 @@
     </div>
     <div class="main">
       <app-header (changeMetricsClick)="onChangeMetrics($event)" [measure]="measure" *ngIf="loggedIn"></app-header>
-      <div class="router-outlet">
+      <div class="router-outlet container">
         <div class="content-space">
           <router-outlet></router-outlet>
         </div>
