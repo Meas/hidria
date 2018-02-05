@@ -16,7 +16,7 @@
 	</div>
   <ng-container *ngFor="let download of downloads.children">
     <div class="col-lg outer-button" *ngIf="download.name == 'instructions'">
-      <a href="{{download.link}}" download>
+      <a href="{{download.link}}" download style="text-decoration: none;">
         <div class="button">
           <i class="fa fa-file-pdf-o icon" aria-hidden="true"></i>
           <span class="text">INSTRUCTIONS</span>
@@ -24,10 +24,10 @@
       </a>
     </div>
     <div class="col-lg outer-button" *ngIf="download.name == 'model3d'">
-      <a href="{{download.link}}" download>
+      <a href="{{download.link}}" download style="text-decoration: none;">
         <div class="button">
           <i class="fa fa-file-pdf-o icon" aria-hidden="true"></i>
-          <span class="text">3d</span>
+          <span class="text">3D</span>
         </div>
       </a>
     </div>
