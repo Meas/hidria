@@ -1,4 +1,5 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, NgZone, OnInit} from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { OperatingPointService } from '../../services/operating-point/operating-point.service';
 import * as _ from 'lodash';
 
@@ -20,19 +21,22 @@ export class OperatingPointComponent implements OnInit {
 
   constructor(private operatingPointService: OperatingPointService,
               private zone: NgZone,
-              private cd: ChangeDetectorRef) { }
+              private cd: ChangeDetectorRef,
+              private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.getItems();
   }
 
   getItems(): void {
-    this.operatingPointService.getItems().subscribe((response: any) => {
-      this.feature = response[0];
-      this.downloads = response[1];
-      this.addToProject = response[2];
-      this.addToComparison = response[3];
-      this.zone.run(() => this.cd.markForCheck());
+    this.activatedRoute.params.subscribe((param: Params) => {
+      this.operatingPointService.getItems().subscribe((response: any) => {
+        this.feature = response[0];
+        this.downloads = response[1];
+        this.addToProject = response[2];
+        this.addToComparison = response[3];
+        this.zone.run(() => this.cd.markForCheck());
+      });
     });
   }
 
