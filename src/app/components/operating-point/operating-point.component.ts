@@ -30,7 +30,7 @@ export class OperatingPointComponent implements OnInit {
 
   getItems(): void {
     this.activatedRoute.params.subscribe((param: Params) => {
-      this.operatingPointService.getItems().subscribe((response: any) => {
+      this.operatingPointService.getCustomItems(param.id).subscribe((response: any) => {
         this.feature = response[0];
         this.downloads = response[1];
         this.addToProject = response[2];
