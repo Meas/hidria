@@ -1,13 +1,13 @@
 <div class="button-item">
   <button class="button-box title" *ngIf="title">
-    {{title}}
+    {{title | translate}}
   </button>
   <button class="button-box" type="button"
           (click)="filterSelected.emit(0)"
           [ngClass]="{'button-box-active': 0 === activeFilter}"
           *ngIf="showAllModels">
     <span class="blue-box b-box-lit-1">{{totalModels()}}</span>
-    All Models
+    {{'TRANSLATE.ALL-MODELS' | translate}}
   </button>
   <button *ngFor="let filter of filters; let i = index" class="button-box" type="button"
           (click)="filterSelected.emit(filter.id)"
@@ -15,6 +15,6 @@
     <span class="blue-box b-box-lit-{{i + 1}}" *ngIf="filter.subCategories">
       {{filter.subCategories.length}}
     </span>
-    {{filter.name}}
+    {{filter.name | translate}}
   </button>
 </div>

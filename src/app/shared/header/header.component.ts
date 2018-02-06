@@ -9,6 +9,8 @@ export class HeaderComponent {
 
   @Input() measure;
   @Output() changeMetricsClick: EventEmitter<string> = new EventEmitter();
+  @Output() changeLanguage: EventEmitter<string> = new EventEmitter();
+  @Input() selectedLanguage;
 
   constructor() { }
 

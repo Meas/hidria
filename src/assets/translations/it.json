@@ -1,0 +1,14 @@
+{
+	"TRANSLATE": {
+		"OPERATING-POINT": "Punto Operativo",
+		"STATISTICS": "Statistica",
+		"USER": "Utente",
+		"HISTORY": "Storia",
+        "HELP": "Aiuto",
+        "REGISTER": "Registrare",
+        "LOGIN": "Accesso",
+        "ALL-MODELS": "Tutti i Modelli",
+        "MY-PROJECTS": "I Miei Progetti",
+        "COMPARISONS": "I Confronti"
+	}
+}

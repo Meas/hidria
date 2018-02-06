@@ -4,14 +4,14 @@
 			<div class="one-table-header" *ngIf="entry.type == 'header'">
 				<ng-container *ngFor="let row of entry.children">
 					<div class="one-table-row {{row.classUI}}" *ngIf="!row.short">
-						{{row.name}}
+						{{row.name | translate}}
 					</div>
 					<div class="one-table-row {{row.classUI}}" *ngIf="row.short">
 						<div class="col-lg-10">
-							{{row.name}}
+							{{row.name | translate}}
 						</div>
 						<div class="col-lg-2 right-text">
-							{{row.short}}
+							{{row.short | translate}}
 						</div>
 					</div>
 				</ng-container>

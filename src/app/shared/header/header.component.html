@@ -9,28 +9,34 @@
       <div class="section-content">
 
         <ul class="nav-links left">
-          <li class="nav-link"><a class="link-left">STATISTICS</a></li>
-          <li class="nav-link"><a class="link-left">USER</a></li>
+          <li class="nav-link"><a class="link-left">{{'TRANSLATE.STATISTICS' | translate}}</a></li>
+          <li class="nav-link"><a class="link-left">{{'TRANSLATE.USER' | translate}}</a></li>
         </ul>
 
         <ul class="nav-links right">
-          <li class="nav-link"><a class="link" href="">HISTORY</a></li>
-          <li class="nav-link"><a class="link" href="">HELP</a></li>
-          <li class="nav-link"><a class="link" href="">REGISTER / LOGIN</a></li>
+          <li class="nav-link"><a class="link" href="">{{'TRANSLATE.HISTORY' | translate}}</a></li>
+          <li class="nav-link"><a class="link" href="">{{'TRANSLATE.HELP' | translate}}</a></li>
+          <li class="nav-link"><a class="link" href="">{{'TRANSLATE.REGISTER' | translate}}
+             / {{'TRANSLATE.LOGIN' | translate}}</a></li>
           <li class="nav-link measures">
             <button [ngClass]="measure === 'm' ? 'meters-active' : ''" (click)="changeMetricsClick.emit('m')">m</button>
             <button [ngClass]="measure === 'ft' ? 'feets-active' : ''" (click)="changeMetricsClick.emit('ft')">ft</button>
           </li>
-          <li class="nav-link languages">
+          <!-- <li class="nav-link languages">
             <ul class="languagepicker roundborders">
-              <a href="#en">
+              <div href="#en" (click)="changeLanguage.emit('en')">
                 <li><img src="assets/images/flag-gb.png"/>EN</li>
-              </a>
-              <a href="#it">
+              </div>
+              <div href="#it" (click)="changeLanguage.emit('it')">
                 <li><img src="assets/images/flag-italy.png"/>IT</li>
-              </a>
+              </div>
             </ul>
-          </li>
+          </li> -->
+          <select class="nav-links right select-language" [ngModel]="selectedLanguage"
+          (ngModelChange)="changeLanguage.emit($event)">
+            <option value="en"> EN </option>
+            <option value="it"> IT </option>
+          </select>
         </ul>
       </div>
 

@@ -3,7 +3,7 @@
     <table>
       <thead>
         <tr *ngFor="let item of table.children.slice(0,1)">
-          <th colspan="2" >{{item.name}}</th>
+          <th colspan="2" >{{item.name | translate}}</th>
         </tr>
       </thead>
       <tbody>

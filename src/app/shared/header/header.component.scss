@@ -65,6 +65,7 @@ header {
   font-size: 12px;
   padding: 0;
   margin: 20px 0;
+  text-transform: uppercase;
 
   .nav-link {
     float: left;
@@ -147,11 +148,11 @@ header {
       height: 81px;
     }
 
-    a {
+    div {
       color: #000;
-      text-decoration: none;
+      cursor: pointer;
     }
-    a:first-child li {
+    div:first-child li {
       border: none;
       line-height: 1;
       background: #FFF !important;
@@ -184,4 +185,12 @@ header {
     */
     height: 245px;
   }
+  .pointer {
+    cursor: pointer;
+  }
+}
+.select-language {
+  width: 80px;
+  height: 21px;
+  margin-top: 5px;
 }

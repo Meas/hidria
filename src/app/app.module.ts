@@ -1,13 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NvD3Module } from 'ng2-nvd3';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { AppComponent } from './app.component';
 import { CatalogueComponent } from './components/catalogue/catalogue.component';
@@ -40,6 +42,10 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
 import { MyProjectsComponent } from './components/my-projects/my-projects.component';
 import { ComparisonComponent } from './components/comparison/comparison.component';
 
+/* export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/translations/', '.json');
+} */
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,7 +71,14 @@ import { ComparisonComponent } from './components/comparison/comparison.componen
     NvD3Module,
     HttpClientModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    /* TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: (createTranslateLoader),
+          deps: [HttpClient]
+      }
+    }) */
   ],
   providers: [
     MainService,
@@ -79,7 +92,7 @@ import { ComparisonComponent } from './components/comparison/comparison.componen
     SearchByCodeService,
     CustomNotificationsService,
     MyProjectsService,
-    ComparisonService
+    ComparisonService,
   ],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

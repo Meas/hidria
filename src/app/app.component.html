@@ -4,7 +4,11 @@
       <app-sidebar></app-sidebar>
     </div>
     <div class="main">
-      <app-header (changeMetricsClick)="onChangeMetrics($event)" [measure]="measure" *ngIf="loggedIn"></app-header>
+      <app-header (changeMetricsClick)="onChangeMetrics($event)" 
+        (changeLanguage)="onChangeLanguage($event)"
+        [selectedLanguage]="selectedLanguage"
+        [measure]="measure" 
+        *ngIf="loggedIn"></app-header>
       <div class="router-outlet container">
         <div class="content-space">
           <router-outlet></router-outlet>

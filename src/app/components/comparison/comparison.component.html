@@ -9,7 +9,7 @@
           <div *ngFor="let child of container.children" [class]="child.classUI">
               <app-filters *ngIf="child.type === 'filters'"
               [filters]="child.children" [activeFilter]="filterSelected" (filterSelected)="onFilterSelected($event)"
-              [showAllModels]="false" [title]="'Comparisons'"></app-filters>
+              [showAllModels]="false" [title]="'TRANSLATE.COMPARISONS'"></app-filters>
             
               <app-search-my-projects *ngIf="child.type === 'search'"
                 [searchTerm]="searchTerm" 

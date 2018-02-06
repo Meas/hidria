@@ -4,6 +4,9 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ng2AutoCompleteModule } from 'ng2-auto-complete';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import {HeaderComponent} from './header/header.component';
 import { FiltersComponent } from './filters/filters.component';
@@ -39,6 +42,10 @@ import { ComparisonTableComponent } from './comparison-table/comparison-table.co
 import { FilterByStringPipe } from '../pipes/filter-by-string/filter-by-string.pipe';
 import { SortByStringPipe } from '../pipes/sort-by-string/sort-by-string.pipe';
 
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/translations/', '.json');
+}
+
 @NgModule({
   imports: [
     CommonModule,
@@ -46,7 +53,14 @@ import { SortByStringPipe } from '../pipes/sort-by-string/sort-by-string.pipe';
     FormsModule,
     Ng2AutoCompleteModule,
     SimpleNotificationsModule.forRoot(),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: (createTranslateLoader),
+          deps: [HttpClient]
+      }
+    })
   ],
   declarations: [
     HeaderComponent,
@@ -110,7 +124,8 @@ import { SortByStringPipe } from '../pipes/sort-by-string/sort-by-string.pipe';
     MyProjectsModelListComponent,
     LabelBoxComponent,
     AddToProjectComponent,
-    ComparisonTableComponent
+    ComparisonTableComponent,
+    TranslateModule
   ],
   providers: [
     ChartServiceService
