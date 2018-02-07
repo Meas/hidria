@@ -20,6 +20,16 @@
         "ADDRESS": "Indirizzo",
         "PURCHASER": "Acquirente",
         "PROJECTANT": "Projectant",
-        "BUSINESS": "Attivita Commerciale"
+        "BUSINESS": "Attivita Commerciale",
+        "SEARCH-BY-CODE": "Cerca Per Codice",
+        "CHOICE-FROM-CATALOGUE": "Scelta Dal Catalogo",
+        "SELECTION-BY-PARAMETER": "Selezione Per Parametro",
+        "FAN-CODE": "Codice Della Ventola",
+        "SEARCH": "cerca",
+        "SORT-BY": "Ordina Per",
+        "NAME-ASCENDING": "Nome Ascendente",
+        "NAME-DESCENDING": "Nome Discendente",
+        "DATE-NEWEST": "Data (prima la più recente)",
+        "DATE-OLDEST": "Data (prima la più vecchia)"
 	}
 }

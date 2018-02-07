@@ -20,6 +20,16 @@
         "ADDRESS": "Address",
         "PURCHASER": "Purchaser",
         "PROJECTANT": "Projectant",
-        "BUSINESS": "Business"
+        "BUSINESS": "Business",
+        "SEARCH-BY-CODE": "Search By Code",
+        "CHOICE-FROM-CATALOGUE": "Choice from Catalogue",
+        "SELECTION-BY-PARAMETER": "Selection By Parameter",
+        "FAN-CODE": "Fan Code",
+        "SEARCH": "search",
+        "SORT-BY": "Sort By",
+        "NAME-ASCENDING": "Name Ascending",
+        "NAME-DESCENDING": "Name Descending",
+        "DATE-NEWEST": "Date (newest first)",
+        "DATE-OLDEST": "Date (oldest first)"
     }
 }

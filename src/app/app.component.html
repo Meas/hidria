@@ -13,7 +13,9 @@
         <div class="content-space">
           <router-outlet></router-outlet>
         </div>
-        <app-footer *ngIf="loggedIn"></app-footer>
+        <div class="footer">
+          <app-footer *ngIf="loggedIn"></app-footer>
+        </div>
         <app-notifications-component></app-notifications-component>
       </div>
     </div>
