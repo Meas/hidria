@@ -1,4 +1,5 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
+import swal, { SweetAlertOptions } from 'sweetalert2';
 
 @Component({
   selector: 'app-my-projects-model-list',
@@ -7,10 +8,35 @@ import {Component, OnInit, Input} from '@angular/core';
 })
 export class MyProjectsModelListComponent implements OnInit {
 
-  @Input() selectedProject;
+  @Input() modelList;
+  @Output() removeModel: EventEmitter<any> = new EventEmitter;
+
   constructor() {
   }
 
   ngOnInit() {
+  }
+
+  deleteItem(id) {
+    const self = this;
+    swal({
+      title: 'Are you sure?',
+      text: 'This will remove the model from this project!',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonClass: 'btn-danger',
+      confirmButtonText: 'Yes, delete it!'
+    }).then(function(e: any){
+      if (e.value) {
+        self.removeModel.emit(id);
+        swal({
+          title: 'Deleted!',
+          text: 'Model successfully removed!.',
+          type: 'success',
+          timer: 1500,
+          showConfirmButton: false
+        });
+      }
+    });
   }
 }

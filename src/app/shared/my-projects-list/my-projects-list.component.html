@@ -1,4 +1,4 @@
-<div class="list-outer" *ngFor="let item of projectsList.children | 
+<div class="list-outer" *ngFor="let item of projectsList | 
   filterByString:['name', searchTerm] | sortByString:sortBy">
   <div class="one-project" (click)="selectProject.emit(item)">
     <div class="entry-number">

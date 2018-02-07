@@ -15,4 +15,10 @@ export class MyProjectsService {
   getItems(): Observable<any> {
     return this.service.get('my-projects');
   }
+  getProjects(): Observable<any> {
+    return this.service.get('users/1/projects');
+  }
+  getModels(id): Observable<any> {
+    return this.service.get(`projects/${id}`);
+  }
 }

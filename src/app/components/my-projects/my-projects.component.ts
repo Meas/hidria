@@ -13,6 +13,7 @@ export class MyProjectsComponent implements OnInit {
   searchTerm: String = '';
   selectedProject: {};
   sortBy: String = '';
+  modelList: any = [];
 
   constructor(public myProjectsService: MyProjectsService) { }
 
@@ -21,10 +22,10 @@ export class MyProjectsComponent implements OnInit {
   }
 
   getItems(): void {
-    this.myProjectsService.getItems().subscribe((response: any) => {
+    /* this.myProjectsService.getItems().subscribe((response: any) => {
       this.feature = response;
       this.findByType(this.feature, 'project-list', this.selectedProject);
-    });
+    }); */
   }
 
 
@@ -34,10 +35,13 @@ export class MyProjectsComponent implements OnInit {
 
   onSelectProject(event): void {
     this.selectedProject = Object.assign({}, event);
+    this.myProjectsService.getModels(event.id).subscribe((response: any) => {
+      this.modelList = response;
+    });
   }
 
   findByType(object, type, assignee): void {
-    for (const x in object) {
+    /* for (const x in object) {
       if (object.hasOwnProperty(x)) {
         if (typeof object[x] === 'object') {
           this.findByType(object[x], type, assignee);
@@ -46,10 +50,18 @@ export class MyProjectsComponent implements OnInit {
           this.selectedProject = Object.assign({}, object.children[0]);
         }
       }
-    }
+    } */
   }
 
   onSortChange(event): void {
     this.sortBy = event;
+  }
+
+  onRemoveModel(event): void {
+    console.log(event);
+  }
+
+  onDeleteProject(event): void {
+    console.log(event);
   }
 }

@@ -9,6 +9,17 @@
         "LOGIN": "Accesso",
         "ALL-MODELS": "Tutti i Modelli",
         "MY-PROJECTS": "I Miei Progetti",
-        "COMPARISONS": "I Confronti"
+        "COMPARISONS": "I Confronti",
+        "MODEL": "Modello",
+        "ITEMS": "Elementi",
+        "NOTE": "Nota",
+        "POSITION-NUMBER": "Numero Di Posizione",
+        "DELETE": "Cancella",
+        "PROJECT": "Progetto",
+        "CONSTRUCTION": "Costruzione",
+        "ADDRESS": "Indirizzo",
+        "PURCHASER": "Acquirente",
+        "PROJECTANT": "Projectant",
+        "BUSINESS": "Attivita Commerciale"
 	}
 }

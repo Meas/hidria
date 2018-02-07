@@ -9,6 +9,17 @@
         "LOGIN": "Login",
         "ALL-MODELS": "All Models",
         "MY-PROJECTS": "My Projects",
-        "COMPARISONS": "Comparisons"
+        "COMPARISONS": "Comparisons",
+        "MODEL": "Model",
+        "ITEMS": "Items",
+        "NOTE": "Note",
+        "POSITION-NUMBER": "Position Number",
+        "DELETE": "Delete",
+        "PROJECT": "Project",
+        "CONSTRUCTION": "Construction",
+        "ADDRESS": "Address",
+        "PURCHASER": "Purchaser",
+        "PROJECTANT": "Projectant",
+        "BUSINESS": "Business"
     }
 }
