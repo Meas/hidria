@@ -41,7 +41,7 @@
                 (sortChange)="onSortChange($event)"></app-search-my-projects>
         </div>
         <div class="list-outer">
-          <app-my-projects-list [projectsList]="child" 
+          <app-my-projects-list [projectsList]="projectsList" 
                   (selectProject)="onSelectProject($event)"
                   [searchTerm]="searchTerm"
                   [sortBy]="sortBy">

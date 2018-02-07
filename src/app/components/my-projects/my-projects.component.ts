@@ -14,6 +14,7 @@ export class MyProjectsComponent implements OnInit {
   selectedProject: {};
   sortBy: String = '';
   modelList: any = [];
+  projectsList: any = [];
 
   constructor(public myProjectsService: MyProjectsService) { }
 
@@ -26,6 +27,10 @@ export class MyProjectsComponent implements OnInit {
       this.feature = response;
       this.findByType(this.feature, 'project-list', this.selectedProject);
     }); */
+    this.myProjectsService.getProjects().subscribe((response: any) => {
+      this.projectsList = response;
+      this.onSelectProject(response[0]);
+    });
   }
 
 
@@ -36,7 +41,11 @@ export class MyProjectsComponent implements OnInit {
   onSelectProject(event): void {
     this.selectedProject = Object.assign({}, event);
     this.myProjectsService.getModels(event.id).subscribe((response: any) => {
-      this.modelList = response;
+      if (response.constructor === Array) {
+        this.modelList = response;
+      } else {
+        this.modelList = [];
+      }
     });
   }
 
@@ -57,11 +66,25 @@ export class MyProjectsComponent implements OnInit {
     this.sortBy = event;
   }
 
-  onRemoveModel(event): void {
-    console.log(event);
+  onRemoveModel(id): void {
+    this.modelList = this.modelList.filter(model => {
+      return model.id !== id;
+    });
   }
 
-  onDeleteProject(event): void {
-    console.log(event);
+  onDeleteProject(id): void {
+    this.projectsList = this.projectsList.filter(project => {
+      return project.id !== id;
+    });
+    if (this.selectedProject['id'] === id) {
+      this.selectedProject = this.projectsList[0] ?  this.projectsList[0] : {};
+      this.myProjectsService.getModels(this.selectedProject['id']).subscribe((response: any) => {
+        if (response.constructor === Array) {
+          this.modelList = response;
+        } else {
+          this.modelList = [];
+        }
+      });
+    }
   }
 }

@@ -1,6 +1,9 @@
 import { HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
+import {CustomNotificationsService} from '../notifications/notifications.service';
 
+@Injectable()
 export class HelperService {
 
   /**
@@ -10,6 +13,7 @@ export class HelperService {
    * @param queryParams
    * @returns {string}
    */
+  constructor(private notifications: CustomNotificationsService) {}
   generateRoute(route: string, queryParams?: {}): string {
 
     const rootUrl = environment.api;
@@ -44,6 +48,9 @@ export class HelperService {
    * @returns response
    */
   checkDataValidity(response): any {
+    if (response.body.notification) {
+      this.notifications.notificationByType(response.body.notification);
+    }
     return response.body;
   }
 

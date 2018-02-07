@@ -10,8 +10,8 @@ import { MyProjectsService } from '../../services/my-projects/my-projects.servic
 })
 export class MyProjectsListComponent implements OnInit {
 
-  /* @Input() projectsList: any; */
-  projectsList: any;
+  @Input() projectsList: any;
+  /* projectsList: any; */
   @Input() searchTerm;
   @Input() sortBy;
   @Output() selectProject: EventEmitter<string> = new EventEmitter;
@@ -20,10 +20,6 @@ export class MyProjectsListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.myProjectsService.getProjects().subscribe((response: any) => {
-      this.projectsList = response;
-      this.selectProject.emit(response[0]);
-    });
   }
 
   dateFromTimestamp(timestamp) {

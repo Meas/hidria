@@ -6,6 +6,7 @@ export class CustomNotificationsService {
 
   errorEmit: EventEmitter<string> = new EventEmitter();
   successEmit: EventEmitter<string> = new EventEmitter();
+  customEmit: EventEmitter<any> = new EventEmitter();
   constructor() { }
 
   getError(error) {
@@ -15,6 +16,10 @@ export class CustomNotificationsService {
   }
   getSuccess(message) {
     this.successEmit.emit(message);
+  }
+
+  notificationByType(notification) {
+    this.customEmit.emit(notification);
   }
 
 

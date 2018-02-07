@@ -17,7 +17,7 @@
                 (sortChange)="onSortChange($event)"></app-search-my-projects>
 
               <div class="list-outer" *ngIf="child.type === 'comparison-list'">
-                <app-my-projects-list [projectsList]="child" 
+                <app-my-projects-list [projectsList]="child.children" 
                   (selectProject)="onSelectComparison($event)"
                   [searchTerm]="searchTerm"
                   [sortBy]="sortBy">

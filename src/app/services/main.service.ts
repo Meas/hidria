@@ -33,7 +33,7 @@ export class MainService {
     })
       .map((res: HttpResponse<any>) => this.helper.checkDataValidity(res))
       .catch((err: any) => {
-        this.notifications.getError(err);
+        /* this.notifications.getError(err); */
         return Observable.of(err.error);
       });
   }
