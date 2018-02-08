@@ -55,7 +55,8 @@
         </div>
         <div>
           <app-my-projects-model-list [modelList]="modelList"
-            (removeModel)="onRemoveModel($event)"></app-my-projects-model-list>
+            (removeModel)="onRemoveModel($event)"
+            (saveNoteEmitter)="onNoteSave($event)"></app-my-projects-model-list>
         </div>
       </div>
     </div>

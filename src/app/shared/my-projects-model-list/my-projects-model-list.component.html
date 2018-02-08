@@ -54,8 +54,10 @@
   <div class="col-lg-1 entry-box">
     1
   </div>
-  <div class="col-lg-2 entry-box">
-    
+  <div class="col-lg-2 entry-box textarea-outer">
+    <textarea on-focusout="saveNote(textArea, model.id)" #textArea
+      (click)="editNote(textArea)"
+      class="disabled">{{model.note}}</textarea>
   </div>
   <div class="col-lg-1 entry-box cursor-pointer" (click)="deleteItem(model.id)">
     <img src="assets/icons/delete.png">

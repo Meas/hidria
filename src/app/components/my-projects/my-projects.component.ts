@@ -87,4 +87,11 @@ export class MyProjectsComponent implements OnInit {
       });
     }
   }
+  onNoteSave(note) {
+    // note[0] => message, note[1] => modelId
+    this.myProjectsService.saveNote(note[0], note[1], this.selectedProject['id'])
+    .subscribe((response: any) => {
+      console.log(response);
+    });
+  }
 }

@@ -18,7 +18,17 @@ export class MyProjectsService {
   getProjects(): Observable<any> {
     return this.service.get('users/1/projects');
   }
+  deleteProject(projectId): Observable<any> {
+    return this.service.delete(`projects/${projectId}`);
+  }
   getModels(id): Observable<any> {
     return this.service.get(`projects/${id}`);
+  }
+  deleteModel(projectId, modelId): Observable<any> {
+    return this.service.delete(`project/${projectId}/models/${modelId}/notes`);
+  }
+  saveNote(note, modelId, projectId) {
+    console.log(note, modelId, projectId);
+    return this.service.post(`projects/${projectId}/models/${modelId}/notes`, note);
   }
 }

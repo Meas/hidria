@@ -32,6 +32,10 @@
               </div>
             </ul>
           </li> -->
+          <li class="nav-link fun-with-flags">
+            <img src="assets/images/flag-gb.png" *ngIf="selectedLanguage=='en'">
+            <img src="assets/images/flag-italy.png" *ngIf="selectedLanguage=='it'">
+          </li>
           <select class="nav-links right select-language" [ngModel]="selectedLanguage"
           (ngModelChange)="changeLanguage.emit($event)">
             <option value="en"> EN </option>
