@@ -7,7 +7,8 @@ import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 })
 export class ComparisonTableComponent implements OnInit {
 
-  @Input() tables;
+  @Input() headers;
+  @Input() modelList;
   @Input() filterSelected;
   @Output() deleteFromComparison: EventEmitter<any> = new EventEmitter();
 

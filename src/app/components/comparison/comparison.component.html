@@ -1,39 +1,36 @@
 <div>
-  <div class="loading-box" *ngIf="!feature['FeatureName']">
+  <div class="loading-box" *ngIf="!graph['xPoints']">
     <app-loading></app-loading>
   </div>
-  <div *ngIf="feature['FeatureName'] !== 0">
+  <div *ngIf="graph['xPoints']">
     <div class="row no-gutters">
-      <div *ngFor="let container of feature.featureObjects" [class]="container.classUI">
-        <div class="row">
-          <div *ngFor="let child of container.children" [class]="child.classUI">
-              <app-filters *ngIf="child.type === 'filters'"
-              [filters]="child.children" [activeFilter]="filterSelected" (filterSelected)="onFilterSelected($event)"
-              [showAllModels]="false" [title]="'TRANSLATE.COMPARISONS'"></app-filters>
-            
-              <app-search-my-projects *ngIf="child.type === 'search'"
-                [searchTerm]="searchTerm" 
-                (nameChange)="onNameChange($event)"
-                (sortChange)="onSortChange($event)"></app-search-my-projects>
-
-              <div class="list-outer" *ngIf="child.type === 'comparison-list'">
-                <app-my-projects-list [projectsList]="child.children" 
-                  (selectProject)="onSelectComparison($event)"
-                  [searchTerm]="searchTerm"
-                  [sortBy]="sortBy">
-                </app-my-projects-list>
-              </div>
-
-              <app-chart-component *ngIf="child.type === 'graph'"
-                [canvasId]="'canvas1'"
-                [setChartData]="graph"
-                [toFill]="false"></app-chart-component>
-
-              <app-comparison-table *ngIf="child.type === 'table'"
-                [tables]="tables" [filterSelected]="filterSelected"
-                (deleteFromComparison)="onDeleteFromComparison($event)"></app-comparison-table>
+      <app-filters class="col-lg-12"
+      [filters]="headers" [activeFilter]="filterSelected" (filterSelected)="onFilterSelected($event)"
+      [showAllModels]="false" [title]="'TRANSLATE.COMPARISONS'"></app-filters>
+      <div class="col-lg-4">
+        <app-search-my-projects
+          [searchTerm]="searchTerm" 
+          (nameChange)="onNameChange($event)"
+          (sortChange)="onSortChange($event)"></app-search-my-projects>
+        <div class="list-outer">
+            <app-my-projects-list [projectsList]="comparisonList" 
+              (selectProject)="onSelectComparison($event)"
+              [searchTerm]="searchTerm"
+              [sortBy]="sortBy">
+            </app-my-projects-list>
           </div>
-        </div>
+      </div>
+      <div class="col-lg-8">
+        <app-chart-component
+          [canvasId]="'canvas1'"
+          [setChartData]="graph"
+          [toFill]="false"></app-chart-component>
+      </div>
+      <div class="col-lg-12">
+        <app-comparison-table
+          [headers]="headers" [filterSelected]="filterSelected"
+          [modelList]="modelList"
+          (deleteFromComparison)="onDeleteFromComparison($event)"></app-comparison-table>
       </div>
     </div>
   </div>

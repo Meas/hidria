@@ -1,5 +1,59 @@
-<ng-container *ngFor="let table of tables.children">
-	<div class="outer-table" *ngIf="table.id === filterSelected">
+<ng-container *ngFor="let header of headers">
+	<div class="outer-table" *ngIf="header.id === filterSelected">
+		<div class="one-table-header">
+			<div class="one-table-row first-row">
+				{{header.name | translate}}
+			</div>
+			<ng-container *ngFor="let entry of header.entries">
+				<div class="one-table-row" *ngIf="!entry.short">
+					{{entry.name | translate}}
+				</div>
+				<div class="one-table-row" *ngIf="entry.short">
+					<div class="col-lg-10">
+						{{entry.name | translate}}
+					</div>
+					<div class="col-lg-2 right-text">
+						{{entry.short | translate}}
+					</div>
+				</div>
+			</ng-container>
+		</div>
+		<div class="one-table-entry" *ngFor="let model of modelList">
+			<div class="one-table-row first-row">
+				<div class="x-button-outer" [style.background-color]="model.color"
+					(click)="deleteFromComparison.emit(model.id)">
+					<i class="fa fa-times" aria-hidden="true"></i>
+				</div>
+				<div class="image-outer">
+					<img src="{{model.image}}">
+				</div>
+				<div>{{model.name}}</div> 
+			</div>
+			<ng-container *ngFor="let entry of model.data">
+				<ng-container *ngIf="entry.id == filterSelected">
+					<div class="one-table-row" *ngFor="let value of entry.values">
+						{{value}}
+					</div>
+				</ng-container>
+			</ng-container>
+			<!-- <ng-container *ngFor="let row of entry.children">
+				<div class="one-table-row {{row.classUI}}" *ngIf="row.image">
+					<div class="x-button-outer" [style.background-color]="row.color"
+						(click)="deleteFromComparison.emit(entry.id)">
+						<i class="fa fa-times" aria-hidden="true"></i>
+					</div>
+					<div class="image-outer">
+						<img src="{{row.image}}">
+					</div>
+					<div>{{row.name}}</div> 
+				</div>
+				<div class="one-table-row {{row.classUI}}" *ngIf="!row.image">
+					{{row.value}}
+				</div>
+			</ng-container> -->
+		</div>	
+	</div>
+	<!-- <div class="outer-table" *ngIf="table.id === filterSelected">
 		<ng-container *ngFor="let entry of table.children">
 			<div class="one-table-header" *ngIf="entry.type == 'header'">
 				<ng-container *ngFor="let row of entry.children">
@@ -34,7 +88,7 @@
 				</ng-container>
 			</div>
 		</ng-container>
-	</div>
+	</div> -->
 </ng-container>
 <!-- <div class="outer-table">
 	<div class="one-table-header">

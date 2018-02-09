@@ -30,6 +30,20 @@
         "NAME-ASCENDING": "Nome Ascendente",
         "NAME-DESCENDING": "Nome Discendente",
         "DATE-NEWEST": "Data (prima la più recente)",
-        "DATE-OLDEST": "Data (prima la più vecchia)"
+        "DATE-OLDEST": "Data (prima la più vecchia)",
+        "NOMINAL-PARAMETERS": "Parametri nominali",
+        "AIR-FLOW": "Flusso d'aria",
+        "STATIC-PRESSURE": "Pressione statica",
+        "DYNAMIC-PRESSURE": "Pressione dinamica",
+        "TOTAL-PRESSURE": "Pressione totale",
+        "FLOW-RATE": "Portata",
+        "ABSORBED-POWER": "Potere assorbito",
+        "VOLTAGE": "Voltaggio",
+        "ABSORBED-CURRENT": "Corrente assorbita",
+        "SPEED": "Velocità",
+        "SOUND-PRESSURE-LEVEL": "Livello di pressione sonora",
+        "SOUND-POWER-LEVEL": "Livello di potenza sonora",
+        "POWER-COEFICIENT": "Potere coeficient",
+        "STATIC-EFFICIENCY": "Efficienza statica"
 	}
 }

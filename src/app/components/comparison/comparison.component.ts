@@ -12,13 +12,15 @@ import * as _ from 'lodash';
 export class ComparisonComponent implements OnInit {
 
   feature: any = {};
-  filters: any = {};
+  filters: any = [];
   filterSelected = 1;
   searchTerm: String = '';
   sortBy: String = '';
 
   graph: any = {};
-  tables: any = {};
+  headers: any = [];
+  modelList: any = [];
+  comparisonList: any = [];
 
   constructor(private comparisonService: ComparisonService,
               private zone: NgZone,
@@ -26,14 +28,45 @@ export class ComparisonComponent implements OnInit {
 
   ngOnInit() {
     this.getItems();
+    this.getTabs();
+    this.getComparisonList();
+  }
+
+  getTabs() {
+    this.comparisonService.getTabs().subscribe((response: any) => {
+      this.headers = response;
+      this.zone.run(() => this.cd.markForCheck());
+    });
+  }
+
+  getComparisonList() {
+    this.comparisonService.getComparisonList(1).subscribe((response: any) => {
+      this.comparisonList = response;
+      this.getModelList(response[0].id);
+      this.getGraph(response[0].id);
+    });
+  }
+
+  getModelList(comparisonId = 1) {
+    this.comparisonService.getModelList(comparisonId).subscribe((response: any) => {
+      this.modelList = response;
+      this.zone.run(() => this.cd.markForCheck());
+    });
+  }
+
+  getGraph(comparisonId = 1) {
+    this.comparisonService.getGraph(comparisonId).subscribe((response: any) => {
+      this.graph = response;
+      this.zone.run(() => this.cd.markForCheck());
+    });
   }
 
   getItems() {
     this.comparisonService.getItems().subscribe((response: any) => {
       this.feature = response[0];
-      this.filters = response[0].featureObjects[0];
-      this.graph = response[1];
-      this.tables = response[2];
+      /* this.filters = response[0].featureObjects[0]; */
+      /* this.graph = response[1]; */
+      /* this.tables = response[2]; */
       this.zone.run(() => this.cd.markForCheck());
     });
   }
@@ -50,16 +83,8 @@ export class ComparisonComponent implements OnInit {
   }
 
   onSelectComparison(event) {
-    this.comparisonService.getOneComparison(event.id).subscribe((response: any) => {
-      response.map(obj => {
-        if (obj.FeatureName === 'graph') {
-          this.graph = Object.assign({}, obj);
-        } else if (obj.FeatureName === 'table') {
-          this.tables = Object.assign({}, obj);
-        }
-        this.zone.run(() => this.cd.markForCheck());
-      });
-    });
+    this.getModelList(event);
+    this.getGraph(event);
   }
   onDeleteFromComparison (id) {
     const self = this;
@@ -72,7 +97,7 @@ export class ComparisonComponent implements OnInit {
       confirmButtonText: 'Yes, delete it!'
     }).then(function(e: any){
       if (e.value) {
-        self.removeFromTable(id, self.tables);
+        self.removeFromTable(id);
         self.removeFromGraph(id, self.graph);
         swal({
           title: 'Deleted!',
@@ -84,18 +109,8 @@ export class ComparisonComponent implements OnInit {
       }
     });
   }
-  removeFromTable(id, object) {
-    for (const x in object) {
-      if (object.hasOwnProperty(x)) {
-        if (typeof object[x] === 'object') {
-          this.removeFromTable(id, object[x]);
-        } else if (object[x] === 'tab' && x === 'type') {
-          object.children = object.children.filter(child => {
-            return (child.type === 'header' || child.id !== id);
-          });
-        }
-      }
-    }
+  removeFromTable(id) {
+    this.modelList = this.modelList.filter(model => model.id !== id);
     this.zone.run(() => this.cd.markForCheck());
   }
   removeFromGraph(id, object) {

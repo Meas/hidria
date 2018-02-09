@@ -23,4 +23,16 @@ export class ComparisonService {
     // ToDo format data from event and send request appropriately
     return this.service.get('comparison');
   }
+  getTabs(): Observable<any> {
+    return this.service.get('comparisons/tabs');
+  }
+  getModelList(comparisonId): Observable<any> {
+    return this.service.get(`users/comparisons/models/${comparisonId}`);
+  }
+  getGraph(comparisonId): Observable<any> {
+    return this.service.get(`users/comparisons/graph/${comparisonId}`);
+  }
+  getComparisonList(userId): Observable<any> {
+    return this.service.get(`users/${userId}/comparisons`);
+  }
 }
