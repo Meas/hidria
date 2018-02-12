@@ -19,4 +19,5 @@ export function setStorageData(storage, params): void {
       localStorage.setItem(data, params[data]);
     }
   });
+  location.reload();
 }

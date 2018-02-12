@@ -49,9 +49,9 @@ export class HelperService {
    * @returns response
    */
   checkDataValidity(response): any {
-    if (response.body.notification) {
-      this.notifications.notificationByType(response.body.notification);
-    }
+    // if (response.body.notification) {
+    //   this.notifications.notificationByType(response.body.notification);
+    // }
     return response.hasOwnProperty('body') ? response.body : response;
   }
 

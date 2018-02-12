@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  api: 'http://13.93.51.225/hidriaAPI'
+  api: 'http://138.68.64.202:3000'
 };
