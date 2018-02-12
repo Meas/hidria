@@ -44,6 +44,7 @@
         "SOUND-PRESSURE-LEVEL": "Livello di pressione sonora",
         "SOUND-POWER-LEVEL": "Livello di potenza sonora",
         "POWER-COEFFICIENT": "Potere coeficient",
-        "STATIC-EFFICIENCY": "Efficienza statica"
+        "STATIC-EFFICIENCY": "Efficienza statica",
+        "DEFAULT-VALUES": "Valori standard"
 	}
 }
