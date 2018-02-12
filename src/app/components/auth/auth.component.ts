@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../services/auth/auth.service';
+import {generateUrlEncodedData, setStorageData} from '../../helpers/helper';
 
 @Component({
   selector: 'app-auth',
@@ -14,6 +15,7 @@ export class AuthComponent implements OnInit {
   modalResetPassword = false;
 
   loginData = {
+    grant_type: 'password',
     userName: '',
     password: ''
   }
@@ -22,12 +24,12 @@ export class AuthComponent implements OnInit {
     firstName: '',
     lastName: '',
     password: '',
-    confirmPassword: '',
     email: '',
     country: '',
     company: '',
     address: '',
-    telephone: ''
+    telephone: '',
+    langId: '1'
   }
 
   changePasswordData = {
@@ -47,25 +49,27 @@ export class AuthComponent implements OnInit {
   }
 
   onLoginClicked() {
-    this.authService.login(this.loginData).subscribe((response: any) => {
+    this.authService.login(generateUrlEncodedData(this.loginData)).subscribe((response: any) => {
       console.log(response)
+      setStorageData(['access_token', 'Username', 'expires_in'], response);
     })
   }
 
   onRegisterClicked() {
+    // console.log(generateUrlEncodedData(this.registerData));
     this.authService.register(this.registerData).subscribe((response: any) => {
       console.log(response)
     })
   }
 
   onChangePasswordClicked() {
-    this.authService.changePassword(this.changePasswordData).subscribe((response: any) => {
+    this.authService.changePassword(generateUrlEncodedData(this.changePasswordData)).subscribe((response: any) => {
       console.log(response)
     })
   }
 
   onResetPasswordClicked() {
-    this.authService.resetPassword(this.restartPasswordData).subscribe((response: any) => {
+    this.authService.resetPassword(generateUrlEncodedData(this.restartPasswordData)).subscribe((response: any) => {
       console.log(response)
     })
   }

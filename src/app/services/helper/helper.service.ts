@@ -39,6 +39,7 @@ export class HelperService {
    */
   createAuthorizationHeader(headers: HttpHeaders): any {
     headers.set('Authorization', 'Bearer ' + localStorage.getItem('access_token'));
+    headers.set('Content-Type', 'application/x-www-form-urlencoded');
   }
 
   /**
@@ -51,7 +52,7 @@ export class HelperService {
     if (response.body.notification) {
       this.notifications.notificationByType(response.body.notification);
     }
-    return response.body;
+    return response.hasOwnProperty('body') ? response.body : response;
   }
 
 }

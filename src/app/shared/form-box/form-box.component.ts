@@ -25,7 +25,6 @@ export class FormBoxComponent implements OnInit {
   }
 
   ngOnInit() {
-
   }
 
   saveInputResult(value, id, type) {
