@@ -9,7 +9,6 @@ import { OperatingPointComponent } from './components/operating-point/operating-
 import { RouteNotFoundComponent } from './components/route-not-found/route-not-found.component';
 
 import {SecurityService} from './services/security/security.service';
-import {AuthComponent} from './components/auth/auth.component';
 import { SearchByCodeComponent } from './components/search-by-code/search-by-code.component';
 import { MyProjectsComponent } from './components/my-projects/my-projects.component';
 import { ComparisonComponent } from './components/comparison/comparison.component';
@@ -17,7 +16,6 @@ import { ComparisonComponent } from './components/comparison/comparison.componen
 
 const routes: Routes = [
   { path: '', redirectTo: '/catalogue', pathMatch: 'full' },
-  { path: 'login', component: AuthComponent },
   { path: 'catalogue', component: CatalogueComponent },
   { path: 'parameter', component: ParametersComponent },
   { path: 'test-pdf', component: TestPdfComponent, canActivate: [SecurityService] },

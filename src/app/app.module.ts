@@ -35,7 +35,6 @@ import { ComparisonService } from './services/comparison/comparison.service';
 import { FilterPipe } from './pipes/filter/filter.pipe';
 import { SortPipe } from './pipes/sort/sort.pipe';
 import { RouteNotFoundComponent } from './components/route-not-found/route-not-found.component';
-import { AuthComponent } from './components/auth/auth.component';
 import { SearchByCodeComponent } from './components/search-by-code/search-by-code.component';
 
 import { SimpleNotificationsModule } from 'angular2-notifications';
@@ -58,7 +57,6 @@ import { ComparisonComponent } from './components/comparison/comparison.componen
     SortPipe,
     OperatingPointComponent,
     RouteNotFoundComponent,
-    AuthComponent,
     SearchByCodeComponent,
     MyProjectsComponent,
     ComparisonComponent
