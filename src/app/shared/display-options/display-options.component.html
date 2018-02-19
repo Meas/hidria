@@ -2,24 +2,24 @@
   <div class="col-lg outer-button">
     <div class="button"
          (click)="this.tab.emit('data-sheet')"
-         [ngClass]="this.selectedTab == 'data-sheet' ? 'selected-tab' : ''">DATA SHEET</div>
+         [ngClass]="this.selectedTab == 'data-sheet' ? 'selected-tab' : ''">{{'TRANSLATE.DATA-SHEET' | translate}}</div>
   </div>
   <div class="col-lg outer-button">
     <div class="button"
         (click)="this.tab.emit('diagrams')"
-        [ngClass]="this.selectedTab == 'diagrams' ? 'selected-tab' : ''">DIAGRAMS</div>
+        [ngClass]="this.selectedTab == 'diagrams' ? 'selected-tab' : ''">{{'TRANSLATE.DIAGRAMS' | translate}}</div>
   </div>
 	<div class="col-lg outer-button">
 		<div class="button"
          (click)="this.tab.emit('drawings')"
-         [ngClass]="this.selectedTab == 'drawings' ? 'selected-tab' : ''">DRAWINGS</div>
+         [ngClass]="this.selectedTab == 'drawings' ? 'selected-tab' : ''">{{'TRANSLATE.DRAWINGS' | translate}}</div>
 	</div>
   <ng-container *ngFor="let download of downloads.children">
     <div class="col-lg outer-button" *ngIf="download.name == 'instructions'">
       <a href="{{download.link}}" download style="text-decoration: none;">
         <div class="button">
           <i class="fa fa-file-pdf-o icon" aria-hidden="true"></i>
-          <span class="text">INSTRUCTIONS</span>
+          <span class="text">{{'TRANSLATE.INSTRUCTIONS' | translate}}</span>
         </div>
       </a>
     </div>

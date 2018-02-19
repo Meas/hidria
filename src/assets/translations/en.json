@@ -45,6 +45,10 @@
         "SOUND-POWER-LEVEL": "Sound power level",
         "POWER-COEFFICIENT": "Power coefficient",
         "STATIC-EFFICIENCY": "Static efficiency",
-        "DEFAULT-VALUES": "Default values"
+        "DEFAULT-VALUES": "Default values",
+        "DATA-SHEET": "Data sheet",
+        "DIAGRAMS": "Diagrams",
+        "DRAWINGS": "Drawings",
+        "INSTRUCTIONS": "Instructions"
     }
 }
