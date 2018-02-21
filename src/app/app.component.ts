@@ -64,14 +64,14 @@ export class AppComponent {
 
   onLoginClicked() {
     this.authService.login(generateUrlEncodedData(this.loginData)).subscribe((response: any) => {
-      if (!response.hasOwnProperty('error')) {
+      if (response.hasOwnProperty('access_token')) {
         setStorageData(['access_token', 'username', 'expires_in', 'id'], response);
         this.router.navigate(['catalogue']);
       } else {
         console.log('Error on login happened');
-        // this.notification.notificationByType({
-        //
-        // })
+        this.notification.notificationByType({
+          'success': 'something'
+        });
       }
     });
   }
@@ -83,9 +83,9 @@ export class AppComponent {
     } else {
       this.authService.register(this.registerData).subscribe((response: any) => {
         console.log(response)
-        // this.notification.notificationByType({
-        //
-        // })
+        this.notification.notificationByType({
+
+        })
       });
     }
   }
