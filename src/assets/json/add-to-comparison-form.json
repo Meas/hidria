@@ -1,0 +1,59 @@
+{
+    "FeatureName": "add-to-comparison",
+    "title": "Add to comparison",
+    "children": [
+        {
+            "name": "container-1",
+            "classUI": "col-lg-12 form-block",
+            "classPRT": "",
+            "children": [{
+                    "name": "row",
+                    "classUI": "",
+                    "children": [{
+                        "name": "R09-3018H-2M-4248",
+                        "tag": "card",
+                        "classUI": "col-lg-12 big-padding",
+                        "classPRT": "",
+                        "description": "AC Axial fan sickled blades Ordering code: 0313-4-1011",
+                        "image": "http://13.93.51.225/hidria/Images/ACPlasticblades.png"
+                    }]
+                }
+            ]
+        },
+        {
+            "name": "container-1",
+            "classUI": "col-lg-12 form-block",
+            "classPRT": "",
+            "children": [
+                {
+                    "name": "row",
+                    "classUI": "",
+                    "children": [{
+                        "id": 3,
+                        "parameter": "project",
+                        "classUI": "col-12",
+                        "tag": "input",
+                        "type": "text",
+                        "description": "Select project or create new one",
+                        "required": true,
+                        "defaultOption": null
+                    }]
+                },
+                {
+                    "name": "row",
+                    "classUI": "",
+                    "children": [{
+                        "id": 3,
+                        "parameter": "comparison-name",
+                        "classUI": "col-12",
+                        "tag": "input",
+                        "type": "text",
+                        "description": "Comparison name",
+                        "required": true,
+                        "defaultOption": null
+                    }]
+                }
+            ]
+        }
+    ]
+}

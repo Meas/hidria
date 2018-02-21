@@ -16,6 +16,7 @@ export class OperatingPointComponent implements OnInit {
   addToProject: any = {};
   addToComparison: any = {};
   graphData = [];
+  card: Object = {};
   view = 'feature';
   selectedTab: String = 'data-sheet';
 
@@ -26,6 +27,7 @@ export class OperatingPointComponent implements OnInit {
 
   ngOnInit() {
     this.getItems();
+    this.getProjects();
   }
 
   getItems(): void {
@@ -35,6 +37,7 @@ export class OperatingPointComponent implements OnInit {
         this.downloads = response[1];
         this.addToProject = response[2];
         this.addToComparison = response[3];
+        this.find(this.feature, 'card', this.card);
         this.zone.run(() => this.cd.markForCheck());
       });
     });
@@ -51,25 +54,41 @@ export class OperatingPointComponent implements OnInit {
     });
   }
 
-    findAndReplace(object, types, replaceValues) {
-      for (const x in object) {
-        if (object.hasOwnProperty(x)) {
-          if (typeof object[x] === 'object') {
-            this.findAndReplace(object[x], types, replaceValues);
-          }
-          for (const type of types) {
-            if (object[x] === type && x === 'type') {
-              for (const replaceValue of replaceValues) {
-                if (object[x] === replaceValue['type']) {
-                  object['children'] = replaceValue['children'];
-                }
+  findAndReplace(object, types, replaceValues) {
+    for (const x in object) {
+      if (object.hasOwnProperty(x)) {
+        if (typeof object[x] === 'object') {
+          this.findAndReplace(object[x], types, replaceValues);
+        }
+        for (const type of types) {
+          if (object[x] === type && x === 'type') {
+            for (const replaceValue of replaceValues) {
+              if (object[x] === replaceValue['type']) {
+                object['children'] = replaceValue['children'];
               }
             }
           }
         }
       }
     }
+  }
+  find(object, type, objectPut) {
+    for (const x in object) {
+      if (object.hasOwnProperty(x)) {
+        if (typeof object[x] === 'object') {
+          this.find(object[x], type, objectPut);
+        } else if (object[x] === type && x === 'type') {
+          objectPut['info'] = object;
+        }
+      }
+    }
+  }
   selectTab(newTab) {
     this.selectedTab = newTab;
+  }
+  getProjects() {
+    this.operatingPointService.getProjects().subscribe((response: any) => {
+      this.addToProject = response;
+    });
   }
 }

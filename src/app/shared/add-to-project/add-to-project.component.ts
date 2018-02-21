@@ -1,7 +1,11 @@
 import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { CustomNotificationsService } from '../../services/notifications/notifications.service';
 import * as _ from 'lodash';
+
+const inputProjects = require('../../../assets/json/add-to-projects-form.json');
+const inputComparison = require('../../../assets/json/add-to-comparison-form.json');
 
 @Component({
   selector: 'app-add-to-project',
@@ -10,14 +14,20 @@ import * as _ from 'lodash';
 })
 export class AddToProjectComponent implements OnInit {
 
-  localFeature: any;
+  localProjects: any;
+  inputs: any;
 
-  @Input() set feature(data: any) {
-    if (data.FeatureName) {
-      this.localFeature = _.cloneDeep(data);
-      this.fillFormValues();
-      this.createForm();
+  @Input() type: String;
+  @Input() card: Object;
+  @Input() set projects(data: any) {
+    if (this.type === 'project') {
+      this.inputs = inputProjects;
+    } else if (this.type === 'comparison') {
+      this.inputs = inputComparison;
     }
+    this.localProjects = _.cloneDeep(data);
+    this.fillFormValues();
+    this.createForm();
   }
   @Output() cancel: EventEmitter<string> = new EventEmitter();
 
@@ -25,7 +35,8 @@ export class AddToProjectComponent implements OnInit {
 
   formValues= {};
 
-  constructor( private fb: FormBuilder, private _notification: CustomNotificationsService ) {}
+  constructor( private fb: FormBuilder, private _notification: CustomNotificationsService,
+                private activatedRoute: ActivatedRoute ) {}
 
   ngOnInit() {}
 
@@ -43,9 +54,9 @@ export class AddToProjectComponent implements OnInit {
   }
 
   onValidForm():  void {
-    const type = (this.localFeature.FeatureName.indexOf('project') !== -1) ? 'project' : 'comparison';
-    this._notification.getSuccess(`Successfully added to ${type}!`);
-    this.cancel.emit('cancel');
+    this._notification.getSuccess(`Successfully added to ${this.type}!`);
+    console.log(this.paramsForm);
+    /* this.cancel.emit('cancel'); */
   }
 
   maxValue(max) {
@@ -61,10 +72,14 @@ export class AddToProjectComponent implements OnInit {
   }
 
   fillFormValues(defaultValues: Boolean = false): void {
-    for (const featureObject of this.localFeature.children) {
+    this.activatedRoute.params.subscribe((param: Params) => {
+      this.formValues['modelId'] = [param.id, []];
+    });
+    this.formValues['userId'] = [localStorage.getItem('id'), []];
+    for (const featureObject of this.inputs.children) {
       for (const row of featureObject.children) {
         for (const parameter of row.children) {
-          if (parameter.parameter) {
+          if (parameter.parameter && parameter.tag === 'input') {
             let value;
               value = parameter.defaultOption ? parameter.defaultOption : '';
               this.formValues[parameter.parameter] = [value, []];

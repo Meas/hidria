@@ -38,8 +38,8 @@ export class HelperService {
    * @returns headers
    */
   createAuthorizationHeader(headers: HttpHeaders): any {
-    headers.set('Authorization', 'Bearer ' + localStorage.getItem('access_token'));
-    headers.set('Content-Type', 'application/x-www-form-urlencoded');
+    return headers.append('Authorization', 'Bearer ' + localStorage.getItem('access_token'))
+            .append('Content-Type', 'application/x-www-form-urlencoded');
   }
 
   /**

@@ -7,11 +7,12 @@ import 'rxjs/add/operator/catch';
 import { MainService } from '../main.service';
 
 import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
+import { HelperService } from '../helper/helper.service';
 
 @Injectable()
 export class OperatingPointService {
 
-  constructor(private service: MainService, private http: HttpClient) { }
+  constructor(private service: MainService, private http: HttpClient, private helper: HelperService) { }
 
   /**
    * Gets array of items
@@ -26,6 +27,14 @@ export class OperatingPointService {
   }
   getCustomItems(id): Observable<any> {
     return this.http.get(`http://13.93.51.225/hidriaAPI/api/v1/choose-model/operating-point/${id}`)
+    .catch((err: any) => {
+      return Observable.of(err.error);
+    });
+  }
+  getProjects(): Observable<any> {
+    let headers = new HttpHeaders();
+    headers = this.helper.createAuthorizationHeader(headers);
+    return this.http.get('http://13.93.51.225/hidriaAPI/api/v1/users/7/projects', {headers: headers})
     .catch((err: any) => {
       return Observable.of(err.error);
     });

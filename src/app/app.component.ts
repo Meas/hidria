@@ -51,15 +51,16 @@ export class AppComponent {
   }
 
   constructor(private authService: AuthService, private router: Router, private translate: TranslateService) {
-    authService.isLoggedIn() ? router.navigate(['catalogue']) : console.log('loged in');
+    /* authService.isLoggedIn() ? router.navigate(['catalogue']) : console.log('loged in'); */
     this.loggedIn = authService.isLoggedIn();
     translate.use(this.selectedLanguage);
   }
 
   onLoginClicked() {
     this.authService.login(generateUrlEncodedData(this.loginData)).subscribe((response: any) => {
-      console.log(response)
-      setStorageData(['access_token', 'Username', 'expires_in'], response);
+      console.log(response);
+      setStorageData(['access_token', 'username', 'expires_in', 'id'], response);
+      this.router.navigate(['catalogue']);
     })
   }
 
