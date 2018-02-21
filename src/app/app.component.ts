@@ -3,6 +3,8 @@ import { AuthService } from './services/auth/auth.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { generateUrlEncodedData, setStorageData } from './helpers/helper';
+import {CustomNotificationsService} from "./services/notifications/notifications.service";
+import {NotificationComponent} from "angular2-notifications";
 
 @Component({
   selector: 'app-root',
@@ -31,6 +33,7 @@ export class AppComponent {
     firstName: '',
     lastName: '',
     password: '',
+    passwordRepeat: '',
     email: '',
     country: '',
     company: '',
@@ -50,7 +53,10 @@ export class AppComponent {
     email: '',
   }
 
-  constructor(private authService: AuthService, private router: Router, private translate: TranslateService) {
+  constructor(private authService: AuthService,
+              private router: Router,
+              private translate: TranslateService,
+              private notification: CustomNotificationsService) {
     /* authService.isLoggedIn() ? router.navigate(['catalogue']) : console.log('loged in'); */
     this.loggedIn = authService.isLoggedIn();
     translate.use(this.selectedLanguage);
@@ -58,17 +64,30 @@ export class AppComponent {
 
   onLoginClicked() {
     this.authService.login(generateUrlEncodedData(this.loginData)).subscribe((response: any) => {
-      console.log(response);
-      setStorageData(['access_token', 'username', 'expires_in', 'id'], response);
-      this.router.navigate(['catalogue']);
-    })
+      if (!response.hasOwnProperty('error')) {
+        setStorageData(['access_token', 'username', 'expires_in', 'id'], response);
+        this.router.navigate(['catalogue']);
+      } else {
+        console.log('Error on login happened');
+        // this.notification.notificationByType({
+        //
+        // })
+      }
+    });
   }
 
   onRegisterClicked() {
     // console.log(generateUrlEncodedData(this.registerData));
-    this.authService.register(this.registerData).subscribe((response: any) => {
-      console.log(response)
-    })
+    if (this.registerData.password !== this.registerData.passwordRepeat) {
+      console.log('Password not same');
+    } else {
+      this.authService.register(this.registerData).subscribe((response: any) => {
+        console.log(response)
+        // this.notification.notificationByType({
+        //
+        // })
+      });
+    }
   }
 
   onChangePasswordClicked() {

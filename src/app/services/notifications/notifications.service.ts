@@ -21,7 +21,4 @@ export class CustomNotificationsService {
   notificationByType(notification) {
     this.customEmit.emit(notification);
   }
-
-
-
 }
