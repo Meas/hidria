@@ -39,4 +39,15 @@ export class OperatingPointService {
       return Observable.of(err.error);
     });
   }
+  addToEntity(form, view): Observable<any> {
+    let headers = new HttpHeaders();
+    headers = this.helper.createAuthorizationHeader(headers);
+    const type = view === 'add-to-project' ? 'projects' : 'comparisons';
+    console.log(type);
+    return this.http.post(`http://13.93.51.225/hidriaAPI/api/v1/${type}`, form.value, {headers: headers})
+    .catch((err: any) => {
+      console.log(err);
+      return Observable.of(err.error);
+    });
+  }
 }

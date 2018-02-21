@@ -91,4 +91,10 @@ export class OperatingPointComponent implements OnInit {
       this.addToProject = response;
     });
   }
+  onPostForm(form) {
+    console.log(form);
+    this.operatingPointService.addToEntity(form, this.view).subscribe((response: any) => {
+      console.log(response);
+    });
+  }
 }

@@ -30,6 +30,7 @@ export class AddToProjectComponent implements OnInit {
     this.createForm();
   }
   @Output() cancel: EventEmitter<string> = new EventEmitter();
+  @Output() postForm: EventEmitter<any> = new EventEmitter();
 
   paramsForm: FormGroup;
 
@@ -54,9 +55,10 @@ export class AddToProjectComponent implements OnInit {
   }
 
   onValidForm():  void {
-    this._notification.getSuccess(`Successfully added to ${this.type}!`);
-    console.log(this.paramsForm);
+    /* this._notification.getSuccess(`Successfully added to ${this.type}!`); */
+    /* console.log(this.paramsForm); */
     /* this.cancel.emit('cancel'); */
+    this.postForm.emit(this.paramsForm);
   }
 
   maxValue(max) {

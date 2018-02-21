@@ -81,7 +81,7 @@
   </div>
   <div *ngIf="view ==='add-to-project'">
     <app-add-to-project [projects]="addToProject" (cancel)="view='feature'"
-      [type]="'project'" [card]="card.info"></app-add-to-project>
+      [type]="'project'" [card]="card.info" (postForm)="onPostForm($event)"></app-add-to-project>
   </div>
   <div *ngIf="view ==='add-to-comparison'">
       <app-add-to-project [projects]="addToComparison" (cancel)="view='feature'"
