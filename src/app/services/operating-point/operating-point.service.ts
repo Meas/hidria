@@ -26,15 +26,14 @@ export class OperatingPointService {
     return this.service.get('choose-model/operating-point/calculate/id');
   }
   getCustomItems(id): Observable<any> {
-    return this.http.get(`http://13.93.51.225/hidriaAPI/api/v1/choose-model/operating-point/${id}`)
+    return this.service.get(`choose-model/operating-point/${id}`)
     .catch((err: any) => {
       return Observable.of(err.error);
     });
   }
   getProjects(): Observable<any> {
-    let headers = new HttpHeaders();
-    headers = this.helper.createAuthorizationHeader(headers);
-    return this.http.get('http://13.93.51.225/hidriaAPI/api/v1/users/7/projects', {headers: headers})
+    const userId = localStorage.getItem('id');
+    return this.service.get(`users/${userId}/projects`)
     .catch((err: any) => {
       return Observable.of(err.error);
     });
@@ -43,8 +42,8 @@ export class OperatingPointService {
     let headers = new HttpHeaders();
     headers = this.helper.createAuthorizationHeader(headers);
     const type = view === 'add-to-project' ? 'projects' : 'comparisons';
-    console.log(type);
-    return this.http.post(`http://13.93.51.225/hidriaAPI/api/v1/${type}`, form.value, {headers: headers})
+    const userId = localStorage.getItem('id');
+    return this.service.post(`users/${userId}/${type}`, form.value, {headers: headers})
     .catch((err: any) => {
       console.log(err);
       return Observable.of(err.error);

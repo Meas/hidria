@@ -13,6 +13,10 @@
 								[name]="element.parameter"
 								[paramsForm]="paramsForm"></app-feature-items>
 						</ng-container>
+						<ng-container *ngIf="element.tag === 'select'">
+							<app-label-box [parameter]="element"></app-label-box>
+							<select></select>
+						</ng-container>
 						<div class="form-block big-padding" *ngIf="element.tag === 'card' && card">
 							<app-fan-info [fanInfo]="card"></app-fan-info>
 						</div>

@@ -24,8 +24,8 @@ export class MainService {
    */
   get(route: string, queryParams?: {}): Observable<any> {
 
-    const headers = new HttpHeaders();
-    this.helper.createAuthorizationHeader(headers);
+    let headers = new HttpHeaders();
+    headers = this.helper.createAuthorizationHeader(headers);
 
     return this.http.get(this.helper.generateRoute(route, queryParams), {
       headers: headers,

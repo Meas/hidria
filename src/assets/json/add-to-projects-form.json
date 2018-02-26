@@ -37,11 +37,18 @@
                             "id": 3,
                             "parameter": "projectId",
                             "classUI": "col-12",
-                            "tag": "input",
-                            "type": "text",
+                            "tag": "select",
+                            "type": "input",
                             "description": "Select project or create new one",
                             "required": true,
-                            "defaultOption": null
+                            "defaultOption": 1,
+                            "options": [
+                                {
+                                    "id": 1,
+                                    "description": "Create new project",
+                                    "value":1
+                                }
+                            ]
                         }]
                     },
                     {

@@ -18,7 +18,8 @@ export class MyProjectsService {
   }
   getProjects(): Observable<any> {
     /* return this.service.get('users/1/projects'); */
-    return this.http.get('http://13.93.51.225/hidriaAPI/api/v1/users/1/projects')
+    const userId = localStorage.getItem('id');
+    return this.service.get(`users/${userId}/projects`)
     .catch((err: any) => {
       return Observable.of(err.error);
     });
@@ -28,7 +29,7 @@ export class MyProjectsService {
   }
   getModels(id): Observable<any> {
     /* return this.service.get(`projects/${id}`); */
-    return this.http.get(`http://13.93.51.225/hidriaAPI/api/v1/projects/${id}`)
+    return this.service.get(`projects/${id}`)
     .catch((err: any) => {
       return Observable.of(err.error);
     });
