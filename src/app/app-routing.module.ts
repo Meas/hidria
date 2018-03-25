@@ -12,6 +12,9 @@ import {SecurityService} from './services/security/security.service';
 import { SearchByCodeComponent } from './components/search-by-code/search-by-code.component';
 import { MyProjectsComponent } from './components/my-projects/my-projects.component';
 import { ComparisonComponent } from './components/comparison/comparison.component';
+import {StatisticsComponent} from './components/statistics/statistics.component';
+import {UsersComponent} from './components/users/users.component';
+import {HistoryComponent} from './components/history/history.component';
 
 
 const routes: Routes = [
@@ -26,6 +29,9 @@ const routes: Routes = [
   { path: 'my-projects', component: MyProjectsComponent, canActivate: [SecurityService] },
   { path: 'search-by-code', component: SearchByCodeComponent, canActivate: [SecurityService] },
   { path: 'comparisons', component: ComparisonComponent, canActivate: [SecurityService] },
+  { path: 'statistics', component: StatisticsComponent, canActivate: [SecurityService] },
+  { path: 'users', component: UsersComponent, canActivate: [SecurityService] },
+  { path: 'history', component: HistoryComponent, canActivate: [SecurityService] },
   { path: '**', component: RouteNotFoundComponent }
 ];
 

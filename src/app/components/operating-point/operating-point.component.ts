@@ -11,14 +11,19 @@ import * as _ from 'lodash';
 })
 export class OperatingPointComponent implements OnInit {
 
+  loading = true;
   feature: any = {};
   downloads: any = {};
   addToProject: any = {};
   addToComparison: any = {};
+  operatingPointInputs;
   graphData = [];
+  graphs;
   card: Object = {};
   view = 'feature';
   selectedTab: String = 'data-sheet';
+
+  id;
 
   constructor(private operatingPointService: OperatingPointService,
               private zone: NgZone,
@@ -26,20 +31,48 @@ export class OperatingPointComponent implements OnInit {
               private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.getItems();
-    this.getProjects();
+    this.getId((id) => {
+      this.getCard(id);
+      this.getGraph(id);
+      this.getCharts(id);
+      this.getLinks(id);
+      this.getInputs(id);
+      this.getProjects();
+      this.loading = false;
+    });
   }
 
-  getItems(): void {
+  getId(cb) {
     this.activatedRoute.params.subscribe((param: Params) => {
-      this.operatingPointService.getCustomItems(param.id).subscribe((response: any) => {
-        this.feature = response[0];
-        this.downloads = response[1];
-        this.addToProject = response[2];
-        this.addToComparison = response[3];
-        this.find(this.feature, 'card', this.card);
-        this.zone.run(() => this.cd.markForCheck());
-      });
+      cb(param.id);
+    });
+  }
+
+  getCard(id): void {
+    this.operatingPointService.getCard(id).subscribe((response: any) => {
+      this.card = response;
+    });
+  }
+  getGraph(id): void {
+    this.operatingPointService.getGraph(id).subscribe((response: any) => {
+      console.log(response);
+    });
+  }
+  getCharts(id): void {
+    this.operatingPointService.getCharts(id).subscribe((response: any) => {
+      this.graphs = response;
+      this.zone.run(() => this.cd.markForCheck());
+    });
+  }
+  getInputs(id): void {
+    this.operatingPointService.getInputs(id).subscribe((response: any) => {
+      console.log(response);
+      this.operatingPointInputs = response;
+    });
+  }
+  getLinks(id): void {
+    this.operatingPointService.getLinks(id).subscribe((response: any) => {
+      console.log(response);
     });
   }
 
@@ -84,6 +117,7 @@ export class OperatingPointComponent implements OnInit {
     }
   }
   selectTab(newTab) {
+    console.log(newTab)
     this.selectedTab = newTab;
   }
   getProjects() {

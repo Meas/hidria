@@ -7,7 +7,7 @@ import {Router} from '@angular/router';
   selector: 'app-chart-performance-curve-component',
   template: `
     <div style="background: #fff !important">
-      <canvas [id]="canvasId" width="content-box" height="200"></canvas>
+      <canvas [id]="canvasId" width="200" height="200"></canvas>
     </div>
   `,
   styleUrls: ['./chart-performance-curve.component.css']
@@ -41,14 +41,14 @@ export class ChartPerformanceCurveComponent implements OnInit, AfterViewInit {
 
   getGraphData() {
     const data: any = {};
-    data.labels = this.chartData.xPoints;
+    data.labels = this.chartData.xpoints;
     data.datasets = [];
-    for (let i = 0; i < this.chartData.yPoints.length; i++) {
+    for (let i = 0; i < this.chartData.ypoints.length; i++) {
       data.datasets.push({
         'label': this.chartData.labels[i],
-        'data': this.chartData.yPoints[i],
-        'yValue': this.chartData.yPoints[i],
-        'xValue': this.chartData.xPoints,
+        'data': this.chartData.ypoints[i],
+        'yValue': this.chartData.ypoints[i],
+        'xValue': this.chartData.xpoints,
         'yLabel': this.chartData.yLabel,
         'xUnit': this.chartData.xUnit,
         'yUnit': this.chartData.yUnit,

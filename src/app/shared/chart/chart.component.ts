@@ -22,6 +22,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
   myBarChart: any;
   @Input() set setChartData(data: any) {
     this.chartData = data;
+    console.log(this.chartData);
     if (this.viewInit) {
       this.myBarChart.destroy();
       this.generateGraph();
@@ -57,15 +58,15 @@ export class ChartComponent implements OnInit, AfterViewInit {
 
   getGraphData() {
     const data: any = {};
-    data.labels = this.chartData.xPoints;
+    data.labels = this.chartData.xpoints;
     data.datasets = [];
-    for (let i = 0; i < this.chartData.yPoints.length; i++) {
+    for (let i = 0; i < this.chartData.ypoints.length; i++) {
       const fill = (i === 0 && this.toFill);
       data.datasets.push({
         'label': this.chartData.labels[i],
-        'data': this.chartData.yPoints[i],
-        'yValue': this.chartData.yPoints[i],
-        'xValue': this.chartData.xPoints,
+        'data': this.chartData.ypoints[i],
+        'yValue': this.chartData.ypoints[i],
+        'xValue': this.chartData.xpoints,
         'yLabel': this.chartData.yLabel,
         'xUnit': this.chartData.xUnit,
         'yUnit': this.chartData.yUnit,

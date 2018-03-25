@@ -1,11 +1,11 @@
 <div class="operating-points-container container">
-  <div class="row input-row" *ngFor="let item of inputData.children; let i = index">
+  <div class="row input-row" *ngFor="let item of inputData; let i = index">
 	  	<div class="col-lg-2">
 	  		{{item.name}}
 	  	</div>
 	  	<div class="col-lg-8">
 	  		<input type="text"
-	  		  [(ngModel)]="graphData[i].value"
+	  		  [(ngModel)]="item.defaultValue"
 	  		  name="{{item.id}}"
 	  		  class="input"
 	  		  (ngModelChange)="inputChanged()"

@@ -8,32 +8,30 @@
         <div class="row">
           <div *ngFor="let parameter of featureObject.parameters" [ngClass]="parameter.classesUI" class="parameter-section space-bellow">
             <app-label-box [parameter]="parameter"></app-label-box>
-            <div *ngIf="parameter.tag === 'accordion'">
-              <app-accordion-input [parameterMainChild]="parameter.options[0]"
+            <div *ngIf="parameter.parameter === 'param_qa'">
+              <app-accordion-input [parameterMainChild]="parameter"
               [paramsForm]="paramsForm"
               [name]="parameter.parameter">
                 <accordion-content>
-                  <div class="container">
-                    <div class="row">
-                      <div class="col-8">
-                        <div class="row test">
-                          <div *ngFor="let parameterChildren of parameter.options; let i = index" [ngClass]="parameterChildren.classesUI">
-                            <app-label-box [parameter]="parameterChildren"></app-label-box>
-                            <app-feature-items [parameter]="parameterChildren"
-                            [name]="parameter.parameter"
-                            [paramsForm]="paramsForm"></app-feature-items>
-                          </div>
+                  <div class="row">
+                    <div class="col-8">
+                      <div class="row test">
+                        <div *ngFor="let parameterChildren of parameter.subParameters; let i = index" [ngClass]="parameterChildren.classesUI">
+                          <app-label-box [parameter]="parameterChildren"></app-label-box>
+                          <app-feature-items [parameter]="parameterChildren"
+                          [name]="parameter.parameter"
+                          [paramsForm]="paramsForm"></app-feature-items>
                         </div>
                       </div>
-                      <div class="col-4">
-                        <img width="50" src="assets/images/cube.png" alt="">
-                      </div>
+                    </div>
+                    <div class="col-4">
+                      <img width="50" src="assets/images/cube.png" alt="">
                     </div>
                   </div>
                 </accordion-content>
               </app-accordion-input>
             </div>
-            <app-feature-items [parameter]="parameter"
+            <app-feature-items *ngIf="parameter.parameter != 'param_qa'" [parameter]="parameter"
             [name]="parameter.parameter"
             [paramsForm]="paramsForm"></app-feature-items>
           </div>

@@ -41,6 +41,8 @@ import { MyProjectsTitleComponent } from './my-projects-title/my-projects-title.
 import { ComparisonTableComponent } from './comparison-table/comparison-table.component';
 import { FilterByStringPipe } from '../pipes/filter-by-string/filter-by-string.pipe';
 import { SortByStringPipe } from '../pipes/sort-by-string/sort-by-string.pipe';
+import { DataTableComponent } from './data-table/data-table.component';
+import { UsersTableComponent } from './users-table/users-table.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/translations/', '.json');
@@ -94,7 +96,9 @@ export function createTranslateLoader(http: HttpClient) {
     FilterByStringPipe,
     SortByStringPipe,
     AddToProjectComponent,
-    ComparisonTableComponent
+    ComparisonTableComponent,
+    DataTableComponent,
+    UsersTableComponent
   ],
   exports: [
     HeaderComponent,
@@ -125,7 +129,9 @@ export function createTranslateLoader(http: HttpClient) {
     LabelBoxComponent,
     AddToProjectComponent,
     ComparisonTableComponent,
-    TranslateModule
+    TranslateModule,
+    DataTableComponent,
+    UsersTableComponent
   ],
   providers: [
     ChartServiceService

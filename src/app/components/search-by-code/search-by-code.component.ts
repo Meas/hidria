@@ -40,7 +40,7 @@ export class SearchByCodeComponent implements OnInit {
     this.searchButtonDisabled = true;
     const params = 'search-by-code?code=' + this.code;
     window.history.replaceState('', '', params);
-    this.searchByCodeService.search().subscribe((response: any) => {
+    this.searchByCodeService.search('code').subscribe((response: any) => {
       this.items = response;
     });
   }

@@ -34,6 +34,7 @@ export class ComparisonComponent implements OnInit {
 
   getTabs() {
     this.comparisonService.getTabs().subscribe((response: any) => {
+      console.log(response);
       this.headers = response;
       this.zone.run(() => this.cd.markForCheck());
     });
@@ -41,6 +42,7 @@ export class ComparisonComponent implements OnInit {
 
   getComparisonList() {
     this.comparisonService.getComparisonList(1).subscribe((response: any) => {
+      console.log(response);
       this.comparisonList = response;
       this.getModelList(response[0].id);
       this.getGraph(response[0].id);
@@ -49,6 +51,7 @@ export class ComparisonComponent implements OnInit {
 
   getModelList(comparisonId = 1) {
     this.comparisonService.getModelList(comparisonId).subscribe((response: any) => {
+      console.log(response);
       this.modelList = response;
       this.zone.run(() => this.cd.markForCheck());
     });
@@ -56,6 +59,7 @@ export class ComparisonComponent implements OnInit {
 
   getGraph(comparisonId = 1) {
     this.comparisonService.getGraph(comparisonId).subscribe((response: any) => {
+      console.log(response);
       this.graph = response;
       this.zone.run(() => this.cd.markForCheck());
     });
@@ -63,6 +67,7 @@ export class ComparisonComponent implements OnInit {
 
   getItems() {
     this.comparisonService.getItems().subscribe((response: any) => {
+      console.log(response);
       this.feature = response[0];
       /* this.filters = response[0].featureObjects[0]; */
       /* this.graph = response[1]; */
@@ -115,7 +120,7 @@ export class ComparisonComponent implements OnInit {
   }
   removeFromGraph(id, object) {
     let indexToRemove;
-    const tempGraph = _.cloneDeep(object);
+    const tempGraph: any = _.cloneDeep(object);
     tempGraph.ids = object.ids.filter((value, index) => {
       if (value === id) {
         indexToRemove = index;

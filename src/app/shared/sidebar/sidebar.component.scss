@@ -41,6 +41,7 @@
     width: 100px;
 
     .filter-item {
+      position: relative;
       width: 90%;
       height: auto;
       background: $main-color;
@@ -83,5 +84,20 @@
     .active {
       opacity: 1;
     }
+  }
+
+  .code-section {
+    position: absolute;
+    width: 300px;
+    height: 90px;
+    background: $main-color;
+    left: -400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: ease .3s;
+  }
+  .show-code-section {
+    left: 0;
   }
 }

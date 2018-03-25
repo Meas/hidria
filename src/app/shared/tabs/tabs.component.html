@@ -1,20 +1,17 @@
-  <ng-container *ngFor="let item of tableData.children; let i = index">
-    <div class="tabs" *ngIf="item.type == 'tabs'">
-      <ng-container  *ngFor="let tab of item.children; let j = index">
-        <button class="tab {{tab.classUI}}"
-          [ngClass]="'tab'+j==selectedTab ? 'active' : ''"
-          (click)="selectTable('tab'+j, tab.selectTable)">
-          {{tab.name}}
-        </button>
-      </ng-container>
-    </div>
-    <table class="parameter-table"
-      *ngIf="item.type == 'table'"
-      [ngClass]="item.name != selectedTable ? 'hidden-table' : ''"
-      >
+  <ng-container *ngFor="let item of tableData; let i = index">
+    <!--<div class="tabs">-->
+      <!--<ng-container  *ngFor="let tab of item.data; let j = index">-->
+        <!--<button class="tab"-->
+          <!--[ngClass]="'tab'+j==selectedTab ? 'active' : ''"-->
+          <!--(click)="selectTable('tab'+j, tab.selectTable)">-->
+          <!--{{tab.name}}-->
+        <!--</button>-->
+      <!--</ng-container>-->
+    <!--</div>-->
+    <table class="parameter-table">
       <tbody class="parameter-table-body">
-        <ng-container *ngFor="let row of item.rows">
-          <tr class="{{row.classUI}}" *ngIf="row.type == 'header'">
+        <ng-container *ngFor="let row of item.data">
+          <tr class="{{row.classUI}}">
             <ng-container *ngFor="let item of row.children">
               <th
                 [attr.colspan]="item.colspan"

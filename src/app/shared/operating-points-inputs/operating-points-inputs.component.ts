@@ -23,9 +23,9 @@ export class OperatingPointsInputsComponent implements OnInit {
   }
 
   ngOnInit() {
-    for (let i = 0; i < this.inputData.children.length; i++) {
-      this.graphData.push(this.inputData.children[i]);
-    }
+    // for (let i = 0; i < this.inputData.children.length; i++) {
+    //   this.graphData.push(this.inputData.children[i]);
+    // }
     this.changeButtonDisabled = true;
   }
 

@@ -1,8 +1,8 @@
 <div>
-  <div class="loading-box" *ngIf="!feature['FeatureName']">
+  <div class="loading-box" *ngIf="loading">
     <app-loading></app-loading>
   </div>
-  <div [hidden]="!(feature['FeatureName'] && view==='feature')">
+  <div *ngIf="!loading">
     <div class="row title-model no-gutters align-items-center">
       <div class="col-lg-4">
         <div>Choose model | Operating point</div>
@@ -10,81 +10,87 @@
       <div class="col-lg-7 offset-lg-1">
         <app-display-options [selectedTab]="selectedTab"
                              (tab)="selectTab($event)"
-                             [downloads]="downloads"
-        ></app-display-options>
+                             [downloads]="downloads"></app-display-options>
       </div>
     </div>
     <hr class="title-line">
     <div class="row">
-      <div *ngFor="let containers of feature.featureObjects" class="{{containers.classUI}}">
-        <div *ngFor="let child of containers.children">
-          <div class="model" *ngIf="child.type==='card'">
-            <app-fan-info [fanInfo]="child"></app-fan-info>
-          </div>
-          <div class="col-lg-12" *ngIf="child.type==='graph-area'">
-            <app-chart-area-component [canvasId]="'canvas1'"
-              [chartData]="child"
-              [interactive]="true"
-              (points)="onPointSelected($event)"
-              ></app-chart-area-component>
-          </div>
-          <div *ngIf="child.type==='operatingPointsInputs'">
-            <app-operating-points-inputs
-              [inputData]="child"
-              [graphDataInput]="graphData"
-              (onChange)="onChange($event)"></app-operating-points-inputs>
-          </div>
-          <div *ngIf="child.type==='parameterList' && selectedTab == 'data-sheet'">
-            <app-parameter-list [inputData]="child"></app-parameter-list>
-          </div>
-          <div *ngIf="child.type==='drawings' && selectedTab == 'drawings'">
-            <img [src]="child.image">
-          </div>
-          <div *ngIf="child.type==='instructions' && selectedTab == 'instructions'">
-            <img [src]="child.image">
-          </div>
-          <div *ngIf="child.type==='diagrams' && selectedTab == 'diagrams'">
-            <div class="row">
-              <div class="{{graph.classUI}}" *ngFor="let graph of child.children; let i = index;">
-                <app-chart-performance-curve-component [canvasId]="'canvas'+graph.name"
-                                                       [chartData]="graph"></app-chart-performance-curve-component>
-              </div>
+      <div class="col-lg-4">
+        <div class="model">
+          <app-fan-info [fanInfo]="card"></app-fan-info>
+        </div>
+        <div>
+          <app-operating-points-inputs
+            [inputData]="operatingPointInputs"
+            [graphDataInput]="graphData"
+            (onChange)="onChange($event)"></app-operating-points-inputs>
+        </div>
+      </div>
+      <div class="col-lg-12 row" *ngIf="selectedTab ==='diagrams'">
+        <div *ngFor="let graph of graphs; let i = index;" [ngClass]="graph.classUi">
+          <app-chart-performance-curve-component [canvasId]="'canvas'+graph.name"
+                                                 [chartData]="graph"></app-chart-performance-curve-component>
+        </div>
+      </div>
+      <div class="col-lg-12" *ngIf="selectedTab === 'data-sheet'">
+        <h1>TABLE DATA</h1>
+      </div>
+      <div class="col-lg-12" *ngIf="selectedTab === 'drawings'">
+        <h1>DRAWINGS DATA</h1>
+        <!--<div *ngIf="child.type==='drawings' && selectedTab == 'drawings'">-->
+        <!--<img [src]="child.image">-->
+        <!--</div>-->
+        <!--<div *ngIf="child.type==='instructions' && selectedTab == 'instructions'">-->
+        <!--<img [src]="child.image">-->
+        <!--</div>-->
+      </div>
+      <!--<div class="col-lg-12" *ngIf="child.type==='graph-area'">-->
+        <!--<app-chart-area-component [canvasId]="'canvas1'"-->
+                                  <!--[chartData]="child"-->
+                                  <!--[interactive]="true"-->
+                                  <!--(points)="onPointSelected($event)"-->
+        <!--&gt;</app-chart-area-component>-->
+      <!--</div>-->
+
+      <!--<div *ngIf="child.type==='parameterList' && selectedTab == 'data-sheet'">-->
+        <!--<app-parameter-list [inputData]="child"></app-parameter-list>-->
+      <!--</div>-->
+
+    </div>
+    <div class="row operating-points-buttons">
+      <div class="col-lg-12 select-points">
+        Select Q / Ps operating point
+      </div>
+      <div class="col-lg-4">
+        <div class="button" (click)="view='add-to-comparison'">
+          ADD TO COMPARE
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="button" (click)="view='add-to-project'">
+          ADD TO PROJECT
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <ng-container *ngFor="let download of downloads.children">
+          <a *ngIf="download.name == 'generate-card'" href="{{download.link}}" download>
+            <div class="button">
+              GENERATE CARD
             </div>
-          </div>
-        </div>
+          </a>
+        </ng-container>
       </div>
-      <div class="col-lg-12 operating-points-buttons row">
-        <div class="col-lg-12 select-points">
-          Select Q / Ps operating point
-        </div>
-        <div class="col-lg-4">
-          <div class="button" (click)="view='add-to-comparison'">
-            ADD TO COMPARE
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="button" (click)="view='add-to-project'">
-            ADD TO PROJECT
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <ng-container *ngFor="let download of downloads.children">
-            <a *ngIf="download.name == 'generate-card'" href="{{download.link}}" download>
-              <div class="button">
-                GENERATE CARD
-              </div>
-            </a>
-          </ng-container>
-        </div>
+    </div>
+
+    <div>
+      <div *ngIf="view ==='add-to-project'">
+        <app-add-to-project [projects]="addToProject" (cancel)="view='feature'"
+                            [type]="'project'" [card]="card.info" (postForm)="onPostForm($event)"></app-add-to-project>
+      </div>
+      <div *ngIf="view ==='add-to-comparison'">
+        <app-add-to-project [projects]="addToComparison" (cancel)="view='feature'"
+                            [type]="'comparison'" [card]="card.info"></app-add-to-project>
       </div>
     </div>
   </div>
-  <div *ngIf="view ==='add-to-project'">
-    <app-add-to-project [projects]="addToProject" (cancel)="view='feature'"
-      [type]="'project'" [card]="card.info" (postForm)="onPostForm($event)"></app-add-to-project>
-  </div>
-  <div *ngIf="view ==='add-to-comparison'">
-      <app-add-to-project [projects]="addToComparison" (cancel)="view='feature'"
-        [type]="'comparison'" [card]="card.info"></app-add-to-project>
-    </div>
 </div>

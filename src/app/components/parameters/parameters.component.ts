@@ -34,6 +34,8 @@ export class ParametersComponent implements OnInit {
           this.preselectedValues = params;
         }
         this.feature = response;
+        // this.feature.featureObjects[0]
+        console.log(this.feature);
         this.defaultSections = _.cloneDeep(this.feature);
         this.fillFormValues();
         this.createForm();

@@ -6,21 +6,51 @@ import 'rxjs/add/operator/catch';
 
 import { MainService } from '../main.service';
 
-import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 import { HelperService } from '../helper/helper.service';
 
 @Injectable()
 export class OperatingPointService {
 
-  constructor(private service: MainService, private http: HttpClient, private helper: HelperService) { }
+  constructor(private service: MainService, private helper: HelperService) { }
 
   /**
-   * Gets array of items
+   * Gets cards
    * @returns {Observable<any>}
    */
-  getItems(): Observable<any> {
-    return this.service.get('choose-model/operating-point/id');
+  getCard(id): Observable<any> {
+    return this.service.get(`choose-model/operating-point/${id}/card`);
   }
+
+  /**
+   * Gets links
+   * @returns {Observable<any>}
+   */
+  getLinks(id): Observable<any> {
+    return this.service.get(`choose-model/operating-point/${id}/links`);
+  }
+  /**
+   * Gets inputs
+   * @returns {Observable<any>}
+   */
+  getInputs(id): Observable<any> {
+    return this.service.get(`choose-model/operating-point/${id}/inputs`);
+  }
+  /**
+   * Gets graph data
+   * @returns {Observable<any>}
+   */
+  getGraph(id): Observable<any> {
+    return this.service.get(`choose-model/operating-point/${id}/graph`);
+  }
+  /**
+   * Gets carts data
+   * @returns {Observable<any>}
+   */
+  getCharts(id): Observable<any> {
+    return this.service.get(`choose-model/operating-point/${id}/charts`);
+  }
+
   calculate(event): Observable<any> {
     // ToDo format data from event and send request appropriately
     return this.service.get('choose-model/operating-point/calculate/id');

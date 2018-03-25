@@ -7,6 +7,7 @@
         "HELP": "Help",
         "REGISTER": "Register",
         "LOGIN": "Login",
+        "LOGOUT": "Logout",
         "ALL-MODELS": "All Models",
         "MY-PROJECTS": "My Projects",
         "COMPARISONS": "Comparisons",

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,9 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
+  code = '';
+  showSBC = false;
+
+  @Output('searchByCode') searchByCode: EventEmitter<string> = new EventEmitter();
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  onSearchByCode() {
+    this.searchByCode.emit(this.code);
+    this.showSearchByCode();
+  }
+  showSearchByCode() {
+    this.showSBC = !this.showSBC;
+  }
 }

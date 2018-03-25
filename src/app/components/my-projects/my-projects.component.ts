@@ -9,6 +9,8 @@ import { MyProjectsService } from './../../services/my-projects/my-projects.serv
 })
 export class MyProjectsComponent implements OnInit {
 
+  loading = true;
+
   feature: any = {};
   searchTerm: String = '';
   selectedProject: {};
@@ -28,8 +30,10 @@ export class MyProjectsComponent implements OnInit {
       this.findByType(this.feature, 'project-list', this.selectedProject);
     }); */
     this.myProjectsService.getProjects().subscribe((response: any) => {
+      console.log(response);
       this.projectsList = response;
-      this.onSelectProject(response[0]);
+      // this.onSelectProject(response[0]);
+      this.loading = false;
     });
   }
 
@@ -91,6 +95,30 @@ export class MyProjectsComponent implements OnInit {
     // note[0] => message, note[1] => modelId
     this.myProjectsService.saveNote(note[0], note[1], this.selectedProject['id'])
     .subscribe((response: any) => {
+      console.log(response);
+    });
+  }
+  createProject() {
+    const myProj = {
+      projectId: 0,
+      userId: 0,
+      modelId: 0,
+      positionNumber: 'string',
+      items: 0,
+      projectName: 'string',
+      construction: 'string',
+      address: 'string',
+      purchaser: 'string',
+      projectant: 'string',
+      business: 'string',
+      accessories: [
+        {
+          accessoryId: 0,
+          items: 0
+        }
+      ]
+    }
+    this.myProjectsService.createProject(myProj).subscribe((response: any) => {
       console.log(response);
     });
   }

@@ -6,13 +6,13 @@ import { MainService } from '../main.service';
 @Injectable()
 export class MyTranslationService {
 
-  constructor(private service: MyTranslationService) { }
+  constructor(private service: MainService, private translationService: MyTranslationService) { }
 
   /**
    * Gets array of items
    * @returns {Observable<any>}
    */
-  /* getItems(): Observable<any> {
-
-  } */
+  getTranslations(langId: number): Observable<any> {
+    return this.service.get(`translate/${langId}`);
+  }
 }

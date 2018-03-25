@@ -20,8 +20,7 @@ export class TabsComponent implements OnInit, OnDestroy {
   constructor(private router: Router,
               private chartService: ChartServiceService,
               private zone: NgZone,
-              private cd: ChangeDetectorRef
-              ) {
+              private cd: ChangeDetectorRef) {
     this.chartSubscription = this.chartService.fanSelectSource$.subscribe((x) => {
       this.hovered = x;
       this.zone.run(() => this.cd.markForCheck());
@@ -32,7 +31,7 @@ export class TabsComponent implements OnInit, OnDestroy {
     const tabs: any = (_.filter(this.tableData.children, function(obj) {
       return obj.type === 'tabs';
     }));
-    this.selectedTable = (tabs[0].children[0].selectTable);
+    // this.selectedTable = (tabs[0].children[0].selectTable);
   }
 
   selectTable(tabId, tableName) {

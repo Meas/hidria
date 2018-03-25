@@ -14,15 +14,14 @@ export class CatalogueComponent implements OnInit {
   feature = [];
   subSections = [];
 
-  constructor(private catalogueService: CatalogueService, private router: Router) {
-             }
+  constructor(private catalogueService: CatalogueService, private router: Router) {}
 
   ngOnInit() {
     this.getItems();
   }
 
   getItems(): void {
-    this.catalogueService.getItems().subscribe((response: any) => {
+    this.catalogueService.getItems().subscribe((response) => {
       this.feature = response;
     });
   }

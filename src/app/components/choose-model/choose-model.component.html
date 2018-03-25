@@ -1,27 +1,24 @@
 <div>
-  <div class="loading-box" *ngIf="feature.length === 0">
+  <div class="loading-box" *ngIf="loading">
     <app-loading></app-loading>
   </div>
-  <div *ngIf="feature.length !== 0">
+  <div *ngIf="!loading">
     <div>
       <p class="title-model">Choose model</p>
     </div>
     <div class="wrapper">
-      <div *ngFor="let containers of feature.featureObjects">
-        <div *ngFor="let child of containers.children">
-          <div class="model" *ngIf="child.type==='card'">
-            <app-fan-info [fanInfo]="child"></app-fan-info>
-          </div>
-          <div class="graf" *ngIf="child.type==='graph'">
-            <app-chart-component
-              [canvasId]="'canvas1'"
-              [setChartData]="child"
-              [toFill]="true"></app-chart-component>
-          </div>
-          <div class="fan-table" *ngIf="child.type==='tableComponent'">
-            <app-tabs [tableData]="child"></app-tabs>
-          </div>
-        </div>
+      <div class="model" *ngIf="features.card">
+        <app-fan-info [fanInfo]="features.card"></app-fan-info>
+      </div>
+      <div class="graf" *ngIf="features.graph">
+        <!--{{ features.graph | json }}-->
+        <app-chart-component
+          [canvasId]="'canvas1'"
+          [setChartData]="features.graph"
+          [toFill]="true"></app-chart-component>
+      </div>
+      <div class="fan-table" *ngIf="features.table">
+        <!--<app-tabs [tableData]="features.table"></app-tabs>-->
       </div>
     </div>
   </div>

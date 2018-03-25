@@ -1,8 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ChooseModelService} from '../../services/chooseModel/chooseModel.service';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import {ActivatedRoute, Params} from '@angular/router';
 
-import { CustomNotificationsService } from '../../services/notifications/notifications.service';
+import {CustomNotificationsService} from '../../services/notifications/notifications.service';
 import * as _ from 'lodash';
 
 @Component({
@@ -12,27 +12,47 @@ import * as _ from 'lodash';
 })
 export class ChooseModelComponent implements OnInit {
 
-  feature: any = [];
+  loading = true;
 
-  constructor(private chooseModelService: ChooseModelService, private activatedRoute: ActivatedRoute,
-              private notifications: CustomNotificationsService) { }
+  features: any = {
+    card: undefined,
+    table: undefined,
+    graph: undefined
+  };
 
-  ngOnInit() {
-    this.getItems();
+  data = [];
+
+  constructor(private chooseModelService: ChooseModelService,
+              private activatedRoute: ActivatedRoute,
+              private notifications: CustomNotificationsService) {
+    this.data = this.getDataFromParams();
   }
 
-  getItems(): void {
-    /* this.chooseModelService.getItems().subscribe((response: any) => {
-      this.feature = response;
-    }); */
-    const data = this.getDataFromParams();
-    this.chooseModelService.postCustomItems(data).subscribe((response: any) => {
-      if (response.featureObjects) {
-        this.feature = response;
-      } else {
-        this.notifications.getError({'status': 400, 'statusText': 'No results!'});
-      }
+  ngOnInit() {
+    this.getCard();
+    this.getTable();
+    this.getGraph();
+  }
+
+  getCard(): void {
+    this.chooseModelService.getItems(this.data[0].value, 'card').subscribe((response: any) => {
+      this.features.card = response;
+      // this.notifications.getError({'status': 400, 'statusText': 'No results!'});
     });
+  }
+  getTable(): void {
+    this.chooseModelService.getItems(this.data[0].value, 'table').subscribe((response: any) => {
+      console.log(response);
+      this.features.table = response;
+      // this.notifications.getError({'status': 400, 'statusText': 'No results!'});
+    });
+  }
+  getGraph(): void {
+    this.chooseModelService.getItems(this.data[0].value, 'graph').subscribe((response: any) => {
+      this.features.graph = response;
+      // this.notifications.getError({'status': 400, 'statusText': 'No results!'});
+    });
+    this.loading = false;
   }
 
   getDataFromParams() {

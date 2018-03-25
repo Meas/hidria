@@ -32,8 +32,13 @@
     </div>
     <div class="text"> {{ 'TRANSLATE.COMPARISONS' | translate }}</div>
   </div>
-  <div class="filter-item" routerLink="search-by-code" routerLinkActive="active">
-    <div class="icon">
+  <div class="filter-item">
+    <div class="code-section" [ngClass]="{'show-code-section': showSBC}">
+      <input style="width: 150px" type="text" [(ngModel)]="code">
+      <button (click)="onSearchByCode()">Search</button>
+      <button (click)="onSearchByCode()">Close</button>
+    </div>
+    <div class="icon" (click)="showSearchByCode()">
       <img src="assets/icons/Search By Code.png">
     </div>
     <div class="text"> {{'TRANSLATE.SEARCH-BY-CODE' | translate}}</div>

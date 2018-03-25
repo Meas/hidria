@@ -40,6 +40,9 @@ import { SearchByCodeComponent } from './components/search-by-code/search-by-cod
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { MyProjectsComponent } from './components/my-projects/my-projects.component';
 import { ComparisonComponent } from './components/comparison/comparison.component';
+import { StatisticsComponent } from './components/statistics/statistics.component';
+import { UsersComponent } from './components/users/users.component';
+import { HistoryComponent } from './components/history/history.component';
 
 /* export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/translations/', '.json');
@@ -59,7 +62,10 @@ import { ComparisonComponent } from './components/comparison/comparison.componen
     RouteNotFoundComponent,
     SearchByCodeComponent,
     MyProjectsComponent,
-    ComparisonComponent
+    ComparisonComponent,
+    StatisticsComponent,
+    UsersComponent,
+    HistoryComponent
   ],
   imports: [
     FormsModule,

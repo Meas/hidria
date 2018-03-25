@@ -7,6 +7,7 @@ import 'rxjs/add/operator/catch';
 
 import {HelperService} from './helper/helper.service';
 import { CustomNotificationsService } from './notifications/notifications.service';
+import {catchError, finalize, tap} from 'rxjs/operators';
 
 
 @Injectable()
@@ -30,12 +31,7 @@ export class MainService {
     return this.http.get(this.helper.generateRoute(route, queryParams), {
       headers: headers,
       observe: 'response'
-    })
-      .map((res: HttpResponse<any>) => this.helper.checkDataValidity(res))
-      .catch((err: any) => {
-        /* this.notifications.getError(err); */
-        return Observable.of(err.error);
-      });
+    }).pipe(catchError(this.helper.handleError)).map(res => this.helper.checkDataValidity(res));
   }
 
   /**
@@ -46,18 +42,14 @@ export class MainService {
    * @param queryParams
    * @returns {Observable<any>}
    */
-  post(route: string, data?: {}, queryParams?: {}): any {
+  post(route: string, data?: {}, queryParams?: {}): Observable<any> {
 
     const headers = new HttpHeaders();
     this.helper.createAuthorizationHeader(headers);
 
     return this.http.post(this.helper.generateRoute(route, queryParams), data, {
       headers: headers
-    })
-      .map((res: HttpResponse<any>) => this.helper.checkDataValidity(res))
-      .catch((err: Error) => {
-        return Observable.of(err);
-      });
+    }).pipe(catchError(this.helper.handleError)).map(res => this.helper.checkDataValidity(res));;
   }
 
   /**
@@ -68,18 +60,14 @@ export class MainService {
    * @param queryParams
    * @returns {Observable<any>}
    */
-  put(route: string, data?: {}, queryParams?: {}) {
+  put(route: string, data?: {}, queryParams?: {}): Observable<any> {
 
     const headers = new HttpHeaders();
     this.helper.createAuthorizationHeader(headers);
 
     return this.http.put(this.helper.generateRoute(route, queryParams), data, {
       headers: headers
-    })
-      .map((res: HttpResponse<any>) => this.helper.checkDataValidity(res))
-      .catch((err: Error) => {
-        return Observable.of(err);
-      });
+    }).pipe(catchError(this.helper.handleError)).map(res => this.helper.checkDataValidity(res));
   }
 
   /**
@@ -89,18 +77,14 @@ export class MainService {
    * @param queryParams
    * @returns {Observable<any>}
    */
-  delete(route: string, queryParams?: {}) {
+  delete(route: string, queryParams?: {}): Observable<any> {
 
     const headers = new HttpHeaders();
     this.helper.createAuthorizationHeader(headers);
 
     return this.http.delete(this.helper.generateRoute(route, queryParams), {
       headers: headers
-    })
-      .map((res: HttpResponse<any>) => this.helper.checkDataValidity(res))
-      .catch((err: Error) => {
-        return Observable.of(err);
-      });
+    }).pipe(catchError(this.helper.handleError)).map(res => this.helper.checkDataValidity(res));
   }
 
 }

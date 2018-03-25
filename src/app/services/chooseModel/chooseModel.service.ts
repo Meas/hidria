@@ -5,30 +5,25 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 import { MainService } from '../main.service';
-import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class ChooseModelService {
 
-  constructor(private service: MainService, private http: HttpClient) { }
+  constructor(private service: MainService) { }
 
   /**
    * Gets array of items
    * @returns {Observable<any>}
    */
-  getItems(): Observable<any> {
-    return this.service.get('choose-model');
+  getItems(id, section): Observable<any> {
+    return this.service.get(`choose-model/${id}/${section}`);
   }
 
-  postCustomItems(data): Observable<any> {
-    return this.http.post('http://13.93.51.225/hidriaAPI/api/v1/choose-model', data)
-    .catch((err: any) => {
-      return Observable.of(err.error);
-    });
-    /* return this.http.get('http://13.93.51.225/hidriaAPI/api/v1/catalogue')
-    .map((res: HttpResponse<any>) => res.body)
-    .catch((err: any) => {
-      return Observable.of(err.error);
-    }); */
+  /**
+   * Gets array of items
+   * @returns {Observable<any>}
+   */
+  postItems(data): Observable<any> {
+    return this.service.post('choose-model', data);
   }
 }

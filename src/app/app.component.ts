@@ -3,8 +3,9 @@ import { AuthService } from './services/auth/auth.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { generateUrlEncodedData, setStorageData } from './helpers/helper';
-import {CustomNotificationsService} from "./services/notifications/notifications.service";
-import {NotificationComponent} from "angular2-notifications";
+import {CustomNotificationsService} from './services/notifications/notifications.service';
+import {NotificationComponent} from 'angular2-notifications';
+import {SearchByCodeService} from "./services/search-by-code/search-by-code.service";
 
 @Component({
   selector: 'app-root',
@@ -56,14 +57,17 @@ export class AppComponent {
   constructor(private authService: AuthService,
               private router: Router,
               private translate: TranslateService,
+              private searchByCodeService: SearchByCodeService,
               private notification: CustomNotificationsService) {
     /* authService.isLoggedIn() ? router.navigate(['catalogue']) : console.log('loged in'); */
     this.loggedIn = authService.isLoggedIn();
     translate.use(this.selectedLanguage);
+    console.log(this.selectedLanguage);
   }
 
   onLoginClicked() {
     this.authService.login(generateUrlEncodedData(this.loginData)).subscribe((response: any) => {
+      console.log(response);
       if (response.hasOwnProperty('access_token')) {
         setStorageData(['access_token', 'username', 'expires_in', 'id'], response);
         this.router.navigate(['catalogue']);
@@ -125,5 +129,11 @@ export class AppComponent {
     this.selectedLanguage = event;
     localStorage.setItem('lang', event);
     this.translate.use(event);
+  }
+
+  searchByCode(event) {
+    this.searchByCodeService.search(event).subscribe((response: any) => {
+      this.router.navigate([`/choose-model/${event}`]);
+    });
   }
 }

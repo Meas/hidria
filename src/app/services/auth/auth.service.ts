@@ -21,11 +21,7 @@ export class AuthService {
    * @returns {Observable<any>}
    */
   login(data): Observable<any> {
-    // return this.service.post(`login`, data);
-    return this.http.post(`http://13.93.51.225/hidriaAPI/api/v1/login`, data)
-      .catch((err: any) => {
-        return Observable.of(err.error);
-      });
+    return this.service.post(`login`, data);
   }
 
   /**
@@ -33,11 +29,7 @@ export class AuthService {
    * @returns {Observable<any>}
    */
   register(data): Observable<any> {
-    // return this.service.post(`register`, data);
-    return this.http.post(`http://13.93.51.225/hidriaAPI/api/v1/register`, data)
-      .catch((err: any) => {
-        return Observable.of(err.error);
-      });
+    return this.service.post(`register`, data);
   }
 
   /**
@@ -45,11 +37,7 @@ export class AuthService {
    * @returns {Observable<any>}
    */
   changePassword(data): Observable<any> {
-    // return this.service.post(`change-password`, data);
-    return this.http.post(`http://13.93.51.225/hidriaAPI/api/v1/change-password`, data)
-      .catch((err: any) => {
-        return Observable.of(err.error);
-      });
+    return this.service.post(`change-password`, data);
   }
 
   /**
@@ -57,10 +45,6 @@ export class AuthService {
    * @returns {Observable<any>}
    */
   resetPassword(data): Observable<any> {
-    // return this.service.post(`reset-password`, data);
-    return this.http.post(`http://13.93.51.225/hidriaAPI/api/v1/reset-password`, data)
-      .catch((err: any) => {
-        return Observable.of(err.error);
-      });
+    return this.service.post(`reset-password`, data);
   }
 }
