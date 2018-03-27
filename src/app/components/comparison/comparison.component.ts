@@ -11,6 +11,8 @@ import * as _ from 'lodash';
 })
 export class ComparisonComponent implements OnInit {
 
+  loading = true;
+
   feature: any = {};
   filters: any = [];
   filterSelected = 1;
@@ -63,6 +65,7 @@ export class ComparisonComponent implements OnInit {
       this.graph = response;
       this.zone.run(() => this.cd.markForCheck());
     });
+    this.loading = false;
   }
 
   getItems() {

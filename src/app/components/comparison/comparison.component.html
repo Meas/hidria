@@ -1,19 +1,19 @@
 <div>
-  <div class="loading-box" *ngIf="!graph['xPoints']">
+  <div class="loading-box" *ngIf="loading">
     <app-loading></app-loading>
   </div>
-  <div *ngIf="graph['xPoints']">
+  <div *ngIf="!loading">
     <div class="row no-gutters">
       <app-filters class="col-lg-12"
       [filters]="headers" [activeFilter]="filterSelected" (filterSelected)="onFilterSelected($event)"
       [showAllModels]="false" [title]="'TRANSLATE.COMPARISONS'"></app-filters>
       <div class="col-lg-4">
         <app-search-my-projects
-          [searchTerm]="searchTerm" 
+          [searchTerm]="searchTerm"
           (nameChange)="onNameChange($event)"
           (sortChange)="onSortChange($event)"></app-search-my-projects>
         <div class="list-outer">
-            <app-my-projects-list [projectsList]="comparisonList" 
+            <app-my-projects-list [projectsList]="comparisonList"
               (selectProject)="onSelectComparison($event)"
               [searchTerm]="searchTerm"
               [sortBy]="sortBy">

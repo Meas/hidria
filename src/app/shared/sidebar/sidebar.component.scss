@@ -96,6 +96,17 @@
     align-items: center;
     justify-content: center;
     transition: ease .3s;
+
+    button {
+      height: 33px;
+      border: solid 1px lightgrey;
+      background: lightgrey;
+
+      &:hover {
+        background: #aeaeae;
+        border: solid 1px #aeaeae;
+      }
+    }
   }
   .show-code-section {
     left: 0;

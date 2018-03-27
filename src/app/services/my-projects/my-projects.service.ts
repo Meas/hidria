@@ -17,20 +17,20 @@ export class MyProjectsService {
     return this.service.get('my-projects');
   }
   getProjects(): Observable<any> {
-    // return this.service.get(`users/${this.helper.getUserId()}/projects`);
-    const obj: any = [
-      {
-        id: 1,
-        name: 'Project 1',
-        created: new Date()
-      },
-      {
-        id: 2,
-        name: 'Project 2',
-        created: new Date()
-      }
-    ];
-    return Observable.of(obj);
+    return this.service.get(`users/${this.helper.getUserId()}/projects`);
+    // const obj: any = [
+    //   {
+    //     id: 1,
+    //     name: 'Project 1',
+    //     created: new Date()
+    //   },
+    //   {
+    //     id: 2,
+    //     name: 'Project 2',
+    //     created: new Date()
+    //   }
+    // ];
+    // return Observable.of(obj);
   }
   deleteProject(projectId): Observable<any> {
     return this.service.delete(`projects/${projectId}`);

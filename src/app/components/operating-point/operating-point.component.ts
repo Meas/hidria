@@ -2,6 +2,7 @@ import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, NgZone, On
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { OperatingPointService } from '../../services/operating-point/operating-point.service';
 import * as _ from 'lodash';
+import {MyProjectsService} from '../../services/my-projects/my-projects.service';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -27,6 +28,7 @@ export class OperatingPointComponent implements OnInit {
   id;
 
   constructor(private operatingPointService: OperatingPointService,
+              private projectService: MyProjectsService
               private zone: NgZone,
               private cd: ChangeDetectorRef,
               private activatedRoute: ActivatedRoute) { }
@@ -141,8 +143,27 @@ export class OperatingPointComponent implements OnInit {
     });
   }
   onPostForm(form) {
-    console.log(form);
-    this.operatingPointService.addToEntity(form).subscribe((response: any) => {
+    // console.log(form);
+    const data = {
+      projectId: 0,
+      userId: 0,
+      modelId: 0,
+      positionNumber: 'string',
+      items: 0,
+      projectName: 'string',
+      construction: 'string',
+      address: 'string',
+      purchaser: 'string',
+      projectant: 'string',
+      business: 'string',
+      accessories: [
+        {
+          accessoryId: 0,
+          items: 0
+        }
+      ]
+    }
+    this.projectService.createProject(data).subscribe((response: any) => {
       console.log(response);
     });
   }
