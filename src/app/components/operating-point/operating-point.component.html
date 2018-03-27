@@ -26,6 +26,12 @@
             (onChange)="onChange($event)"></app-operating-points-inputs>
         </div>
       </div>
+      <div class="col-lg-8">
+        <app-chart-area-component [canvasId]="'canvas1'"
+                                  [chartSetData]="graphData"
+                                  [interactive]="true"
+                                  (points)="onPointSelected($event)"></app-chart-area-component>
+      </div>
       <div class="col-lg-12 row" *ngIf="selectedTab ==='diagrams'">
         <div *ngFor="let graph of graphs; let i = index;" [ngClass]="graph.classUi">
           <app-chart-performance-curve-component [canvasId]="'canvas'+graph.name"
@@ -33,7 +39,17 @@
         </div>
       </div>
       <div class="col-lg-12" *ngIf="selectedTab === 'data-sheet'">
-        <h1>TABLE DATA</h1>
+        <div class="row">
+          <div class="col-lg-4">
+            <app-choose-model-table *ngIf="tables[0]" [tableData]="tables[0]"></app-choose-model-table>
+          </div>
+          <div class="col-lg-4">
+            <app-choose-model-table *ngIf="tables[1]" [tableData]="tables[1]"></app-choose-model-table>
+          </div>
+          <div class="col-lg-4">
+            <app-choose-model-table *ngIf="tables[2]" [tableData]="tables[0]"></app-choose-model-table>
+          </div>
+        </div>
       </div>
       <div class="col-lg-12" *ngIf="selectedTab === 'drawings'">
         <h1>DRAWINGS DATA</h1>
@@ -44,14 +60,6 @@
         <!--<img [src]="child.image">-->
         <!--</div>-->
       </div>
-      <!--<div class="col-lg-12" *ngIf="child.type==='graph-area'">-->
-        <!--<app-chart-area-component [canvasId]="'canvas1'"-->
-                                  <!--[chartData]="child"-->
-                                  <!--[interactive]="true"-->
-                                  <!--(points)="onPointSelected($event)"-->
-        <!--&gt;</app-chart-area-component>-->
-      <!--</div>-->
-
       <!--<div *ngIf="child.type==='parameterList' && selectedTab == 'data-sheet'">-->
         <!--<app-parameter-list [inputData]="child"></app-parameter-list>-->
       <!--</div>-->

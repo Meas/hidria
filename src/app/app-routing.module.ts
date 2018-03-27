@@ -15,6 +15,7 @@ import { ComparisonComponent } from './components/comparison/comparison.componen
 import {StatisticsComponent} from './components/statistics/statistics.component';
 import {UsersComponent} from './components/users/users.component';
 import {HistoryComponent} from './components/history/history.component';
+import {AdminComponent} from "./components/admin/admin.component";
 
 
 const routes: Routes = [
@@ -32,11 +33,12 @@ const routes: Routes = [
   { path: 'statistics', component: StatisticsComponent, canActivate: [SecurityService] },
   { path: 'users', component: UsersComponent, canActivate: [SecurityService] },
   { path: 'history', component: HistoryComponent, canActivate: [SecurityService] },
+  { path: 'users/edit', component: AdminComponent, canActivate: [SecurityService] },
   { path: '**', component: RouteNotFoundComponent }
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
+  imports: [ RouterModule.forRoot(routes, { useHash: true }) ],
   exports: [ RouterModule ]
 })
 export class AppRoutingModule {}

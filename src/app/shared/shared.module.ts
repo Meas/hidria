@@ -43,6 +43,7 @@ import { FilterByStringPipe } from '../pipes/filter-by-string/filter-by-string.p
 import { SortByStringPipe } from '../pipes/sort-by-string/sort-by-string.pipe';
 import { DataTableComponent } from './data-table/data-table.component';
 import { UsersTableComponent } from './users-table/users-table.component';
+import { ChooseModelTableComponent } from './choose-model-table/choose-model-table.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/translations/', '.json');
@@ -98,7 +99,8 @@ export function createTranslateLoader(http: HttpClient) {
     AddToProjectComponent,
     ComparisonTableComponent,
     DataTableComponent,
-    UsersTableComponent
+    UsersTableComponent,
+    ChooseModelTableComponent
   ],
   exports: [
     HeaderComponent,
@@ -131,7 +133,8 @@ export function createTranslateLoader(http: HttpClient) {
     ComparisonTableComponent,
     TranslateModule,
     DataTableComponent,
-    UsersTableComponent
+    UsersTableComponent,
+    ChooseModelTableComponent
   ],
   providers: [
     ChartServiceService

@@ -19,6 +19,7 @@ export class OperatingPointComponent implements OnInit {
   operatingPointInputs;
   graphData = [];
   graphs;
+  tables = [];
   card: Object = {};
   view = 'feature';
   selectedTab: String = 'data-sheet';
@@ -37,8 +38,13 @@ export class OperatingPointComponent implements OnInit {
       this.getCharts(id);
       this.getLinks(id);
       this.getInputs(id);
+      this.getTable(id);
+      this.getCalculate(id);
       this.getProjects();
       this.loading = false;
+      setTimeout(() => {
+        this.zone.run(() => this.cd.markForCheck());
+      }, 2000);
     });
   }
 
@@ -55,7 +61,7 @@ export class OperatingPointComponent implements OnInit {
   }
   getGraph(id): void {
     this.operatingPointService.getGraph(id).subscribe((response: any) => {
-      console.log(response);
+      this.graphData = response;
     });
   }
   getCharts(id): void {
@@ -66,12 +72,22 @@ export class OperatingPointComponent implements OnInit {
   }
   getInputs(id): void {
     this.operatingPointService.getInputs(id).subscribe((response: any) => {
-      console.log(response);
       this.operatingPointInputs = response;
     });
   }
   getLinks(id): void {
     this.operatingPointService.getLinks(id).subscribe((response: any) => {
+      console.log(response);
+    });
+  }
+  getTable(id): void {
+    this.operatingPointService.getTable(id).subscribe((response: any) => {
+      console.log(response);
+      this.tables = response;
+    });
+  }
+  getCalculate(id): void {
+    this.operatingPointService.getCalculate(id).subscribe((response: any) => {
       console.log(response);
     });
   }
@@ -83,7 +99,6 @@ export class OperatingPointComponent implements OnInit {
   onChange(event): void {
     this.operatingPointService.calculate(event).subscribe((response: any) => {
       this.findAndReplace(this.feature, ['parameterList', 'diagrams'], response);
-      this.zone.run(() => this.cd.markForCheck());
     });
   }
 
@@ -127,7 +142,7 @@ export class OperatingPointComponent implements OnInit {
   }
   onPostForm(form) {
     console.log(form);
-    this.operatingPointService.addToEntity(form, this.view).subscribe((response: any) => {
+    this.operatingPointService.addToEntity(form).subscribe((response: any) => {
       console.log(response);
     });
   }

@@ -7,7 +7,7 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class UsersTableComponent implements OnInit {
 
-  @Input() data = [];
+  @Input() tableData = [];
   @Input() isSelectable = false;
 
   constructor() { }

@@ -10,17 +10,14 @@ import { MyProjectsService } from '../../services/my-projects/my-projects.servic
 })
 export class MyProjectsListComponent implements OnInit {
 
-  @Input() projectsList: any;
-  /* projectsList: any; */
+  @Input() projectsList = [];
   @Input() searchTerm;
   @Input() sortBy;
   @Output() selectProject: EventEmitter<string> = new EventEmitter;
 
-  constructor(public myProjectsService: MyProjectsService) {
-  }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   dateFromTimestamp(timestamp) {
     return moment.unix(timestamp).format('DD.MM.YYYY');

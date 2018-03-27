@@ -26,4 +26,12 @@ export class ChooseModelService {
   postItems(data): Observable<any> {
     return this.service.post('choose-model', data);
   }
+
+  /**
+   * Gets array of items
+   * @returns {Observable<any>}
+   */
+  getCard(data): Observable<any> {
+    return this.service.post(`choose-model/card`);
+  }
 }

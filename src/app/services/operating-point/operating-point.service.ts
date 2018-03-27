@@ -29,6 +29,7 @@ export class OperatingPointService {
   getLinks(id): Observable<any> {
     return this.service.get(`choose-model/operating-point/${id}/links`);
   }
+
   /**
    * Gets inputs
    * @returns {Observable<any>}
@@ -36,6 +37,7 @@ export class OperatingPointService {
   getInputs(id): Observable<any> {
     return this.service.get(`choose-model/operating-point/${id}/inputs`);
   }
+
   /**
    * Gets graph data
    * @returns {Observable<any>}
@@ -43,6 +45,23 @@ export class OperatingPointService {
   getGraph(id): Observable<any> {
     return this.service.get(`choose-model/operating-point/${id}/graph`);
   }
+
+  /**
+   * Gets table data
+   * @returns {Observable<any>}
+   */
+  getTable(id): Observable<any> {
+    return this.service.get(`choose-model/operating-point/${id}/table`);
+  }
+
+  /**
+   * Gets calculate data
+   * @returns {Observable<any>}
+   */
+  getCalculate(id): Observable<any> {
+    return this.service.post(`choose-model/operating-point/${id}/calculate`);
+  }
+
   /**
    * Gets carts data
    * @returns {Observable<any>}
@@ -52,31 +71,15 @@ export class OperatingPointService {
   }
 
   calculate(event): Observable<any> {
-    // ToDo format data from event and send request appropriately
     return this.service.get('choose-model/operating-point/calculate/id');
   }
   getCustomItems(id): Observable<any> {
-    return this.service.get(`choose-model/operating-point/${id}`)
-    .catch((err: any) => {
-      return Observable.of(err.error);
-    });
+    return this.service.get(`choose-model/operating-point/${id}`);
   }
   getProjects(): Observable<any> {
-    const userId = localStorage.getItem('id');
-    return this.service.get(`users/${userId}/projects`)
-    .catch((err: any) => {
-      return Observable.of(err.error);
-    });
+    return this.service.get(`users/${this.helper.getUserId()}/projects`);
   }
-  addToEntity(form, view): Observable<any> {
-    let headers = new HttpHeaders();
-    headers = this.helper.createAuthorizationHeader(headers);
-    const type = view === 'add-to-project' ? 'projects' : 'comparisons';
-    const userId = localStorage.getItem('id');
-    return this.service.post(`users/${userId}/${type}`, form.value, {headers: headers})
-    .catch((err: any) => {
-      console.log(err);
-      return Observable.of(err.error);
-    });
+  addToEntity(form): Observable<any> {
+    return this.service.post(`users/${this.helper.getUserId()}/type`, form.value);
   }
 }

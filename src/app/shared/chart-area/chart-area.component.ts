@@ -16,7 +16,15 @@ import Chart from 'chart.js';
 })
 export class ChartAreaComponent implements OnInit, AfterViewInit {
   @Input() canvasId: string;
-  @Input() chartData;
+  chartData;
+  @Input() set chartSetData(data) {
+    if (data) {
+      this.chartData = data;
+      setTimeout(() => {
+        this.generateGraph();
+      }, 2000)
+    }
+  }
   @Input() interactive: boolean;
   @Output() points: EventEmitter<Array<string>> = new EventEmitter();
 
@@ -28,7 +36,6 @@ export class ChartAreaComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.generateGraph();
   }
 
   generateGraph() {
@@ -46,18 +53,18 @@ export class ChartAreaComponent implements OnInit, AfterViewInit {
 
   getGraphData() {
     const data: any = {};
-    data.labels = this.chartData.xPoints;
+    data.labels = this.chartData.xpoints;
     data.datasets = [];
-    for (let i = 0; i < this.chartData.yPoints.length; i++) {
+    for (let i = 0; i < this.chartData.ypoints.length; i++) {
       for (let j = 100; j > 1; j--) {
         const borderColor = j === 100 ? this.chartData.borderColor[i] : j % 10 === 0 ? 'rgba(200,200,200,0.5)' : 'rgba(0,0,0,0)';
         const fill = j === 100;
-        const dataValue = this.chartData.yPoints[i].map(x => Math.round(x * j / 100));
+        const dataValue = this.chartData.ypoints[i].map(x => Math.round(x * j / 100));
         data.datasets.push({
           'label': this.chartData.labels[i],
           'data': dataValue,
           'yValue': dataValue,
-          'xValue': this.chartData.xPoints,
+          'xValue': this.chartData.xpoints,
           'yLabel': this.chartData.yLabel,
           'xUnit': this.chartData.xUnit,
           'yUnit': this.chartData.yUnit,

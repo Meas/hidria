@@ -34,22 +34,30 @@ export class ChooseModelComponent implements OnInit {
     this.getGraph();
   }
 
+  postCard(): void {
+    const obj = [
+      {
+        modelCode: 'string'
+      }
+    ];
+    this.chooseModelService.postItems(obj).subscribe((response: any) => {
+      console.log(response);
+    });
+  }
   getCard(): void {
     this.chooseModelService.getItems(this.data[0].value, 'card').subscribe((response: any) => {
-      this.features.card = response;
-      // this.notifications.getError({'status': 400, 'statusText': 'No results!'});
+      this.features.card = response[0];
     });
   }
   getTable(): void {
     this.chooseModelService.getItems(this.data[0].value, 'table').subscribe((response: any) => {
       console.log(response);
-      this.features.table = response;
-      // this.notifications.getError({'status': 400, 'statusText': 'No results!'});
+      this.features.table = response[0];
     });
   }
   getGraph(): void {
     this.chooseModelService.getItems(this.data[0].value, 'graph').subscribe((response: any) => {
-      this.features.graph = response;
+      this.features.graph = response[0];
       // this.notifications.getError({'status': 400, 'statusText': 'No results!'});
     });
     this.loading = false;

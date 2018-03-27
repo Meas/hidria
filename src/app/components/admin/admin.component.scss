@@ -1,0 +1,71 @@
+@import "../../../assets/partials/variables.scss";
+
+.group {
+  position: relative;
+  width: auto;
+  height: 30px;
+
+  .sliding-el {
+    position: absolute;
+    width: 100px;
+    height: 30px;
+    background: $main-color;
+    z-index: -1;
+    left: 100px;
+    transition: ease .3s;
+  }
+
+  .button-group {
+    display: flex;
+
+    .btn {
+      width: 100px;
+      height: 30px;
+      border: solid 1px #cdcdcd;
+      background: transparent;
+    }
+  }
+}
+
+ul {
+  list-style: none;
+  width: 100%;
+
+  li {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+  }
+}
+
+.info-box {
+  width: 100%;
+  height: 230px;
+  margin-bottom: 15px;
+  border: solid 1px gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  h1, h4 {
+    margin: 0;
+  }
+}
+
+// graphs
+
+.circle-chart__circle {
+  animation: circle-chart-fill 2s reverse;
+  transform: rotate(-90deg);
+  transform-origin: center;
+}
+
+@keyframes circle-chart-fill {
+  to { stroke-dasharray: 0 100; }
+}
+
+html {
+  font-family: sans-serif;
+}

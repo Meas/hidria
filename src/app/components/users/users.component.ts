@@ -9,7 +9,7 @@ export class UsersComponent implements OnInit {
 
   users = {
     headers: ['Name', 'Email', 'User group', 'Registered', 'Last active'],
-    rows: [
+    data: [
       {
         values: ['User 1', 'johndoe@gmail.com', 'Member', '12 hours ago', '10 hours ago']
       },

@@ -22,7 +22,6 @@ export class ChartComponent implements OnInit, AfterViewInit {
   myBarChart: any;
   @Input() set setChartData(data: any) {
     this.chartData = data;
-    console.log(this.chartData);
     if (this.viewInit) {
       this.myBarChart.destroy();
       this.generateGraph();

@@ -14,3 +14,15 @@
 .title {
   color: #1E4686;
 }
+
+.display-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.display-space-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
