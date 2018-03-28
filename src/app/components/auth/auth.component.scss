@@ -1,0 +1,111 @@
+:host {
+  position: relative;
+  width: 100%;
+}
+
+.main-box {
+  border: solid 1px lightgrey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 0;
+}
+
+.login {
+  width: 350px;
+
+  .title {
+    color: #1D4686;
+    text-align: center;
+  }
+
+  .col-12 {
+    margin: 10px 0;
+  }
+}
+.login-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 350px;
+
+  .login-btn {
+    width: 30%;
+    height: 20px;
+    background: #cdcdcd;
+    border: none;
+    font-size: 11px;
+    cursor: pointer;
+  }
+}
+
+.register-buttons {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  .login-btn {
+    width: 100%;
+    height: 20px;
+    background: #cdcdcd;
+    border: none;
+    font-size: 11px;
+    cursor: pointer;
+  }
+}
+
+.password-reset {
+  width: 300px;
+
+  .col-12 {
+    margin: 10px 0;
+  }
+}
+
+.border {
+  border: solid 1px gray;
+  padding: 15px 0;
+  margin: 15px 0;
+}
+
+.function-buttons {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100px;
+
+  .btn {
+    height: 50px;
+    border: none;
+    background: #1D4686;
+    color: white;
+    cursor: pointer;
+  }
+  .disabled {
+    opacity: 0.5;
+  }
+}
+
+.center-elements {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.register {
+  width: 550px;
+
+  .title {
+    color: #1D4686;
+    text-align: center;
+  }
+
+  .col-12 {
+    margin: 10px 0;
+  }
+}

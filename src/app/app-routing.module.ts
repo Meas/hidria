@@ -15,11 +15,13 @@ import { ComparisonComponent } from './components/comparison/comparison.componen
 import {StatisticsComponent} from './components/statistics/statistics.component';
 import {UsersComponent} from './components/users/users.component';
 import {HistoryComponent} from './components/history/history.component';
-import {AdminComponent} from "./components/admin/admin.component";
+import {AdminComponent} from './components/admin/admin.component';
+import {AuthComponent} from './components/auth/auth.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: '/catalogue', pathMatch: 'full' },
+  { path: 'auth', component: AuthComponent },
   { path: 'catalogue', component: CatalogueComponent },
   { path: 'parameter', component: ParametersComponent },
   { path: 'test-pdf', component: TestPdfComponent, canActivate: [SecurityService] },

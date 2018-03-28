@@ -13,6 +13,8 @@ export class SearchByCodeService {
    * @returns {Observable<any>}
    */
   search(data): Observable<any> {
-    return this.service.get(`search-by-code/${data}`);
+    return this.service.post(`search-by-code`, {
+      searchText: data
+    });
   }
 }

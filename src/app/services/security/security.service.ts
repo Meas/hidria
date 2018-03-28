@@ -14,7 +14,7 @@ export class SecurityService {
     if (this.authService.isLoggedIn()) {
       return Observable.of(true);
     } else {
-      this.router.navigate(['login']);
+      this.router.navigate(['auth']);
     }
   }
 

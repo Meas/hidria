@@ -24,6 +24,9 @@ export class OperatingPointComponent implements OnInit {
   view = 'feature';
   selectedTab: String = 'data-sheet';
   inputData = [];
+  links = [];
+
+  modelsToCompare = [];
 
   id;
 
@@ -102,9 +105,7 @@ export class OperatingPointComponent implements OnInit {
           console.log('not el');
       }
     })
-    console.log(calcData)
     this.operatingPointService.postCharts(id, calcData).subscribe((response: any) => {
-      console.log(response);
       this.graphs = response;
     });
   }
@@ -115,7 +116,8 @@ export class OperatingPointComponent implements OnInit {
   }
   getLinks(id): void {
     this.operatingPointService.getLinks(id).subscribe((response: any) => {
-      // console.log(response);
+      console.log(response);
+      this.links = response;
     });
   }
   getTable(id): void {
@@ -124,14 +126,10 @@ export class OperatingPointComponent implements OnInit {
     });
   }
   getCalculate(id, data): void {
-    console.log(data)
     data = {
       staticPressure: Math.round(data[0].defaultValue),
       airFlow: Math.round(data[1].defaultValue)
-      // staticPressure: 0,
-      // airFlow: 0
     }
-    console.log(data)
     this.operatingPointService.getCalculate(id, data).subscribe((response: any) => {
       this.tables = response;
       this.postCharts(this.id, this.tables[2].data);
@@ -187,29 +185,39 @@ export class OperatingPointComponent implements OnInit {
       this.addToProject = response;
     });
   }
-  onPostForm(form) {
+  addToProjectFunc(form) {
     // console.log(form);
     const data = {
-      projectId: 0,
-      userId: 0,
       modelId: 0,
-      positionNumber: 'string',
+      positionNumber: 'test',
       items: 0,
-      projectName: 'string',
-      construction: 'string',
-      address: 'string',
-      purchaser: 'string',
-      projectant: 'string',
-      business: 'string',
+      projectName: 'test',
+      construction: 'test',
+      address: 'test',
+      purchaser: 'test',
+      projectant: 'test',
+      business: 'test',
       accessories: [
         {
-          accessoryId: 0,
-          items: 0
+          accessoryId: 1,
+          items: 1
         }
       ]
     }
     this.projectService.createProject(data).subscribe((response: any) => {
       console.log(response);
     });
+  }
+  addToComparisonFunc(form) {
+    this.modelsToCompare.push({
+      id: 1,
+      name: 'test',
+      color: 'yellow',
+      image: '',
+      data: this.tables
+    })
+    console.log(this.modelsToCompare);
+
+    localStorage.setItem('comparison', JSON.stringify(this.modelsToCompare))
   }
 }

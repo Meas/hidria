@@ -18,6 +18,8 @@ export class MyProjectsComponent implements OnInit {
   modelList: any = [];
   projectsList: any = [];
 
+  view = '';
+
   constructor(public myProjectsService: MyProjectsService) { }
 
   ngOnInit() {
@@ -99,6 +101,9 @@ export class MyProjectsComponent implements OnInit {
     });
   }
   createProject() {
+    this.view = 'create-project';
+  }
+  saveProject() {
     const myProj = {
       modelId: 0,
       positionNumber: 'string',

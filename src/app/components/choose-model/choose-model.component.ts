@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ChooseModelService} from '../../services/chooseModel/chooseModel.service';
-import {ActivatedRoute, Params} from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 
 import {CustomNotificationsService} from '../../services/notifications/notifications.service';
 import * as _ from 'lodash';
@@ -21,9 +21,11 @@ export class ChooseModelComponent implements OnInit {
   };
 
   data = [];
+  tableTab = 0;
 
   constructor(private chooseModelService: ChooseModelService,
               private activatedRoute: ActivatedRoute,
+              private router: Router,
               private notifications: CustomNotificationsService) {
     this.data = this.getDataFromParams();
   }
@@ -65,6 +67,7 @@ export class ChooseModelComponent implements OnInit {
 
   selectModel(event) {
     console.log(event);
+    this.router.navigate(['/choose-model/operating-point/1'])
   }
 
   getDataFromParams() {

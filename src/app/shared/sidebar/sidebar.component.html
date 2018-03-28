@@ -20,19 +20,19 @@
     </div>
     <div class="text">{{ 'TRANSLATE.SELECTION-BY-PARAMETER' | translate }}</div>
   </div>
-  <div class="filter-item" routerLink="my-projects" routerLinkActive="active">
+  <div *ngIf="isLoggedIn" class="filter-item" routerLink="my-projects" routerLinkActive="active">
     <div class="icon">
       <img src="assets/icons/my-projects.png">
     </div>
     <div class="text"> {{ 'TRANSLATE.MY-PROJECTS' | translate }}</div>
   </div>
-  <div class="filter-item" routerLink="comparisons" routerLinkActive="active">
+  <div *ngIf="isLoggedIn" class="filter-item" routerLink="comparisons" routerLinkActive="active">
     <div class="icon">
       <img src="assets/icons/comparison.png">
     </div>
     <div class="text"> {{ 'TRANSLATE.COMPARISONS' | translate }}</div>
   </div>
-  <div class="filter-item">
+  <div *ngIf="isLoggedIn" class="filter-item">
     <div class="code-section" [ngClass]="{'show-code-section': showSBC}">
       <input style="width: 150px" type="text" [(ngModel)]="code">
       <button (click)="onSearchByCode()">Search</button>

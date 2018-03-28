@@ -19,10 +19,14 @@
       </div>
       <div class="fan-table">
         <div style="margin: 0 15px" class="row" *ngIf="features.table">
-          <app-choose-model-table-horizontal *ngIf="features.table[0][0]"
+          <div>
+            <button class="h-btn btn-default btn-add-new" (click)="tableTab = 0">Tab 1</button>
+            <button class="h-btn btn-default btn-add-new" (click)="tableTab = 1">Tab 2</button>
+          </div>
+          <app-choose-model-table-horizontal *ngIf="features.table[0][0] && tableTab === 0"
                                              [tableData]="features.table[0][0]"
                                              (onModelSelected)="selectModel($event)"></app-choose-model-table-horizontal>
-          <app-choose-model-table-horizontal *ngIf="features.table[0][1]"
+          <app-choose-model-table-horizontal *ngIf="features.table[0][1] && tableTab === 1"
                                              [tableData]="features.table[0][1]"
                                              (onModelSelected)="selectModel($event)"></app-choose-model-table-horizontal>
         </div>

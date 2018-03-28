@@ -8,19 +8,19 @@
       </div>
       <div class="section-content">
 
-        <ul class="nav-links left">
+        <ul *ngIf="isLoggedIn" class="nav-links left">
           <li class="nav-link"><a class="link-left" routerLink="statistics">{{'TRANSLATE.STATISTICS' | translate}}</a></li>
           <li class="nav-link"><a class="link-left" routerLink="users">{{'TRANSLATE.USER' | translate}}</a></li>
         </ul>
 
         <ul class="nav-links right">
           <li class="nav-link"><a class="link" routerLink="history">{{'TRANSLATE.HISTORY' | translate}}</a></li>
-          <li class="nav-link"><a class="link" href="http://www.hidria.com/">{{'TRANSLATE.HELP' | translate}}</a></li>
+          <li class="nav-link"><a class="link" target="_blank" href="http://www.hidria.com/">{{'TRANSLATE.HELP' | translate}}</a></li>
           <li class="nav-link">
-            <a *ngIf="!isLoggedIn" class="link" href="login">{{'TRANSLATE.REGISTER' | translate}} / {{'TRANSLATE.LOGIN' | translate}}</a>
+            <a *ngIf="!isLoggedIn" class="link" routerLink="auth">{{'TRANSLATE.REGISTER' | translate}} / {{'TRANSLATE.LOGIN' | translate}}</a>
             <a *ngIf="isLoggedIn" class="link" (click)="logout()">{{'TRANSLATE.LOGOUT' | translate}}</a>
           </li>
-          <li class="nav-link measures">
+          <li *ngIf="isLoggedIn" class="nav-link measures">
             <button [ngClass]="measure === 'm' ? 'meters-active' : ''" (click)="changeMetricsClick.emit('m')">m</button>
             <button [ngClass]="measure === 'ft' ? 'feets-active' : ''" (click)="changeMetricsClick.emit('ft')">ft</button>
           </li>

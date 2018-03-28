@@ -27,12 +27,12 @@
 				<div class="image-outer">
 					<img src="{{model.image}}">
 				</div>
-				<div>{{model.name}}</div> 
+				<div>{{model.name}}</div>
 			</div>
-			<ng-container *ngFor="let entry of model.data">
-				<ng-container *ngIf="entry.id == filterSelected">
-					<div class="one-table-row" *ngFor="let value of entry.values">
-						{{value}}
+			<ng-container *ngFor="let entry of model.data; let i = index">
+				<ng-container *ngIf="i === 2">
+					<div class="one-table-row" *ngFor="let value of entry.data">
+						{{value.value}}
 					</div>
 				</ng-container>
 			</ng-container>
@@ -45,13 +45,13 @@
 					<div class="image-outer">
 						<img src="{{row.image}}">
 					</div>
-					<div>{{row.name}}</div> 
+					<div>{{row.name}}</div>
 				</div>
 				<div class="one-table-row {{row.classUI}}" *ngIf="!row.image">
 					{{row.value}}
 				</div>
 			</ng-container> -->
-		</div>	
+		</div>
 	</div>
 	<!-- <div class="outer-table" *ngIf="table.id === filterSelected">
 		<ng-container *ngFor="let entry of table.children">
@@ -80,7 +80,7 @@
 						<div class="image-outer">
 							<img src="{{row.image}}">
 						</div>
-						<div>{{row.name}}</div> 
+						<div>{{row.name}}</div>
 					</div>
 					<div class="one-table-row {{row.classUI}}" *ngIf="!row.image">
 						{{row.value}}
@@ -117,7 +117,7 @@
 		<div class="image-outer">
 			<img src="http://13.93.51.225/hidria/Images/ACPlasticblades.png">
 		</div>
-		<div>R09-3030H-4M-2509</div> 
+		<div>R09-3030H-4M-2509</div>
 		</div>
 		<div class="one-table-row">
 		6200

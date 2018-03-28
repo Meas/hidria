@@ -44,6 +44,7 @@ import { StatisticsComponent } from './components/statistics/statistics.componen
 import { UsersComponent } from './components/users/users.component';
 import { HistoryComponent } from './components/history/history.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { AuthComponent } from './components/auth/auth.component';
 
 /* export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/translations/', '.json');
@@ -67,7 +68,8 @@ import { AdminComponent } from './components/admin/admin.component';
     StatisticsComponent,
     UsersComponent,
     HistoryComponent,
-    AdminComponent
+    AdminComponent,
+    AuthComponent
   ],
   imports: [
     FormsModule,

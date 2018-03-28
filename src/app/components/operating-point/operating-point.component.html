@@ -41,13 +41,13 @@
       <div class="col-lg-12" *ngIf="selectedTab === 'data-sheet'">
         <div class="row">
           <div class="col-lg-4">
+            <app-choose-model-table *ngIf="tables[2]" [tableData]="tables[2]"></app-choose-model-table>
+          </div>
+          <div class="col-lg-4">
             <app-choose-model-table *ngIf="tables[0]" [tableData]="tables[0]"></app-choose-model-table>
           </div>
           <div class="col-lg-4">
             <app-choose-model-table *ngIf="tables[1]" [tableData]="tables[1]"></app-choose-model-table>
-          </div>
-          <div class="col-lg-4">
-            <app-choose-model-table *ngIf="tables[2]" [tableData]="tables[2]"></app-choose-model-table>
           </div>
         </div>
       </div>
@@ -80,8 +80,8 @@
         </div>
       </div>
       <div class="col-lg-4">
-        <ng-container *ngFor="let download of downloads.children">
-          <a *ngIf="download.name == 'generate-card'" href="{{download.link}}" download>
+        <ng-container *ngFor="let download of links">
+          <a *ngIf="download.name == 'TRANSLATE.OPERATING-POINT.GENERATE-CARD'" href="{{download.link}}" download>
             <div class="button">
               GENERATE CARD
             </div>
@@ -94,9 +94,9 @@
 
 <div *ngIf="view ==='add-to-project'">
   <app-add-to-project [projects]="addToProject" (cancel)="view='feature'"
-                      [type]="'project'" [card]="card.info" (postForm)="onPostForm($event)"></app-add-to-project>
+                      [type]="'project'" [card]="card.info" (postForm)="addToProjectFunc($event)"></app-add-to-project>
 </div>
 <div *ngIf="view ==='add-to-comparison'">
   <app-add-to-project [projects]="addToComparison" (cancel)="view='feature'"
-                      [type]="'comparison'" [card]="card.info"></app-add-to-project>
+                      [type]="'comparison'" [card]="card.info" (postForm)="addToComparisonFunc($event)"></app-add-to-project>
 </div>

@@ -1,12 +1,11 @@
-<div>
+<div *ngIf="!(view ==='create-project')">
   <div class="loading-box" *ngIf="loading">
     <app-loading></app-loading>
   </div>
   <div *ngIf="!loading">
-    <div class="row no-gutter">
-      <div class="col-lg-2">
-          {{ 'TRANSLATE.MY-PROJECTS' | translate }}  <button (click)="createProject()">Create Project</button>
-      </div>
+    <div class="display-space-between">
+      <h4>{{ 'TRANSLATE.MY-PROJECTS' | translate }} </h4>
+      <button class="h-btn btn-default btn-add-new" (click)="createProject()">Create Project</button>
     </div>
     <hr class="title-line">
     <div class="row no-gutter">
@@ -61,4 +60,9 @@
       </div>
     </div>
   </div>
+</div>
+
+<div *ngIf="view ==='create-project'">
+  <app-add-to-project [projects]="addToProject" (cancel)="view = ''"
+                      [type]="'project'" (postForm)="saveProject($event)"></app-add-to-project>
 </div>

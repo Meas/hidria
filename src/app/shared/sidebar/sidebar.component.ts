@@ -1,4 +1,4 @@
-import {Component, EventEmitter, HostListener, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-sidebar',
@@ -9,6 +9,7 @@ export class SidebarComponent implements OnInit {
 
   code = '';
   showSBC = false;
+  @Input() isLoggedIn = false;
 
   @Output('searchByCode') searchByCode: EventEmitter<string> = new EventEmitter();
 

@@ -32,6 +32,7 @@ export class ComparisonComponent implements OnInit {
     this.getItems();
     this.getTabs();
     this.getComparisonList();
+    this.loading = false;
   }
 
   getTabs() {
@@ -43,12 +44,13 @@ export class ComparisonComponent implements OnInit {
   }
 
   getComparisonList() {
-    this.comparisonService.getComparisonList(1).subscribe((response: any) => {
-      console.log(response);
-      this.comparisonList = response;
-      this.getModelList(response[0].id);
-      this.getGraph(response[0].id);
-    });
+    this.modelList = JSON.parse(localStorage.getItem('comparison'));
+    // this.comparisonService.getComparisonList(1).subscribe((response: any) => {
+    //   console.log(response);
+    //   this.comparisonList = response;
+    //   this.getModelList(response[0].id);
+    //   this.getGraph(response[0].id);
+    // });
   }
 
   getModelList(comparisonId = 1) {
