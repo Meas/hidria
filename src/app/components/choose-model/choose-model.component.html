@@ -17,7 +17,16 @@
           [setChartData]="features.graph"
           [toFill]="true"></app-chart-component>
       </div>
-      <div class="fan-table" *ngIf="features.table">
+      <div class="fan-table">
+        <div style="margin: 0 15px" class="row" *ngIf="features.table">
+          <app-choose-model-table-horizontal *ngIf="features.table[0][0]"
+                                             [tableData]="features.table[0][0]"
+                                             (onModelSelected)="selectModel($event)"></app-choose-model-table-horizontal>
+          <app-choose-model-table-horizontal *ngIf="features.table[0][1]"
+                                             [tableData]="features.table[0][1]"
+                                             (onModelSelected)="selectModel($event)"></app-choose-model-table-horizontal>
+        </div>
+        <!--<app-choose-model-table [tableData]="features.table[1]"></app-choose-model-table>-->
         <!--<app-tabs [tableData]="features.table"></app-tabs>-->
       </div>
     </div>

@@ -62,6 +62,6 @@ export class MyProjectsService {
     return this.service.post(`projects/${projectId}/models/${modelId}/notes`, note);
   }
   createProject(data) {
-    return this.service.post(`projects`, data);
+    return this.service.post(`${this.helper.getUserId()}/projects`, data);
   }
 }

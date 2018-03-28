@@ -5,7 +5,6 @@ import * as _ from 'lodash';
 import {MyProjectsService} from '../../services/my-projects/my-projects.service';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-operating-point',
   templateUrl: './operating-point.component.html',
   styleUrls: ['./operating-point.component.scss']
@@ -24,24 +23,25 @@ export class OperatingPointComponent implements OnInit {
   card: Object = {};
   view = 'feature';
   selectedTab: String = 'data-sheet';
+  inputData = [];
 
   id;
 
   constructor(private operatingPointService: OperatingPointService,
-              private projectService: MyProjectsService
+              private projectService: MyProjectsService,
               private zone: NgZone,
               private cd: ChangeDetectorRef,
               private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.getId((id) => {
+      this.id = id;
       this.getCard(id);
       this.getGraph(id);
-      this.getCharts(id);
+      // this.getCharts(id);
       this.getLinks(id);
       this.getInputs(id);
       this.getTable(id);
-      this.getCalculate(id);
       this.getProjects();
       this.loading = false;
       setTimeout(() => {
@@ -72,6 +72,42 @@ export class OperatingPointComponent implements OnInit {
       this.zone.run(() => this.cd.markForCheck());
     });
   }
+  postCharts(id, data): void {
+    const calcData = {
+      staticPressure: 12,
+      airFlow: 12,
+      rpm: 12,
+      power: 12,
+      dynamicPressure: 12
+    }
+
+    data.forEach((o) => {
+      switch (o.name) {
+        case 'Power (W)':
+          calcData.power = o.value;
+          break;
+        case 'Dynamic Pressure (Pa)':
+          calcData.dynamicPressure = o.value;
+          break;
+        case 'Air flow  (m3/h)':
+          calcData.airFlow = o.value;
+          break;
+        case 'Static Pressure (Pa)':
+          calcData.airFlow = o.value;
+          break;
+        case 'Speed (1/min)':
+          calcData.rpm = o.value;
+          break;
+        default:
+          console.log('not el');
+      }
+    })
+    console.log(calcData)
+    this.operatingPointService.postCharts(id, calcData).subscribe((response: any) => {
+      console.log(response);
+      this.graphs = response;
+    });
+  }
   getInputs(id): void {
     this.operatingPointService.getInputs(id).subscribe((response: any) => {
       this.operatingPointInputs = response;
@@ -79,29 +115,39 @@ export class OperatingPointComponent implements OnInit {
   }
   getLinks(id): void {
     this.operatingPointService.getLinks(id).subscribe((response: any) => {
-      console.log(response);
+      // console.log(response);
     });
   }
   getTable(id): void {
     this.operatingPointService.getTable(id).subscribe((response: any) => {
-      console.log(response);
       this.tables = response;
     });
   }
-  getCalculate(id): void {
-    this.operatingPointService.getCalculate(id).subscribe((response: any) => {
-      console.log(response);
+  getCalculate(id, data): void {
+    console.log(data)
+    data = {
+      staticPressure: Math.round(data[0].defaultValue),
+      airFlow: Math.round(data[1].defaultValue)
+      // staticPressure: 0,
+      // airFlow: 0
+    }
+    console.log(data)
+    this.operatingPointService.getCalculate(id, data).subscribe((response: any) => {
+      this.tables = response;
+      this.postCharts(this.id, this.tables[2].data);
     });
   }
 
   onPointSelected(event): void {
-    this.graphData = [...event];
+    // this.graphData = [...event];
+    this.inputData = [...event];
   }
 
   onChange(event): void {
-    this.operatingPointService.calculate(event).subscribe((response: any) => {
-      this.findAndReplace(this.feature, ['parameterList', 'diagrams'], response);
-    });
+    // this.operatingPointService.calculate(event).subscribe((response: any) => {
+    //   this.findAndReplace(this.feature, ['parameterList', 'diagrams'], response);
+    // });
+    this.getCalculate(this.id, event);
   }
 
   findAndReplace(object, types, replaceValues) {
@@ -134,7 +180,6 @@ export class OperatingPointComponent implements OnInit {
     }
   }
   selectTab(newTab) {
-    console.log(newTab)
     this.selectedTab = newTab;
   }
   getProjects() {

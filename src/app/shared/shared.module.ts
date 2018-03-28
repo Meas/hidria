@@ -44,6 +44,7 @@ import { SortByStringPipe } from '../pipes/sort-by-string/sort-by-string.pipe';
 import { DataTableComponent } from './data-table/data-table.component';
 import { UsersTableComponent } from './users-table/users-table.component';
 import { ChooseModelTableComponent } from './choose-model-table/choose-model-table.component';
+import { ChooseModelTableHorizontalComponent } from './choose-model-table-horizontal/choose-model-table-horizontal.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/translations/', '.json');
@@ -100,7 +101,8 @@ export function createTranslateLoader(http: HttpClient) {
     ComparisonTableComponent,
     DataTableComponent,
     UsersTableComponent,
-    ChooseModelTableComponent
+    ChooseModelTableComponent,
+    ChooseModelTableHorizontalComponent
   ],
   exports: [
     HeaderComponent,
@@ -134,7 +136,8 @@ export function createTranslateLoader(http: HttpClient) {
     TranslateModule,
     DataTableComponent,
     UsersTableComponent,
-    ChooseModelTableComponent
+    ChooseModelTableComponent,
+    ChooseModelTableHorizontalComponent
   ],
   providers: [
     ChartServiceService

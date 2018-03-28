@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, HostListener, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-sidebar',
@@ -14,14 +14,23 @@ export class SidebarComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  @HostListener('document:click', ['$event'])
+  clickout(event) {
+    // console.log(event.srcElement !== 'img')
+    // this.showSearchByCode(true)
   }
 
   onSearchByCode() {
     this.searchByCode.emit(this.code);
-    this.showSearchByCode();
+    this.showSearchByCode(false);
   }
-  showSearchByCode() {
-    this.showSBC = !this.showSBC;
+  showSearchByCode(body) {
+    if (body) {
+      this.showSBC = false;
+    } else {
+      this.showSBC = !this.showSBC;
+    }
   }
 }

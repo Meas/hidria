@@ -30,8 +30,8 @@ export class MyProjectsComponent implements OnInit {
       this.findByType(this.feature, 'project-list', this.selectedProject);
     }); */
     this.myProjectsService.getProjects().subscribe((response: any) => {
-      console.log(response);
       this.projectsList = response;
+      console.log(this.projectsList)
       // this.onSelectProject(response[0]);
       this.loading = false;
     });
@@ -100,8 +100,6 @@ export class MyProjectsComponent implements OnInit {
   }
   createProject() {
     const myProj = {
-      projectId: 0,
-      userId: 0,
       modelId: 0,
       positionNumber: 'string',
       items: 0,

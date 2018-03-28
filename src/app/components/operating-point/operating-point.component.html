@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="!(view ==='add-to-project' || view ==='add-to-comparison')">
   <div class="loading-box" *ngIf="loading">
     <app-loading></app-loading>
   </div>
@@ -22,7 +22,7 @@
         <div>
           <app-operating-points-inputs
             [inputData]="operatingPointInputs"
-            [graphDataInput]="graphData"
+            [graphDataInput]="inputData"
             (onChange)="onChange($event)"></app-operating-points-inputs>
         </div>
       </div>
@@ -47,7 +47,7 @@
             <app-choose-model-table *ngIf="tables[1]" [tableData]="tables[1]"></app-choose-model-table>
           </div>
           <div class="col-lg-4">
-            <app-choose-model-table *ngIf="tables[2]" [tableData]="tables[0]"></app-choose-model-table>
+            <app-choose-model-table *ngIf="tables[2]" [tableData]="tables[2]"></app-choose-model-table>
           </div>
         </div>
       </div>
@@ -89,16 +89,14 @@
         </ng-container>
       </div>
     </div>
-
-    <div>
-      <div *ngIf="view ==='add-to-project'">
-        <app-add-to-project [projects]="addToProject" (cancel)="view='feature'"
-                            [type]="'project'" [card]="card.info" (postForm)="onPostForm($event)"></app-add-to-project>
-      </div>
-      <div *ngIf="view ==='add-to-comparison'">
-        <app-add-to-project [projects]="addToComparison" (cancel)="view='feature'"
-                            [type]="'comparison'" [card]="card.info"></app-add-to-project>
-      </div>
-    </div>
   </div>
+</div>
+
+<div *ngIf="view ==='add-to-project'">
+  <app-add-to-project [projects]="addToProject" (cancel)="view='feature'"
+                      [type]="'project'" [card]="card.info" (postForm)="onPostForm($event)"></app-add-to-project>
+</div>
+<div *ngIf="view ==='add-to-comparison'">
+  <app-add-to-project [projects]="addToComparison" (cancel)="view='feature'"
+                      [type]="'comparison'" [card]="card.info"></app-add-to-project>
 </div>

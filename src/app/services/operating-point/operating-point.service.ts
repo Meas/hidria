@@ -58,8 +58,12 @@ export class OperatingPointService {
    * Gets calculate data
    * @returns {Observable<any>}
    */
-  getCalculate(id): Observable<any> {
-    return this.service.post(`choose-model/operating-point/${id}/calculate`);
+  getCalculate(id, data): Observable<any> {
+    return this.service.post(`choose-model/operating-point/${id}/calculate`, data);
+    // {
+    //   staticPressure: 0,
+    //     airFlow: 0
+    // }
   }
 
   /**
@@ -68,6 +72,16 @@ export class OperatingPointService {
    */
   getCharts(id): Observable<any> {
     return this.service.get(`choose-model/operating-point/${id}/charts`);
+  }
+  postCharts(id, data): Observable<any> {
+    return this.service.post(`choose-model/operating-point/${id}/charts`, data);
+    // {
+    //   staticPressure: 0,
+    //     airFlow: 0,
+    //   rpm: 0,
+    //   power: 0,
+    //   dynamicPressure: 0
+    // }
   }
 
   calculate(event): Observable<any> {

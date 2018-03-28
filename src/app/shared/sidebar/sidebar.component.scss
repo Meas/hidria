@@ -44,8 +44,7 @@
       position: relative;
       width: 90%;
       height: auto;
-      background: $main-color;
-      opacity: 0.5;
+      background: rgba($main-color, 0.5);
       cursor: pointer;
       transition: ease .3s;
       color: white;
@@ -54,7 +53,7 @@
       outline: none;
 
       &:hover {
-        opacity: 0.8;
+        background: rgba($main-color, 0.8);
       }
 
       .icon {
@@ -88,6 +87,7 @@
 
   .code-section {
     position: absolute;
+    bottom: 0;
     width: 300px;
     height: 90px;
     background: $main-color;
@@ -96,6 +96,7 @@
     align-items: center;
     justify-content: center;
     transition: ease .3s;
+    z-index: 100;
 
     button {
       height: 33px;
@@ -109,6 +110,6 @@
     }
   }
   .show-code-section {
-    left: 0;
+    left: 90px;
   }
 }

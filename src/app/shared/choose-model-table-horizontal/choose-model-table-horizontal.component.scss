@@ -10,6 +10,12 @@ table {
   margin-bottom: 25px;
 
   tr {
+    cursor: pointer;
+
+    &:hover {
+      background: lightgrey;
+    }
+
     th {
       background-color: $main-color;
       border-bottom: solid 1px gray;

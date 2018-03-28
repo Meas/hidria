@@ -52,6 +52,7 @@ export class ChartAreaComponent implements OnInit, AfterViewInit {
   }
 
   getGraphData() {
+    console.log(this.chartData)
     const data: any = {};
     data.labels = this.chartData.xpoints;
     data.datasets = [];

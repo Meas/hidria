@@ -52,7 +52,7 @@ export class ChooseModelComponent implements OnInit {
   getTable(): void {
     this.chooseModelService.getItems(this.data[0].value, 'table').subscribe((response: any) => {
       console.log(response);
-      this.features.table = response[0];
+      this.features.table = response;
     });
   }
   getGraph(): void {
@@ -61,6 +61,10 @@ export class ChooseModelComponent implements OnInit {
       // this.notifications.getError({'status': 400, 'statusText': 'No results!'});
     });
     this.loading = false;
+  }
+
+  selectModel(event) {
+    console.log(event);
   }
 
   getDataFromParams() {
