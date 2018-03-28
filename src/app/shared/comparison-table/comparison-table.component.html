@@ -29,13 +29,15 @@
 				</div>
 				<div>{{model.name}}</div>
 			</div>
-			<ng-container *ngFor="let entry of model.data; let i = index">
-				<ng-container *ngIf="i === 2">
-					<div class="one-table-row" *ngFor="let value of entry.data">
-						{{value.value}}
-					</div>
-				</ng-container>
-			</ng-container>
+      <ng-container>
+        <ng-container *ngFor="let entry of model.data; let i = index">
+          <ng-container *ngIf="filterSelected == i + 1">
+            <div class="one-table-row" *ngFor="let value of entry.data">
+              {{value.value}}
+            </div>
+          </ng-container>
+        </ng-container>
+      </ng-container>
 			<!-- <ng-container *ngFor="let row of entry.children">
 				<div class="one-table-row {{row.classUI}}" *ngIf="row.image">
 					<div class="x-button-outer" [style.background-color]="row.color"

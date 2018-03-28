@@ -43,7 +43,7 @@ export class AppComponent {
   searchByCode(event) {
     this.searchByCodeService.search(event).subscribe((response: any) => {
       console.log(response)
-      this.router.navigate([`/choose-model/operating-point/1`]);
+      this.router.navigate([`/choose-model/1`]);
     });
   }
 }

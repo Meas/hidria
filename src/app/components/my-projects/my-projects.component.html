@@ -63,6 +63,6 @@
 </div>
 
 <div *ngIf="view ==='create-project'">
-  <app-add-to-project [projects]="addToProject" (cancel)="view = ''"
+  <app-add-to-project [projects]="projectsList" (cancel)="view = ''"
                       [type]="'project'" (postForm)="saveProject($event)"></app-add-to-project>
 </div>

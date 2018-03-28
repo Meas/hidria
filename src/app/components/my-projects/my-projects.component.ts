@@ -47,6 +47,7 @@ export class MyProjectsComponent implements OnInit {
   onSelectProject(event): void {
     this.selectedProject = Object.assign({}, event);
     this.myProjectsService.getModels(event.id).subscribe((response: any) => {
+      console.log(response);
       if (response.constructor === Array) {
         this.modelList = response;
       } else {
@@ -103,26 +104,10 @@ export class MyProjectsComponent implements OnInit {
   createProject() {
     this.view = 'create-project';
   }
-  saveProject() {
-    const myProj = {
-      modelId: 0,
-      positionNumber: 'string',
-      items: 0,
-      projectName: 'string',
-      construction: 'string',
-      address: 'string',
-      purchaser: 'string',
-      projectant: 'string',
-      business: 'string',
-      accessories: [
-        {
-          accessoryId: 0,
-          items: 0
-        }
-      ]
-    }
-    this.myProjectsService.createProject(myProj).subscribe((response: any) => {
-      console.log(response);
+  saveProject(data) {
+    this.myProjectsService.createProject(data.value).subscribe((response: any) => {
+      this.view = '';
+      this.getItems()
     });
   }
 }

@@ -51,6 +51,8 @@ export class OperatingPointComponent implements OnInit {
         this.zone.run(() => this.cd.markForCheck());
       }, 2000);
     });
+
+    this.modelsToCompare = JSON.parse(localStorage.getItem('comparison')) !== null ? JSON.parse(localStorage.getItem('comparison')) : [];
   }
 
   getId(cb) {
@@ -185,32 +187,14 @@ export class OperatingPointComponent implements OnInit {
       this.addToProject = response;
     });
   }
-  addToProjectFunc(form) {
-    // console.log(form);
-    const data = {
-      modelId: 0,
-      positionNumber: 'test',
-      items: 0,
-      projectName: 'test',
-      construction: 'test',
-      address: 'test',
-      purchaser: 'test',
-      projectant: 'test',
-      business: 'test',
-      accessories: [
-        {
-          accessoryId: 1,
-          items: 1
-        }
-      ]
-    }
-    this.projectService.createProject(data).subscribe((response: any) => {
+  addToProjectFunc(data) {
+    this.projectService.createProject(data.value).subscribe((response: any) => {
       console.log(response);
     });
   }
   addToComparisonFunc(form) {
     this.modelsToCompare.push({
-      id: 1,
+      id: this.modelsToCompare.length,
       name: 'test',
       color: 'yellow',
       image: '',

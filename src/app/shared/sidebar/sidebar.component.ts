@@ -27,6 +27,9 @@ export class SidebarComponent implements OnInit {
     this.searchByCode.emit(this.code);
     this.showSearchByCode(false);
   }
+  closeSearchByCode() {
+    this.showSearchByCode(false);
+  }
   showSearchByCode(body) {
     if (body) {
       this.showSBC = false;

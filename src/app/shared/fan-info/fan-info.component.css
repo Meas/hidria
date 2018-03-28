@@ -6,6 +6,7 @@
 	border: 1px solid #999;
 	padding-top: 10px;
 	padding-bottom: 10px;
+  display: flex;
   	/* margin-right: 5px; */
 }
 .fan-info-name {
@@ -32,7 +33,7 @@
 }
 .image img {
 	width:100%;
-	max-width:100px;
+	max-width:120px;
 }
 .big-padding {
 	padding-left: 100px;

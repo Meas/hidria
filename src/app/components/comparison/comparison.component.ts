@@ -44,21 +44,23 @@ export class ComparisonComponent implements OnInit {
   }
 
   getComparisonList() {
-    this.modelList = JSON.parse(localStorage.getItem('comparison'));
-    // this.comparisonService.getComparisonList(1).subscribe((response: any) => {
-    //   console.log(response);
-    //   this.comparisonList = response;
-    //   this.getModelList(response[0].id);
-    //   this.getGraph(response[0].id);
-    // });
+    this.comparisonService.getComparisonList(1).subscribe((response: any) => {
+      console.log(response);
+      this.comparisonList = response;
+      this.getModelList(response[0].id);
+      this.getGraph(response[0].id);
+    });
   }
 
   getModelList(comparisonId = 1) {
-    this.comparisonService.getModelList(comparisonId).subscribe((response: any) => {
-      console.log(response);
-      this.modelList = response;
-      this.zone.run(() => this.cd.markForCheck());
-    });
+    console.log(JSON.parse(localStorage.getItem('comparison')));
+    this.modelList = JSON.parse(localStorage.getItem('comparison')) !== null ? JSON.parse(localStorage.getItem('comparison')) : [];
+
+    // this.comparisonService.getModelList(comparisonId).subscribe((response: any) => {
+    //   console.log(response);
+    //   this.modelList = response;
+    //   this.zone.run(() => this.cd.markForCheck());
+    // });
   }
 
   getGraph(comparisonId = 1) {
@@ -121,6 +123,7 @@ export class ComparisonComponent implements OnInit {
   }
   removeFromTable(id) {
     this.modelList = this.modelList.filter(model => model.id !== id);
+    localStorage.setItem('comparison', JSON.stringify(this.modelList))
     this.zone.run(() => this.cd.markForCheck());
   }
   removeFromGraph(id, object) {
