@@ -15,6 +15,7 @@ import {Router} from '@angular/router';
 export class ChartPerformanceCurveComponent implements OnInit, AfterViewInit {
   @Input() canvasId: string;
   @Input() chartData;
+  @Input() type;
 
   constructor(private chartService: ChartServiceService, private router: Router) {
   }
@@ -33,7 +34,7 @@ export class ChartPerformanceCurveComponent implements OnInit, AfterViewInit {
     const options = this.getOptions();
 
     const myBarChart = new Chart(ctx, {
-      type: 'line',
+      type: this.type,
       data: data,
       options: options,
     });
