@@ -35,20 +35,20 @@
       <div class="col-lg-12 row" *ngIf="selectedTab ==='diagrams'">
         <div *ngFor="let graph of graphs; let i = index;" [ngClass]="graph.classUi">
           <app-chart-performance-curve-component [canvasId]="'canvas'+graph.name"
-                                                 [type]="i < 2 ? 'bar' : 'line'"
+                                                 [type]="i > 1 ? 'bar' : 'line'"
                                                  [chartData]="graph"></app-chart-performance-curve-component>
         </div>
       </div>
       <div class="col-lg-12" *ngIf="selectedTab === 'data-sheet'">
         <div class="row">
           <div class="col-lg-4">
-            <app-choose-model-table *ngIf="tables[2]" [tableData]="tables[2]"></app-choose-model-table>
-          </div>
-          <div class="col-lg-4">
             <app-choose-model-table *ngIf="tables[0]" [tableData]="tables[0]"></app-choose-model-table>
           </div>
           <div class="col-lg-4">
             <app-choose-model-table *ngIf="tables[1]" [tableData]="tables[1]"></app-choose-model-table>
+          </div>
+          <div class="col-lg-4">
+            <app-choose-model-table *ngIf="tables[2]" [tableData]="tables[2]"></app-choose-model-table>
           </div>
         </div>
       </div>
@@ -71,7 +71,7 @@
         Select Q / Ps operating point
       </div>
       <div class="col-lg-4">
-        <div class="button" (click)="view='add-to-comparison'">
+        <div class="button" (click)="addToComparisonFunc($event)">
           ADD TO COMPARE
         </div>
       </div>

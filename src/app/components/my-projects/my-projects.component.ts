@@ -1,6 +1,8 @@
 import {Component, Input, NgZone, OnInit} from '@angular/core';
 import * as _ from 'lodash';
 import { MyProjectsService } from './../../services/my-projects/my-projects.service';
+import {CustomNotificationsService} from "../../services/notifications/notifications.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-my-projects',
@@ -20,7 +22,9 @@ export class MyProjectsComponent implements OnInit {
 
   view = '';
 
-  constructor(public myProjectsService: MyProjectsService) { }
+  constructor(private myProjectsService: MyProjectsService,
+              private notification: CustomNotificationsService,
+              private translate: TranslateService) { }
 
   ngOnInit() {
     this.getItems();
@@ -107,7 +111,10 @@ export class MyProjectsComponent implements OnInit {
   saveProject(data) {
     this.myProjectsService.createProject(data.value).subscribe((response: any) => {
       this.view = '';
-      this.getItems()
+      this.getItems();
+      this.translate.get('TRANSLATE.PROJECT').subscribe((res: string) => {
+        this.notification.message('success', 'Success', 'Project is created');
+      });
     });
   }
 }

@@ -4,8 +4,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { generateUrlEncodedData, setStorageData } from './helpers/helper';
 import {CustomNotificationsService} from './services/notifications/notifications.service';
-import {NotificationComponent} from 'angular2-notifications';
-import {SearchByCodeService} from "./services/search-by-code/search-by-code.service";
+import {SearchByCodeService} from './services/search-by-code/search-by-code.service';
+import {Angulartics2GoogleAnalytics} from 'angulartics2/ga';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +23,8 @@ export class AppComponent {
               private router: Router,
               private translate: TranslateService,
               private searchByCodeService: SearchByCodeService,
-              private notification: CustomNotificationsService) {
+              private notification: CustomNotificationsService,
+              angulartics2GoogleAnalytics: Angulartics2GoogleAnalytics) {
     /* authService.isLoggedIn() ? router.navigate(['catalogue']) : console.log('loged in'); */
     this.loggedIn = authService.isLoggedIn();
     translate.use(this.selectedLanguage);

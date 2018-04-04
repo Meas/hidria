@@ -32,9 +32,6 @@ export class NotificationsComponent implements OnInit, OnDestroy {
               private router: Router, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
-    this.errorSubscription = this.customNotificationsService.errorEmit.subscribe(error => this.handleError(error));
-    this.successSubscription = this.customNotificationsService.successEmit.subscribe(success => this.handleSuccess(success));
-    this.customSubscription = this.customNotificationsService.customEmit.subscribe(notification => this.handleCustom(notification));
     this.pluginSubscription = this._notification.emitter.subscribe(event => {
       if (event.add === false && event.notification.type === 'error') {
         this.handleClose();

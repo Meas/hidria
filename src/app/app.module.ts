@@ -6,6 +6,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NvD3Module } from 'ng2-nvd3';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { ReCaptchaModule } from 'angular2-recaptcha';
+import { Angulartics2Module } from 'angulartics2';
+import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
 
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -80,6 +83,9 @@ import { AuthComponent } from './components/auth/auth.component';
     HttpClientModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    ReCaptchaModule,
+    SimpleNotificationsModule.forRoot(),
+    Angulartics2Module.forRoot([Angulartics2GoogleAnalytics]),
     /* TranslateModule.forRoot({
       loader: {
           provide: TranslateLoader,

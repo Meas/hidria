@@ -5,7 +5,6 @@ import { CustomNotificationsService } from '../../services/notifications/notific
 import * as _ from 'lodash';
 
 const inputProjects = require('../../../assets/json/add-to-projects-form.json');
-const inputComparison = require('../../../assets/json/add-to-comparison-form.json');
 
 @Component({
   selector: 'app-add-to-project',
@@ -22,8 +21,6 @@ export class AddToProjectComponent implements OnInit {
   @Input() set projects(data: any) {
     if (this.type === 'project') {
       this.inputs = inputProjects;
-    } else if (this.type === 'comparison') {
-      this.inputs = inputComparison;
     }
     this.localProjects = _.cloneDeep(data);
     this.fillFormValues();
@@ -36,8 +33,7 @@ export class AddToProjectComponent implements OnInit {
 
   formValues= {};
 
-  constructor( private fb: FormBuilder, private _notification: CustomNotificationsService,
-                private activatedRoute: ActivatedRoute ) {}
+  constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute ) {}
 
   ngOnInit() {}
 

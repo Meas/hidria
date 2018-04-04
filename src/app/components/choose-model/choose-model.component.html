@@ -10,12 +10,15 @@
       <div class="model" *ngIf="features.card">
         <app-fan-info [fanInfo]="features.card"></app-fan-info>
       </div>
-      <div class="graf" *ngIf="features.graph">
-        <!--{{ features.graph | json }}-->
+      <div class="graf">
         <app-chart-component
+          *ngIf="features.graph"
           [canvasId]="'canvas1'"
           [setChartData]="features.graph"
           [toFill]="true"></app-chart-component>
+        <div *ngIf="!features.graph">
+          <h3>No graph to show</h3>
+        </div>
       </div>
       <div class="fan-table">
         <div style="margin: 0 15px" class="row" *ngIf="features.table">

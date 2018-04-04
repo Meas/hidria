@@ -31,7 +31,15 @@ export class MainService {
     return this.http.get(this.helper.generateRoute(route, queryParams), {
       headers: headers,
       observe: 'response'
-    }).pipe(catchError(this.helper.handleError)).map(res => this.helper.checkDataValidity(res));
+    }).pipe(
+      catchError(this.helper.handleError),
+      tap(
+        obj => obj,
+        error => {
+          this.notifications.message('error', 'Error', error.message);
+        }
+      )
+    ).map(res => this.helper.checkDataValidity(res));
   }
 
   /**
@@ -43,13 +51,20 @@ export class MainService {
    * @returns {Observable<any>}
    */
   post(route: string, data?: {}, queryParams?: {}): Observable<any> {
-
     const headers = new HttpHeaders();
     this.helper.createAuthorizationHeader(headers);
 
     return this.http.post(this.helper.generateRoute(route, queryParams), data, {
       headers: headers
-    }).pipe(catchError(this.helper.handleError)).map(res => this.helper.checkDataValidity(res));;
+    }).pipe(
+      catchError(this.helper.handleError),
+      tap(
+        obj => obj,
+        error => {
+          this.notifications.message('error', 'Error', error.message);
+        }
+      )
+    ).map(res => this.helper.checkDataValidity(res));
   }
 
   /**
@@ -67,7 +82,15 @@ export class MainService {
 
     return this.http.put(this.helper.generateRoute(route, queryParams), data, {
       headers: headers
-    }).pipe(catchError(this.helper.handleError)).map(res => this.helper.checkDataValidity(res));
+    }).pipe(
+      catchError(this.helper.handleError),
+      tap(
+        obj => obj,
+        error => {
+          this.notifications.message('error', 'Error', error.message);
+        }
+      )
+    ).map(res => this.helper.checkDataValidity(res));
   }
 
   /**
@@ -84,7 +107,15 @@ export class MainService {
 
     return this.http.delete(this.helper.generateRoute(route, queryParams), {
       headers: headers
-    }).pipe(catchError(this.helper.handleError)).map(res => this.helper.checkDataValidity(res));
+    }).pipe(
+      catchError(this.helper.handleError),
+      tap(
+        obj => obj,
+        error => {
+          this.notifications.message('error', 'Error', error.message);
+        }
+      )
+    ).map(res => this.helper.checkDataValidity(res));
   }
 
 }

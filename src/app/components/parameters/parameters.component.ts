@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SelectionService } from '../../services/selection/selection.service';
-import * as _ from 'lodash';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-parameters',
@@ -13,15 +13,16 @@ export class ParametersComponent implements OnInit {
 
   defaultSections;
   feature;
-  formBoxes= [
-  ];
+  formBoxes= [];
   preselectedValues = {};
 
   paramsForm: FormGroup;
 
   formValues= {};
-  constructor(private selectionService: SelectionService, private fb: FormBuilder,
-    private router: Router, private activatedRoute: ActivatedRoute) {}
+  constructor(private selectionService: SelectionService,
+              private fb: FormBuilder,
+              private router: Router,
+              private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
     this.getItems();
@@ -34,8 +35,6 @@ export class ParametersComponent implements OnInit {
           this.preselectedValues = params;
         }
         this.feature = response;
-        // this.feature.featureObjects[0]
-        console.log(this.feature);
         this.defaultSections = _.cloneDeep(this.feature);
         this.fillFormValues();
         this.createForm();
@@ -47,6 +46,9 @@ export class ParametersComponent implements OnInit {
     this.paramsForm = this.fb.group(
       this.formValues
     );
+    this.paramsForm.valueChanges.subscribe(data => {
+      console.log(data);
+    });
   }
 
   onSubmit() {
@@ -85,12 +87,10 @@ export class ParametersComponent implements OnInit {
       for (const parameter of featureObject.parameters) {
         let value;
         if (defaultValues) {
-          value = parameter.defaultOption ? parameter.defaultOption : '';
+          value = parameter.defaultOption || '';
           this.formValues[parameter.parameter] = value;
         } else {
-          value = this.preselectedValues[parameter.parameter] ?
-          this.preselectedValues[parameter.parameter] : (parameter.defaultOption ?
-          parameter.defaultOption : '');
+          value = this.preselectedValues[parameter.parameter] || (parameter.defaultOption ? parameter.defaultOption : '');
           this.formValues[parameter.parameter] = [value, []];
           if (parameter.required) {
             this.formValues[parameter.parameter][1].push(Validators.required);

@@ -1,197 +1,198 @@
 {
-        "FeatureName": "add-to-project",
-        "title": "Add to project",
-        "children": [{
-                "name": "container-1",
-                "classUI": "col-lg-4 form-block",
-                "classPRT": "",
-                "children": [{
-                        "name": "row",
-                        "classUI": "",
-                        "children": [{
-                                "id": 1,
-                                "parameter": "positionNumber",
-                                "classUI": "col-8",
-                                "tag": "input",
-                                "type": "text",
-                                "description": "Position No.",
-                                "required": true,
-                                "defaultOption": null
-                            },
-                            {
-                                "id": 2,
-                                "parameter": "items",
-                                "classUI": "col-4",
-                                "tag": "input",
-                                "type": "text",
-                                "description": "Items",
-                                "required": true,
-                                "defaultOption": null
-                            }
-                        ]
-                    },
-                    {
-                        "name": "row",
-                        "classUI": "",
-                        "children": [{
-                            "id": 3,
-                            "parameter": "projectId",
-                            "classUI": "col-12",
-                            "tag": "select",
-                            "type": "input",
-                            "description": "Select project or create new one",
-                            "required": true,
-                            "defaultOption": 1,
-                            "options": [
-                                {
-                                    "id": 1,
-                                    "description": "Create new project",
-                                    "value":1
-                                }
-                            ]
-                        }]
-                    },
-                    {
-                        "name": "row",
-                        "classUI": "",
-                        "children": [{
-                            "id": 4,
-                            "parameter": "projectName",
-                            "classUI": "col-12",
-                            "tag": "input",
-                            "type": "text",
-                            "description": "Project name",
-                            "required": true,
-                            "defaultOption": null
-                        }]
-                    },
-                    {
-                        "name": "row",
-                        "classUI": "",
-                        "children": [{
-                            "id": 4,
-                            "parameter": "construction",
-                            "classUI": "col-12",
-                            "tag": "input",
-                            "type": "text",
-                            "description": "Construction",
-                            "required": true,
-                            "defaultOption": null
-                        }]
-                    },
-                    {
-                        "name": "row",
-                        "classUI": "",
-                        "children": [{
-                            "id": 4,
-                            "parameter": "address",
-                            "classUI": "col-12",
-                            "tag": "input",
-                            "type": "text",
-                            "description": "Address",
-                            "required": true,
-                            "defaultOption": "Default Address"
-                        }]
-                    },
-                    {
-                        "name": "row",
-                        "classUI": "",
-                        "children": [{
-                            "id": 4,
-                            "parameter": "purchaser",
-                            "classUI": "col-12",
-                            "tag": "input",
-                            "type": "text",
-                            "description": "Purchaser",
-                            "required": true,
-                            "defaultOption": null
-                        }]
-                    },
-                    {
-                        "name": "row",
-                        "classUI": "",
-                        "children": [{
-                            "id": 4,
-                            "parameter": "projectant",
-                            "classUI": "col-12",
-                            "tag": "input",
-                            "type": "text",
-                            "description": "Projektant",
-                            "required": true,
-                            "defaultOption": null
-                        }]
-                    },
-                    {
-                        "name": "row",
-                        "classUI": "",
-                        "children": [{
-                            "id": 4,
-                            "parameter": "business",
-                            "classUI": "col-12",
-                            "tag": "input",
-                            "type": "text",
-                            "description": "Business",
-                            "required": true,
-                            "defaultOption": null
-                        }]
-                    }
-                ]
-            },
+  "FeatureName": "add-to-project",
+  "title": "Add to project",
+  "children": [
+    {
+      "name": "container-1",
+      "classUI": "col-lg-4 form-block",
+      "classPRT": "",
+      "children": [
+        {
+          "name": "row",
+          "classUI": "",
+          "children": [
             {
-                "name": "container-2",
-                "classUI": "col-lg-8",
-                "classPRT": "",
-                "children": [{
-                        "name": "row",
-                        "classUI": "",
-                        "children": [{
-                            "name": "R09-3018H-2M-4248",
-                            "tag": "card",
-                            "classUI": "col-lg-12 form-block big-padding",
-                            "classPRT": "",
-                            "description": "AC Axial fan sickled blades Ordering code: 0313-4-1011",
-                            "image": "http://13.93.51.225/hidria/Images/ACPlasticblades.png"
-                        }]
-                    },
-                    {
-                        "name": "row",
-                        "classUI": "col-lg-12",
-                        "children": [{
-                            "name": "",
-                            "tag": "title",
-                            "classUI": "col-lg-12 title",
-                            "classPRT": ""
-                        }]
-                    },
-                    {
-                        "name": "row",
-                        "classUI": "one-accessory col-lg-12",
-                        "children": [{
-                            "name": "Basket grills Type 5",
-                            "tag": "one-accessory",
-                            "parameter": "basket-type",
-                            "classUI": "col-lg-12",
-                            "classPRT": "",
-                            "image": "https://4.imimg.com/data4/MV/OE/MY-9797329/fan-grill-250x250.jpg",
-                            "options": [0,1,2,3,4,5,6,7,8,9,10],
-                            "defaultOption": 1
-                        }]
-                    },
-                    {
-                        "name": "row",
-                        "classUI": "one-accessory col-lg-12",
-                        "children": [{
-                            "name": "Flat grills",
-                            "tag": "one-accessory",
-                            "parameter": "flat-grill",
-                            "classUI": "col-lg-12",
-                            "classPRT": "",
-                            "image": "https://4.imimg.com/data4/MV/OE/MY-9797329/fan-grill-250x250.jpg",
-                            "options": [0,1,2,3,4,5,6,7,8,9,12],
-                            "defaultOption": 4
-                        }]
-                    }
-                ]
+              "id": 4,
+              "parameter": "projectName",
+              "classUI": "col-12",
+              "tag": "input",
+              "type": "text",
+              "description": "Project name",
+              "required": true,
+              "defaultOption": null
             }
-        ]
+          ]
+        },
+        {
+          "name": "row",
+          "classUI": "",
+          "children": [
+            {
+              "id": 4,
+              "parameter": "construction",
+              "classUI": "col-12",
+              "tag": "input",
+              "type": "text",
+              "description": "Construction",
+              "required": true,
+              "defaultOption": null
+            }
+          ]
+        },
+        {
+          "name": "row",
+          "classUI": "",
+          "children": [
+            {
+              "id": 4,
+              "parameter": "address",
+              "classUI": "col-12",
+              "tag": "input",
+              "type": "text",
+              "description": "Address",
+              "required": true,
+              "defaultOption": ""
+            }
+          ]
+        },
+        {
+          "name": "row",
+          "classUI": "",
+          "children": [
+            {
+              "id": 4,
+              "parameter": "purchaser",
+              "classUI": "col-12",
+              "tag": "input",
+              "type": "text",
+              "description": "Purchaser",
+              "required": true,
+              "defaultOption": null
+            }
+          ]
+        },
+        {
+          "name": "row",
+          "classUI": "",
+          "children": [
+            {
+              "id": 4,
+              "parameter": "projectant",
+              "classUI": "col-12",
+              "tag": "input",
+              "type": "text",
+              "description": "Projektant",
+              "required": true,
+              "defaultOption": null
+            }
+          ]
+        },
+        {
+          "name": "row",
+          "classUI": "",
+          "children": [
+            {
+              "id": 4,
+              "parameter": "business",
+              "classUI": "col-12",
+              "tag": "input",
+              "type": "text",
+              "description": "Business",
+              "required": true,
+              "defaultOption": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "container-2",
+      "classUI": "col-lg-8",
+      "classPRT": "",
+      "children": [
+        {
+          "name": "row",
+          "classUI": "",
+          "children": [
+            {
+              "name": "R09-3018H-2M-4248",
+              "tag": "card",
+              "classUI": "col-lg-12 form-block big-padding",
+              "classPRT": "",
+              "description": "AC Axial fan sickled blades Ordering code: 0313-4-1011",
+              "image": "http://13.93.51.225/hidria/Images/ACPlasticblades.png"
+            }
+          ]
+        },
+        {
+          "name": "row",
+          "classUI": "col-lg-12",
+          "children": [
+            {
+              "name": "",
+              "tag": "title",
+              "classUI": "col-lg-12 title",
+              "classPRT": ""
+            }
+          ]
+        },
+        {
+          "name": "row",
+          "classUI": "one-accessory col-lg-12",
+          "children": [
+            {
+              "name": "Basket grills Type 5",
+              "tag": "one-accessory",
+              "parameter": "basket-type",
+              "classUI": "col-lg-12",
+              "classPRT": "",
+              "image": "https://4.imimg.com/data4/MV/OE/MY-9797329/fan-grill-250x250.jpg",
+              "options": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+              ],
+              "defaultOption": 1
+            }
+          ]
+        },
+        {
+          "name": "row",
+          "classUI": "one-accessory col-lg-12",
+          "children": [
+            {
+              "name": "Flat grills",
+              "tag": "one-accessory",
+              "parameter": "flat-grill",
+              "classUI": "col-lg-12",
+              "classPRT": "",
+              "image": "https://4.imimg.com/data4/MV/OE/MY-9797329/fan-grill-250x250.jpg",
+              "options": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                12
+              ],
+              "defaultOption": 4
+            }
+          ]
+        }
+      ]
     }
+  ]
+}

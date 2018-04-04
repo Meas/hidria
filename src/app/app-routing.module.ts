@@ -22,8 +22,8 @@ import {AuthComponent} from './components/auth/auth.component';
 const routes: Routes = [
   { path: '', redirectTo: '/catalogue', pathMatch: 'full' },
   { path: 'auth', component: AuthComponent },
-  { path: 'catalogue', component: CatalogueComponent },
-  { path: 'parameter', component: ParametersComponent },
+  { path: 'catalogue', component: CatalogueComponent, canActivate: [SecurityService] },
+  { path: 'parameter', component: ParametersComponent, canActivate: [SecurityService] },
   { path: 'test-pdf', component: TestPdfComponent, canActivate: [SecurityService] },
   { path: 'details', component: FanDetailsComponent, canActivate: [SecurityService] },
   { path: 'choose-model/:slug', component: ChooseModelComponent, canActivate: [SecurityService] },

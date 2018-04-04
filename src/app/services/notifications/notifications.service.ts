@@ -1,24 +1,16 @@
-import { Injectable, EventEmitter } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Injectable } from '@angular/core';
+import { NotificationsService } from 'angular2-notifications';
 
 @Injectable()
 export class CustomNotificationsService {
 
-  errorEmit: EventEmitter<string> = new EventEmitter();
-  successEmit: EventEmitter<string> = new EventEmitter();
-  customEmit: EventEmitter<any> = new EventEmitter();
-  constructor() { }
+  constructor(private notifications: NotificationsService) { }
 
-  getError(error) {
-    if (error.status === 400) {
-      this.errorEmit.emit(error);
-    }
-  }
-  getSuccess(message) {
-    this.successEmit.emit(message);
-  }
-
-  notificationByType(notification) {
-    this.customEmit.emit(notification);
+  message(type = 'info', title = 'Info', content = 'Something happened') {
+    this.notifications.create(title, content, type, {
+      timeOut: 3000,
+      showProgressBar: true,
+      pauseOnHover: true
+    });
   }
 }

@@ -68,11 +68,13 @@ export class OperatingPointComponent implements OnInit {
   }
   getGraph(id): void {
     this.operatingPointService.getGraph(id).subscribe((response: any) => {
+      console.log(response)
       this.graphData = response;
     });
   }
   getCharts(id): void {
     this.operatingPointService.getCharts(id).subscribe((response: any) => {
+      console.log(response)
       this.graphs = response;
       this.zone.run(() => this.cd.markForCheck());
     });
@@ -107,6 +109,7 @@ export class OperatingPointComponent implements OnInit {
           console.log('not el');
       }
     })
+    console.log(calcData)
     this.operatingPointService.postCharts(id, calcData).subscribe((response: any) => {
       this.graphs = response;
     });
@@ -114,6 +117,7 @@ export class OperatingPointComponent implements OnInit {
   getInputs(id): void {
     this.operatingPointService.getInputs(id).subscribe((response: any) => {
       this.operatingPointInputs = response;
+      this.getCalculate(id, this.operatingPointInputs);
     });
   }
   getLinks(id): void {
@@ -133,8 +137,9 @@ export class OperatingPointComponent implements OnInit {
       airFlow: Math.round(data[1].defaultValue)
     }
     this.operatingPointService.getCalculate(id, data).subscribe((response: any) => {
+      console.log(response)
       this.tables = response;
-      this.postCharts(this.id, this.tables[2].data);
+      this.postCharts(this.id, this.tables[0].data);
     });
   }
 

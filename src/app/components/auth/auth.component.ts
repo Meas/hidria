@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {generateUrlEncodedData, setStorageData} from "../../helpers/helper";
 import {AuthService} from "../../services/auth/auth.service";
 import {Router} from "@angular/router";
+import {CustomNotificationsService} from "../../services/notifications/notifications.service";
 
 @Component({
   selector: 'app-auth',
@@ -34,9 +35,11 @@ export class AuthComponent implements OnInit {
     langId: '1',
     industry: '',
     position: '',
-    applications: ''
+    applications: '',
+    termsAndConditions: false
   }
-  registrationOptions: {
+
+  registrationOptions = {
     industries: ['heating', 'ventilation & air-conditioning', 'refrigeration', 'IT & telecom', 'distribution / after-sales', 'other'],
     positions: ['R&D', 'purchasing', 'management', 'other'],
     applications: ['heat pumps', 'condensers', 'condenser units', 'dry coolers', 'chillers', 'evaporators', 'cooling towers', 'process cooling units', 'fan heaters', 'air curtains', 'AHU', 'roof fans', 'ventilation systems', 'exhaust applications', 'data centers', 'other']
@@ -53,8 +56,10 @@ export class AuthComponent implements OnInit {
     email: '',
   }
 
-  constructor(private authService: AuthService, private router: Router) {
-    authService.isLoggedIn() ? router.navigate(['catalogue']) : console.log('stay here');
+  constructor(private authService: AuthService, private router: Router, private notifications: CustomNotificationsService) {
+    if (authService.isLoggedIn()) {
+      router.navigate(['catalogue']);
+    }
   }
 
   ngOnInit() {
@@ -109,6 +114,10 @@ export class AuthComponent implements OnInit {
     } else if (modal === 'login') {
       this.modalLogin = true;
     }
+  }
+
+  handleCorrectCaptcha(event) {
+    console.log(event);
   }
 
 }
