@@ -23,13 +23,21 @@
       <div class="fan-table">
         <div style="margin: 0 15px" class="row" *ngIf="features.table">
           <div>
-            <button class="h-btn btn-default btn-add-new" (click)="tableTab = 0">Air flow</button>
-            <button class="h-btn btn-default btn-add-new" (click)="tableTab = 1">Electric motor</button>
+            <div class="col-lg outer-button">
+              <div class="button"
+                   (click)="selectTab('nominal-data')"
+                   [ngClass]="selectedTab == 'nominal-data' ? 'selected-tab' : ''">{{'TRANSLATE.NOMINAL-DATA' | translate}}</div>
+            </div>
+            <div class="col-lg outer-button">
+              <div class="button"
+                   (click)="selectTab('construction-data')"
+                   [ngClass]="selectedTab == 'construction-data' ? 'selected-tab' : ''">{{'TRANSLATE.CONSTRUCTION-DATA' | translate}}</div>
+            </div>
           </div>
-          <app-choose-model-table-horizontal *ngIf="features.table[0][0] && tableTab === 0"
+          <app-choose-model-table-horizontal *ngIf="features.table[0][0] && this.selectedTab == 'nominal-data'"
                                              [tableData]="features.table[0][0]"
                                              (onModelSelected)="selectModel($event)"></app-choose-model-table-horizontal>
-          <app-choose-model-table-horizontal *ngIf="features.table[0][1] && tableTab === 1"
+          <app-choose-model-table-horizontal *ngIf="features.table[0][1] && this.selectedTab == 'construction-data'"
                                              [tableData]="features.table[0][1]"
                                              (onModelSelected)="selectModel($event)"></app-choose-model-table-horizontal>
         </div>

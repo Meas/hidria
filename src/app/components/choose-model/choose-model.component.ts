@@ -20,6 +20,7 @@ export class ChooseModelComponent implements OnInit {
     graph: undefined
   };
 
+  selectedTab = 'construction-data';
   data = [];
   tableTab = 0;
 
@@ -63,6 +64,10 @@ export class ChooseModelComponent implements OnInit {
       // this.notifications.getError({'status': 400, 'statusText': 'No results!'});
     });
     this.loading = false;
+  }
+
+  selectTab(newTab) {
+    this.selectedTab = newTab;
   }
 
   selectModel(event) {

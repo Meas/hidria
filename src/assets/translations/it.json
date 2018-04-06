@@ -21,6 +21,8 @@
           "ADDRESS": "Indirizzo",
           "PURCHASER": "Acquirente",
           "PROJECTANT": "Projectant",
+          "NOMINAL-DATA": "Dati nominali",
+          "CONSTRUCTION-DATA": "Dati di costruzione",
           "BUSINESS": "Attivita Commerciale",
           "SEARCH-BY-CODE": "Cerca Per Codice",
           "CHOICE-FROM-CATALOGUE": "Scelta Dal Catalogo",

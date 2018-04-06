@@ -21,6 +21,8 @@
         "ADDRESS": "Address",
         "PURCHASER": "Purchaser",
         "PROJECTANT": "Projectant",
+        "NOMINAL-DATA": "Nominal data",
+        "CONSTRUCTION-DATA": "Construction data",
         "BUSINESS": "Business",
         "SEARCH-BY-CODE": "Search By Code",
         "CHOICE-FROM-CATALOGUE": "Choice from Catalogue",
