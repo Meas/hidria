@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, NgZone }
 import { ComparisonService } from '../../services/comparison/comparison.service';
 import swal, { SweetAlertOptions } from 'sweetalert2';
 import * as _ from 'lodash';
+import {OperatingPointService} from '../../services/operating-point/operating-point.service';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -15,72 +16,43 @@ export class ComparisonComponent implements OnInit {
 
   feature: any = {};
   filters: any = [];
-  filterSelected = 1;
+  filterSelected = 0;
   searchTerm: String = '';
   sortBy: String = '';
 
   graph: any = {};
-  headers: any = [];
-  modelList: any = [];
+  tables;
   comparisonList: any = [];
 
   constructor(private comparisonService: ComparisonService,
               private zone: NgZone,
-              private cd: ChangeDetectorRef) { }
+              private cd: ChangeDetectorRef,
+              private operatingPointService: OperatingPointService) { }
 
   ngOnInit() {
-    this.getItems();
     this.getTabs();
     this.getComparisonList();
     this.loading = false;
   }
 
   getTabs() {
-    this.comparisonService.getTabs().subscribe((response: any) => {
-      console.log(response);
-      this.headers = response;
-      this.zone.run(() => this.cd.markForCheck());
-    });
+    this.tables = [];
   }
 
   getComparisonList() {
-    this.comparisonService.getComparisonList(1).subscribe((response: any) => {
-      console.log(response);
-      this.comparisonList = response;
-      this.getModelList(response[0].id);
-      this.getGraph(response[0].id);
-    });
-  }
-
-  getModelList(comparisonId = 1) {
     console.log(JSON.parse(localStorage.getItem('comparison')));
-    this.modelList = JSON.parse(localStorage.getItem('comparison')) !== null ? JSON.parse(localStorage.getItem('comparison')) : [];
-
-    // this.comparisonService.getModelList(comparisonId).subscribe((response: any) => {
-    //   console.log(response);
-    //   this.modelList = response;
-    //   this.zone.run(() => this.cd.markForCheck());
-    // });
-  }
-
-  getGraph(comparisonId = 1) {
-    this.comparisonService.getGraph(comparisonId).subscribe((response: any) => {
-      console.log(response);
-      this.graph = response;
-      this.zone.run(() => this.cd.markForCheck());
+    this.comparisonList = JSON.parse(localStorage.getItem('comparison')) !== null ? JSON.parse(localStorage.getItem('comparison')) : [];
+    this.comparisonList.forEach((model, i) => {
+      if (i === 1) {
+        this.tables.push([], [], []);
+        model.data.forEach((data, j) => {
+            data.data.forEach(obj => {
+              this.tables[j].push(obj.name);
+            });
+        });
+      }
     });
-    this.loading = false;
-  }
-
-  getItems() {
-    this.comparisonService.getItems().subscribe((response: any) => {
-      console.log(response);
-      this.feature = response[0];
-      /* this.filters = response[0].featureObjects[0]; */
-      /* this.graph = response[1]; */
-      /* this.tables = response[2]; */
-      this.zone.run(() => this.cd.markForCheck());
-    });
+    console.log(this.tables);
   }
 
   onFilterSelected(event) {
@@ -94,10 +66,6 @@ export class ComparisonComponent implements OnInit {
     this.sortBy = event;
   }
 
-  onSelectComparison(event) {
-    this.getModelList(event);
-    this.getGraph(event);
-  }
   onDeleteFromComparison (id) {
     const self = this;
     swal({
@@ -110,7 +78,6 @@ export class ComparisonComponent implements OnInit {
     }).then(function(e: any){
       if (e.value) {
         self.removeFromTable(id);
-        self.removeFromGraph(id, self.graph);
         swal({
           title: 'Deleted!',
           text: 'Item has been removed from comparison.',
@@ -122,33 +89,8 @@ export class ComparisonComponent implements OnInit {
     });
   }
   removeFromTable(id) {
-    this.modelList = this.modelList.filter(model => model.id !== id);
-    localStorage.setItem('comparison', JSON.stringify(this.modelList))
-    this.zone.run(() => this.cd.markForCheck());
-  }
-  removeFromGraph(id, object) {
-    let indexToRemove;
-    const tempGraph: any = _.cloneDeep(object);
-    tempGraph.ids = object.ids.filter((value, index) => {
-      if (value === id) {
-        indexToRemove = index;
-        return false;
-      }
-      return true;
-    });
-    tempGraph.yPoints = object.yPoints.filter((value, index) => {
-      return index !== indexToRemove;
-    });
-    tempGraph.labels = object.labels.filter((value, index) => {
-      return index !== indexToRemove;
-    });
-    tempGraph.borderColor = object.borderColor.filter((value, index) => {
-      return index !== indexToRemove;
-    });
-    tempGraph.links = object.links.filter((value, index) => {
-      return index !== indexToRemove;
-    });
-    this.graph = Object.assign({}, tempGraph);
+    this.comparisonList = this.comparisonList.filter(model => model.id !== id);
+    localStorage.setItem('comparison', JSON.stringify(this.comparisonList))
     this.zone.run(() => this.cd.markForCheck());
   }
 }

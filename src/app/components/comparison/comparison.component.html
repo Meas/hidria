@@ -5,31 +5,12 @@
   <div *ngIf="!loading">
     <div class="row no-gutters">
       <app-filters class="col-lg-12"
-      [filters]="headers" [activeFilter]="filterSelected" (filterSelected)="onFilterSelected($event)"
-      [showAllModels]="false" [title]="'TRANSLATE.COMPARISONS'"></app-filters>
-      <!--<div class="col-lg-4">-->
-        <!--<app-search-my-projects-->
-          <!--[searchTerm]="searchTerm"-->
-          <!--(nameChange)="onNameChange($event)"-->
-          <!--(sortChange)="onSortChange($event)"></app-search-my-projects>-->
-        <!--<div class="list-outer">-->
-            <!--<app-my-projects-list [projectsList]="comparisonList"-->
-              <!--(selectProject)="onSelectComparison($event)"-->
-              <!--[searchTerm]="searchTerm"-->
-              <!--[sortBy]="sortBy">-->
-            <!--</app-my-projects-list>-->
-          <!--</div>-->
-      <!--</div>-->
-      <!--<div class="col-lg-8">-->
-        <!--<app-chart-component-->
-          <!--[canvasId]="'canvas1'"-->
-          <!--[setChartData]="graph"-->
-          <!--[toFill]="false"></app-chart-component>-->
-      <!--</div>-->
+      [filters]="[{id: 0, name: 'Operation'}, {id: 1, name: 'Nominal'}, {id: 2, name: 'Construction'}]" (filterSelected)="onFilterSelected($event)"></app-filters>
+
       <div class="col-lg-12">
         <app-comparison-table
-          [headers]="headers" [filterSelected]="filterSelected"
-          [modelList]="modelList"
+          [headers]="tables[filterSelected]" [filterSelected]="filterSelected"
+          [modelList]="comparisonList"
           (deleteFromComparison)="onDeleteFromComparison($event)"></app-comparison-table>
       </div>
     </div>

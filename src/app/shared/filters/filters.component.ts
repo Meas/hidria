@@ -8,22 +8,11 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 export class FiltersComponent implements OnInit {
 
   @Input() filters;
-  @Input() activeFilter;
-  @Input() showAllModels;
-  @Input() title;
   @Output() filterSelected: EventEmitter<any> = new EventEmitter();
 
   constructor() {
   }
 
   ngOnInit() {
-  }
-
-  totalModels(): number {
-    let total = 0;
-    this.filters.forEach((item) => {
-      total += item.subCategories.length;
-    });
-    return total;
   }
 }

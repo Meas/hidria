@@ -1,131 +1,26 @@
-<ng-container *ngFor="let header of headers">
-	<div class="outer-table" *ngIf="header.id === filterSelected">
-		<div class="one-table-header">
-			<div class="one-table-row first-row">
-				{{header.name | translate}}
-			</div>
-			<ng-container *ngFor="let entry of header.entries">
-				<div class="one-table-row" *ngIf="!entry.short">
-					{{entry.name | translate}}
-				</div>
-				<div class="one-table-row" *ngIf="entry.short">
-					<div class="col-lg-10">
-						{{entry.name | translate}}
-					</div>
-					<div class="col-lg-2 right-text">
-						{{entry.short | translate}}
-					</div>
-				</div>
-			</ng-container>
-		</div>
-		<div class="one-table-entry" *ngFor="let model of modelList">
-			<div class="one-table-row first-row">
-				<div class="x-button-outer" [style.background-color]="model.color"
-					(click)="deleteFromComparison.emit(model.id)">
-					<i class="fa fa-times" aria-hidden="true"></i>
-				</div>
-				<div class="image-outer">
-					<img src="{{model.image}}">
-				</div>
-				<div>{{model.name}}</div>
-			</div>
-      <ng-container>
-        <ng-container *ngFor="let entry of model.data; let i = index">
-          <ng-container *ngIf="filterSelected == i + 1">
-            <div class="one-table-row" *ngFor="let value of entry.data">
-              {{value.value}}
-            </div>
-          </ng-container>
-        </ng-container>
+<div class="one-table-header">
+  <div class="one-table-row first-row"></div>
+  <div class="one-table-row" *ngFor="let header of headers">{{header}}</div>
+</div>
+
+<div class="one-table-entry" *ngFor="let model of modelList">
+  <div class="one-table-row first-row">
+    <div class="x-button-outer" [style.background-color]="model.color"
+         (click)="deleteFromComparison.emit(model.id)">
+      <i class="fa fa-times" aria-hidden="true"></i>
+    </div>
+    <div class="image-outer">
+      <img src="{{model.image}}">
+    </div>
+    <div>{{model.name}}</div>
+  </div>
+  <ng-container>
+    <ng-container *ngFor="let entry of model.data; let i = index">
+      <ng-container *ngIf="filterSelected == i">
+        <div class="one-table-row" *ngFor="let value of entry.data">
+          {{value.value}}
+        </div>
       </ng-container>
-			<!-- <ng-container *ngFor="let row of entry.children">
-				<div class="one-table-row {{row.classUI}}" *ngIf="row.image">
-					<div class="x-button-outer" [style.background-color]="row.color"
-						(click)="deleteFromComparison.emit(entry.id)">
-						<i class="fa fa-times" aria-hidden="true"></i>
-					</div>
-					<div class="image-outer">
-						<img src="{{row.image}}">
-					</div>
-					<div>{{row.name}}</div>
-				</div>
-				<div class="one-table-row {{row.classUI}}" *ngIf="!row.image">
-					{{row.value}}
-				</div>
-			</ng-container> -->
-		</div>
-	</div>
-	<!-- <div class="outer-table" *ngIf="table.id === filterSelected">
-		<ng-container *ngFor="let entry of table.children">
-			<div class="one-table-header" *ngIf="entry.type == 'header'">
-				<ng-container *ngFor="let row of entry.children">
-					<div class="one-table-row {{row.classUI}}" *ngIf="!row.short">
-						{{row.name | translate}}
-					</div>
-					<div class="one-table-row {{row.classUI}}" *ngIf="row.short">
-						<div class="col-lg-10">
-							{{row.name | translate}}
-						</div>
-						<div class="col-lg-2 right-text">
-							{{row.short | translate}}
-						</div>
-					</div>
-				</ng-container>
-			</div>
-			<div class="one-table-entry" *ngIf="entry.type == 'entry'">
-				<ng-container *ngFor="let row of entry.children">
-					<div class="one-table-row {{row.classUI}}" *ngIf="row.image">
-						<div class="x-button-outer" [style.background-color]="row.color"
-						  (click)="deleteFromComparison.emit(entry.id)">
-							<i class="fa fa-times" aria-hidden="true"></i>
-						</div>
-						<div class="image-outer">
-							<img src="{{row.image}}">
-						</div>
-						<div>{{row.name}}</div>
-					</div>
-					<div class="one-table-row {{row.classUI}}" *ngIf="!row.image">
-						{{row.value}}
-					</div>
-				</ng-container>
-			</div>
-		</ng-container>
-	</div> -->
-</ng-container>
-<!-- <div class="outer-table">
-	<div class="one-table-header">
-		<div class="one-table-row first-row">
-		Operating Point
-		</div>
-		<div class="one-table-row no-gutters">
-		<div class="col-lg-10">
-			Air flow (m³/h)
-		</div>
-		<div class="col-lg-2 right-text">
-			Q
-		</div>
-		</div>
-		<div class="one-table-row no-gutters">
-		<div class="col-lg-10">
-			Static pressure (Pa)
-		</div>
-		<div class="col-lg-2 right-text">
-			Ps
-		</div>
-		</div>
-	</div>
-	<div class="one-table-entry">
-		<div class="one-table-row first-row">
-		<div class="image-outer">
-			<img src="http://13.93.51.225/hidria/Images/ACPlasticblades.png">
-		</div>
-		<div>R09-3030H-4M-2509</div>
-		</div>
-		<div class="one-table-row">
-		6200
-		</div>
-		<div class="one-table-row">
-		110
-		</div>
-	</div>
-</div> -->
+    </ng-container>
+  </ng-container>
+</div>
