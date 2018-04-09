@@ -76,6 +76,13 @@
         </div>
       </div>
       <div class="col-lg-4">
+        <div class="project-list">
+          <select (change)="selectProject($event.target.value)">
+            <option disabled value="">Select Project</option>
+            <option *ngFor="let project of projects" [value]="project.id">{{ project.name }}</option>
+          </select>
+          <button (click)="addToProjectFunc()">OK</button>
+        </div>
         <div class="button" (click)="view='add-to-project'">
           ADD TO PROJECT
         </div>
@@ -91,13 +98,4 @@
       </div>
     </div>
   </div>
-</div>
-
-<div *ngIf="view ==='add-to-project'">
-  <app-add-to-project [projects]="addToProject" (cancel)="view='feature'"
-                      [type]="'project'" [card]="card.info" (postForm)="addToProjectFunc($event)"></app-add-to-project>
-</div>
-<div *ngIf="view ==='add-to-comparison'">
-  <app-add-to-project [projects]="addToComparison" (cancel)="view='feature'"
-                      [type]="'comparison'" [card]="card.info" (postForm)="addToComparisonFunc($event)"></app-add-to-project>
 </div>

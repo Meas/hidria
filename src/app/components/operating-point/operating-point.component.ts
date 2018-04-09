@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { OperatingPointService } from '../../services/operating-point/operating-point.service';
 import * as _ from 'lodash';
 import {MyProjectsService} from '../../services/my-projects/my-projects.service';
+import {CustomNotificationsService} from '../../services/notifications/notifications.service';
 
 @Component({
   selector: 'app-operating-point',
@@ -14,13 +15,13 @@ export class OperatingPointComponent implements OnInit {
   loading = true;
   feature: any = {};
   downloads: any = {};
-  addToProject: any = {};
+  projects: any = {};
   addToComparison: any = {};
   operatingPointInputs;
   graphData = [];
   graphs;
   tables = [];
-  card: Object = {};
+  card = {};
   view = 'feature';
   selectedTab: String = 'data-sheet';
   inputData = [];
@@ -34,6 +35,7 @@ export class OperatingPointComponent implements OnInit {
               private projectService: MyProjectsService,
               private zone: NgZone,
               private cd: ChangeDetectorRef,
+              private notification: CustomNotificationsService,
               private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
@@ -189,8 +191,11 @@ export class OperatingPointComponent implements OnInit {
   }
   getProjects() {
     this.operatingPointService.getProjects().subscribe((response: any) => {
-      this.addToProject = response;
+      this.projects = response;
     });
+  }
+  selectProject(event) {
+    console.log(event);
   }
   addToProjectFunc(data) {
     this.projectService.createProject(data.value).subscribe((response: any) => {
@@ -200,13 +205,14 @@ export class OperatingPointComponent implements OnInit {
   addToComparisonFunc(form) {
     this.modelsToCompare.push({
       id: this.modelsToCompare.length,
-      name: 'test',
-      color: 'yellow',
-      image: '',
+      name: this.card['name'],
+      color: 'blue',
+      image: this.card['image'],
       data: this.tables
     })
     console.log(this.modelsToCompare);
 
-    localStorage.setItem('comparison', JSON.stringify(this.modelsToCompare))
+    this.notification.message('success', 'Success', 'Item added to comparison');
+    localStorage.setItem('comparison', JSON.stringify(this.modelsToCompare));
   }
 }

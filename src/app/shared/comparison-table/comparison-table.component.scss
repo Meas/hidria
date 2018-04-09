@@ -1,5 +1,9 @@
 @import "../../../assets/partials/variables.scss";
 
+:host {
+  display: flex;
+}
+
 .outer-table {
     float: left;
     overflow-y: hidden;
