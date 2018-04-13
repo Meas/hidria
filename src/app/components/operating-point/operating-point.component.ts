@@ -15,6 +15,7 @@ export class OperatingPointComponent implements OnInit {
   loading = true;
   feature: any = {};
   downloads: any = {};
+  showProjectList = false;
   projects: any = {};
   addToComparison: any = {};
   operatingPointInputs;
@@ -198,11 +199,10 @@ export class OperatingPointComponent implements OnInit {
     console.log(event);
   }
   addToProjectFunc(data) {
-    this.projectService.createProject(data.value).subscribe((response: any) => {
-      console.log(response);
-    });
+    this.addToProject();
+    this.notification.message('success', 'Success', 'Item added to project');
   }
-  addToComparisonFunc(form) {
+  addToComparisonFunc() {
     this.modelsToCompare.push({
       id: this.modelsToCompare.length,
       name: this.card['name'],
@@ -214,5 +214,9 @@ export class OperatingPointComponent implements OnInit {
 
     this.notification.message('success', 'Success', 'Item added to comparison');
     localStorage.setItem('comparison', JSON.stringify(this.modelsToCompare));
+  }
+
+  addToProject() {
+    this.showProjectList = !this.showProjectList;
   }
 }

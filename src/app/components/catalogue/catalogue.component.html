@@ -3,9 +3,12 @@
     <app-loading></app-loading>
   </div>
   <div *ngIf="feature.length !== 0">
-    <app-filters [filters]="feature.featureObjects" [activeFilter]="categoryId" (filterSelected)="onFilterSelected($event)"
-      [showAllModels]="true"          
-      *ngIf="feature.featureObjects"></app-filters>
+    <app-filters *ngIf="feature['featureObjects']"
+                 [filters]="feature['featureObjects']"
+                 [active]="categoryId"
+                 [allFilter]="true"
+                 (filterSelected)="onFilterSelected($event)"
+      ></app-filters>
     <div class="scroll-content">
       <div *ngIf="subSections.length === 0">
         <div *ngFor="let section of feature.featureObjects | sort:['title'] | filter:['id', categoryId]">

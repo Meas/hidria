@@ -8,6 +8,8 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 export class FiltersComponent implements OnInit {
 
   @Input() filters;
+  @Input() active;
+  @Input() allFilter = false;
   @Output() filterSelected: EventEmitter<any> = new EventEmitter();
 
   constructor() {

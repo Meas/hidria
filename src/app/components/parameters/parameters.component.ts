@@ -35,6 +35,7 @@ export class ParametersComponent implements OnInit {
           this.preselectedValues = params;
         }
         this.feature = response;
+        console.log(this.feature);
         this.defaultSections = _.cloneDeep(this.feature);
         this.fillFormValues();
         this.createForm();
@@ -65,9 +66,6 @@ export class ParametersComponent implements OnInit {
   setToDefault(): void {
     this.fillFormValues(true);
     this.paramsForm.setValue(this.formValues);
-  }
-
-  getValues(): void {
   }
 
   maxValue(max) {

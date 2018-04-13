@@ -17,7 +17,6 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppComponent } from './app.component';
 import { CatalogueComponent } from './components/catalogue/catalogue.component';
 import { ParametersComponent } from './components/parameters/parameters.component';
-import { TestPdfComponent } from './components/test-pdf/test-pdf.component';
 import { FanDetailsComponent } from './components/fan-details/fan-details.component';
 import { ChooseModelComponent } from './components/choose-model/choose-model.component';
 import { OperatingPointComponent } from './components/operating-point/operating-point.component';
@@ -38,7 +37,6 @@ import { ComparisonService } from './services/comparison/comparison.service';
 import { FilterPipe } from './pipes/filter/filter.pipe';
 import { SortPipe } from './pipes/sort/sort.pipe';
 import { RouteNotFoundComponent } from './components/route-not-found/route-not-found.component';
-import { SearchByCodeComponent } from './components/search-by-code/search-by-code.component';
 
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { MyProjectsComponent } from './components/my-projects/my-projects.component';
@@ -58,14 +56,12 @@ import { AuthComponent } from './components/auth/auth.component';
     AppComponent,
     CatalogueComponent,
     ParametersComponent,
-    TestPdfComponent,
     FanDetailsComponent,
     ChooseModelComponent,
     FilterPipe,
     SortPipe,
     OperatingPointComponent,
     RouteNotFoundComponent,
-    SearchByCodeComponent,
     MyProjectsComponent,
     ComparisonComponent,
     StatisticsComponent,

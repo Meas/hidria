@@ -9,30 +9,6 @@
     </div>
     <hr class="title-line">
     <div class="row no-gutter">
-      <!-- <div *ngFor="let container of feature['featureObjects']" class="{{container.classUI}} no-gutter">
-          <ng-container *ngFor="let child of container.children">
-            <div *ngIf="child.type === 'search'">
-              <app-search-my-projects [searchTerm]="searchTerm"
-                (nameChange)="onNameChange($event)"
-                (sortChange)="onSortChange($event)"></app-search-my-projects>
-            </div>
-            <div *ngIf="child.type === 'project-list'">
-              <div class="list-outer">
-                <app-my-projects-list [projectsList]="child"
-                  (selectProject)="onSelectProject($event)"
-                  [searchTerm]="searchTerm"
-                  [sortBy]="sortBy">
-                </app-my-projects-list>
-              </div>
-            </div>
-            <div *ngIf="child.type === 'title'">
-              <app-my-projects-title [project]="selectedProject"></app-my-projects-title>
-            </div>
-            <div *ngIf="child.type === 'model-list'">
-              <app-my-projects-model-list [modelList]="modelList"></app-my-projects-model-list>
-            </div>
-          </ng-container>
-      </div> -->
       <div class="col-lg-3 no-gutters">
         <div>
           <app-search-my-projects [searchTerm]="searchTerm"
@@ -63,6 +39,7 @@
 </div>
 
 <div *ngIf="view ==='create-project'">
-  <app-add-to-project [projects]="projectsList" (cancel)="view = ''"
-                      [type]="'project'" (postForm)="saveProject($event)"></app-add-to-project>
+  <app-add-to-project (cancel)="view = ''"
+                      [type]="'project'"
+                      (postForm)="saveProject($event)"></app-add-to-project>
 </div>

@@ -1,8 +1,8 @@
-import {Component, Input, NgZone, OnInit} from '@angular/core';
-import * as _ from 'lodash';
+import {Component, OnInit} from '@angular/core';
 import { MyProjectsService } from './../../services/my-projects/my-projects.service';
-import {CustomNotificationsService} from "../../services/notifications/notifications.service";
-import {TranslateService} from "@ngx-translate/core";
+import {CustomNotificationsService} from '../../services/notifications/notifications.service';
+import {TranslateService} from '@ngx-translate/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-my-projects',
@@ -20,29 +20,33 @@ export class MyProjectsComponent implements OnInit {
   modelList: any = [];
   projectsList: any = [];
 
+  projectForm: FormGroup;
+
   view = '';
 
   constructor(private myProjectsService: MyProjectsService,
               private notification: CustomNotificationsService,
-              private translate: TranslateService) { }
+              private translate: TranslateService) {}
 
   ngOnInit() {
     this.getItems();
+    console.log(this.projectsList);
+    this.selectedProject = this.projectsList[0];
   }
 
   getItems(): void {
-    /* this.myProjectsService.getItems().subscribe((response: any) => {
-      this.feature = response;
-      this.findByType(this.feature, 'project-list', this.selectedProject);
-    }); */
     this.myProjectsService.getProjects().subscribe((response: any) => {
-      this.projectsList = response;
-      console.log(this.projectsList)
-      // this.onSelectProject(response[0]);
+      this.projectsList = response.map(obj => {
+        Object.defineProperty(obj, 'selected', {
+          enumerable: true,
+          configurable: true,
+          writable: true,
+          value: false
+        });
+      });
       this.loading = false;
     });
   }
-
 
   onNameChange(event): void {
     this.searchTerm = event.toLowerCase();
@@ -84,24 +88,26 @@ export class MyProjectsComponent implements OnInit {
   }
 
   onDeleteProject(id): void {
-    this.projectsList = this.projectsList.filter(project => {
-      return project.id !== id;
+    this.myProjectsService.deleteProject(id).subscribe((response: any) => {
+      console.log(response);
     });
-    if (this.selectedProject['id'] === id) {
-      this.selectedProject = this.projectsList[0] ?  this.projectsList[0] : {};
-      this.myProjectsService.getModels(this.selectedProject['id']).subscribe((response: any) => {
-        if (response.constructor === Array) {
-          this.modelList = response;
-        } else {
-          this.modelList = [];
-        }
-      });
-    }
+    // this.projectsList = this.projectsList.filter(project => {
+    //   return project.id !== id;
+    // });
+    // if (this.selectedProject['id'] === id) {
+    //   this.selectedProject = this.projectsList[0] ?  this.projectsList[0] : {};
+    //   this.myProjectsService.getModels(this.selectedProject['id']).subscribe((response: any) => {
+    //     if (response.constructor === Array) {
+    //       this.modelList = response;
+    //     } else {
+    //       this.modelList = [];
+    //     }
+    //   });
+    // }
   }
   onNoteSave(note) {
     // note[0] => message, note[1] => modelId
-    this.myProjectsService.saveNote(note[0], note[1], this.selectedProject['id'])
-    .subscribe((response: any) => {
+    this.myProjectsService.saveNote(note[0], note[1], this.selectedProject['id']).subscribe((response: any) => {
       console.log(response);
     });
   }

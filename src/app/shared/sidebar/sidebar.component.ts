@@ -8,33 +8,16 @@ import {Component, EventEmitter, HostListener, Input, OnInit, Output} from '@ang
 export class SidebarComponent implements OnInit {
 
   code = '';
-  showSBC = false;
   @Input() isLoggedIn = false;
+  @Input() isOpenedSearchByCode;
 
-  @Output('searchByCode') searchByCode: EventEmitter<string> = new EventEmitter();
+  @Output('toggleSearchByCode') toggleSearchByCode: EventEmitter<{ status: boolean, value: string }> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {}
 
-  @HostListener('document:click', ['$event'])
-  clickout(event) {
-    // console.log(event.srcElement !== 'img')
-    // this.showSearchByCode(true)
-  }
-
-  onSearchByCode() {
-    this.searchByCode.emit(this.code);
-    this.showSearchByCode(false);
-  }
-  closeSearchByCode() {
-    this.showSearchByCode(false);
-  }
-  showSearchByCode(body) {
-    if (body) {
-      this.showSBC = false;
-    } else {
-      this.showSBC = !this.showSBC;
-    }
+  onSearchByCodeClicked(data = false) {
+    this.toggleSearchByCode.emit({ status: data, value: this.code });
   }
 }

@@ -20,7 +20,8 @@ export class ChooseModelComponent implements OnInit {
     graph: undefined
   };
 
-  selectedTab = 'construction-data';
+  filters = [{id: 0, name: 'Nominal Data'}, {id: 1, name: 'Construction Data'}];
+  selectedTab = 0;
   data = [];
   tableTab = 0;
 

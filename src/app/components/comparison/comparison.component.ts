@@ -5,7 +5,6 @@ import * as _ from 'lodash';
 import {OperatingPointService} from '../../services/operating-point/operating-point.service';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-comparison',
   templateUrl: './comparison.component.html',
   styleUrls: ['./comparison.component.scss']
@@ -15,7 +14,7 @@ export class ComparisonComponent implements OnInit {
   loading = true;
 
   feature: any = {};
-  filters: any = [];
+  filters = [{id: 0, name: 'Operation'}, {id: 1, name: 'Nominal'}, {id: 2, name: 'Construction'}];
   filterSelected = 0;
   searchTerm: String = '';
   sortBy: String = '';
@@ -25,9 +24,7 @@ export class ComparisonComponent implements OnInit {
   comparisonList: any = [];
 
   constructor(private comparisonService: ComparisonService,
-              private zone: NgZone,
-              private cd: ChangeDetectorRef,
-              private operatingPointService: OperatingPointService) { }
+              private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.getTabs();
@@ -43,7 +40,7 @@ export class ComparisonComponent implements OnInit {
     console.log(JSON.parse(localStorage.getItem('comparison')));
     this.comparisonList = JSON.parse(localStorage.getItem('comparison')) !== null ? JSON.parse(localStorage.getItem('comparison')) : [];
     this.comparisonList.forEach((model, i) => {
-      if (i === 1) {
+      if (i === 0) {
         this.tables.push([], [], []);
         model.data.forEach((data, j) => {
             data.data.forEach(obj => {
@@ -91,6 +88,5 @@ export class ComparisonComponent implements OnInit {
   removeFromTable(id) {
     this.comparisonList = this.comparisonList.filter(model => model.id !== id);
     localStorage.setItem('comparison', JSON.stringify(this.comparisonList))
-    this.zone.run(() => this.cd.markForCheck());
   }
 }

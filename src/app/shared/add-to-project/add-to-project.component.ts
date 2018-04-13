@@ -14,22 +14,110 @@ const inputProjects = require('../../../assets/json/add-to-projects-form.json');
 export class AddToProjectComponent implements OnInit {
 
   localProjects: any;
-  inputs: any;
+  elements = [
+    {
+      id: 1,
+      parameter: 'project_name',
+      order: '',
+      tag: 'input',
+      type: 'text',
+      description: 'Project Name',
+      visibleUI: false,
+      visiblePRT: false,
+      unit: '',
+      required: false,
+      max: null,
+      min: null,
+      defaultOption: null
+    },
+    {
+      id: 2,
+      parameter: 'construction',
+      order: '',
+      tag: 'input',
+      type: 'text',
+      description: 'Construction',
+      visibleUI: false,
+      visiblePRT: false,
+      unit: '',
+      required: false,
+      max: null,
+      min: null,
+      defaultOption: null
+    },
+    {
+      id: 3,
+      parameter: 'address',
+      order: '',
+      tag: 'input',
+      type: 'text',
+      description: 'Address',
+      visibleUI: false,
+      visiblePRT: false,
+      unit: '',
+      required: false,
+      max: null,
+      min: null,
+      defaultOption: null
+    },
+    {
+      id: 4,
+      parameter: 'purchaser',
+      order: '',
+      tag: 'input',
+      type: 'text',
+      description: 'Purchaser',
+      visibleUI: false,
+      visiblePRT: false,
+      unit: '',
+      required: false,
+      max: null,
+      min: null,
+      defaultOption: null
+    },
+    {
+      id: 5,
+      parameter: 'design_engineer',
+      order: '',
+      tag: 'input',
+      type: 'text',
+      description: 'Design Engineer',
+      visibleUI: false,
+      visiblePRT: false,
+      unit: '',
+      required: false,
+      max: null,
+      min: null,
+      defaultOption: null
+    },
+    {
+      id: 6,
+      parameter: 'business',
+      order: '',
+      tag: 'input',
+      type: 'text',
+      description: 'Business',
+      visibleUI: false,
+      visiblePRT: false,
+      unit: '',
+      required: false,
+      max: null,
+      min: null,
+      defaultOption: null
+    }
+  ];
 
   @Input() type: String;
   @Input() card: Object;
   @Input() set projects(data: any) {
-    if (this.type === 'project') {
-      this.inputs = inputProjects;
-    }
-    this.localProjects = _.cloneDeep(data);
     this.fillFormValues();
     this.createForm();
   }
   @Output() cancel: EventEmitter<string> = new EventEmitter();
   @Output() postForm: EventEmitter<any> = new EventEmitter();
 
-  paramsForm: FormGroup;
+  projectForm: FormGroup;
+
 
   formValues= {};
 
@@ -38,23 +126,23 @@ export class AddToProjectComponent implements OnInit {
   ngOnInit() {}
 
   createForm() {
-    this.paramsForm = this.fb.group(
-      this.formValues
-    );
+    this.projectForm = this.fb.group({
+
+    });
   }
 
   onSubmit() {
-    this.paramsForm['submitted'] = true;
-    if (this.paramsForm.valid) {
+    this.projectForm['submitted'] = true;
+    if (this.projectForm.valid) {
       this.onValidForm();
     }
   }
 
   onValidForm():  void {
     /* this._notification.getSuccess(`Successfully added to ${this.type}!`); */
-    /* console.log(this.paramsForm); */
+    /* console.log(this.projectForm); */
     /* this.cancel.emit('cancel'); */
-    this.postForm.emit(this.paramsForm);
+    this.postForm.emit(this.projectForm);
   }
 
   maxValue(max) {
@@ -74,26 +162,6 @@ export class AddToProjectComponent implements OnInit {
       this.formValues['modelId'] = [param.id, []];
     });
     this.formValues['userId'] = [localStorage.getItem('id'), []];
-    for (const featureObject of this.inputs.children) {
-      for (const row of featureObject.children) {
-        for (const parameter of row.children) {
-          if (parameter.parameter && parameter.tag === 'input') {
-            let value;
-              value = parameter.defaultOption ? parameter.defaultOption : '';
-              this.formValues[parameter.parameter] = [value, []];
-              if (parameter.required) {
-                this.formValues[parameter.parameter][1].push(Validators.required);
-              }
-              if (parameter.max) {
-                this.formValues[parameter.parameter][1].push(this.maxValue(parameter.max));
-              }
-              if (parameter.min) {
-                this.formValues[parameter.parameter][1].push(this.minValue(parameter.min));
-              }
-          }
-        }
-      }
-    }
   }
 
 }

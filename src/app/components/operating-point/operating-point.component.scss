@@ -40,7 +40,10 @@ table {
   margin-bottom: 50px;
 }
 .button {
+  width: 100%;
+  height: 100%;
   background: #1E4686;
+  border: none;
   padding-top: 10px;
   padding-bottom: 10px;
   text-align: center;
@@ -57,4 +60,29 @@ table {
   margin-top: 0;
   margin-bottom: 25px;
   border: 2px solid #cdcdcd;
+}
+
+.info-box {
+  border: solid 1px $main-color;
+  margin: 10px 0;
+  padding: 0 10px 10px 10px;
+
+  .title {
+    border-bottom: solid 1px $main-color;
+  }
+}
+
+.project-section {
+  width: 100%;
+  height: 41px;
+  overflow: hidden;
+
+  .project-list {
+    height: 41px;
+    align-items: center;
+    display: none;
+  }
+  .show-project-list {
+    display: flex;
+  }
 }

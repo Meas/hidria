@@ -1,10 +1,5 @@
 <div class="section-top">
   <div class="section-content"></div>
-  <!-- <div class="track">
-    <div class="logo">
-      <img src="assets/images/hidria_logo.png">
-    </div>
-  </div> -->
 </div>
 
 <div class="filters">
@@ -33,12 +28,12 @@
     <div class="text"> {{ 'TRANSLATE.COMPARISONS' | translate }}</div>
   </div>
   <div *ngIf="isLoggedIn" class="filter-item">
-    <div class="code-section" [ngClass]="{'show-code-section': showSBC}">
+    <div class="code-section" [ngClass]="{'show-code-section': isOpenedSearchByCode}">
       <input style="width: 150px" type="text" [(ngModel)]="code">
-      <button (click)="onSearchByCode()">Search</button>
-      <button (click)="closeSearchByCode()">Close</button>
+      <button (click)="onSearchByCodeClicked(true)">Search</button>
+      <button (click)="onSearchByCodeClicked()">Close</button>
     </div>
-    <div class="icon" (click)="showSearchByCode()">
+    <div class="icon" (click)="onSearchByCodeClicked()">
       <img src="assets/icons/search-by-code.png">
     </div>
     <div class="text"> {{'TRANSLATE.SEARCH-BY-CODE' | translate}}</div>

@@ -3,9 +3,11 @@
     <app-loading></app-loading>
   </div>
   <div *ngIf="!loading">
-    <div class="row no-gutters">
+    <div class="row no-gutters" *ngIf="comparisonList.length !== 0">
       <app-filters class="col-lg-12"
-      [filters]="[{id: 0, name: 'Operation'}, {id: 1, name: 'Nominal'}, {id: 2, name: 'Construction'}]" (filterSelected)="onFilterSelected($event)"></app-filters>
+                   [filters]="filters"
+                   [active]="filterSelected"
+                   (filterSelected)="onFilterSelected($event)"></app-filters>
 
       <div class="col-lg-12">
         <app-comparison-table
@@ -13,6 +15,9 @@
           [modelList]="comparisonList"
           (deleteFromComparison)="onDeleteFromComparison($event)"></app-comparison-table>
       </div>
+    </div>
+    <div class="row no-gutters" *ngIf="comparisonList.length === 0">
+      <h1>There are no selected fans to compare!</h1>
     </div>
   </div>
 </div>

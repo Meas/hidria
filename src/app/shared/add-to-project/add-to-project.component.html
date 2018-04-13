@@ -1,63 +1,25 @@
 <div>
-	<div class="title">
-		Add to type {{type}}
-	</div>
-	<form [formGroup]="paramsForm" (ngSubmit)="onSubmit()"  *ngIf="inputs">
-		<div class="row no-gutters">
-			<div *ngFor="let container of inputs.children" [class]="container.classUI">
-				<div *ngFor="let row of container.children" class="row {{row.classUI}}">
-					<div *ngFor="let element of row.children" [class]="element.classUI">
-						<ng-container *ngIf="element.tag === 'input'">
-							<app-label-box [parameter]="element"></app-label-box>
-							<app-feature-items [parameter]="element"
-								[name]="element.parameter"
-								[paramsForm]="paramsForm"></app-feature-items>
-						</ng-container>
-						<ng-container *ngIf="element.tag === 'select'">
-							<app-label-box [parameter]="element"></app-label-box>
-							<select></select>
-						</ng-container>
-						<div class="form-block big-padding" *ngIf="element.tag === 'card' && card">
-							<app-fan-info [fanInfo]="card"></app-fan-info>
-						</div>
-						<ng-container *ngIf="element.tag === 'title'">
-							<div>
-								{{ element.name }}
-							</div>
-						</ng-container>
-						<!-- <ng-container *ngIf="element.tag === 'one-accessory'">
-							<div class="col-lg-12 row">
-								<div class="col-lg-2 image">
-									<img src="{{element.image}}">
-								</div>
-								<div class="col-lg-8 accessory-name">
-									{{ element.name }}
-								</div>
-								<div class="col-lg-2 accessory-select">
-									<select [formControlName]="element.parameter">
-										<option 
-										  *ngFor="let option of element.options"
-										  [value]="option"
-										  [selected]="option === element.defaultOption">{{option}}</option>
-									</select>
-								</div>
-							</div>
-						</ng-container> -->
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row buttons-outer">
-			<div class="col-lg-6">
-				<div class="button half-opacity" (click)="cancel.emit('cancel')">
-					Cancel
-				</div>
-			</div>
-			<div class="col-lg-6">
-				<div class="button" (click)="onSubmit()">
-					Add to {{type}}
-				</div>
-			</div>
-		</div>
-	</form>
-<div>
+  <div class="title">
+    Add to type {{type}}
+  </div>
+  <form (ngSubmit)="onSubmit()" [formGroup]="projectForm">
+    <div class="row no-gutters">
+      <div class="col-lg-12" *ngFor="let element of elements">
+        <app-label-box [parameter]="element"></app-label-box>
+        <input type="text" [formControlName]="element.parameter">
+      </div>
+    </div>
+    <div class="row buttons-outer">
+      <div class="col-lg-6">
+        <div class="button half-opacity" (click)="cancel.emit('cancel')">
+          Cancel
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="button" (click)="onSubmit()">
+          Add to {{type}}
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

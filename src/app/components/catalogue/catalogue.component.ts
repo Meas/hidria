@@ -35,7 +35,11 @@ export class CatalogueComponent implements OnInit {
   }
 
   onFilterSelected(event): void {
-    this.categoryId = event;
-    this.subSections = [];
+    if (event === -1) {
+      this.categoryId = 0;
+    } else {
+      this.categoryId = event;
+      this.subSections = [];
+    }
   }
 }

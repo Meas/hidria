@@ -1,5 +1,8 @@
 <div class="button-item">
-  <button class="button-box title" *ngFor="let filter of filters" (click)="filterSelected.emit(filter.id)">
+  <button *ngIf="allFilter" class="button-box" [ngClass]="{'button-box-active': active === 0}" (click)="filterSelected.emit(0)">
+    All
+  </button>
+  <button class="button-box" [ngClass]="{'button-box-active': active === filter.id}" *ngFor="let filter of filters" (click)="filterSelected.emit(filter.id)">
     {{filter.name}}
   </button>
 </div>

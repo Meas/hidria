@@ -8,6 +8,7 @@ import {Router} from '@angular/router';
   template: `
     <div style="background: #fff !important">
       <canvas [id]="canvasId" width="200" height="200"></canvas>
+      <ng-content></ng-content>
     </div>
   `,
   styleUrls: ['./chart-performance-curve.component.css']

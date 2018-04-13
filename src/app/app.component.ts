@@ -17,6 +17,7 @@ export class AppComponent {
   title = 'app';
   measure = 'm';
   loggedIn = false;
+  isOpenedSearchByCode = false;
   selectedLanguage = localStorage.getItem('lang') ? localStorage.getItem('lang') : 'en';
 
   constructor(private authService: AuthService,
@@ -25,10 +26,10 @@ export class AppComponent {
               private searchByCodeService: SearchByCodeService,
               private notification: CustomNotificationsService,
               angulartics2GoogleAnalytics: Angulartics2GoogleAnalytics) {
-    /* authService.isLoggedIn() ? router.navigate(['catalogue']) : console.log('loged in'); */
     this.loggedIn = authService.isLoggedIn();
     translate.use(this.selectedLanguage);
     console.log(this.selectedLanguage);
+    router.events.subscribe((val) => this.isOpenedSearchByCode = false);
   }
 
   onChangeMetrics(event): void {
@@ -42,9 +43,12 @@ export class AppComponent {
   }
 
   searchByCode(event) {
-    this.searchByCodeService.search(event).subscribe((response: any) => {
-      console.log(response)
-      this.router.navigate([`/choose-model/1`]);
-    });
+    if (event.status && event.value !== '') {
+      this.searchByCodeService.search(event).subscribe((response: any) => {
+        console.log(response)
+        this.router.navigate([`/choose-model/1`]);
+      });
+    }
+    this.isOpenedSearchByCode = !this.isOpenedSearchByCode;
   }
 }
