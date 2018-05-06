@@ -120,6 +120,7 @@ export class OperatingPointComponent implements OnInit {
     this.operatingPointService.postCharts(id, calcData).subscribe((response: any) => {
       const set1 = [];
       const set2 = [];
+      this.graphs = [];
       response.map(graph => {
         if (graph.name === 'Unweighted third octave sound power' || graph.name === 'Weighted third octave sound power') {
           set1.push(graph);
