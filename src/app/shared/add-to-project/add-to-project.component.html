@@ -1,25 +1,21 @@
 <div>
-  <div class="title">
-    Add to type {{type}}
+  <div class="row no-gutters">
+    <div class="col-lg-12" *ngFor="let element of elements">
+      <app-label-box [parameter]="element"></app-label-box>
+      <input type="text" [(ngModel)]="element.defaultOption">
+    </div>
   </div>
-  <form (ngSubmit)="onSubmit()" [formGroup]="projectForm">
-    <div class="row no-gutters">
-      <div class="col-lg-12" *ngFor="let element of elements">
-        <app-label-box [parameter]="element"></app-label-box>
-        <input type="text" [formControlName]="element.parameter">
+
+  <div class="row buttons-outer">
+    <div class="col-lg-6">
+      <div class="button half-opacity" (click)="cancel.emit('cancel')">
+        Cancel
       </div>
     </div>
-    <div class="row buttons-outer">
-      <div class="col-lg-6">
-        <div class="button half-opacity" (click)="cancel.emit('cancel')">
-          Cancel
-        </div>
-      </div>
-      <div class="col-lg-6">
-        <div class="button" (click)="onSubmit()">
-          Add to {{type}}
-        </div>
+    <div class="col-lg-6">
+      <div class="button" (click)="onSubmit()">
+        Create
       </div>
     </div>
-  </form>
+  </div>
 </div>

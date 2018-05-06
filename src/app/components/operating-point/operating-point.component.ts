@@ -16,11 +16,15 @@ export class OperatingPointComponent implements OnInit {
   feature: any = {};
   downloads: any = {};
   showProjectList = false;
-  projects: any = {};
+  projects: any = [];
   addToComparison: any = {};
   operatingPointInputs;
-  graphData = [];
-  graphs;
+
+  graphData = {};
+  graphs = [];
+  activeSet1 = 0;
+  activeSet2 = 0;
+
   tables = [];
   card = {};
   view = 'feature';
@@ -114,7 +118,20 @@ export class OperatingPointComponent implements OnInit {
     })
     console.log(calcData)
     this.operatingPointService.postCharts(id, calcData).subscribe((response: any) => {
-      this.graphs = response;
+      const set1 = [];
+      const set2 = [];
+      response.map(graph => {
+        if (graph.name === 'Unweighted third octave sound power' || graph.name === 'Weighted third octave sound power') {
+          set1.push(graph);
+        } else if (graph.name === 'Weighted octave sound power' || graph.name === 'Unweighted octave sound power') {
+          set2.push(graph);
+        } else {
+          this.graphs.push(graph);
+        }
+      });
+      this.graphs.push(set1);
+      this.graphs.push(set2);
+      console.log(this.graphs);
     });
   }
   getInputs(id): void {

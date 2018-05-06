@@ -17,7 +17,7 @@ export class AddToProjectComponent implements OnInit {
   elements = [
     {
       id: 1,
-      parameter: 'project_name',
+      parameter: 'projectName',
       order: '',
       tag: 'input',
       type: 'text',
@@ -77,11 +77,11 @@ export class AddToProjectComponent implements OnInit {
     },
     {
       id: 5,
-      parameter: 'design_engineer',
+      parameter: 'projectant',
       order: '',
       tag: 'input',
       type: 'text',
-      description: 'Design Engineer',
+      description: 'Projectant',
       visibleUI: false,
       visiblePRT: false,
       unit: '',
@@ -132,10 +132,11 @@ export class AddToProjectComponent implements OnInit {
   }
 
   onSubmit() {
-    this.projectForm['submitted'] = true;
-    if (this.projectForm.valid) {
-      this.onValidForm();
-    }
+    this.postForm.emit(this.elements);
+    // this.projectForm['submitted'] = true;
+    // if (this.projectForm.valid) {
+    //   this.onValidForm();
+    // }
   }
 
   onValidForm():  void {

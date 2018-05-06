@@ -28,7 +28,7 @@
         <div>
           <div class="info-box">
             <h4 class="title">Notes</h4>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur cupiditate dolorem dolores magni nobis non quaerat quo reiciendis repudiandae, soluta sunt, tempora totam ullam, velit vitae. Aliquam nobis sit vel.
+            {{graphData?.notes}}
           </div>
         </div>
       </div>
@@ -39,15 +39,51 @@
                                   (points)="onPointSelected($event)"></app-chart-area-component>
       </div>
       <div class="col-lg-12 row" *ngIf="selectedTab ==='diagrams'">
-        <div *ngFor="let graph of graphs; let i = index;" [ngClass]="graph.classUi">
-          <app-chart-performance-curve-component [canvasId]="'canvas'+graph.name"
-                                                 [type]="i > 1 ? 'bar' : 'line'"
-                                                 [chartData]="graph">
-            <div class="info-box" *ngIf="i > 1">
-              <h4 class="title">Notes</h4>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur cupiditate dolorem dolores magni nobis non quaerat quo reiciendis repudiandae, soluta sunt, tempora totam ullam, velit vitae. Aliquam nobis sit vel.
-            </div>
+        <div class="col-lg-6">
+          <app-chart-performance-curve-component [canvasId]="'canvas'+graphs[0].name"
+                                                 [type]="'line'"
+                                                 [chartData]="graphs[0]">
           </app-chart-performance-curve-component>
+        </div>
+        <div class="col-lg-6">
+          <app-chart-performance-curve-component [canvasId]="'canvas'+graphs[1].name"
+                                                 [type]="'line'"
+                                                 [chartData]="graphs[1]">
+          </app-chart-performance-curve-component>
+        </div>
+        <div class="col-lg-6">
+          <div *ngFor="let graph of graphs[2]; let j = index" class="col-lg-12">
+            <div *ngIf="activeSet1 === j" class="col-lg-12">
+              <app-chart-performance-curve-component [canvasId]="'canvas'+graph.name"
+                                                     [type]="'bar'"
+                                                     [chartData]="graph">
+                <div *ngFor="let graph of graphs[2]; let j = index">
+                  <button class="button-select" [ngClass]="activeSet1 === j ? 'selected-tab' : ''" (click)="activeSet1 = j">{{graph.name}}</button>
+                </div>
+                <div class="info-box">
+                  <h4 class="title">Notes</h4>
+                  {{graph.notes}}
+                </div>
+              </app-chart-performance-curve-component>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div *ngFor="let graph of graphs[3]; let j = index" class="col-lg-12">
+            <div *ngIf="activeSet2 === j" class="col-lg-12">
+              <app-chart-performance-curve-component [canvasId]="'canvas'+graph.name"
+                                                     [type]="'bar'"
+                                                     [chartData]="graph">
+                <div *ngFor="let graph of graphs[3]; let j = index">
+                  <button class="button-select" [ngClass]="activeSet2 === j ? 'selected-tab' : ''" (click)="activeSet2 = j">{{graph.name}}</button>
+                </div>
+                <div class="info-box">
+                  <h4 class="title">Notes</h4>
+                  {{graph.notes}}
+                </div>
+              </app-chart-performance-curve-component>
+            </div>
+          </div>
         </div>
       </div>
       <div class="col-lg-12" *ngIf="selectedTab === 'data-sheet'">

@@ -43,6 +43,7 @@ export class MyProjectsComponent implements OnInit {
           writable: true,
           value: false
         });
+        return obj;
       });
       this.loading = false;
     });
@@ -115,11 +116,22 @@ export class MyProjectsComponent implements OnInit {
     this.view = 'create-project';
   }
   saveProject(data) {
-    this.myProjectsService.createProject(data.value).subscribe((response: any) => {
-      this.view = '';
-      this.getItems();
-      this.translate.get('TRANSLATE.PROJECT').subscribe((res: string) => {
-        this.notification.message('success', 'Success', 'Project is created');
+    const obj = {};
+    data.forEach(el => {
+      Object.defineProperty(obj, el.parameter, {
+        enumerable: true,
+        configurable: true,
+        writable: true,
+        value: el.defaultOption
+      });
+    });
+    this.myProjectsService.createProject(obj).subscribe((response: any) => {
+      if (response.messageType !== 'error') {
+        this.view = '';
+        this.getItems();
+      }
+      this.translate.get(response.message).subscribe((res: string) => {
+        this.notification.message(response.messageType, response.messageType, res);
       });
     });
   }

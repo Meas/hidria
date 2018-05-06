@@ -17,6 +17,10 @@
         "POSITION-NUMBER": "Position Number",
         "DELETE": "Delete",
         "PROJECT": "Project",
+        "PROJECT_ADD": {
+          "ERROR": "Missing parameters",
+          "SUCCESS": "Created successfully"
+        },
         "CONSTRUCTION": "Construction",
         "ADDRESS": "Address",
         "PURCHASER": "Purchaser",
