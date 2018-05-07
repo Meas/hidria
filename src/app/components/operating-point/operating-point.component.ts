@@ -154,8 +154,8 @@ export class OperatingPointComponent implements OnInit {
   }
   getCalculate(id, data): void {
     data = {
-      staticPressure: Math.round(data[0].defaultValue),
-      airFlow: Math.round(data[1].defaultValue)
+      airFlow: Math.round(data[0].defaultValue),
+      staticPressure: Math.round(data[1].defaultValue)
     }
     this.operatingPointService.getCalculate(id, data).subscribe((response: any) => {
       console.log(response)

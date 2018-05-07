@@ -51,8 +51,8 @@ export class MainService {
    * @returns {Observable<any>}
    */
   post(route: string, data?: {}, queryParams?: {}): Observable<any> {
-    const headers = new HttpHeaders();
-    this.helper.createAuthorizationHeader(headers);
+    let headers = new HttpHeaders();
+    headers = this.helper.createAuthorizationHeader(headers);
 
     return this.http.post(this.helper.generateRoute(route, queryParams), data, {
       headers: headers
@@ -77,8 +77,8 @@ export class MainService {
    */
   put(route: string, data?: {}, queryParams?: {}): Observable<any> {
 
-    const headers = new HttpHeaders();
-    this.helper.createAuthorizationHeader(headers);
+    let headers = new HttpHeaders();
+    headers = this.helper.createAuthorizationHeader(headers);
 
     return this.http.put(this.helper.generateRoute(route, queryParams), data, {
       headers: headers
@@ -102,8 +102,8 @@ export class MainService {
    */
   delete(route: string, queryParams?: {}): Observable<any> {
 
-    const headers = new HttpHeaders();
-    this.helper.createAuthorizationHeader(headers);
+    let headers = new HttpHeaders();
+    headers = this.helper.createAuthorizationHeader(headers);
 
     return this.http.delete(this.helper.generateRoute(route, queryParams), {
       headers: headers

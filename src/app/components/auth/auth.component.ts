@@ -65,6 +65,9 @@ export class AuthComponent implements OnInit {
   ngOnInit() {
   }
 
+  getRegisterFields() {
+
+  }
 
   onLoginClicked() {
     this.authService.login(generateUrlEncodedData(this.loginData)).subscribe((response: any) => {
