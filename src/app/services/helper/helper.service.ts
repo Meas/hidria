@@ -42,7 +42,6 @@ export class HelperService {
    */
   createAuthorizationHeader(headers: HttpHeaders): any {
     return headers.append('Authorization', 'Bearer ' + localStorage.getItem('access_token'))
-            .append('Content-Type', 'application/x-www-form-urlencoded');
   }
 
   /**

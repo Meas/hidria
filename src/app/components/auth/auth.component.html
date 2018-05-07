@@ -119,19 +119,19 @@
             <div class="col-6">
               <app-label-box [parameter]="{ description: 'Industry' }"></app-label-box>
               <select class="full-size" [(ngModel)]="registerData.industry">
-                <option *ngFor="let value of registrationOptions.industries" [ngValue]="value">{{value}}</option>
+                <option *ngFor="let value of registrationOptions.industry" [ngValue]="value.id">{{value.name}}</option>
               </select>
             </div>
             <div class="col-6">
               <app-label-box [parameter]="{ description: 'Position' }"></app-label-box>
               <select class="full-size" [(ngModel)]="registerData.position">
-                <option *ngFor="let value of registrationOptions.positions" [ngValue]="value">{{value}}</option>
+                <option *ngFor="let value of registrationOptions.position" [ngValue]="value.id">{{value.name}}</option>
               </select>
             </div>
             <div class="col-12">
               <app-label-box [parameter]="{ description: 'Applications' }"></app-label-box>
               <select class="full-size" [(ngModel)]="registerData.applications">
-                <option *ngFor="let value of registrationOptions.applications" [ngValue]="value">{{value}}</option>
+                <option *ngFor="let value of registrationOptions.applications" [ngValue]="value.id">{{value.name}}</option>
               </select>
             </div>
           </div>
@@ -149,7 +149,7 @@
               <input type="checkbox" [(ngModel)]="registerData.termsAndConditions">
             </div>
             <div class="col-12 center-elements-inline">
-              <re-captcha (captchaResponse)="handleCorrectCaptcha($event)" site_key="<GOOGLE_RECAPTCHA_KEY>"></re-captcha>
+              <re-captcha (captchaResponse)="handleCorrectCaptcha($event)" site_key="6Lcp4FcUAAAAAOFEZL2cVvH1Uf5g5QeMRSDRCUWm"></re-captcha>
             </div>
           </div>
           <div class="row">

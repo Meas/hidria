@@ -23,7 +23,10 @@
                 </app-my-projects-list>
         </div>
       </div>
-      <div class="col-lg-9 no-gutters">
+      <div class="col-lg-9 no-gutters" *ngIf="!selectedProject">
+        <h1>Please select project</h1>
+      </div>
+      <div class="col-lg-9 no-gutters" *ngIf="selectedProject">
         <div>
           <app-my-projects-title [project]="selectedProject"
             (deleteProject)="onDeleteProject($event)"></app-my-projects-title>

@@ -47,4 +47,8 @@ export class AuthService {
   resetPassword(data): Observable<any> {
     return this.service.post(`reset-password`, data);
   }
+
+  getRegisterFields(): Observable<any> {
+    return this.service.get(`register`);
+  }
 }

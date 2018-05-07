@@ -1,6 +1,15 @@
 {
     "TRANSLATE": {
-        "OPERATING-POINT": "Operating Point",
+        "OPERATING-POINT": {
+          "NAME": "Operating Point",
+          "DRAWINGS": "Drawings",
+          "DIAGRAMS": "Diagrams",
+          "GENERATE-CARD": "Generate Card",
+          "MODEL3D": "Model 3D",
+          "INSTRUCTIONS": "Instructions",
+          "DATASHEET": "Datasheet",
+          "CONNECTION_DIAGRAMS": "Connection Diagrams"
+        },
         "STATISTICS": "Statistics",
         "USER": "User",
         "HISTORY": "History",

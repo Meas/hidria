@@ -35,14 +35,14 @@ export class AuthComponent implements OnInit {
     langId: '1',
     industry: '',
     position: '',
-    applications: '',
+    applications: [],
     termsAndConditions: false
   }
 
   registrationOptions = {
-    industries: ['heating', 'ventilation & air-conditioning', 'refrigeration', 'IT & telecom', 'distribution / after-sales', 'other'],
-    positions: ['R&D', 'purchasing', 'management', 'other'],
-    applications: ['heat pumps', 'condensers', 'condenser units', 'dry coolers', 'chillers', 'evaporators', 'cooling towers', 'process cooling units', 'fan heaters', 'air curtains', 'AHU', 'roof fans', 'ventilation systems', 'exhaust applications', 'data centers', 'other']
+    industry: [],
+    position: [],
+    applications: []
   }
 
   changePasswordData = {
@@ -56,17 +56,23 @@ export class AuthComponent implements OnInit {
     email: '',
   }
 
-  constructor(private authService: AuthService, private router: Router, private notifications: CustomNotificationsService) {
+  constructor(private authService: AuthService,
+              private router: Router,
+              private notification: CustomNotificationsService) {
     if (authService.isLoggedIn()) {
       router.navigate(['catalogue']);
     }
   }
 
   ngOnInit() {
+    this.getRegisterFields();
   }
 
   getRegisterFields() {
-
+    this.authService.getRegisterFields().subscribe((response: any) => {
+      console.log(response);
+      this.registrationOptions = response;
+    });
   }
 
   onLoginClicked() {
@@ -83,11 +89,13 @@ export class AuthComponent implements OnInit {
 
   onRegisterClicked() {
     // console.log(generateUrlEncodedData(this.registerData));
+    this.registerData.applications = [this.registerData.applications];
     if (this.registerData.password !== this.registerData.passwordRepeat) {
-      console.log('Password not same');
+      this.notification.message('error', 'Error', 'Password not same');
     } else {
       this.authService.register(this.registerData).subscribe((response: any) => {
         console.log(response)
+        this.notification.message('warn', 'Warning', response.message);
       });
     }
   }

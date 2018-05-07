@@ -83,14 +83,20 @@ export class MyProjectsComponent implements OnInit {
   }
 
   onRemoveModel(id): void {
-    this.modelList = this.modelList.filter(model => {
-      return model.id !== id;
+    this.myProjectsService.deleteModel(this.selectedProject['id'], id).subscribe((response: any) => {
+      console.log(response);
+      this.modelList = this.modelList.filter(model => {
+        return model.id !== id;
+      });
+      this.getItems();
     });
+
   }
 
   onDeleteProject(id): void {
     this.myProjectsService.deleteProject(id).subscribe((response: any) => {
       console.log(response);
+      this.getItems();
     });
     // this.projectsList = this.projectsList.filter(project => {
     //   return project.id !== id;
@@ -106,9 +112,9 @@ export class MyProjectsComponent implements OnInit {
     //   });
     // }
   }
-  onNoteSave(note) {
+  onNoteSave(event) {
     // note[0] => message, note[1] => modelId
-    this.myProjectsService.saveNote(note[0], note[1], this.selectedProject['id']).subscribe((response: any) => {
+    this.myProjectsService.saveNote({ note: event.note }, event.id).subscribe((response: any) => {
       console.log(response);
     });
   }

@@ -19,6 +19,7 @@ export class OperatingPointComponent implements OnInit {
   projects: any = [];
   addToComparison: any = {};
   operatingPointInputs;
+  operationPointId = 0;
 
   graphData = {};
   graphs = [];
@@ -33,6 +34,7 @@ export class OperatingPointComponent implements OnInit {
   links = [];
 
   modelsToCompare = [];
+  projectId;
 
   id;
 
@@ -41,7 +43,9 @@ export class OperatingPointComponent implements OnInit {
               private zone: NgZone,
               private cd: ChangeDetectorRef,
               private notification: CustomNotificationsService,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute) {
+    this.operationPointId = +localStorage.getItem('operation-point');
+  }
 
   ngOnInit() {
     this.getId((id) => {
@@ -75,13 +79,11 @@ export class OperatingPointComponent implements OnInit {
   }
   getGraph(id): void {
     this.operatingPointService.getGraph(id).subscribe((response: any) => {
-      console.log(response)
       this.graphData = response;
     });
   }
   getCharts(id): void {
     this.operatingPointService.getCharts(id).subscribe((response: any) => {
-      console.log(response)
       this.graphs = response;
       this.zone.run(() => this.cd.markForCheck());
     });
@@ -116,15 +118,14 @@ export class OperatingPointComponent implements OnInit {
           console.log('not el');
       }
     })
-    console.log(calcData)
     this.operatingPointService.postCharts(id, calcData).subscribe((response: any) => {
       const set1 = [];
       const set2 = [];
       this.graphs = [];
-      response.map(graph => {
-        if (graph.name === 'Unweighted third octave sound power' || graph.name === 'Weighted third octave sound power') {
+      response.map((graph, i) => {
+        if (i === 2 || i === 4) {
           set1.push(graph);
-        } else if (graph.name === 'Weighted octave sound power' || graph.name === 'Unweighted octave sound power') {
+        } else if (i === 3 || i === 5) {
           set2.push(graph);
         } else {
           this.graphs.push(graph);
@@ -132,7 +133,6 @@ export class OperatingPointComponent implements OnInit {
       });
       this.graphs.push(set1);
       this.graphs.push(set2);
-      console.log(this.graphs);
     });
   }
   getInputs(id): void {
@@ -153,27 +153,19 @@ export class OperatingPointComponent implements OnInit {
     });
   }
   getCalculate(id, data): void {
-    data = {
+    const dt = {
       airFlow: Math.round(data[0].defaultValue),
       staticPressure: Math.round(data[1].defaultValue)
     }
-    this.operatingPointService.getCalculate(id, data).subscribe((response: any) => {
-      console.log(response)
+    this.operatingPointService.getCalculate(id, dt).subscribe((response: any) => {
       this.tables = response;
       this.postCharts(this.id, this.tables[0].data);
     });
   }
 
   onPointSelected(event): void {
-    // this.graphData = [...event];
     this.inputData = [...event];
-  }
-
-  onChange(event): void {
-    // this.operatingPointService.calculate(event).subscribe((response: any) => {
-    //   this.findAndReplace(this.feature, ['parameterList', 'diagrams'], response);
-    // });
-    this.getCalculate(this.id, event);
+    // this.getCalculate(this.id, this.operatingPointInputs);
   }
 
   findAndReplace(object, types, replaceValues) {
@@ -214,11 +206,7 @@ export class OperatingPointComponent implements OnInit {
     });
   }
   selectProject(event) {
-    console.log(event);
-  }
-  addToProjectFunc(data) {
-    this.addToProject();
-    this.notification.message('success', 'Success', 'Item added to project');
+    this.projectId = event;
   }
   addToComparisonFunc() {
     this.modelsToCompare.push({
@@ -228,7 +216,6 @@ export class OperatingPointComponent implements OnInit {
       image: this.card['image'],
       data: this.tables
     })
-    console.log(this.modelsToCompare);
 
     this.notification.message('success', 'Success', 'Item added to comparison');
     localStorage.setItem('comparison', JSON.stringify(this.modelsToCompare));
@@ -236,5 +223,12 @@ export class OperatingPointComponent implements OnInit {
 
   addToProject() {
     this.showProjectList = !this.showProjectList;
+    if (this.projectId) {
+      this.projectService.insertModels(this.projectId, {
+        model: [this.id]
+      }).subscribe((response: any) => {
+        this.notification.message('success', 'Success', 'Item added to project');
+      });
+    }
   }
 }

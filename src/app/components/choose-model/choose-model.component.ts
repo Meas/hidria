@@ -30,6 +30,7 @@ export class ChooseModelComponent implements OnInit {
               private router: Router,
               private notifications: CustomNotificationsService) {
     this.data = this.getDataFromParams();
+    localStorage.setItem('operation-point', this.data[0].value);
   }
 
   ngOnInit() {

@@ -30,11 +30,10 @@ export class MyProjectsService {
     return this.service.post(`projects/${id}`, models);
   }
   deleteModel(projectId, modelId): Observable<any> {
-    return this.service.delete(`project/${projectId}/models/${modelId}/notes`);
+    return this.service.delete(`projects/${projectId}/models/${modelId}`);
   }
 
-  saveNote(note, modelId, projectId) {
-    console.log(note, modelId, projectId);
-    return this.service.post(`projects/${projectId}/models/${modelId}/notes`, note);
+  saveNote(note, modelId) {
+    return this.service.post(`models/${modelId}/notes`, note);
   }
 }

@@ -30,7 +30,7 @@ const routes: Routes = [
   { path: 'comparisons', component: ComparisonComponent, canActivate: [SecurityService] },
   { path: 'statistics', component: StatisticsComponent, canActivate: [SecurityService] },
   { path: 'users', component: UsersComponent, canActivate: [SecurityService] },
-  { path: 'history', component: HistoryComponent, canActivate: [SecurityService] },
+  { path: 'history', component: HistoryComponent },
   { path: 'users/edit', component: AdminComponent, canActivate: [SecurityService] },
   { path: '**', component: RouteNotFoundComponent }
 ];

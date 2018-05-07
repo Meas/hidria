@@ -5,12 +5,12 @@
   <div *ngIf="!loading">
     <div class="row title-model no-gutters align-items-center">
       <div class="col-lg-4">
-        <div>Choose model | Operating point</div>
+        <div><a routerLink="/choose-model/{{operationPointId}}">Choose model</a> | Operating point</div>
       </div>
       <div class="col-lg-7 offset-lg-1">
         <app-display-options [selectedTab]="selectedTab"
                              (tab)="selectTab($event)"
-                             [downloads]="downloads"></app-display-options>
+                             [downloads]="links"></app-display-options>
       </div>
     </div>
     <hr class="title-line">
@@ -23,11 +23,10 @@
           <app-operating-points-inputs
             [inputData]="operatingPointInputs"
             [graphDataInput]="inputData"
-            (onChange)="onChange($event)"></app-operating-points-inputs>
+            (onChange)="getCalculate(id, $event)"></app-operating-points-inputs>
         </div>
         <div>
           <div class="info-box">
-            <h4 class="title">Notes</h4>
             {{graphData?.notes}}
           </div>
         </div>
@@ -61,7 +60,6 @@
                   <button class="button-select" [ngClass]="activeSet1 === j ? 'selected-tab' : ''" (click)="activeSet1 = j">{{graph.name}}</button>
                 </div>
                 <div class="info-box">
-                  <h4 class="title">Notes</h4>
                   {{graph.notes}}
                 </div>
               </app-chart-performance-curve-component>
@@ -78,7 +76,6 @@
                   <button class="button-select" [ngClass]="activeSet2 === j ? 'selected-tab' : ''" (click)="activeSet2 = j">{{graph.name}}</button>
                 </div>
                 <div class="info-box">
-                  <h4 class="title">Notes</h4>
                   {{graph.notes}}
                 </div>
               </app-chart-performance-curve-component>
@@ -129,8 +126,8 @@
               <option disabled value="">Select Project</option>
               <option *ngFor="let project of projects" [value]="project.id">{{ project.name }}</option>
             </select>
-            <button class="button" style="width: 15%" (click)="addToProjectFunc()">+</button>
-            <button class="button" style="width: 15%" (click)="addToProject()">-</button>
+            <button class="button" style="width: 15%" (click)="addToProject()">Add</button>
+            <button class="button" style="width: 15%" (click)="showProjectList = !showProjectList">Close</button>
           </div>
           <button class="button" (click)="addToProject()">
             ADD TO PROJECT
@@ -139,7 +136,7 @@
       </div>
       <div class="col-lg-4">
         <ng-container *ngFor="let download of links">
-          <a *ngIf="download.name == 'TRANSLATE.OPERATING-POINT.GENERATE-CARD'" href="{{download.link}}" download>
+          <a *ngIf="download.name == 'TRANSLATE.OPERATING-POINT.GENERATE-CARD'" href="{{download.link}}" target="_blank">
             <button class="button">
               GENERATE CARD
             </button>

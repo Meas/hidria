@@ -42,7 +42,10 @@ export class MyProjectsModelListComponent implements OnInit {
   }
   saveNote(note, modelId) {
     note.classList.add('disabled');
-    this.saveNoteEmitter.emit([note.value, modelId]);
+    this.saveNoteEmitter.emit({
+      id: modelId,
+      note: note.value
+    });
   }
   editNote(note) {
     note.classList.remove('disabled');
