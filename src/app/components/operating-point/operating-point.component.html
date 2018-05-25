@@ -4,61 +4,59 @@
   </div>
   <div *ngIf="!loading">
     <div class="row title-model no-gutters align-items-center">
-      <div class="col-lg-4">
+      <div class="col-lg-8">
         <div><a routerLink="/choose-model/{{operationPointId}}">Choose model</a> | Operating point</div>
       </div>
-      <div class="col-lg-7 offset-lg-1">
+      <div class="col-lg-4">
         <app-display-options [selectedTab]="selectedTab"
-                             (tab)="selectTab($event)"
                              [downloads]="links"></app-display-options>
       </div>
     </div>
     <hr class="title-line">
     <div class="row">
       <div class="col-lg-4">
+        <button class="tab-button" [ngClass]="{'active': sections.main}" (click)="sections.main = !sections.main">
+          MAIN CHART
+        </button>
+        <button class="tab-button" [ngClass]="{'active': sections.data}" (click)="sections.data = !sections.data">
+          DATA SHEET
+        </button>
+        <button class="tab-button" [ngClass]="{'active': sections.sound}" (click)="sections.sound = !sections.sound">
+          SOUND CHART
+        </button>
+      </div>
+      <div class="col-lg-8">
+        <app-operating-points-inputs
+          [inputData]="operatingPointInputs"
+          [graphDataInput]="inputData"
+          (onChange)="getCalculate(id, $event)"></app-operating-points-inputs>
+      </div>
+      <div class="col-lg-4" *ngIf="sections.main">
         <div class="model">
           <app-fan-info [fanInfo]="card"></app-fan-info>
         </div>
-        <div>
-          <app-operating-points-inputs
-            [inputData]="operatingPointInputs"
-            [graphDataInput]="inputData"
-            (onChange)="getCalculate(id, $event)"></app-operating-points-inputs>
+        <div class="legend">
+
         </div>
+      </div>
+      <div class="col-lg-8" *ngIf="sections.main">
+        <app-chart-area-component [canvasId]="'canvas1'"
+                                  [chartSetData]="graphData"
+                                  [interactive]="true"
+                                  (points)="onPointSelected($event)"></app-chart-area-component>
         <div>
           <div class="info-box">
             {{graphData?.notes}}
           </div>
         </div>
       </div>
-      <div class="col-lg-8">
-        <app-chart-area-component [canvasId]="'canvas1'"
-                                  [chartSetData]="graphData"
-                                  [interactive]="true"
-                                  (points)="onPointSelected($event)"></app-chart-area-component>
-      </div>
-      <div class="col-lg-12 row" *ngIf="selectedTab ==='diagrams'">
-        <div class="col-lg-6">
-          <app-chart-performance-curve-component [canvasId]="'canvas'+graphs[0].name"
-                                                 [type]="'line'"
-                                                 [chartData]="graphs[0]">
-          </app-chart-performance-curve-component>
-        </div>
-        <div class="col-lg-6">
-          <app-chart-performance-curve-component [canvasId]="'canvas'+graphs[1].name"
-                                                 [type]="'line'"
-                                                 [chartData]="graphs[1]">
-          </app-chart-performance-curve-component>
-        </div>
-        <div class="col-lg-6">
-          <div *ngFor="let graph of graphs[2]; let j = index" class="col-lg-12">
-            <div *ngIf="activeSet1 === j" class="col-lg-12">
+      <div class="col-lg-12 row" *ngIf="sections.sound">
+        <div class="col-lg-8">
+          <div *ngFor="let graph of graphs; let j = index" class="col-lg-12">
+            <div *ngIf="j === 1" class="col-lg-12">
               <app-chart-performance-curve-component [canvasId]="'canvas'+graph.name"
                                                      [type]="'bar'"
                                                      [chartData]="graph">
-                <div *ngFor="let graph of graphs[2]; let j = index">
-                  <button class="button-select" [ngClass]="activeSet1 === j ? 'selected-tab' : ''" (click)="activeSet1 = j">{{graph.name}}</button>
-                </div>
                 <div class="info-box">
                   {{graph.notes}}
                 </div>
@@ -66,24 +64,9 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-6">
-          <div *ngFor="let graph of graphs[3]; let j = index" class="col-lg-12">
-            <div *ngIf="activeSet2 === j" class="col-lg-12">
-              <app-chart-performance-curve-component [canvasId]="'canvas'+graph.name"
-                                                     [type]="'bar'"
-                                                     [chartData]="graph">
-                <div *ngFor="let graph of graphs[3]; let j = index">
-                  <button class="button-select" [ngClass]="activeSet2 === j ? 'selected-tab' : ''" (click)="activeSet2 = j">{{graph.name}}</button>
-                </div>
-                <div class="info-box">
-                  {{graph.notes}}
-                </div>
-              </app-chart-performance-curve-component>
-            </div>
-          </div>
-        </div>
+        <div class="col-lg-4"></div>
       </div>
-      <div class="col-lg-12" *ngIf="selectedTab === 'data-sheet'">
+      <div class="col-lg-12" *ngIf="sections.data">
         <div class="row">
           <div class="col-lg-4">
             <app-choose-model-table *ngIf="tables[0]" [tableData]="tables[0]"></app-choose-model-table>
@@ -96,19 +79,6 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-12" *ngIf="selectedTab === 'drawings'">
-        <h1>DRAWINGS DATA</h1>
-        <!--<div *ngIf="child.type==='drawings' && selectedTab == 'drawings'">-->
-        <!--<img [src]="child.image">-->
-        <!--</div>-->
-        <!--<div *ngIf="child.type==='instructions' && selectedTab == 'instructions'">-->
-        <!--<img [src]="child.image">-->
-        <!--</div>-->
-      </div>
-      <!--<div *ngIf="child.type==='parameterList' && selectedTab == 'data-sheet'">-->
-        <!--<app-parameter-list [inputData]="child"></app-parameter-list>-->
-      <!--</div>-->
-
     </div>
     <div class="row operating-points-buttons">
       <!--<div class="col-lg-12 select-points">-->
@@ -136,7 +106,7 @@
       </div>
       <div class="col-lg-4">
         <ng-container *ngFor="let download of links">
-          <a *ngIf="download.name == 'TRANSLATE.OPERATING-POINT.GENERATE-CARD'" href="{{download.link}}" target="_blank">
+          <a *ngIf="download.name == 'TRANSLATE.OPERATING-POINT.GENERATE-CARD'" href="{{download.link}}" download>
             <button class="button">
               GENERATE CARD
             </button>

@@ -33,6 +33,7 @@ import { SearchByCodeService } from './services/search-by-code/search-by-code.se
 import { CustomNotificationsService } from './services/notifications/notifications.service';
 import { MyProjectsService } from './services/my-projects/my-projects.service';
 import { ComparisonService } from './services/comparison/comparison.service';
+import { UserService } from './services/user/user.service';
 
 import { FilterPipe } from './pipes/filter/filter.pipe';
 import { SortPipe } from './pipes/sort/sort.pipe';
@@ -103,6 +104,7 @@ import { AuthComponent } from './components/auth/auth.component';
     CustomNotificationsService,
     MyProjectsService,
     ComparisonService,
+    UserService
   ],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

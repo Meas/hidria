@@ -44,10 +44,6 @@ ul {
   height: 230px;
   margin-bottom: 15px;
   border: solid 1px gray;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
 
   h1, h4 {
     margin: 0;
@@ -55,17 +51,44 @@ ul {
 }
 
 // graphs
-
-.circle-chart__circle {
-  animation: circle-chart-fill 2s reverse;
-  transform: rotate(-90deg);
-  transform-origin: center;
+.progress-indicator {
+  position: fixed;
+  top: 30px;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  margin-left: -50px;
+}
+.progress-count {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  line-height: 100px;
+  color: $main-color;
+  text-shadow: 1px 1px 1px rgba(0,0,0,.4);
+}
+svg {
+  position: absolute;
+}
+circle {
+  fill: rgba(255,255,255,.95);
 }
 
-@keyframes circle-chart-fill {
-  to { stroke-dasharray: 0 100; }
-}
+svg .animated-circle {
+  fill: transparent;
+  stroke-width: 40px;
+  stroke: $main-color;
+  stroke-dasharray: 126;
+  stroke-dashoffset: 126 - 60}
 
-html {
-  font-family: sans-serif;
+.range-bar {
+  max-width: 500px;
+  padding: 200px 0 0;
+  margin: 0 auto;
+  input[type=range] {
+    width: 100%;
+  }
 }

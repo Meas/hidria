@@ -111,3 +111,15 @@ table {
     background-color: #1E4686;
   }
 }
+
+.tab-button {
+  width: 100%;
+  height: 50px;
+  background: transparent;
+  border: solid 3px #1E4686;
+  margin-bottom: 10px;
+}
+.active {
+  background: #1E4686;
+  color: white
+}

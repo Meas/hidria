@@ -8,9 +8,12 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let row of tableData.data; let i = index">
+    <tr *ngFor="let dt of tableData.data; let i = index">
       <td *ngIf="isSelectable"><input type="checkbox"></td>
-      <td *ngFor="let item of row.values">{{item}}</td>
+      <td>{{dt.name}}</td>
+      <td>{{dt.email}}</td>
+      <td>{{dt.userGroup}}</td>
+      <td>{{dt.registered}}</td>
       <td>
         <button class="h-btn" routerLink="/users/edit">Edit</button>
         <button class="h-btn btn-warn">Delete</button>

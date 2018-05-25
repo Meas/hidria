@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {UserService} from '../../services/user/user.service';
 
 @Component({
   selector: 'app-users',
@@ -9,42 +10,18 @@ export class UsersComponent implements OnInit {
 
   users = {
     headers: ['Name', 'Email', 'User group', 'Registered', 'Last active'],
-    data: [
-      {
-        values: ['User 1', 'johndoe@gmail.com', 'Member', '12 hours ago', '10 hours ago']
-      },
-      {
-        values: ['User 1', 'johndoe@gmail.com', 'Member', '12 hours ago', '10 hours ago']
-      },
-      {
-        values: ['User 1', 'johndoe@gmail.com', 'Member', '12 hours ago', '10 hours ago']
-      },
-      {
-        values: ['User 1', 'johndoe@gmail.com', 'Member', '12 hours ago', '10 hours ago']
-      },
-      {
-        values: ['User 1', 'johndoe@gmail.com', 'Member', '12 hours ago', '10 hours ago']
-      },
-      {
-        values: ['User 1', 'johndoe@gmail.com', 'Member', '12 hours ago', '10 hours ago']
-      },
-      {
-        values: ['User 1', 'johndoe@gmail.com', 'Member', '12 hours ago', '10 hours ago']
-      },
-      {
-        values: ['User 1', 'johndoe@gmail.com', 'Member', '12 hours ago', '10 hours ago']
-      },
-      {
-        values: ['User 1', 'johndoe@gmail.com', 'Member', '12 hours ago', '10 hours ago']
-      },
-      {
-        values: ['User 1', 'johndoe@gmail.com', 'Member', '12 hours ago', '10 hours ago']
-      }
-    ]
-  }
-  constructor() { }
+    data: []
+  };
+
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
+    this.getUsers();
   }
 
+  getUsers() {
+    this.userService.getItems().subscribe((response: any) => {
+      this.users.data = response;
+    });
+  }
 }

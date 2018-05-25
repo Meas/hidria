@@ -11,12 +11,11 @@
       <div class="section-content">
 
         <ul *ngIf="isLoggedIn" class="nav-links left">
-          <li class="nav-link"><a class="link-left" routerLink="statistics">{{'TRANSLATE.STATISTICS' | translate}}</a></li>
           <li class="nav-link"><a class="link-left" routerLink="users">{{'TRANSLATE.USER' | translate}}</a></li>
+          <li class="nav-link"><a class="link-left" routerLink="history">{{'TRANSLATE.HISTORY' | translate}}</a></li>
         </ul>
 
         <ul class="nav-links right">
-          <li class="nav-link"><a class="link" routerLink="history">{{'TRANSLATE.HISTORY' | translate}}</a></li>
           <li class="nav-link"><a class="link" target="_blank" href="http://www.hidria.com/">{{'TRANSLATE.HELP' | translate}}</a></li>
           <li class="nav-link">
             <a *ngIf="!isLoggedIn" class="link" routerLink="auth">{{'TRANSLATE.REGISTER' | translate}} / {{'TRANSLATE.LOGIN' | translate}}</a>

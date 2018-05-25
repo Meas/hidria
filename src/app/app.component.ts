@@ -44,9 +44,11 @@ export class AppComponent {
 
   searchByCode(event) {
     if (event.status && event.value !== '') {
-      this.searchByCodeService.search(event).subscribe((response: any) => {
-        console.log(response)
-        this.router.navigate([`/choose-model/1`]);
+      console.log(event.value)
+      this.searchByCodeService.search(event.value).subscribe((response: any) => {
+        if (response.length !== 0) {
+          this.router.navigate([`/choose-model/${response[0].PK}`]);
+        }
       });
     }
     this.isOpenedSearchByCode = !this.isOpenedSearchByCode;

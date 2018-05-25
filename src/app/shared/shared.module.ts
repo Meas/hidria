@@ -45,6 +45,7 @@ import { DataTableComponent } from './data-table/data-table.component';
 import { UsersTableComponent } from './users-table/users-table.component';
 import { ChooseModelTableComponent } from './choose-model-table/choose-model-table.component';
 import { ChooseModelTableHorizontalComponent } from './choose-model-table-horizontal/choose-model-table-horizontal.component';
+import { LegendComponent } from './legend/legend.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/translations/', '.json');
@@ -102,7 +103,8 @@ export function createTranslateLoader(http: HttpClient) {
     DataTableComponent,
     UsersTableComponent,
     ChooseModelTableComponent,
-    ChooseModelTableHorizontalComponent
+    ChooseModelTableHorizontalComponent,
+    LegendComponent
   ],
   exports: [
     HeaderComponent,

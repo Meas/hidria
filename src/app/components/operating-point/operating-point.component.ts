@@ -29,7 +29,7 @@ export class OperatingPointComponent implements OnInit {
   tables = [];
   card = {};
   view = 'feature';
-  selectedTab: String = 'data-sheet';
+  selectedTab = 0;
   inputData = [];
   links = [];
 
@@ -37,6 +37,11 @@ export class OperatingPointComponent implements OnInit {
   projectId;
 
   id;
+  sections = {
+    main: true,
+    data: false,
+    sound: false
+  }
 
   constructor(private operatingPointService: OperatingPointService,
               private projectService: MyProjectsService,
@@ -119,20 +124,7 @@ export class OperatingPointComponent implements OnInit {
       }
     })
     this.operatingPointService.postCharts(id, calcData).subscribe((response: any) => {
-      const set1 = [];
-      const set2 = [];
-      this.graphs = [];
-      response.map((graph, i) => {
-        if (i === 2 || i === 4) {
-          set1.push(graph);
-        } else if (i === 3 || i === 5) {
-          set2.push(graph);
-        } else {
-          this.graphs.push(graph);
-        }
-      });
-      this.graphs.push(set1);
-      this.graphs.push(set2);
+      this.graphs = response;
     });
   }
   getInputs(id): void {

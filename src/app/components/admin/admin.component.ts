@@ -7,25 +7,21 @@ import {AfterViewInit, Component, OnInit} from '@angular/core';
 })
 export class AdminComponent implements AfterViewInit {
 
-  slidingEl;
-
   constructor() { }
 
   ngAfterViewInit() {
-    this.slidingEl = document.getElementById('sliding-el');
   }
 
-
-  moveSlider(btn) {
+  moveSlider(target, btn) {
     switch (btn) {
       case 'yes':
-        this.slidingEl.style.left = '0';
+        target.style.left = '0';
         break;
       case 'no':
-        this.slidingEl.style.left = '100px';
+        target.style.left = '100px';
         break;
       default:
-        this.slidingEl.style.left = '0';
+        target.style.left = '0';
     }
   }
 

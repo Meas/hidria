@@ -95,6 +95,7 @@ export class ChartAreaComponent implements OnInit, AfterViewInit {
         },
         scales: {
           yAxes: [{
+            position: 'right',
             ticks: {
               beginAtZero: true,
               maxTicksLimit: 10,
@@ -103,7 +104,18 @@ export class ChartAreaComponent implements OnInit, AfterViewInit {
               display: true,
               labelString: self.chartData.yUnit
             }
-          }],
+          }, {
+              position: 'left',
+              ticks: {
+                beginAtZero: true,
+                maxTicksLimit: 10,
+              },
+              scaleLabel: {
+                display: true,
+                labelString: self.chartData.yUnit
+              }
+            }
+          ],
           xAxes: [{
             ticks: {
               beginAtZero: true,

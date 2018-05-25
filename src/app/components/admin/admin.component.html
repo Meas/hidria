@@ -9,30 +9,30 @@
         <li>
           Price
           <div class="group">
-            <div class="sliding-el" id="sliding-el"></div>
+            <div class="sliding-el" #el0></div>
             <div class="button-group">
-              <button class="btn" (click)="moveSlider('yes')">Yes</button>
-              <button class="btn" (click)="moveSlider('no')">No</button>
+              <button class="btn" (click)="moveSlider(el0, 'yes')">Yes</button>
+              <button class="btn" (click)="moveSlider(el0, 'no')">No</button>
             </div>
           </div>
         </li>
         <li>
           Comparison
           <div class="group">
-            <div class="sliding-el"></div>
+            <div class="sliding-el" #el1></div>
             <div class="button-group">
-              <button class="btn" (click)="moveSlider('yes')">Yes</button>
-              <button class="btn" (click)="moveSlider('no')">No</button>
+              <button class="btn" (click)="moveSlider(el1, 'yes')">Yes</button>
+              <button class="btn" (click)="moveSlider(el1, 'no')">No</button>
             </div>
           </div>
         </li>
         <li>
           Admin
           <div class="group">
-            <div class="sliding-el"></div>
+            <div class="sliding-el" #el2></div>
             <div class="button-group">
-              <button class="btn" (click)="moveSlider('yes')">Yes</button>
-              <button class="btn" (click)="moveSlider('no')">No</button>
+              <button class="btn" (click)="moveSlider(el2, 'yes')">Yes</button>
+              <button class="btn" (click)="moveSlider(el2, 'no')">No</button>
             </div>
           </div>
         </li>
@@ -40,15 +40,15 @@
     </div>
     <div class="col-lg-6">
       <div class="info-box">
-
-        <svg class="circle-chart" viewbox="0 0 33.83098862 33.83098862" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
-          <circle class="circle-chart__background" stroke="#efefef" stroke-width="2" fill="none" cx="16.91549431" cy="16.91549431" r="15.91549431" />
-          <circle class="circle-chart__circle" stroke="#00acc1" stroke-width="2" stroke-dasharray="75,100" stroke-linecap="round" fill="none" cx="16.91549431" cy="16.91549431" r="15.91549431" />
-        </svg>
-        <svg class="circle-chart" viewbox="0 0 33.83098862 33.83098862" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
-          <circle class="circle-chart__background" stroke="#efefef" stroke-width="2" fill="none" cx="16.91549431" cy="16.91549431" r="15.91549431" />
-          <circle class="circle-chart__circle" stroke="#00acc1" stroke-width="2" stroke-dasharray="75,100" stroke-linecap="round" fill="none" cx="16.91549431" cy="16.91549431" r="15.91549431" />
-        </svg>
+        <!--<svg>-->
+          <!--<g>-->
+            <!--<circle cx="0" cy="0" r="20" class="animated-circle" transform="translate(50,50) rotate(-90)"  />-->
+          <!--</g>-->
+          <!--<g>-->
+            <!--<circle cx="0" cy="0" r="38" transform="translate(50,50)"  />-->
+          <!--</g>-->
+        <!--</svg>-->
+        <!--<div class="progress-count">46%</div>-->
       </div>
     </div>
     <div class="col-lg-6"></div>
