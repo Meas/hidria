@@ -7,7 +7,7 @@ import {Router} from '@angular/router';
   selector: 'app-chart-performance-curve-component',
   template: `
     <div style="background: #fff !important">
-      <canvas [id]="canvasId" width="200" height="200"></canvas>
+      <canvas [id]="canvasId" height="180"></canvas>
       <ng-content></ng-content>
     </div>
   `,

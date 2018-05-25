@@ -139,7 +139,8 @@ export function createTranslateLoader(http: HttpClient) {
     DataTableComponent,
     UsersTableComponent,
     ChooseModelTableComponent,
-    ChooseModelTableHorizontalComponent
+    ChooseModelTableHorizontalComponent,
+    LegendComponent
   ],
   providers: [
     ChartServiceService

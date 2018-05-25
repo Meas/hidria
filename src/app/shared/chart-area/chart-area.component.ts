@@ -9,7 +9,7 @@ import Chart from 'chart.js';
   selector: 'app-chart-area-component',
   template: `
     <div style="background: #fff !important">
-      <canvas [id]="canvasId" width="content-box" height="200"></canvas>
+      <canvas [id]="canvasId" height="200"></canvas>
     </div>
   `,
   styleUrls: ['./chart-area.component.css']

@@ -23,8 +23,6 @@ export class OperatingPointComponent implements OnInit {
 
   graphData = {};
   graphs = [];
-  activeSet1 = 0;
-  activeSet2 = 0;
 
   tables = [];
   card = {};
@@ -39,8 +37,8 @@ export class OperatingPointComponent implements OnInit {
   id;
   sections = {
     main: true,
-    data: false,
-    sound: false
+    data: true,
+    sound: true
   }
 
   constructor(private operatingPointService: OperatingPointService,

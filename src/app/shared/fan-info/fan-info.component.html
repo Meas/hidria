@@ -1,16 +1,12 @@
-<div class="fan-info">
-	<div class="fan-info-border">
-    <!--<div *ngIf="fanInfo.price" class="fan-info-price">{{fanInfo.price}}</div>-->
-		<div class="image">
-			<img src="{{fanInfo.image}}">
-		</div>
-		<div class="">
-			<div class="fan-info-name">
-  				{{fanInfo.name}}
-  			</div>
-  			<div class="fan-info-description">
-  				{{fanInfo.description}}
-  			</div>
-  		</div>
-  	</div>
-<div>
+<div class="card">
+  <div *ngIf="price" class="price">{{item.price}}</div>
+  <div class="image">
+    <img src="{{item.image}}">
+  </div>
+  <div class="content">
+    <h1>{{item.name}}</h1>
+    <p>
+      {{item.description}}
+    </p>
+  </div>
+</div>
