@@ -11,6 +11,7 @@ export class ComparisonTableComponent implements OnInit {
   @Input() modelList;
   @Input() filterSelected;
   @Output() deleteFromComparison: EventEmitter<any> = new EventEmitter();
+  @Output() clearAll: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 

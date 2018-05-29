@@ -44,10 +44,11 @@ export class AppComponent {
 
   searchByCode(event) {
     if (event.status && event.value !== '') {
-      console.log(event.value)
       this.searchByCodeService.search(event.value).subscribe((response: any) => {
         if (response.length !== 0) {
           this.router.navigate([`/choose-model/${response[0].PK}`]);
+        } else {
+          this.notification.message('warn', 'Info', 'There are no items for searched code');
         }
       });
     }

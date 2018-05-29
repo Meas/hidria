@@ -15,14 +15,15 @@ export class BodySectionComponent implements OnInit {
   @Output() selectItem: EventEmitter<any> = new EventEmitter();
   @Output() filterSelected: EventEmitter<any> = new EventEmitter();
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
 
   selectFunction(item) {
-  	item.parentId = this.addParentId;
-  	item.parentName = this.title;
-  	this.selectItem.emit(item)
+    item.parentId = this.addParentId;
+    item.parentName = this.title;
+    this.selectItem.emit(item);
   }
 }

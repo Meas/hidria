@@ -1,15 +1,15 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12" *ngFor="let item of items">
-      <div><b>{{item.date}}</b></div>
-      <div><h3 class="title">{{item.title}} {{item.version}}</h3></div>
+      <div><b>{{ item.date }}</b></div>
+      <div><h3 class="title">{{ item.title }} {{ item.version }}</h3></div>
       <div>
         <ul>
-          <li *ngFor="let change of item.changes">{{change}}</li>
+          <li *ngFor="let change of item.changes">{{ change }}</li>
         </ul>
       </div>
       <div>
-        <p>{{item.description}}</p>
+        <p>{{ item.description }}</p>
       </div>
       <hr class="title-line">
     </div>

@@ -26,7 +26,7 @@ export class HistoryComponent implements OnInit {
       version: '1.2.1',
       changes: ['feature 1', 'feature 2', 'feature 3', 'bugfix 1']
     }
-  ]
+  ];
 
   constructor() { }
 

@@ -5,75 +5,88 @@
 }
 
 .outer-table {
-    float: left;
-    overflow-y: hidden;
-    width: 100%;
-    white-space: nowrap;
-    margin-top: 70px;
+  float: left;
+  overflow-y: hidden;
+  width: 100%;
+  white-space: nowrap;
+  margin-top: 70px;
 }
+
 .one-table-header {
-    float: left;
-    width: 260px;
-    & > .one-table-row {
-        background-color: $main-color;
-        color: #fff;
-        border: 1px solid #fff;
-    }
-    & > .first-row {
-        background-color: #fff;
-        color: unset;
-        border: 1px solid #d3d3d3;
-        font-size: 18px;
-    }
-}
-.one-table-entry {
-    display: inline-block;
-    width: 160px;
-    position: relative;
-    & > .first-row {
-        font-size: 12px;
-        display: block;
-        align-items: unset;
-        justify-content: unset;
-    }
-}
-.one-table-row {
-    border: 1px solid #d3d3d3;
-    padding: 5px 15px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-}
-.first-row {
-    height: 100px;
-    font-weight: 700;
-    text-align: center;
-}
-.content-left {
-    float: left;
-}
-.content-right {
-    float: right;
-}
-.right-text {
-    text-align: right;
-}
-.image-outer {
-    padding: 5px 30px 5px 30px;
-    & > img {
-        width: 100%;
-    }
-}
-.x-button-outer {
-    position: absolute;
-    right: 5px;
-    top: 5px;
-    width: 26px;
-    text-align: center;
+  float: left;
+  min-width: 260px;
+
+  & > .one-table-row {
+    background-color: $main-color;
     color: #fff;
-    background: #000;
-    font-size: 20px;
-    cursor: pointer;
+    border: 1px solid #fff;
+  }
+  & > .first-row {
+    background-color: #fff;
+    color: unset;
+    border: 1px solid #d3d3d3;
+    font-size: 18px;
+  }
+}
+
+.one-table-entry {
+  display: inline-block;
+  min-width: 160px;
+  position: relative;
+
+  & > .first-row {
+    font-size: 12px;
+    display: block;
+    align-items: unset;
+    justify-content: unset;
+  }
+}
+
+.one-table-row {
+  border: 1px solid #d3d3d3;
+  padding: 5px 15px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.first-row {
+  height: 100px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.content-left {
+  float: left;
+}
+
+.content-right {
+  float: right;
+}
+
+.right-text {
+  text-align: right;
+}
+
+.image-outer {
+  padding: 5px 30px 5px 30px;
+  height: 80%;
+
+  & > img {
+    height: 100%;
+  }
+}
+
+.x-button-outer {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  width: 26px;
+  text-align: center;
+  color: #fff;
+  background: #000;
+  font-size: 20px;
+  cursor: pointer;
 }

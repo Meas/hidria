@@ -1,0 +1,10 @@
+<div class="switch-field">
+  <div *ngFor="let button of buttons">
+    <input type="radio" [id]="button.id"
+           [checked]="selected"
+           ng-control="name"
+           [value]="button.value"
+           [ngModel]="selected"/>
+    <label [for]="button.id">{{ button.description }}</label>
+  </div>
+</div>

@@ -2,12 +2,12 @@
   <table>
     <thead>
     <tr>
-      <th *ngFor="let row of tableData.data; let i = index">{{row.name}}</th>
+      <th *ngFor="let row of tableData.data; let i = index">{{ row.name }}</th>
     </tr>
     </thead>
     <tbody>
     <tr (click)="onModelSelected.emit(tableData.data[0].value)">
-      <td *ngFor="let row of tableData.data; let i = index">{{row.value}}</td>
+      <td *ngFor="let row of tableData.data; let i = index">{{ row.value }}</td>
     </tr>
     </tbody>
   </table>

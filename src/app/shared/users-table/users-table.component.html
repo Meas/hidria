@@ -3,17 +3,17 @@
     <thead>
     <tr>
       <th *ngIf="isSelectable"></th>
-      <th *ngFor="let title of tableData.headers">{{title}}</th>
+      <th *ngFor="let title of tableData.headers">{{ title }}</th>
       <th></th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let dt of tableData.data; let i = index">
       <td *ngIf="isSelectable"><input type="checkbox"></td>
-      <td>{{dt.name}}</td>
-      <td>{{dt.email}}</td>
-      <td>{{dt.userGroup}}</td>
-      <td>{{dt.registered}}</td>
+      <td>{{ dt.name }}</td>
+      <td>{{ dt.email }}</td>
+      <td>{{ dt.userGroup }}</td>
+      <td>{{ dt.registered }}</td>
       <td>
         <button class="h-btn" routerLink="/users/edit">Edit</button>
         <button class="h-btn btn-warn">Delete</button>

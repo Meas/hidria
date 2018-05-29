@@ -1,12 +1,8 @@
 <div class="card">
   <ul>
-    <li>test</li>
-    <li>test</li>
-    <li>test</li>
-    <li>test</li>
-    <li>test</li>
-    <li>test</li>
-    <li>test</li>
-    <li>test</li>
+    <li *ngFor="let option of options; let i = index">
+      <label for="checkbox-{{ option.id }}" class="input-helper input-helper--checkbox"><b>{{ i }} {{ option.name }}</b> {{ option.description }}</label>
+      <input id="checkbox-{{ option.id }}" type="checkbox" [value]="option.value" [ngModel]="option.value"/>
+    </li>
   </ul>
 </div>

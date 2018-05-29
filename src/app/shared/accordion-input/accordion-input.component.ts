@@ -25,7 +25,7 @@ export class AccordionInputComponent implements AfterViewInit {
       } else {
         panel.style.height = 'auto';
       }
-    }
+    };
   }
 
 }

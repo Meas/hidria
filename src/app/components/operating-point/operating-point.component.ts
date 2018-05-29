@@ -15,13 +15,13 @@ export class OperatingPointComponent implements OnInit {
   loading = true;
   feature: any = {};
   downloads: any = {};
-  showProjectList = false;
+  showProjectSelection = false;
   projects: any = [];
   addToComparison: any = {};
   operatingPointInputs;
   operationPointId = 0;
 
-  graphData = {};
+  graphData: any = {};
   graphs = [];
 
   tables = [];
@@ -39,7 +39,87 @@ export class OperatingPointComponent implements OnInit {
     main: true,
     data: true,
     sound: true
-  }
+  };
+  fanOption = 0;
+
+  legend = [
+    {
+      id: 0,
+      name: 'Test 1',
+      description: 'test 1',
+      value: true
+    },
+    {
+      id: 1,
+      name: 'Test 2',
+      description: 'test 2',
+      value: false
+    },
+    {
+      id: 2,
+      name: 'Test 2',
+      description: 'test 2',
+      value: false
+    },
+    {
+      id: 3,
+      name: 'Test 2',
+      description: 'test 2',
+      value: false
+    }
+  ];
+
+  additionalOptions = [
+    [
+      {
+        id: 0,
+        value: 0,
+        description: 'Test 1'
+      },
+      {
+        id: 1,
+        value: 1,
+        description: 'Test 2'
+      }
+    ],
+    [
+      {
+        id: 0,
+        value: 0,
+        description: 'Test 1'
+      },
+      {
+        id: 1,
+        value: 1,
+        description: 'Test 2'
+      }
+    ],
+    [
+      {
+        id: 0,
+        value: 0,
+        description: 'Test 1'
+      },
+      {
+        id: 1,
+        value: 1,
+        description: 'Test 2'
+      }
+    ],
+    [
+      {
+        id: 0,
+        value: 0,
+        description: 'Test 1'
+      },
+      {
+        id: 1,
+        value: 1,
+        description: 'Test 2'
+      }
+    ]
+  ];
+  selected: 0;
 
   constructor(private operatingPointService: OperatingPointService,
               private projectService: MyProjectsService,
@@ -98,7 +178,7 @@ export class OperatingPointComponent implements OnInit {
       rpm: 12,
       power: 12,
       dynamicPressure: 12
-    }
+    };
 
     data.forEach((o) => {
       switch (o.name) {
@@ -120,7 +200,7 @@ export class OperatingPointComponent implements OnInit {
         default:
           console.log('not el');
       }
-    })
+    });
     this.operatingPointService.postCharts(id, calcData).subscribe((response: any) => {
       this.graphs = response;
     });
@@ -146,7 +226,7 @@ export class OperatingPointComponent implements OnInit {
     const dt = {
       airFlow: Math.round(data[0].defaultValue),
       staticPressure: Math.round(data[1].defaultValue)
-    }
+    };
     this.operatingPointService.getCalculate(id, dt).subscribe((response: any) => {
       this.tables = response;
       this.postCharts(this.id, this.tables[0].data);
@@ -205,14 +285,14 @@ export class OperatingPointComponent implements OnInit {
       color: 'blue',
       image: this.card['image'],
       data: this.tables
-    })
+    });
 
     this.notification.message('success', 'Success', 'Item added to comparison');
     localStorage.setItem('comparison', JSON.stringify(this.modelsToCompare));
   }
 
-  addToProject() {
-    this.showProjectList = !this.showProjectList;
+  addToProject(event) {
+    this.showProjectSelection = false;
     if (this.projectId) {
       this.projectService.insertModels(this.projectId, {
         model: [this.id]

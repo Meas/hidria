@@ -19,5 +19,6 @@ export class SidebarComponent implements OnInit {
 
   onSearchByCodeClicked(data = false) {
     this.toggleSearchByCode.emit({ status: data, value: this.code });
+    this.code = '';
   }
 }

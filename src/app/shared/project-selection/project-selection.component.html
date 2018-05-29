@@ -1,0 +1,22 @@
+<div class="segment">
+  <div>
+    <div [hidden]="!showAdding">
+      <select (change)="selected.emit($event.target.value)">
+        <option disabled value="">Select Project</option>
+        <option *ngFor="let project of projects" [value]="project.id">{{ project.name }}</option>
+      </select>
+      <button class="button" (click)="select()">Select</button>
+    </div>
+
+    <div [hidden]="!showSelection">
+      <input type="text">
+      <button class="button" (click)="addNew()">Add New</button>
+    </div>
+  </div>
+
+  <div class="project-options">
+    <button class="button" (click)="showAdding = !showAdding">Add New</button>
+    <button class="button" (click)="showSelection = !showSelection">Select</button>
+    <button class="button" (click)="close.emit(true)">Close</button>
+  </div>
+</div>

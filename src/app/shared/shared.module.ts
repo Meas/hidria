@@ -3,9 +3,8 @@ import { MyProjectsModelListComponent } from './my-projects-model-list/my-projec
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Ng2AutoCompleteModule } from 'ng2-auto-complete';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import {HeaderComponent} from './header/header.component';
@@ -46,6 +45,8 @@ import { UsersTableComponent } from './users-table/users-table.component';
 import { ChooseModelTableComponent } from './choose-model-table/choose-model-table.component';
 import { ChooseModelTableHorizontalComponent } from './choose-model-table-horizontal/choose-model-table-horizontal.component';
 import { LegendComponent } from './legend/legend.component';
+import { SwitchButtonComponent } from './switch-button/switch-button.component';
+import { ProjectSelectionComponent } from './project-selection/project-selection.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/translations/', '.json');
@@ -56,7 +57,6 @@ export function createTranslateLoader(http: HttpClient) {
     CommonModule,
     AppRoutingModule,
     FormsModule,
-    Ng2AutoCompleteModule,
     SimpleNotificationsModule.forRoot(),
     ReactiveFormsModule,
     TranslateModule.forRoot({
@@ -104,7 +104,9 @@ export function createTranslateLoader(http: HttpClient) {
     UsersTableComponent,
     ChooseModelTableComponent,
     ChooseModelTableHorizontalComponent,
-    LegendComponent
+    LegendComponent,
+    SwitchButtonComponent,
+    ProjectSelectionComponent
   ],
   exports: [
     HeaderComponent,
@@ -140,7 +142,8 @@ export function createTranslateLoader(http: HttpClient) {
     UsersTableComponent,
     ChooseModelTableComponent,
     ChooseModelTableHorizontalComponent,
-    LegendComponent
+    LegendComponent,
+    SwitchButtonComponent
   ],
   providers: [
     ChartServiceService

@@ -22,7 +22,7 @@ export class ChartAreaComponent implements OnInit, AfterViewInit {
       this.chartData = data;
       setTimeout(() => {
         this.generateGraph();
-      }, 2000)
+      }, 2000);
     }
   }
   @Input() interactive: boolean;
@@ -52,7 +52,7 @@ export class ChartAreaComponent implements OnInit, AfterViewInit {
   }
 
   getGraphData() {
-    console.log(this.chartData)
+    console.log(this.chartData);
     const data: any = {};
     data.labels = this.chartData.xpoints;
     data.datasets = [];

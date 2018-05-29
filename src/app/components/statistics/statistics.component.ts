@@ -26,7 +26,7 @@ export class StatisticsComponent implements OnInit {
         values: ['AC Axial fans', 'R09-3018H-2M-4248', '€ 21.100']
       }
     ]
-  }
+  };
   recentOrders = {
     headers: ['Order ID', 'Items', 'Member', 'Date/time', 'Total'],
     data: [
@@ -61,7 +61,7 @@ export class StatisticsComponent implements OnInit {
         values: ['1200', 'R09-3018H-2M-4248', 'John Doe', '8/01/2017 12:33:00', '€ 21.100']
       }
     ]
-  }
+  };
   constructor() { }
 
   ngOnInit() {

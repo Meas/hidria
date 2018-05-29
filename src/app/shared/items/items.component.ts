@@ -13,9 +13,10 @@ export class ItemsComponent implements OnInit {
     description: string;
     state: string;
     image: string;
-  }
+  };
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

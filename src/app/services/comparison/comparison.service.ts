@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { MainService } from '../main.service';
-import {HelperService} from "../helper/helper.service";
+import {HelperService} from '../helper/helper.service';
 
 @Injectable()
 export class ComparisonService {

@@ -16,7 +16,7 @@ export class OperatingPointsInputsComponent implements OnInit {
     this.changeButtonDisabled = false;
   }
   changeButtonDisabled = true;
-  @Output() onChange: EventEmitter<{}> = new EventEmitter();
+  @Output() change: EventEmitter<{}> = new EventEmitter();
 
   constructor() {
   }
@@ -34,7 +34,7 @@ export class OperatingPointsInputsComponent implements OnInit {
 
   changeClick() {
     this.changeButtonDisabled = true;
-    this.onChange.emit(this.inputData);
+    this.change.emit(this.inputData);
   }
 
 }

@@ -1,16 +1,9 @@
-<!--<button-->
-	<!--[ngClass]=""-->
-  <!--(click)="changeSelected(button.id)">-->
-
-<!--</button>-->
-
-
 <div class="switch-field" [formGroup]="paramsForm">
   <div *ngIf="hasRequiredError()" class="error-input">*Field is required</div>
   <div *ngFor="let button of localButtons">
     <input type="radio" [id]="button.id" [formControlName]="name"
     [checked]="button.value == paramsForm.get(name).value"
     [value]="button.value"/>
-    <label [for]="button.id">{{button.description}}</label>
+    <label [for]="button.id">{{ button.description }}</label>
   </div>
 </div>

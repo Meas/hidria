@@ -20,7 +20,7 @@
 </div>
 <div class="row no-gutters" *ngFor="let model of modelList">
   <div class="col-lg-1 entry-box">
-    {{model.id}}
+    {{ model.id }}
   </div>
   <div class="col-lg-1 entry-box">
 
@@ -28,14 +28,14 @@
   <div class="col-lg-6 no-gutters model-box">
     <div class="row no-gutters">
       <div class="col-lg-3 image-outer fan-image">
-        <img src="{{model.image}}">
+        <img src="{{ model.image }}">
       </div>
       <div class="col-lg-6 title-outer">
         <div class="title">
-          {{model.name}}
+          {{ model.name }}
         </div>
         <div class="description">
-          {{model.description}}
+          {{ model.description }}
         </div>
       </div>
       <div class="col-lg-3 image-outer cursor-pointer">
@@ -51,7 +51,7 @@
   <div class="col-lg-2 entry-box textarea-outer">
     <textarea on-focusout="saveNote(textArea, model.id)" #textArea
       (click)="editNote(textArea)"
-      class="disabled">{{model.note}}</textarea>
+      class="disabled">{{ model.note }}</textarea>
   </div>
   <div class="col-lg-1 entry-box cursor-pointer" (click)="deleteItem(model.id)">
     <img src="assets/icons/delete.png">

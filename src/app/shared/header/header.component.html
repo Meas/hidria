@@ -11,15 +11,16 @@
       <div class="section-content">
 
         <ul *ngIf="isLoggedIn" class="nav-links left">
-          <li class="nav-link"><a class="link-left" routerLink="users">{{'TRANSLATE.USER' | translate}}</a></li>
-          <li class="nav-link"><a class="link-left" routerLink="history">{{'TRANSLATE.HISTORY' | translate}}</a></li>
+          <li class="nav-link"><a class="link" routerLink="statistics">{{ 'TRANSLATE.STATISTICS' | translate }}</a></li>
+          <li class="nav-link"><a class="link" routerLink="users">{{ 'TRANSLATE.USER' | translate }}</a></li>
         </ul>
 
         <ul class="nav-links right">
-          <li class="nav-link"><a class="link" target="_blank" href="http://www.hidria.com/">{{'TRANSLATE.HELP' | translate}}</a></li>
+          <li class="nav-link"><a class="link" routerLink="history">{{ 'TRANSLATE.HISTORY' | translate }}</a></li>
+          <li class="nav-link"><a class="link" target="_blank" href="http://www.hidria.com/">{{ 'TRANSLATE.HELP' | translate }}</a></li>
           <li class="nav-link">
-            <a *ngIf="!isLoggedIn" class="link" routerLink="auth">{{'TRANSLATE.REGISTER' | translate}} / {{'TRANSLATE.LOGIN' | translate}}</a>
-            <a *ngIf="isLoggedIn" class="link" (click)="logout()">{{'TRANSLATE.LOGOUT' | translate}}</a>
+            <a *ngIf="!isLoggedIn" href="" class="link" routerLink="auth">{{ 'TRANSLATE.REGISTER' | translate }} / {{ 'TRANSLATE.LOGIN' | translate }}</a>
+            <a *ngIf="isLoggedIn" href="" class="link" (click)="logout()">{{ 'TRANSLATE.LOGOUT' | translate }}</a>
           </li>
           <li *ngIf="isLoggedIn" class="nav-link measures">
             <button [ngClass]="measure === 'm' ? 'meters-active' : ''" (click)="changeMetricsClick.emit('m')">m</button>

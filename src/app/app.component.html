@@ -3,7 +3,7 @@
     <div class="sidebar">
       <app-sidebar [isOpenedSearchByCode]="isOpenedSearchByCode" (toggleSearchByCode)="searchByCode($event)" [isLoggedIn]="loggedIn"></app-sidebar>
     </div>
-    <div class="main">
+    <div class="main" (click)="isOpenedSearchByCode = false">
       <app-header (changeMetricsClick)="onChangeMetrics($event)"
         (changeLanguage)="onChangeLanguage($event)"
         [selectedLanguage]="selectedLanguage"

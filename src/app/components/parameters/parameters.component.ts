@@ -28,14 +28,13 @@ export class ParametersComponent implements OnInit {
     this.getItems();
   }
 
-  getItems(): void {
+  getItems() {
     this.selectionService.getItems().subscribe((response: any) => {
       this.activatedRoute.queryParams.subscribe((params: Params) => {
         if (params) {
           this.preselectedValues = params;
         }
         this.feature = response;
-        console.log(this.feature);
         this.defaultSections = _.cloneDeep(this.feature);
         this.fillFormValues();
         this.createForm();
@@ -63,7 +62,7 @@ export class ParametersComponent implements OnInit {
     this.formBoxes[id] = formBox;
   }
 
-  setToDefault(): void {
+  setToDefault() {
     this.fillFormValues(true);
     this.paramsForm.setValue(this.formValues);
   }
@@ -80,7 +79,7 @@ export class ParametersComponent implements OnInit {
     };
   }
 
-  fillFormValues(defaultValues: Boolean = false): void {
+  fillFormValues(defaultValues: Boolean = false) {
     for (const featureObject of this.feature.featureObjects) {
       for (const parameter of featureObject.parameters) {
         let value;
@@ -104,7 +103,7 @@ export class ParametersComponent implements OnInit {
     }
   }
 
-  onValidForm():  void {
+  onValidForm() {
     this.router.navigate(['choose-model'], { queryParams: this.paramsForm.value });
   }
 }

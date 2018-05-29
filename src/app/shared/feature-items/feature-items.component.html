@@ -12,11 +12,10 @@
   </div>
   <div *ngIf="parameter.tag === 'input'">
     <div *ngIf="hasRequiredError()" class="error-input">*Field is required</div>
-    <div *ngIf="hasMinMaxError()" class="error-input">*Value should be between {{parameter.min}} and {{parameter.max}}</div>
+    <div *ngIf="hasMinMaxError()" class="error-input">*Value should be between {{ parameter.min }} and {{ parameter.max }}</div>
     <input class="full-size"
           auto-complete
           [type]="parameter.type"
-          [source]="setSourceOptions(parameter.options)"
           [formControlName]="name"/>
   </div>
   <div *ngIf="parameter.tag === 'image'" class="image-box">

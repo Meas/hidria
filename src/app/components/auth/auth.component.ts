@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {generateUrlEncodedData, setStorageData} from "../../helpers/helper";
-import {AuthService} from "../../services/auth/auth.service";
-import {Router} from "@angular/router";
-import {CustomNotificationsService} from "../../services/notifications/notifications.service";
+import {generateUrlEncodedData, setStorageData} from '../../helpers/helper';
+import {AuthService} from '../../services/auth/auth.service';
+import {Router} from '@angular/router';
+import {CustomNotificationsService} from '../../services/notifications/notifications.service';
 
 @Component({
   selector: 'app-auth',
@@ -20,7 +20,7 @@ export class AuthComponent implements OnInit {
     grant_type: 'password',
     userName: '',
     password: ''
-  }
+  };
 
   registerData = {
     firstName: '',
@@ -37,24 +37,24 @@ export class AuthComponent implements OnInit {
     position: '',
     applications: [],
     termsAndConditions: false
-  }
+  };
 
   registrationOptions = {
     industry: [],
     position: [],
     applications: []
-  }
+  };
 
   changePasswordData = {
     oldPassword: '',
     newPassword: '',
     mewPasswordConfirm: '',
     email: ''
-  }
+  };
 
   restartPasswordData = {
     email: '',
-  }
+  };
 
   constructor(private authService: AuthService,
               private router: Router,
@@ -94,7 +94,7 @@ export class AuthComponent implements OnInit {
       this.notification.message('error', 'Error', 'Password not same');
     } else {
       this.authService.register(this.registerData).subscribe((response: any) => {
-        console.log(response)
+        console.log(response);
         this.notification.message('warn', 'Warning', response.message);
       });
     }
@@ -102,14 +102,14 @@ export class AuthComponent implements OnInit {
 
   onChangePasswordClicked() {
     this.authService.changePassword(generateUrlEncodedData(this.changePasswordData)).subscribe((response: any) => {
-      console.log(response)
-    })
+      console.log(response);
+    });
   }
 
   onResetPasswordClicked() {
     this.authService.resetPassword(generateUrlEncodedData(this.restartPasswordData)).subscribe((response: any) => {
-      console.log(response)
-    })
+      console.log(response);
+    });
   }
 
   goTo(modal) {

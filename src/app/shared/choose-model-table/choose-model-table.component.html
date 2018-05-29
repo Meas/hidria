@@ -2,16 +2,16 @@
   <table>
     <thead>
     <tr>
-      <th colspan="2">{{tableData.headers[1]}}</th>
+      <th colspan="2">{{ tableData.headers[1] }}</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let row of tableData.data; let i = index">
       <td>
-        <div *ngIf="row.short" style="display: flex; justify-content: space-between"><div>{{row.name}}</div><div>{{row.short}}</div></div>
-        <span *ngIf="!row.short">{{row.name}}</span>
+        <div *ngIf="row.short" style="display: flex; justify-content: space-between"><div>{{ row.name }}</div><div>{{ row.short }}</div></div>
+        <span *ngIf="!row.short">{{ row.name }}</span>
       </td>
-      <td>{{row.value}}</td>
+      <td>{{ row.value }}</td>
     </tr>
     </tbody>
   </table>

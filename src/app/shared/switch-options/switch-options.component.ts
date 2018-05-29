@@ -7,7 +7,7 @@ import * as _ from 'lodash';
   styleUrls: ['./switch-options.component.scss']
 })
 export class SwitchOptionsComponent implements OnInit {
-  localButtons: Array<object>;
+  localButtons: Array<any>;
   selectedOption: number;
 
   @Input() set defaultOption(data: number) {

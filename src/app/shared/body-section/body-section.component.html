@@ -1,9 +1,9 @@
 <div class="section-title">
 	<span *ngIf="parentId" class="parent-name" (click)="filterSelected.emit(parentId)">
-		{{parentName}}
+		{{ parentName }}
 	</span>
-	<span *ngIf="parentId" class="separetor"></span>
-	<span> {{title}} </span>
+  <span *ngIf="parentId" class="separetor"></span>
+  <span> {{ title }} </span>
 </div>
 <div class="section-for-items">
   <app-items *ngFor="let item of items; let i = index"

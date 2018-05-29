@@ -74,7 +74,7 @@ export class ChooseModelComponent implements OnInit {
 
   selectModel(event) {
     console.log(event);
-    this.router.navigate(['/choose-model/operating-point/1'])
+    this.router.navigate(['/choose-model/operating-point/1']);
   }
 
   getDataFromParams() {

@@ -9,7 +9,7 @@ export class ChooseModelTableHorizontalComponent implements OnInit {
 
   @Input() tableData = [];
   @Input() isSelectable = false;
-  @Output() onModelSelected: EventEmitter<string> = new EventEmitter();
+  @Output() modelSelected: EventEmitter<string> = new EventEmitter();
 
   constructor() { }
 

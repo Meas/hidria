@@ -5,7 +5,7 @@
   <div *ngIf="!loading">
     <div class="row title-model no-gutters align-items-center">
       <div class="col-lg-8">
-        <div><a routerLink="/choose-model/{{operationPointId}}">Choose model</a> | Operating point</div>
+        <div><a routerLink="/choose-model/{{ operationPointId }}">Choose model</a> | Operating point | {{ card.name }}</div>
       </div>
       <div class="col-lg-4">
         <app-display-options [selectedTab]="selectedTab"
@@ -29,14 +29,14 @@
         <app-operating-points-inputs
           [inputData]="operatingPointInputs"
           [graphDataInput]="inputData"
-          (onChange)="getCalculate(id, $event)"></app-operating-points-inputs>
+          (change)="getCalculate(id, $event)"></app-operating-points-inputs>
       </div>
       <div class="col-lg-4" *ngIf="sections.main">
         <div class="model">
           <app-fan-info [item]="card"></app-fan-info>
         </div>
         <div class="legend">
-          <app-legend></app-legend>
+          <app-legend [options]="legend"></app-legend>
         </div>
       </div>
       <div class="col-lg-8" *ngIf="sections.main">
@@ -46,7 +46,7 @@
                                   (points)="onPointSelected($event)"></app-chart-area-component>
         <div>
           <div class="info-box">
-            {{graphData?.notes}}
+            {{ graphData?.notes }}
           </div>
         </div>
       </div>
@@ -57,14 +57,71 @@
                                                    [type]="'bar'"
                                                    [chartData]="graph">
               <div class="info-box">
-                {{graph.notes}}
+                {{ graph.notes }}
               </div>
             </app-chart-performance-curve-component>
           </div>
         </div>
       </div>
       <div class="col-lg-5" *ngIf="sections.sound">
-        <div class="sound-chart-options">
+        <div class="sound-chart-options row">
+          <div class="col-lg-12">
+            <p>Fan position</p>
+          </div>
+          <div class="fan-positions col-lg-12">
+            <label>
+              <input name="options" ng-control="options" type="radio" [value]="0" [(ngModel)]="fanOption" >
+              <div class="front-end box">
+                <span>
+                  <img src="/assets/images/fan.png" alt="">
+                </span>
+              </div>
+            </label>
+            <label>
+              <input name="options" ng-control="options" type="radio" [value]="1" [(ngModel)]="fanOption" >
+              <div class="front-end box">
+                <span>
+                  <img src="/assets/images/fan.png" alt="">
+                </span>
+              </div>
+            </label>
+            <label>
+              <input name="options" ng-control="options" type="radio" [value]="2" [(ngModel)]="fanOption" >
+              <div class="back-end box">
+                <span>
+                  <img src="/assets/images/fan.png" alt="">
+                </span>
+              </div>
+            </label>
+            <label>
+              <input name="options" ng-control="options" type="radio" [value]="3" [(ngModel)]="fanOption" >
+              <div class="back-end box">
+                <span>
+                  <img src="/assets/images/fan.png" alt="">
+                </span>
+              </div>
+            </label>
+          </div>
+
+          <div class="additional-options col-lg-6">
+            <app-switch-button [buttons]="additionalOptions[0]" [selected]="selected" [name]="'test'" (select)="selected = $event"></app-switch-button>
+          </div>
+          <div class="additional-options col-lg-6">
+            <app-switch-button [buttons]="additionalOptions[0]" [selected]="selected" [name]="'test'" (select)="selected = $event"></app-switch-button>
+          </div>
+          <div class="additional-options col-lg-6">
+            <app-switch-button [buttons]="additionalOptions[0]" [selected]="selected" [name]="'test'" (select)="selected = $event"></app-switch-button>
+          </div>
+          <div class="additional-options col-lg-6">
+            <app-switch-button [buttons]="additionalOptions[0]" [selected]="selected" [name]="'test'" (select)="selected = $event"></app-switch-button>
+          </div>
+
+          <div class="additional-options col-lg-6">
+            <input type="text">
+          </div>
+          <div class="additional-options col-lg-6">
+            <button class="button">REFRESH</button>
+          </div>
 
         </div>
       </div>
@@ -93,22 +150,15 @@
       </div>
       <div class="col-lg-4">
         <div class="project-section">
-          <div class="project-list" [ngClass]="{'show-project-list': showProjectList}">
-            <select style="height: 100%" (change)="selectProject($event.target.value)">
-              <option disabled value="">Select Project</option>
-              <option *ngFor="let project of projects" [value]="project.id">{{ project.name }}</option>
-            </select>
-            <button class="button" style="width: 15%" (click)="addToProject()">Add</button>
-            <button class="button" style="width: 15%" (click)="showProjectList = !showProjectList">Close</button>
-          </div>
-          <button class="button" (click)="addToProject()">
+          <app-project-selection [projects]="projects" (close)="showProjectSelection = false" (selected)="addToProject($event)"></app-project-selection>
+          <button class="button" (click)="showProjectSelection = true" [hidden]="showProjectSelection">
             ADD TO PROJECT
           </button>
         </div>
       </div>
       <div class="col-lg-4">
         <ng-container *ngFor="let download of links">
-          <a *ngIf="download.name == 'TRANSLATE.OPERATING-POINT.GENERATE-CARD'" href="{{download.link}}" download>
+          <a *ngIf="download.name == 'TRANSLATE.OPERATING-POINT.GENERATE-CARD'" href="{{ download.link }}" download>
             <button class="button">
               GENERATE CARD
             </button>

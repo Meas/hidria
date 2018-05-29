@@ -13,7 +13,7 @@
         <app-comparison-table
           [headers]="tables[filterSelected]" [filterSelected]="filterSelected"
           [modelList]="comparisonList"
-          (deleteFromComparison)="onDeleteFromComparison($event)"></app-comparison-table>
+          (deleteFromComparison)="onDeleteFromComparison($event)" (clearAll)="clearAll()"></app-comparison-table>
       </div>
     </div>
     <div class="row no-gutters" *ngIf="comparisonList.length === 0">

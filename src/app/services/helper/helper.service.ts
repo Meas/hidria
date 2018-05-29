@@ -41,7 +41,7 @@ export class HelperService {
    * @returns headers
    */
   createAuthorizationHeader(headers: HttpHeaders): any {
-    return headers.append('Authorization', 'Bearer ' + localStorage.getItem('access_token'))
+    return headers.append('Authorization', 'Bearer ' + localStorage.getItem('access_token'));
   }
 
   /**
