@@ -1,0 +1,31 @@
+@import "../../../assets/partials/variables.scss";
+
+:host {
+  width: 100%;
+}
+
+table {
+  width: 100%;
+  border-spacing: 0;
+  margin-bottom: 25px;
+
+  tr {
+    th {
+      background-color: $main-color;
+      border-bottom: solid 1px gray;
+      color: white;
+      padding: 5px 0;
+      text-align: center;
+    }
+    td {
+      border-bottom: solid 1px gray;
+      padding: 5px 0;
+      text-align: center !important;
+    }
+    td:first-child {
+      color: white;
+      background-color: $main-color;
+    }
+  }
+}
+

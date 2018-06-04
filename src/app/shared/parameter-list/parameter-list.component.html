@@ -1,0 +1,26 @@
+<div class="parameter-list-container row">
+  <div class="{{ table.classUI }}" *ngFor="let table of inputData.children">
+    <table>
+      <thead>
+        <tr *ngFor="let item of table.children.slice(0,1)">
+          <th colspan="2" >{{ item.name | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of table.children.slice(1,table.children.leading)">
+          <td>
+            <div class="item-name">
+              {{ item.name }}
+            </div>
+            <div class="item-short">
+              {{ item.short }}
+            </div>
+          </td>
+          <td *ngIf="item.type == 'entry'">
+            {{ item.value }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

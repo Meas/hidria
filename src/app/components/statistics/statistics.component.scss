@@ -1,0 +1,14 @@
+.info-box {
+  width: 100%;
+  height: 130px;
+  margin-bottom: 15px;
+  border: solid 1px gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  h1, h4 {
+    margin: 0;
+  }
+}

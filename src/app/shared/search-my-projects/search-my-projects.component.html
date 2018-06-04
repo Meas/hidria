@@ -1,0 +1,21 @@
+<div class="search-outer">
+  <div class="row no-gutters">
+    <div class="no-gutters input-outer">
+      <input type="text" class="input" [(ngModel)]="searchTerm"
+      (ngModelChange)="nameChange.emit(searchTerm)">
+    </div>
+    <div class="no-gutters search-button">
+      <img src="assets/icons/search.png">
+    </div>
+  </div>
+  <div class="col-lg-12 no-gutters sort-by-button">
+    <select class="sort-by-select" [(ngModel)]="sortBy"
+    (ngModelChange)="sortChange.emit(sortBy)">
+      <option disabled hidden value="">{{ 'TRANSLATE.SORT-BY' | translate }}</option>
+      <option value="name-asc">{{ 'TRANSLATE.NAME-ASCENDING' | translate }}</option>
+      <option value="name-desc">{{ 'TRANSLATE.NAME-DESCENDING' | translate }}</option>
+      <option value="date-desc">{{ 'TRANSLATE.DATE-NEWEST' | translate }}</option>
+      <option value="date-asc">{{ 'TRANSLATE.DATE-OLDEST' | translate }}</option>
+    </select>
+  </div>
+</div>

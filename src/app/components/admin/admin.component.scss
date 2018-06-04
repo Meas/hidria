@@ -1,0 +1,94 @@
+@import "../../../assets/partials/variables.scss";
+
+.group {
+  position: relative;
+  width: auto;
+  height: 30px;
+
+  .sliding-el {
+    position: absolute;
+    width: 100px;
+    height: 30px;
+    background: $main-color;
+    z-index: -1;
+    left: 100px;
+    transition: ease .3s;
+  }
+
+  .button-group {
+    display: flex;
+
+    .btn {
+      width: 100px;
+      height: 30px;
+      border: solid 1px #cdcdcd;
+      background: transparent;
+    }
+  }
+}
+
+ul {
+  list-style: none;
+  width: 100%;
+
+  li {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+  }
+}
+
+.info-box {
+  width: 100%;
+  height: 230px;
+  margin-bottom: 15px;
+  border: solid 1px gray;
+
+  h1, h4 {
+    margin: 0;
+  }
+}
+
+// graphs
+.progress-indicator {
+  position: fixed;
+  top: 30px;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  margin-left: -50px;
+}
+.progress-count {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  line-height: 100px;
+  color: $main-color;
+  text-shadow: 1px 1px 1px rgba(0,0,0,.4);
+}
+svg {
+  position: absolute;
+}
+circle {
+  fill: rgba(255,255,255,.95);
+}
+
+svg .animated-circle {
+  fill: transparent;
+  stroke-width: 40px;
+  stroke: $main-color;
+  stroke-dasharray: 126;
+  stroke-dashoffset: 126 - 60}
+
+.range-bar {
+  max-width: 500px;
+  padding: 200px 0 0;
+  margin: 0 auto;
+  input[type=range] {
+    width: 100%;
+  }
+}

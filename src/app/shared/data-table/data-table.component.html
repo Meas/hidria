@@ -1,0 +1,16 @@
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th *ngIf="isIndexed"></th>
+        <th *ngFor="let title of tableData.headers">{{ title }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of tableData.data; let i = index">
+        <td *ngIf="isIndexed">{{ i }}</td>
+        <td *ngFor="let item of row.values">{{ item }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

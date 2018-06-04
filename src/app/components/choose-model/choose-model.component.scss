@@ -1,0 +1,66 @@
+@import "../../../assets/partials/variables.scss";
+
+//:host {
+//  display: block;
+//  width: 68%;
+//}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-areas: "model fan-table"
+                       "graf fan-table";
+}
+.title-model {
+  width: 100%;
+  display: flex;
+  border-bottom: 2px solid #cdcdcd;
+  margin-top: 0;
+}
+
+.model {
+  grid-area: model;
+  padding-right: 15px;
+}
+.graf{
+  grid-area: graf;
+}
+.fan-table {
+  grid-area: fan-table;
+}
+table {
+  border: 1px solid black;
+}
+
+
+//
+.button {
+  border: 1px solid #1F4887;
+  color: #1F4887;
+  text-align: center;
+  padding: 5px 25px 5px 25px;
+  font-weight: 500;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background-color 0.5s ease;
+  &:hover {
+    background-color: #cdcdcd;
+  }
+}
+.outer-button {
+  padding-left: 10px;
+  margin-bottom: 10px;
+  font-size: 12px;
+}
+.selected-tab {
+  color: #fff;
+  background-color: #1E4686;
+  &:hover {
+    color: #fff;
+    background-color: #1E4686;
+  }
+}
+.icon {
+  position: absolute;
+  left: 20px;
+}

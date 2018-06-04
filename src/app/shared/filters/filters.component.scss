@@ -1,0 +1,27 @@
+@import "../../../assets/partials/variables.scss";
+
+.button-box {
+  display: flex;
+  align-items: center;
+  min-width: calc(100% / 5);
+  float: left;
+  border: none;
+  background: none;
+  height: 40px;
+  border-bottom: solid 3px gray;
+  font-weight: bolder;
+  font-size: 1em;
+  margin-bottom: 28px;
+  color: gray;
+  outline: none;
+  cursor: pointer;
+}
+
+.button-box-active {
+  border-bottom: solid 3px $main-color;
+  color: black;
+
+  span {
+    opacity: 1 !important;
+  }
+}

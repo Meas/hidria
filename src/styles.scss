@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css?family=Rajdhani:400,500,600,700');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Rajdhani', sans-serif;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #ffffff;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  background-color: #ffffff;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #cdcdcd;
+}
+
+@import "assets/partials/variables";
+@import "assets/partials/leafs";
+
+@import "assets/partials/buttons";
+@import "assets/partials/inputs";
+
+@import "assets/partials/loading";
+
+.main-section {
+  width: 100%;
+
+  display: flex;
+
+}
+::-webkit-scrollbar-track {
+  background-color: #ffffff;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  background-color: #ffffff;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #cdcdcd;
+}
+
+.test {
+  .col,
+  .col-1,
+  .col-2,
+  .col-3,
+  .col-4,
+  .col-5,
+  .col-6,
+  .col-7,
+  .col-8,
+  .col-9,
+  .col-10,
+  .col-11,
+  .col-12 {
+    margin: 0 !important;
+    padding: 1px !important;
+  }
+
+}
+
+.error-input {
+  color: red;
+}

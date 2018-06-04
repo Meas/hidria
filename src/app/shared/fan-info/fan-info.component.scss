@@ -1,0 +1,40 @@
+.card {
+  background: #EEF2F5;
+	margin-bottom: 20px;
+  position: relative;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  height: 100%;
+}
+
+.price {
+  width: 100%;
+  background: #1D4686;
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 5px 10px 5px 10px;
+  z-index: 100;
+  left: 5px;
+  border-radius: 5px;
+}
+
+.image {
+  img {
+    width: 100px;
+  }
+}
+
+.content {
+  h1 {
+    font-weight: 700;
+    color: #1D4686;
+    font-size: 18px;
+  }
+  p {
+    color: #666;
+    font-size: 14px;
+    font-weight: 600;
+  }
+}

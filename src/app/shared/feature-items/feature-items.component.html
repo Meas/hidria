@@ -1,0 +1,26 @@
+<div [formGroup]="paramsForm">
+  <div *ngIf="parameter.tag === 'select'">
+    <app-select-box
+      [select]="parameter.options" [defaultOption]="parameter.defaultOption"
+      [paramsForm]="paramsForm"
+      [name]="name"></app-select-box>
+  </div>
+  <div class="switch-option-box" *ngIf="parameter.tag === 'radio'">
+    <app-switch-options
+      [buttons]="parameter.options" [defaultOption]="parameter.defaultOption"
+      [paramsForm]="paramsForm" [name]="name"></app-switch-options>
+  </div>
+  <div *ngIf="parameter.tag === 'input'">
+    <div *ngIf="hasRequiredError()" class="error-input">*Field is required</div>
+    <div *ngIf="hasMinMaxError()" class="error-input">*Value should be between {{ parameter.min }} and {{ parameter.max }}</div>
+    <input class="full-size"
+          auto-complete
+          [type]="parameter.type"/>
+  </div>
+  <div *ngIf="parameter.tag === 'image'" class="image-box">
+    <img width="50" src="assets/images/cube.png" alt="">
+  </div>
+  <div *ngIf="parameter.tag === 'button'">
+    <button class="btn" type="button">CALCULATE</button>
+  </div>
+</div>

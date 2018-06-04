@@ -1,0 +1,22 @@
+@import "../../../assets/partials/variables.scss";
+
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  background-color: rgba(black, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+
+  .modal-box {
+    min-width: 300px;
+    min-height: 300px;
+    padding: 15px;
+    background: #eff3f5;
+  }
+}

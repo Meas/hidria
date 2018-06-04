@@ -1,0 +1,44 @@
+.card {
+  background: #EEF2F5;
+  margin-bottom: 20px;
+  position: relative;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: flex;
+
+  ul {
+    list-style: none;
+  }
+}
+
+.input-helper {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 5px;
+
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+  }
+}
+
+.input-helper--checkbox {
+  padding-left: 20px;
+
+  &:before {
+    top: 2px;
+    left: 0;
+    width: 13px;
+    height: 13px;
+    border: 1px solid #222;
+  }
+}
+
+input[type="checkbox"] {
+  display: none;
+
+  &:checked + label:before {
+    background: #222;
+  }
+}

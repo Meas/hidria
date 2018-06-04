@@ -1,0 +1,41 @@
+<div class="section-top">
+  <div class="section-content"></div>
+</div>
+
+<div class="filters">
+  <div *ngIf="isLoggedIn" class="filter-item" routerLink="catalogue" routerLinkActive="active">
+    <div class="icon">
+      <img src="assets/icons/choice-from-catalog.png">
+    </div>
+    <div class="text"> {{ 'TRANSLATE.CHOICE-FROM-CATALOGUE' | translate }}</div>
+  </div>
+  <div *ngIf="isLoggedIn" class="filter-item" routerLink="parameter" routerLinkActive="active">
+    <div class="icon">
+      <img src="assets/icons/selection-by-parameters.png">
+    </div>
+    <div class="text">{{ 'TRANSLATE.SELECTION-BY-PARAMETER' | translate }}</div>
+  </div>
+  <div *ngIf="isLoggedIn" class="filter-item" routerLink="my-projects" routerLinkActive="active">
+    <div class="icon">
+      <img src="assets/icons/my-projects.png">
+    </div>
+    <div class="text"> {{ 'TRANSLATE.MY-PROJECTS' | translate }}</div>
+  </div>
+  <div *ngIf="isLoggedIn" class="filter-item" routerLink="comparisons" routerLinkActive="active">
+    <div class="icon">
+      <img src="assets/icons/comparison.png">
+    </div>
+    <div class="text"> {{ 'TRANSLATE.COMPARISONS' | translate }}</div>
+  </div>
+  <div *ngIf="isLoggedIn" class="filter-item">
+    <div class="code-section" [ngClass]="{'show-code-section': isOpenedSearchByCode}">
+      <input style="width: 150px" type="text" [(ngModel)]="code">
+      <button (click)="onSearchByCodeClicked(true)">Search</button>
+      <button (click)="onSearchByCodeClicked()">Close</button>
+    </div>
+    <div class="icon" (click)="onSearchByCodeClicked()">
+      <img src="assets/icons/search-by-code.png">
+    </div>
+    <div class="text">{{ 'TRANSLATE.SEARCH-BY-CODE' | translate }}</div>
+  </div>
+</div>

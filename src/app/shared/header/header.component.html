@@ -1,0 +1,55 @@
+<header>
+  <div class="navigation">
+    <div class="section-right container">
+      <div class="track">
+        <div class="logo">
+          <a href="http://www.hidria.com" target="_blank">
+            <img src="assets/images/hidria_logo.png">
+          </a>
+        </div>
+      </div>
+      <div class="section-content">
+
+        <ul *ngIf="isLoggedIn" class="nav-links left">
+          <li class="nav-link"><a class="link" routerLink="statistics">{{ 'TRANSLATE.STATISTICS' | translate }}</a></li>
+          <li class="nav-link"><a class="link" routerLink="users">{{ 'TRANSLATE.USER' | translate }}</a></li>
+        </ul>
+
+        <ul class="nav-links right">
+          <li class="nav-link"><a class="link" routerLink="history">{{ 'TRANSLATE.HISTORY' | translate }}</a></li>
+          <li class="nav-link"><a class="link" target="_blank" href="http://www.hidria.com/">{{ 'TRANSLATE.HELP' | translate }}</a></li>
+          <li class="nav-link">
+            <a *ngIf="!isLoggedIn" href="" class="link" routerLink="auth">{{ 'TRANSLATE.REGISTER' | translate }} / {{ 'TRANSLATE.LOGIN' | translate }}</a>
+            <a *ngIf="isLoggedIn" href="" class="link" (click)="logout()">{{ 'TRANSLATE.LOGOUT' | translate }}</a>
+          </li>
+          <li *ngIf="isLoggedIn" class="nav-link measures">
+            <button [ngClass]="measure === 'm' ? 'meters-active' : ''" (click)="changeMetricsClick.emit('m')">m</button>
+            <button [ngClass]="measure === 'ft' ? 'feets-active' : ''" (click)="changeMetricsClick.emit('ft')">ft</button>
+          </li>
+          <!-- <li class="nav-link languages">
+            <ul class="languagepicker roundborders">
+              <div href="#en" (click)="changeLanguage.emit('en')">
+                <li><img src="assets/images/flag-gb.png"/>EN</li>
+              </div>
+              <div href="#it" (click)="changeLanguage.emit('it')">
+                <li><img src="assets/images/flag-italy.png"/>IT</li>
+              </div>
+            </ul>
+          </li> -->
+          <li class="nav-link fun-with-flags">
+            <img src="assets/images/flag-gb.png" *ngIf="selectedLanguage=='en'">
+            <img src="assets/images/flag-italy.png" *ngIf="selectedLanguage=='it'">
+          </li>
+          <select class="nav-links right select-language" [ngModel]="selectedLanguage"
+          (ngModelChange)="changeLanguage.emit($event)">
+            <option value="en"> EN </option>
+            <option value="it"> IT </option>
+          </select>
+        </ul>
+      </div>
+
+      <div class="blue-track"></div>
+
+    </div>
+  </div>
+</header>

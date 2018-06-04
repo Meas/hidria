@@ -1,0 +1,26 @@
+<div class="operating-points-container container">
+  <div class="row input-row" *ngFor="let item of inputData; let i = index">
+	  	<div class="col-lg-2">
+	  		{{ item.name }}
+	  	</div>
+	  	<div class="col-lg-8">
+	  		<input type="number"
+	  		  [(ngModel)]="item.defaultValue"
+	  		  name="{{ item.id }}"
+	  		  class="input"
+	  		  (ngModelChange)="inputChanged()"
+	  		  [style.color]="item.color ? item.color : ''">
+	  	</div>
+	  	<div class="col-lg-2 input-description">
+	  		{{ item.description }}
+	  	</div>
+  </div>
+  <div class="row input-row">
+  	<input type="submit"
+  	  [disabled]="changeButtonDisabled"
+  	  class="change-button"
+  	  value="calculate"
+  	  [ngClass]="changeButtonDisabled ? 'change-button-disabled' : ''"
+  	  (click)="changeClick()">
+  </div>
+</div>

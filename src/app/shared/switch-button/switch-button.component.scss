@@ -1,0 +1,24 @@
+@import "../../../assets/partials/variables.scss";
+
+:host {
+}
+
+button {
+  float: left;
+  width: calc(100% / 2);
+  background-color: white;
+  font-size: 14px;
+  font-weight: normal;
+  text-align: center;
+  text-shadow: none;
+  padding: 6px 14px;
+  border:  solid 1px rgba($main-color, 0.5);
+  transition: all 0.1s ease-in-out;
+}
+
+.active {
+  background-color: $main-color;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  color: #fff;
+}

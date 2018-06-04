@@ -1,0 +1,14 @@
+<div>
+  <table>
+    <thead>
+    <tr>
+      <th *ngFor="let row of tableData.data; let i = index" (click)="sortColumn()">{{ row.name }}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr (click)="modelSelected.emit(tableData.data[0].value)">
+      <td *ngFor="let row of tableData.data; let i = index">{{ row.value }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

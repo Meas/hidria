@@ -1,0 +1,78 @@
+@import "../../../assets/partials/variables.scss";
+
+.parameter-table{
+  width: 100%;
+  border-collapse: collapse;
+  .parameter-table-body{
+    text-align: center;
+    th{
+      color: white;
+      background-color: $main-border-item;
+      border: 1px solid $main-color;
+      border-top-width: 0;
+      font-weight: 400 !important;
+      //border-left: 0 !important;
+    }
+    .sub-header{
+      td {
+        color: black !important;
+        background-color: $form-item-color !important;
+      }
+    }
+    tr{
+      height: 30px;
+      justify-content: center;
+      td{
+        &:first-child{
+          background-color: $form-item-color;
+          //border-left: none !important;
+        }
+        &:last-child{
+          color: white;
+          background-color: $main-border-item;
+        }
+        border: 1px solid $main-color;
+      }
+    }
+  }
+}
+.tabs{
+  height: 50px;
+  background-color: #1D4686;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  button{
+    color: white;
+    background-color: transparent;
+    border: none;
+    height: 30px;
+    width: 150px;
+    cursor: pointer;
+    &:hover{
+      background-color: #7990B0;
+    }
+  }
+  .active{
+    background-color: $main-border-item;
+  }
+}
+.pointer {
+  cursor: pointer;
+  td {
+    transition: background 0.2s ease;
+  }
+  &:hover {
+    & > td {
+      background-color: #779cce !important;
+    }
+  }
+}
+.hovered {
+  & > td {
+    background-color: #779cce !important;
+  }
+}
+.hidden-table {
+  display: none;
+}

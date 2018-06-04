@@ -1,0 +1,61 @@
+@import "../../../assets/partials/variables.scss";
+
+.item {
+  width: calc((100% / 4) - 20px);
+  min-height: 400px;
+  margin: 10px 20px 20px 0;
+  background: $back-item-color;
+  float: left;
+  cursor: pointer;
+  transition: ease .3s;
+  overflow: hidden;
+  position: relative;
+
+  @media (max-width: 1024px) {
+    width: calc((100% / 3) - 30px)
+  }
+  @media (max-width: 800px) {
+    width: calc((100%) - 30px)
+  }
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+  }
+
+  .new-item {
+    position: absolute;
+    background: #E53D4A;
+    color: #fff;
+    margin-top: 15px;
+    padding: 5px 10px 5px 10px;
+    font-weight: 600;
+    left: 50%;
+    margin-left: -27px;
+    border-radius: 5px;
+    font-size: 18px;
+  }
+
+  .image {
+    height: 250px;
+    width: 250px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 50%;
+    }
+  }
+  .info {
+    height: 30%;
+    padding: 10px;
+    text-align: center;
+
+    .title {
+      color: $main-color;
+    }
+  }
+}

@@ -1,0 +1,48 @@
+<div *ngIf="!(view ==='create-project')">
+  <div class="loading-box" *ngIf="loading">
+    <app-loading></app-loading>
+  </div>
+  <div *ngIf="!loading">
+    <div class="display-space-between">
+      <h4>{{ 'TRANSLATE.MY-PROJECTS' | translate }} </h4>
+      <button class="h-btn btn-default btn-add-new" (click)="createProject()">Create Project</button>
+    </div>
+    <hr class="title-line">
+    <div class="row no-gutter">
+      <div class="col-lg-3 no-gutters">
+        <div>
+          <app-search-my-projects [searchTerm]="searchTerm"
+                (nameChange)="onNameChange($event)"
+                (sortChange)="onSortChange($event)"></app-search-my-projects>
+        </div>
+        <div class="list-outer">
+          <app-my-projects-list [projectsList]="projectsList"
+                  (selectProject)="onSelectProject($event)"
+                  [searchTerm]="searchTerm"
+                  [sortBy]="sortBy">
+                </app-my-projects-list>
+        </div>
+      </div>
+      <div class="col-lg-9 no-gutters" *ngIf="!selectedProject">
+        <h1>Please select project</h1>
+      </div>
+      <div class="col-lg-9 no-gutters" *ngIf="selectedProject">
+        <div>
+          <app-my-projects-title [project]="selectedProject"
+            (deleteProject)="onDeleteProject($event)"></app-my-projects-title>
+        </div>
+        <div>
+          <app-my-projects-model-list [modelList]="modelList"
+            (removeModel)="onRemoveModel($event)"
+            (saveNoteEmitter)="onNoteSave($event)"></app-my-projects-model-list>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="view ==='create-project'">
+  <app-add-to-project (cancel)="view = ''"
+                      [type]="'project'"
+                      (postForm)="saveProject($event)"></app-add-to-project>
+</div>

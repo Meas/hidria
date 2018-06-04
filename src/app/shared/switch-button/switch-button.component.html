@@ -1,0 +1,3 @@
+<div *ngFor="let option of options">
+  <button [ngClass]="[option.id === selected ? 'active' : '']" (click)="select.emit(option.id)">{{option.description}}</button>
+</div>

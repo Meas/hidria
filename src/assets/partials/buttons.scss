@@ -1,0 +1,48 @@
+button {
+  font-family: 'Rajdhani', sans-serif;
+  outline: none;
+}
+
+.h-btn {
+  min-width: 100px;
+  height: 30px;
+  border: none;
+  background: lightgrey;
+  cursor: pointer;
+
+  &:hover {
+    background: slategray;
+  }
+}
+
+.btn-success {
+  background: yellowgreen;
+
+  &:hover {
+    background: #7fcd03;
+  }
+}
+.btn-warn {
+  background: #ff5140;
+
+  &:hover {
+    background: #ff1f33;
+  }
+}
+
+.btn-default {
+  color: white;
+  background: $main-color;
+
+  &:hover {
+    background: #333886;
+  }
+}
+
+//
+
+.btn-add-new {
+  width: 150px;
+  height: 40px;
+  margin: 10px 0;
+}

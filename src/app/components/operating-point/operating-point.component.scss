@@ -1,0 +1,152 @@
+//:host {
+//  display: block;
+//  width: 68%;
+//}
+
+/* .wrapper {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-areas: "model fan-table"
+                       "graf fan-table";
+}
+.title-model {
+  width: 100%;
+  display: flex;
+  border-bottom: 2px solid #cdcdcd;
+  margin-top: 0;
+}
+
+.model {
+  grid-area: model;
+}
+.graf{
+  grid-area: graf;
+}
+.fan-table {
+  grid-area: fan-table;
+}
+table {
+  border: 1px solid black;
+} */
+@import "../../../assets/partials/variables.scss";
+
+.title-model {
+  width: 100%;
+  display: flex;
+  margin-top: 0;
+}
+.operating-points-buttons {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.button {
+  width: 100%;
+  height: auto;
+  background: #1E4686;
+  border: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+}
+.select-points {
+  color: red;
+  text-align: center;
+  font-weight: 500;
+}
+.title-line {
+  margin-top: 0;
+  margin-bottom: 25px;
+  border: 2px solid #cdcdcd;
+}
+
+.info-box {
+  border: solid 1px $main-color;
+  margin: 10px 0;
+  padding: 10px;
+
+  .title {
+    border-bottom: solid 1px $main-color;
+  }
+}
+
+.button-select {
+  border: 1px solid #1F4887;
+  color: #1F4887;
+  text-align: center;
+  padding: 5px 25px 5px 25px;
+  font-weight: 500;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background-color 0.5s ease;
+  background: transparent;
+  width: 100%;
+  margin: 5px 0;
+  &:hover {
+    background-color: #cdcdcd;
+  }
+}
+.selected-tab {
+  color: #fff;
+  background-color: #1E4686;
+  &:hover {
+    color: #fff;
+    background-color: #1E4686;
+  }
+}
+
+.tab-button {
+  width: 100%;
+  height: 50px;
+  background: transparent;
+  border: solid 3px #1E4686;
+  margin-bottom: 10px;
+}
+.active {
+  background: #1E4686;
+  color: white
+}
+
+.sound-chart-options {
+  background: #EEF2F5;
+  margin-bottom: 20px;
+  position: relative;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  height: 100%;
+}
+
+$white: #fff;
+$green: #007e90;
+
+.fan-positions {
+  width: 100%;
+  text-align: center;
+
+  .box {
+    border: solid 3px transparent;
+    width: calc(90% / 4);
+    height: 100px;
+    background-color: $white;
+    will-change: transition;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+
+    span {
+      width: 100%;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+  .active-option {
+    border: solid 3px $green;
+  }
+}

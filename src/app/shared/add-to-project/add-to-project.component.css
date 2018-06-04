@@ -1,0 +1,41 @@
+.title {
+	font-weight: 700;
+	font-size: 20px;
+	margin-bottom: 30px;
+}
+.form-block {
+	background: #EFF2F4;
+	padding: 15px;
+	height:100%;
+	margin-bottom:25px;
+}
+.button {
+	background: #1E4686;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align: center;
+	color: #fff;
+	cursor: pointer;
+	font-weight: 600;
+	text-transform: uppercase;
+}
+.buttons-outer {
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+.half-opacity {
+	opacity: 0.5;
+}
+.image img {
+	width: 100%;
+}
+.one-accessory {
+	margin-top: 20px;
+}
+.accessory-name, .accessory-select {
+	display: flex;
+	align-items: center;
+	color: #1E4686;
+	font-weight: 700;
+	font-size: 20px;
+}

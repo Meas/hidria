@@ -1,0 +1,24 @@
+<div class="content">
+  <div class="loading-box" *ngIf="feature === undefined">
+    <app-loading></app-loading>
+  </div>
+  <div *ngIf="feature !== undefined">
+    <form  (ngSubmit)="onSubmit()" #heroForm="ngForm">
+      <div class="forms-section" *ngIf="feature">
+        <div *ngFor="let obj of feature.featureObjects; let i = index" [ngClass]="obj.classesUI">
+          <app-form-box
+            [featureObject]="obj"
+            (formValues)="saveFormResults($event, i)"
+            [paramsForm]="paramsForm">
+          </app-form-box>
+        </div>
+      </div>
+
+      <div class="function-buttons">
+        <button class="btn" (click)="setToDefault()">{{ 'TRANSLATE.DEFAULT-VALUES' | translate }}</button>
+        <button class="btn" type="submit" (click)="onSubmit()">{{ 'TRANSLATE.SEARCH' | translate }}</button>
+      </div>
+    </form>
+  </div>
+</div>
+

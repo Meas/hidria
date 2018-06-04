@@ -1,0 +1,49 @@
+  <ng-container *ngFor="let item of tableData; let i = index">
+    <!--<div class="tabs">-->
+      <!--<ng-container  *ngFor="let tab of item.data; let j = index">-->
+        <!--<button class="tab"-->
+          <!--[ngClass]="'tab'+j==selectedTab ? 'active' : ''"-->
+          <!--(click)="selectTable('tab'+j, tab.selectTable)">-->
+          <!--{{ tab.name }}-->
+        <!--</button>-->
+      <!--</ng-container>-->
+    <!--</div>-->
+    <table class="parameter-table">
+      <tbody class="parameter-table-body">
+        <ng-container *ngFor="let row of item.data">
+          <tr class="{{ row.classUI }}">
+            <ng-container *ngFor="let item of row.children">
+              <th
+                [attr.colspan]="item.colspan"
+                [attr.rowspan]="item.rowspan">
+                  <div>
+                    {{ item.name }}
+                  </div>
+                  <div>
+                    {{ item.description }}
+                  </div>
+              </th>
+
+            </ng-container>
+          </tr>
+            <tr class="{{ row.classUI }}"
+                *ngIf="row.type == 'entry'"
+                [ngClass]="[row.link ? 'pointer' : '', row.hoverId == hovered ? 'hovered' : '']"
+                (click)="routeTo(row.link); ">
+              <ng-container *ngFor="let item of row.children">
+                <td
+                  [attr.colspan]="item.colspan"
+                  [attr.rowspan]="item.rowspan">
+                    <div>
+                      {{ item.name }}
+                    </div>
+                    <div>
+                      {{ item.description }}
+                    </div>
+                </td>
+              </ng-container>
+            </tr>
+        </ng-container>
+      </tbody>
+    </table>
+</ng-container>

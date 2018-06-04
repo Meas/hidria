@@ -1,0 +1,45 @@
+<div class="title-outer" *ngIf="project">
+  <div class="row no-gutters">
+    <div class="col-lg-1 entry-number">
+      #{{ project.id }}
+    </div>
+    <div class="col-lg-2 offset-lg-1 title">
+      {{ project.name | translate }}
+    </div>
+    <div class="col-lg-1 offset-lg-7 delete-project" (click)="deleteThisProject()">
+      <img src="assets/icons/delete.png">
+      <div>
+        {{ 'TRANSLATE.DELETE' | translate }}
+      </div>
+      <div>
+        {{ 'TRANSLATE.PROJECT' | translate }}
+      </div>
+    </div>
+  </div>
+  <div class="row no-gutters descriptions">
+    <div class="col-lg-4 offset-lg-2">
+      <div *ngIf="project.construction">
+        {{ 'TRANSLATE.CONSTRUCTION' | translate }}:
+        <span class="description">{{ project.construction }}</span>
+      </div>
+      <div *ngIf="project.address">
+       {{ 'TRANSLATE.ADDRESS' | translate }}:
+       <span class="description">{{ project.address }}</span>
+      </div>
+      <div *ngIf="project.purchaser">
+        {{ 'TRANSLATE.PURCHASER' | translate }}:
+        <span class="description">{{ project.purchaser }}</span>
+      </div>
+    </div>
+    <div class="col-lg-4">
+        <div *ngIf="project.projectant">
+          {{ 'TRANSLATE.PROJECTANT' | translate }}:
+          <span class="description">{{ project.projectant }}</span>
+        </div>
+        <div *ngIf="project.business">
+          {{ 'TRANSLATE.BUSINESS' | translate }}:
+          <span class="description">{{ project.business }}</span>
+        </div>
+      </div>
+  </div>
+</div>
