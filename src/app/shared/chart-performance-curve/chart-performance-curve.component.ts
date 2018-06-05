@@ -21,7 +21,7 @@ export class ChartPerformanceCurveComponent implements OnInit, AfterViewInit {
     this.chartData = data;
     setTimeout(() => {
       this.generateGraph();
-    }, 1000);
+    }, 300);
   }
   @Input() type;
 

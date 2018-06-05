@@ -23,7 +23,7 @@ export class ChartAreaComponent implements OnInit, AfterViewInit {
       this.chartData = data;
       setTimeout(() => {
         this.generateGraph();
-      }, 1000);
+      }, 300);
     }
   }
   @Input() interactive: boolean;
@@ -103,6 +103,11 @@ export class ChartAreaComponent implements OnInit, AfterViewInit {
             ticks: {
               beginAtZero: true,
               maxTicksLimit: 10,
+              userCallback: function(label, index, labels) {
+                if (Math.floor(label) === label) {
+                  return label;
+                }
+              }
             },
             scaleLabel: {
               display: true,
@@ -113,6 +118,11 @@ export class ChartAreaComponent implements OnInit, AfterViewInit {
               ticks: {
                 beginAtZero: true,
                 maxTicksLimit: 10,
+                userCallback: function(label, index, labels) {
+                  if (Math.floor(label) === label) {
+                    return label;
+                  }
+                }
               },
               scaleLabel: {
                 display: true,

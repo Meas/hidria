@@ -14,6 +14,7 @@ button {
   padding: 6px 14px;
   border:  solid 1px rgba($main-color, 0.5);
   transition: all 0.1s ease-in-out;
+  cursor: pointer;
 }
 
 .active {
