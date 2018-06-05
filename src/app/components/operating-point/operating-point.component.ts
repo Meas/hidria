@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, NgZone, OnInit} from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { OperatingPointService } from '../../services/operating-point/operating-point.service';
-import * as _ from 'lodash';
+import { remove, find } from 'lodash';
 import {MyProjectsService} from '../../services/my-projects/my-projects.service';
 import {CustomNotificationsService} from '../../services/notifications/notifications.service';
 
@@ -43,11 +43,11 @@ export class OperatingPointComponent implements OnInit {
   fanOption = 0;
 
   legend = [];
+  types = [
+    'static_pressure'
+  ];
 
   soundOptions = [
-    {
-      id: 0
-    },
     {
       id: 1
     },
@@ -55,73 +55,78 @@ export class OperatingPointComponent implements OnInit {
       id: 2
     },
     {
-      id: 3
+      id: 4
+    },
+    {
+      id: 8
     }
-  ]
+  ];
+
   additionalOptions = [
     {
       options: [
         {
           id: 0,
+          selection: false,
           description: 'Lw'
         },
         {
           id: 1,
+          selection: true,
           description: 'Lp'
         }
       ],
-      selected: 0
+      type: 'typePower'
     },
     {
       options: [
         {
           id: 0,
+          selection: false,
           description: 'Octave'
         },
         {
           id: 1,
+          selection: true,
           description: '3rd Octave bend'
         }
       ],
-      selected: 0
+      type: 'typeOctave'
     },
     {
       options: [
         {
           id: 0,
+          selection: false,
           description: 'Weighted'
         },
         {
           id: 1,
+          selection: true,
           description: 'Unweighted'
         }
       ],
-      selected: 0
-    },
-    {
-      options: [
-        {
-          id: 0,
-          description: 'Lw(5)'
-        },
-        {
-          id: 1,
-          description: 'Lw(6)'
-        }
-      ],
-      selected: 0
+      type: 'typeWeighted'
     }
   ];
   selected = 0;
 
   graphOptions = {
-    staticPressure: 0,
-    airFlow: 0,
-    altitude: 0,
-    density: 0,
-    temperature: 0,
-    humidity: 0,
-    pressure: 0
+    staticPressure: 200,
+    airFlow: 400,
+    rpm: 100,
+    power: 100,
+    dynamicPressure: 100,
+    altitude: 100,
+    density: 100,
+    temperature: 100,
+    humidity: 100,
+    pressure: 100,
+    fanPosition: 1,
+    distance: 100,
+    typePower: true,
+    typeOctave: true,
+    typeWeighted: true
   };
 
   constructor(private operatingPointService: OperatingPointService,
@@ -137,13 +142,14 @@ export class OperatingPointComponent implements OnInit {
     this.getId((id) => {
       this.id = id;
       this.getCard(id);
-      this.getGraph(id);
+      this.getGraph(id, this.types[0]);
       this.getLegend();
       // this.getCharts(id);
       this.getLinks(id);
       this.getInputs(id);
       this.getTable(id);
       this.getProjects();
+      this.postCharts(id)
       this.loading = false;
       setTimeout(() => {
         this.zone.run(() => this.cd.markForCheck());
@@ -164,9 +170,16 @@ export class OperatingPointComponent implements OnInit {
       this.card = response;
     });
   }
-  getGraph(id): void {
-    this.operatingPointService.getGraph(id, 1, this.graphOptions).subscribe((response: any) => {
-      this.graphData = response;
+  getGraph(id, type = 'static_pressure', push = false): void {
+    this.operatingPointService.getGraph(id, type, this.getGraphData()).subscribe((response: any) => {
+      if (push) {
+        const tempYPoint = this.graphData.ypoints;
+        this.graphData.ypoints = [];
+        this.graphData.ypoints.push(tempYPoint);
+        this.graphData.ypoints.push(response.ypoints);
+      } else {
+        this.graphData = response;
+      }
     });
   }
   getLegend(): void {
@@ -174,60 +187,35 @@ export class OperatingPointComponent implements OnInit {
       this.legend = response;
     });
   }
+  getGraphData() {
+    this.inputData.forEach(param => {
+      console.log(param);
+      switch (param.name) {
+        case 'Q':
+          this.graphOptions.staticPressure = param.value;
+          break;
+        case 'Air flow  (m3/h)':
+          this.graphOptions.airFlow = param.value;
+          break;
+        default:
+          console.log('not el');
+      }
+    });
+
+    return this.graphOptions;
+  }
+
   getCharts(id): void {
     this.operatingPointService.getCharts(id).subscribe((response: any) => {
       this.graphs = response;
       this.zone.run(() => this.cd.markForCheck());
     });
   }
-  postCharts(id, data): void {
-    const calcData = {
-      staticPressure: 12,
-      airFlow: 12,
-      rpm: 12,
-      power: 12,
-      dynamicPressure: 12
-    };
-
-    data.forEach((o) => {
-      switch (o.name) {
-        case 'Power (W)':
-          calcData.power = o.value;
-          break;
-        case 'Dynamic Pressure (Pa)':
-          calcData.dynamicPressure = o.value;
-          break;
-        case 'Air flow  (m3/h)':
-          calcData.airFlow = o.value;
-          break;
-        case 'Static Pressure (Pa)':
-          calcData.airFlow = o.value;
-          break;
-        case 'Speed (1/min)':
-          calcData.rpm = o.value;
-          break;
-        default:
-          console.log('not el');
-      }
-    });
-    this.operatingPointService.postCharts(id, {
-      staticPressure: 0,
-      airFlow: 0,
-      rpm: 0,
-      power: 0,
-      dynamicPressure: 0,
-      altitude: 0,
-      density: 0,
-      temperature: 0,
-      humidity: 0,
-      pressure: 0,
-      fanPosition: 0,
-      distance: 0,
-      typePower: true,
-      typeOctave: true,
-      typeWeighted: true
-    }).subscribe((response: any) => {
+  postCharts(id): void {
+    this.operatingPointService.postCharts(id, this.graphOptions).subscribe((response: any) => {
       this.graphs = response;
+      console.log(this.graphs);
+      this.zone.run(() => this.cd.markForCheck());
     });
   }
   getInputs(id): void {
@@ -249,14 +237,18 @@ export class OperatingPointComponent implements OnInit {
   }
   getCalculate(id, data): void {
     console.log(data)
-    // const dt = {
-    //   airFlow: Math.round(data[0].defaultValue),
-    //   staticPressure: Math.round(data[1].defaultValue)
-    // };
-    // this.operatingPointService.getCalculate(id, dt).subscribe((response: any) => {
-    //   this.tables = response;
-    //   this.postCharts(this.id, this.tables[0].data);
-    // });
+    this.graphOptions.airFlow = data[0].defaultValue;
+    this.graphOptions.staticPressure = data[1].defaultValue;
+    this.graphOptions.altitude = data[2].defaultValue;
+    this.graphOptions.density = data[3].defaultValue;
+    this.graphOptions.temperature = data[3].subparameter[0].defaultValue;
+    this.graphOptions.humidity = data[3].subparameter[1].defaultValue;
+    this.graphOptions.pressure = data[3].subparameter[2].defaultValue;
+      // airFlow: Math.round(data[0].defaultValue),
+      // staticPressure: Math.round(data[1].defaultValue)
+    this.operatingPointService.getGraph(id, this.types[0], this.graphOptions).subscribe((response: any) => {
+      this.tables = response;
+    });
   }
 
   onPointSelected(event): void {
@@ -328,7 +320,23 @@ export class OperatingPointComponent implements OnInit {
     }
   }
 
-  test(event) {
-    console.log('test', event);
+  onTypeSelected(event) {
+    if (find(this.types, (o) => o === event)) {
+      remove(this.types, (o) => o === event);
+    } else {
+      if (this.types.length < 1) {
+        this.types.push(event);
+      }
+    }
+    this.getId((id) => {
+        this.getGraph(id, this.types[0], false);
+      // this.types.forEach((type, i) => {
+      //   this.getGraph(id, type, i > 0);
+      // });
+    });
+  }
+
+  downloadCard(link) {
+    window.open(link, '_blank');
   }
 }

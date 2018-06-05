@@ -16,9 +16,8 @@ export class ChooseModelService {
     return this.service.get(`choose-model/${id}/${section}`);
   }
 
-  getGraph(id, seriesId): Observable<any> {
-    console.log(id, seriesId)
-    return this.service.get(`choose-model/${seriesId}/graph/${id}`);
+  getGraph(id): Observable<any> {
+    return this.service.get(`choose-model/${id}/graph/static_pressure`);
   }
 
   /**

@@ -39,8 +39,8 @@ export class OperatingPointService {
    * Gets graph data
    * @returns {Observable<any>}
    */
-  getGraph(id, graphID, graphOptions): Observable<any> {
-    return this.service.post(`choose-model/operating-point/${id}/graph/${graphID}`, graphOptions);
+  getGraph(id, type, graphOptions): Observable<any> {
+    return this.service.post(`choose-model/operating-point/${id}/graph/${type}`, graphOptions);
   }
 
   /**

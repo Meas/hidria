@@ -17,12 +17,13 @@ import Chart from 'chart.js';
 export class ChartAreaComponent implements OnInit, AfterViewInit {
   @Input() canvasId: string;
   chartData;
+  areaChart;
   @Input() set chartSetData(data) {
     if (data) {
       this.chartData = data;
       setTimeout(() => {
         this.generateGraph();
-      }, 2000);
+      }, 1000);
     }
   }
   @Input() interactive: boolean;
@@ -39,12 +40,15 @@ export class ChartAreaComponent implements OnInit, AfterViewInit {
   }
 
   generateGraph() {
+    if (this.areaChart) {
+      this.areaChart.destroy();
+    }
     const canvas = <HTMLCanvasElement> document.getElementById(this.canvasId);
     const ctx: CanvasRenderingContext2D = canvas.getContext('2d');
     const data = this.getGraphData();
     const options = this.getOptions();
 
-    const areaChart = new Chart(ctx, {
+    this.areaChart = new Chart(ctx, {
       type: 'line',
       data: data,
       options: options,

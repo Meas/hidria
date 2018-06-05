@@ -15,7 +15,14 @@ import {Router} from '@angular/router';
 })
 export class ChartPerformanceCurveComponent implements OnInit, AfterViewInit {
   @Input() canvasId: string;
-  @Input() chartData;
+  chartData;
+  myBarChart;
+  @Input() set cd(data) {
+    this.chartData = data;
+    setTimeout(() => {
+      this.generateGraph();
+    }, 1000);
+  }
   @Input() type;
 
   constructor(private chartService: ChartServiceService, private router: Router) {
@@ -29,12 +36,15 @@ export class ChartPerformanceCurveComponent implements OnInit, AfterViewInit {
   }
 
   generateGraph() {
+    if (this.myBarChart) {
+      this.myBarChart.destroy();
+    }
     const canvas = <HTMLCanvasElement> document.getElementById(this.canvasId);
     const ctx: CanvasRenderingContext2D = canvas.getContext('2d');
     const data = this.getGraphData();
     const options = this.getOptions();
 
-    const myBarChart = new Chart(ctx, {
+    this.myBarChart = new Chart(ctx, {
       type: this.type,
       data: data,
       options: options,

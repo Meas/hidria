@@ -8,37 +8,22 @@
 
   ul {
     list-style: none;
+    width: 100%;
+
+    li {
+      margin-bottom: 10px;
+    }
   }
 }
 
-.input-helper {
-  position: relative;
-  display: inline-block;
-  margin-bottom: 5px;
-
-  &:before {
-    content: '';
-    display: block;
-    position: absolute;
-  }
+.option {
+  width: 20px;
+  height: 20px;
+  border: solid 1px black;
+  float: right;
+  margin-right: 10px;
+  background: white;
 }
-
-.input-helper--checkbox {
-  padding-left: 20px;
-
-  &:before {
-    top: 2px;
-    left: 0;
-    width: 13px;
-    height: 13px;
-    border: 1px solid #222;
-  }
-}
-
-input[type="checkbox"] {
-  display: none;
-
-  &:checked + label:before {
-    background: #222;
-  }
+.active {
+  background: black;
 }

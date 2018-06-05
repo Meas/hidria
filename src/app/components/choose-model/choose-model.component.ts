@@ -24,7 +24,6 @@ export class ChooseModelComponent implements OnInit {
   selectedTab = 0;
   data = [];
   tableTab = 0;
-  series = 0;
   model = 0;
 
   constructor(private chooseModelService: ChooseModelService,
@@ -33,9 +32,6 @@ export class ChooseModelComponent implements OnInit {
               private notifications: CustomNotificationsService) {
     this.data = this.getDataFromParams();
     localStorage.setItem('operation-point', this.data[0].value);
-    activatedRoute.queryParams.subscribe((queryParams: Params) => {
-      this.series = queryParams['series'];
-    });
     activatedRoute.params.subscribe((params: Params) => {
       this.model = params['slug'];
     });
@@ -69,7 +65,7 @@ export class ChooseModelComponent implements OnInit {
     });
   }
   getGraph(): void {
-    this.chooseModelService.getGraph(this.model, this.series).subscribe((response: any) => {
+    this.chooseModelService.getGraph(this.model).subscribe((response: any) => {
       console.log(response)
       if (response.length !== 0) {
         this.features.graph = response[0];

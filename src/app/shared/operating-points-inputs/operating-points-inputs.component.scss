@@ -1,13 +1,18 @@
 .operating-points-container {
 	background: #EEF2F5;
-	font-size: 20px;
+	font-size: 15px;
 	font-weight: 700;
 	padding-top: 15px;
 	padding-bottom: 30px;
+  display: inline-block;
 }
 .input-row {
 	margin-top: 15px;
-	padding: 0px 30px 0px 30px;
+	padding: 0 10px;
+  width: 50%;
+  float: left;
+  display: flex;
+  align-items: center;
 }
 .input-description {
 	font-weight: 400;
@@ -15,7 +20,7 @@
 .input {
 	text-align: center;
 	font-weight: 700;
-	width:100%;
+	width: 100%;
 }
 .change-button {
 	text-align: center;

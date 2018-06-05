@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import { find } from 'lodash';
 
 @Component({
   selector: 'app-legend',
@@ -8,4 +9,10 @@ import { Component, Input } from '@angular/core';
 export class LegendComponent {
 
   @Input() options = [];
+  @Input() types = [];
+  @Output() typeSelected: EventEmitter<string> = new EventEmitter();
+
+  isActiveType(code) {
+    return !!find(this.types, (o) => o === code);
+  }
 }
