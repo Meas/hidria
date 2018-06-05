@@ -10,6 +10,8 @@ export class LegendComponent {
 
   @Input() options = [];
   @Input() types = [];
+  @Input() limit = 1;
+
   @Output() typeSelected: EventEmitter<string> = new EventEmitter();
 
   isActiveType(code) {

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, Output, EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef, NgZone} from '@angular/core';
+import {Component, Input, Output, EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef, NgZone} from '@angular/core';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -6,7 +6,7 @@ import {Component, Input, OnInit, Output, EventEmitter, ChangeDetectionStrategy,
   templateUrl: './display-options.component.html',
   styleUrls: ['./display-options.component.scss']
 })
-export class DisplayOptionsComponent implements OnInit {
+export class DisplayOptionsComponent {
 
   @Input() selectedTab;
   @Input() downloads;
@@ -15,7 +15,8 @@ export class DisplayOptionsComponent implements OnInit {
   constructor(private zone: NgZone,
               private cd: ChangeDetectorRef) { }
 
-  ngOnInit() {
+  goToLink(link) {
+    window.open(link, '_blank');
   }
 
 }

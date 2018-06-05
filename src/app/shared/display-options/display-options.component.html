@@ -1,7 +1,7 @@
 <div class="row no-gutters">
   <ng-container *ngFor="let download of downloads">
     <div class="col-lg outer-button" *ngIf="download.name !== 'TRANSLATE.OPERATING-POINT.GENERATE-CARD'">
-      <a href="{{ download.link }}" target="_blank" style="text-decoration: none;">
+      <a (click)="goToLink(download.link)" style="text-decoration: none;">
         <div class="button">
           <i class="fa fa-file-pdf-o icon" aria-hidden="true"></i>
           <span class="text">{{ download.name | translate }}</span>

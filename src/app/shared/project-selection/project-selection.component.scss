@@ -1,17 +1,18 @@
 .project-section {
   width: 100%;
+  display: block;
 
-.segment {
-  align-items: center;
-  display: none;
+  .segment {
+    align-items: center;
+    display: none;
 
-.project-options {
-  width: 100%;
-  display: flex;
-}
-}
-.show-project-list {
-  display: flex;
-  flex-direction: column;
-}
+    .project-options {
+      width: 100%;
+      display: flex;
+    }
+  }
+  .show-project-list {
+    display: flex;
+    flex-direction: column;
+  }
 }

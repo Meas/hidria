@@ -38,7 +38,7 @@
           <app-fan-info [item]="card"></app-fan-info>
         </div>
         <div class="legend">
-          <app-legend [options]="legend" [types]="types" (typeSelected)="onTypeSelected($event)"></app-legend>
+          <app-legend [options]="legend" [types]="types" [limit]="limitTypes" (typeSelected)="onTypeSelected($event)"></app-legend>
         </div>
       </div>
       <div class="col-lg-8 mb-2" *ngIf="sections.main">

@@ -143,7 +143,8 @@ export function createTranslateLoader(http: HttpClient) {
     ChooseModelTableComponent,
     ChooseModelTableHorizontalComponent,
     LegendComponent,
-    SwitchButtonComponent
+    SwitchButtonComponent,
+    ProjectSelectionComponent
   ],
   providers: [
     ChartServiceService

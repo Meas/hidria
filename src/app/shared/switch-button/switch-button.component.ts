@@ -10,5 +10,5 @@ export class SwitchButtonComponent {
   @Input() options;
   @Input() selected;
 
-  @Output() select: EventEmitter<number> = new EventEmitter();
+  @Output() select: EventEmitter<any> = new EventEmitter();
 }

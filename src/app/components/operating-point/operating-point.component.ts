@@ -46,6 +46,7 @@ export class OperatingPointComponent implements OnInit {
   types = [
     'static_pressure'
   ];
+  limitTypes = 2;
 
   soundOptions = [
     {
@@ -177,6 +178,7 @@ export class OperatingPointComponent implements OnInit {
         this.graphData.ypoints = [];
         this.graphData.ypoints.push(tempYPoint);
         this.graphData.ypoints.push(response.ypoints);
+        console.log(this.graphData);
       } else {
         this.graphData = response;
       }
@@ -297,13 +299,15 @@ export class OperatingPointComponent implements OnInit {
     this.projectId = event;
   }
   addToComparisonFunc() {
-    this.modelsToCompare.push({
-      id: this.modelsToCompare.length,
-      name: this.card['name'],
-      color: 'blue',
-      image: this.card['image'],
-      data: this.tables
-    });
+    if (Array.isArray(this.tables)) {
+      this.modelsToCompare.push({
+        id: this.modelsToCompare.length,
+        name: this.card['name'],
+        color: 'blue',
+        image: this.card['image'],
+        data: this.tables
+      });
+    }
 
     this.notification.message('success', 'Success', 'Item added to comparison');
     localStorage.setItem('comparison', JSON.stringify(this.modelsToCompare));
@@ -324,15 +328,15 @@ export class OperatingPointComponent implements OnInit {
     if (find(this.types, (o) => o === event)) {
       remove(this.types, (o) => o === event);
     } else {
-      if (this.types.length < 1) {
+      if (this.types.length < this.limitTypes) {
         this.types.push(event);
       }
     }
     this.getId((id) => {
-        this.getGraph(id, this.types[0], false);
-      // this.types.forEach((type, i) => {
-      //   this.getGraph(id, type, i > 0);
-      // });
+      // this.getGraph(id, this.types[0], false);
+      this.types.forEach((type, i) => {
+        this.getGraph(id, type, i > 0);
+      });
     });
   }
 
