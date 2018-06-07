@@ -7,14 +7,16 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 })
 export class ProjectSelectionComponent implements OnInit {
 
-  showAdding = false;
-  showSelection = false;
+  activeTab = '';
 
-  @Input() show = true;
+  projectId;
+  projectName = '';
+
   @Input() projects = [];
 
   @Output() close: EventEmitter<boolean> = new EventEmitter();
-  @Output() selected: EventEmitter<number> = new EventEmitter();
+  @Output() select: EventEmitter<any> = new EventEmitter();
+  @Output() create: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 

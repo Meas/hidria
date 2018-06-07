@@ -63,9 +63,6 @@ export class ComparisonComponent implements OnInit {
   }
 
   onDeleteFromComparison (id) {
-    const self = this;
-  }
-  removeFromTable(id) {
     this.comparisonList = this.comparisonList.filter(model => model.id !== id);
     localStorage.setItem('comparison', JSON.stringify(this.comparisonList));
   }

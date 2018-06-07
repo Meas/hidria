@@ -15,4 +15,8 @@ export class UserService {
   getItems(): Observable<any> {
     return this.service.get('users');
   }
+
+  updateUser(data): Observable<any> {
+    return this.service.post('users/edit', data);
+  }
 }

@@ -18,11 +18,13 @@ export class OperatingPointComponent implements OnInit {
   showProjectSelection = false;
   projects: any = [];
   addToComparison: any = {};
+  showProjectList = false;
   operatingPointInputs;
   operationPointId = 0;
 
   graphData: any = {};
   graphs = [];
+  secondLabel = '';
 
   tables = [];
   card = {};
@@ -68,12 +70,12 @@ export class OperatingPointComponent implements OnInit {
       options: [
         {
           id: 0,
-          selection: false,
+          selection: true,
           description: 'Lw'
         },
         {
           id: 1,
-          selection: true,
+          selection: false,
           description: 'Lp'
         }
       ],
@@ -83,13 +85,13 @@ export class OperatingPointComponent implements OnInit {
       options: [
         {
           id: 0,
-          selection: false,
+          selection: true,
           description: 'Octave'
         },
         {
           id: 1,
-          selection: true,
-          description: '3rd Octave bend'
+          selection: false,
+          description: '3rd Octave'
         }
       ],
       type: 'typeOctave'
@@ -98,33 +100,32 @@ export class OperatingPointComponent implements OnInit {
       options: [
         {
           id: 0,
-          selection: false,
+          selection: true,
           description: 'Weighted'
         },
         {
           id: 1,
-          selection: true,
+          selection: false,
           description: 'Unweighted'
         }
       ],
       type: 'typeWeighted'
     }
   ];
-  selected = 0;
 
   graphOptions = {
     staticPressure: 200,
     airFlow: 400,
-    rpm: 100,
-    power: 100,
-    dynamicPressure: 100,
-    altitude: 100,
-    density: 100,
-    temperature: 100,
-    humidity: 100,
-    pressure: 100,
+    rpm: 1,
+    power: 1,
+    dynamicPressure: 1,
+    altitude: 1,
+    density: 1,
+    temperature: 1,
+    humidity: 1,
+    pressure: 1,
     fanPosition: 1,
-    distance: 100,
+    distance: 1,
     typePower: true,
     typeOctave: true,
     typeWeighted: true
@@ -174,15 +175,14 @@ export class OperatingPointComponent implements OnInit {
   getGraph(id, type = 'static_pressure', push = false): void {
     this.operatingPointService.getGraph(id, type, this.getGraphData()).subscribe((response: any) => {
       if (push) {
-        const tempYPoint = this.graphData.ypoints;
-        this.graphData.ypoints = [];
-        this.graphData.ypoints.push(tempYPoint);
-        this.graphData.ypoints.push(response.ypoints);
-        console.log(this.graphData);
+        console.log(response);
+        this.secondLabel = response.yUnit;
+        this.graphData.ypoints = this.graphData.ypoints.concat(response.ypoints);
       } else {
         this.graphData = response;
       }
     });
+    this.notification.message('success', 'Graph', 'Graph calculations finished!');
   }
   getLegend(): void {
     this.operatingPointService.getLegend().subscribe((response: any) => {
@@ -190,6 +190,7 @@ export class OperatingPointComponent implements OnInit {
     });
   }
   getGraphData() {
+    console.log(this.inputData)
     this.inputData.forEach(param => {
       console.log(param);
       switch (param.name) {
@@ -217,6 +218,7 @@ export class OperatingPointComponent implements OnInit {
     this.operatingPointService.postCharts(id, this.graphOptions).subscribe((response: any) => {
       this.graphs = response;
       console.log(this.graphs);
+      this.notification.message('success', 'Sound graph', 'Graph calculations finished!');
       this.zone.run(() => this.cd.markForCheck());
     });
   }
@@ -228,13 +230,13 @@ export class OperatingPointComponent implements OnInit {
   }
   getLinks(id): void {
     this.operatingPointService.getLinks(id).subscribe((response: any) => {
-      console.log(response);
       this.links = response;
     });
   }
   getTable(id): void {
     this.operatingPointService.getTable(id).subscribe((response: any) => {
       this.tables = response;
+      console.log(this.tables);
     });
   }
   getCalculate(id, data): void {
@@ -246,9 +248,19 @@ export class OperatingPointComponent implements OnInit {
     this.graphOptions.temperature = data[3].subparameter[0].defaultValue;
     this.graphOptions.humidity = data[3].subparameter[1].defaultValue;
     this.graphOptions.pressure = data[3].subparameter[2].defaultValue;
+    if (this.tables.length !== 0) {
+      this.graphOptions.rpm = this.tables[0].data[1].value;
+    }
       // airFlow: Math.round(data[0].defaultValue),
       // staticPressure: Math.round(data[1].defaultValue)
     this.operatingPointService.getGraph(id, this.types[0], this.graphOptions).subscribe((response: any) => {
+      console.log(response)
+
+      this.graphData = response;
+      // this.graphData.ypoints = this.graphData.ypoints.concat(response.ypoints);
+    });
+    this.operatingPointService.getCalculate(id, this.graphOptions).subscribe((response: any) => {
+      console.log(response);
       this.tables = response;
     });
   }
@@ -315,13 +327,28 @@ export class OperatingPointComponent implements OnInit {
 
   addToProject(event) {
     this.showProjectSelection = false;
-    if (this.projectId) {
-      this.projectService.insertModels(this.projectId, {
+    if (event) {
+      this.projectService.insertModels(event, {
         model: [this.id]
       }).subscribe((response: any) => {
         this.notification.message('success', 'Success', 'Item added to project');
       });
     }
+  }
+
+  createProject(event) {
+    this.showProjectSelection = false;
+    this.projectService.createProject({
+      projectName: event,
+      construction: '',
+      address: '',
+      purchaser: '',
+      projectant: '',
+      business: ''
+    }).subscribe((response: any) => {
+      console.log(response);
+      this.notification.message('success', 'Success', 'Project created and Item added to project');
+    });
   }
 
   onTypeSelected(event) {
@@ -341,6 +368,10 @@ export class OperatingPointComponent implements OnInit {
   }
 
   downloadCard(link) {
-    window.open(link, '_blank');
+    this.getId((id) => {
+      this.operatingPointService.generateCard(id).subscribe((response: any) => {
+        window.open(response, '_blank');
+      });
+    });
   }
 }

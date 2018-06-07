@@ -9,12 +9,13 @@ export class SecurityService {
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
 
     if (this.authService.isLoggedIn()) {
-      return Observable.create(true);
+      return true;
     } else {
       this.router.navigate(['auth']);
+      return false;
     }
   }
 

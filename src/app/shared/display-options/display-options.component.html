@@ -1,6 +1,6 @@
 <div class="row no-gutters">
   <ng-container *ngFor="let download of downloads">
-    <div class="col-lg outer-button" *ngIf="download.name !== 'TRANSLATE.OPERATING-POINT.GENERATE-CARD'">
+    <div class="col-lg-4 outer-button" *ngIf="download.name !== 'TRANSLATE.OPERATING-POINT.GENERATE-CARD'">
       <a (click)="goToLink(download.link)" style="text-decoration: none;">
         <div class="button">
           <i class="fa fa-file-pdf-o icon" aria-hidden="true"></i>

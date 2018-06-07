@@ -38,7 +38,7 @@ import { MyProjectsService } from './services/my-projects/my-projects.service';
 import { ComparisonService } from './services/comparison/comparison.service';
 import { UserService } from './services/user/user.service';
 
-import {FilterPipe, SearchPipe} from './pipes/filter/filter.pipe';
+import { FilterPipe } from './pipes/filter/filter.pipe';
 import { SortPipe } from './pipes/sort/sort.pipe';
 import { RouteNotFoundComponent } from './components/route-not-found/route-not-found.component';
 
@@ -56,7 +56,7 @@ import { RouteNotFoundComponent } from './components/route-not-found/route-not-f
     FanDetailsComponent,
     ChooseModelComponent,
     FilterPipe,
-    SearchPipe,
+    // SearchPipe,
     SortPipe,
     OperatingPointComponent,
     RouteNotFoundComponent,

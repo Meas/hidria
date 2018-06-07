@@ -1,3 +1,5 @@
+@import "../../../assets/partials/variables.scss";
+
 .card {
   background: #EEF2F5;
   margin-bottom: 20px;
@@ -19,14 +21,14 @@
 .option {
   width: 20px;
   height: 20px;
-  border: solid 1px black;
+  border: solid 1px $main-color;
   float: right;
   margin-right: 10px;
   background: white;
   cursor: pointer;
 }
 .active {
-  background: black;
+  background: $main-color;
 }
 .disabled {
   opacity: 0.2;

@@ -1,56 +1,86 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-6">
-      <div class="info-box"></div>
+      <div class="info-box">
+        <div class="container">
+          <div class="row border">
+            <div class="col-6">
+              <app-label-box [parameter]="{ description: 'First name' }"></app-label-box>
+              <input class="full-size" [(ngModel)]="editData.firstName"/>
+            </div>
+            <div class="col-6">
+              <app-label-box [parameter]="{ description: 'Last name' }"></app-label-box>
+              <input class="full-size" [(ngModel)]="editData.lastName"/>
+            </div>
+            <div class="col-6">
+              <app-label-box [parameter]="{ description: 'Email' }"></app-label-box>
+              <input class="full-size" [(ngModel)]="editData.email"/>
+            </div>
+            <div class="col-6">
+              <app-label-box [parameter]="{ description: 'Country' }"></app-label-box>
+              <input class="full-size" [(ngModel)]="editData.country"/>
+            </div>
+            <div class="col-6">
+              <app-label-box [parameter]="{ description: 'Company' }"></app-label-box>
+              <input class="full-size" [(ngModel)]="editData.company"/>
+            </div>
+            <div class="col-6">
+              <app-label-box [parameter]="{ description: 'Address' }"></app-label-box>
+              <input class="full-size" [(ngModel)]="editData.address"/>
+            </div>
+            <div class="col-6">
+              <app-label-box [parameter]="{ description: 'Industry' }"></app-label-box>
+              <select class="full-size" [(ngModel)]="editData.industry">
+                <option *ngFor="let value of registrationOptions.industry" [ngValue]="value.id">{{ value.name }}
+                </option>
+              </select>
+            </div>
+            <div class="col-6">
+              <app-label-box [parameter]="{ description: 'Position' }"></app-label-box>
+              <select class="full-size" [(ngModel)]="editData.position">
+                <option *ngFor="let value of registrationOptions.position" [ngValue]="value.id">{{ value.name }}
+                </option>
+              </select>
+            </div>
+            <div class="col-12">
+              <app-label-box [parameter]="{ description: 'Applications' }"></app-label-box>
+              <select class="full-size" [(ngModel)]="editData.applications">
+                <option *ngFor="let value of registrationOptions.applications" [ngValue]="value.id">{{ value.name }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="row border">
+            <div class="col-6">
+              <app-label-box [parameter]="{ description: 'Password' }"></app-label-box>
+              <input class="full-size" type="password" [(ngModel)]="editData.password"/>
+            </div>
+            <div class="col-6">
+              <app-label-box [parameter]="{ description: 'Confirm password' }"></app-label-box>
+              <input class="full-size" type="password" [(ngModel)]="editData.passwordRepeat"/>
+            </div>
+          </div>
+          <div class="row" style="margin-top: 20px;">
+            <button class="h-btn full-size btn-default">Confirm</button>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="col-lg-6">
       <h3>Lorem Ipsum dolor</h3>
-      <ul>
-        <li>
-          Price
-          <div class="group">
-            <div class="sliding-el" #el0></div>
-            <div class="button-group">
-              <button class="btn" (click)="moveSlider(el0, 'yes')">Yes</button>
-              <button class="btn" (click)="moveSlider(el0, 'no')">No</button>
-            </div>
-          </div>
-        </li>
-        <li>
-          Comparison
-          <div class="group">
-            <div class="sliding-el" #el1></div>
-            <div class="button-group">
-              <button class="btn" (click)="moveSlider(el1, 'yes')">Yes</button>
-              <button class="btn" (click)="moveSlider(el1, 'no')">No</button>
-            </div>
-          </div>
-        </li>
-        <li>
-          Admin
-          <div class="group">
-            <div class="sliding-el" #el2></div>
-            <div class="button-group">
-              <button class="btn" (click)="moveSlider(el2, 'yes')">Yes</button>
-              <button class="btn" (click)="moveSlider(el2, 'no')">No</button>
-            </div>
-          </div>
-        </li>
-      </ul>
-    </div>
-    <div class="col-lg-6">
-      <div class="info-box">
-        <!--<svg>-->
-          <!--<g>-->
-            <!--<circle cx="0" cy="0" r="20" class="animated-circle" transform="translate(50,50) rotate(-90)"  />-->
-          <!--</g>-->
-          <!--<g>-->
-            <!--<circle cx="0" cy="0" r="38" transform="translate(50,50)"  />-->
-          <!--</g>-->
-        <!--</svg>-->
-        <!--<div class="progress-count">46%</div>-->
+
+      <div class="row" *ngFor="let options of additionalOptions">
+        <div class="col-lg-4" style="display: flex; justify-content: flex-end">
+          <p>{{options.type.toUpperCase()}}</p>
+        </div>
+        <div class="col-lg-6">
+          <app-switch-button [options]="options.options" [selected]="adminOptions[options.type]"
+                             (select)="adminOptions[options.type] = $event"></app-switch-button>
+        </div>
+        <div class="col-lg-2">
+          <input placeholder="Factor" style="width: 100%" type="number" *ngIf="options.type === 'price' && adminOptions[options.type]">
+        </div>
       </div>
     </div>
-    <div class="col-lg-6"></div>
   </div>
 </div>

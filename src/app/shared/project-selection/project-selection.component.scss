@@ -9,10 +9,15 @@
     .project-options {
       width: 100%;
       display: flex;
+
     }
   }
   .show-project-list {
     display: flex;
     flex-direction: column;
   }
+}
+
+button {
+  width: calc(100% / 3) !important;
 }

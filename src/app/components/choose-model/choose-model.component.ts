@@ -54,18 +54,18 @@ export class ChooseModelComponent implements OnInit {
     });
   }
   getCard(): void {
-    this.chooseModelService.getItems(this.model, 'card').subscribe((response: any) => {
+    this.chooseModelService.getItems(this.model || this.data[0].value, 'card').subscribe((response: any) => {
       this.features.card = response[0];
     });
   }
   getTable(): void {
-    this.chooseModelService.getItems(this.model, 'table').subscribe((response: any) => {
+    this.chooseModelService.getItems(this.model || this.data[0].value, 'table').subscribe((response: any) => {
       console.log(response);
       this.features.table = response;
     });
   }
   getGraph(): void {
-    this.chooseModelService.getGraph(this.model).subscribe((response: any) => {
+    this.chooseModelService.getGraph(this.model || this.data[0].value).subscribe((response: any) => {
       console.log(response)
       if (response.length !== 0) {
         this.features.graph = response[0];

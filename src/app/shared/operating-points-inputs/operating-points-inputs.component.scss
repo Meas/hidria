@@ -1,3 +1,5 @@
+@import "../../../assets/partials/variables.scss";
+
 .operating-points-container {
 	background: #EEF2F5;
 	font-size: 15px;
@@ -25,10 +27,23 @@
 .change-button {
 	text-align: center;
 	color: #fff;
-	background: #1D4686;
+	background: $main-color;
 	width: 100%;
 	margin-top: 30px;
 }
 .change-button-disabled {
 	opacity: 0.5;
+}
+
+.no-gutters {
+  padding: 0;
+}
+
+.accordion {
+  display: none;
+  padding: 3px;
+  background: rgba($main-color, 0.5);
+}
+.show-accordion {
+  display: inline-block;
 }

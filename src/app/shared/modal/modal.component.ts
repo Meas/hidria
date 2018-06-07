@@ -1,24 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss']
 })
-export class ModalComponent implements OnInit {
+export class ModalComponent {
 
-  visible = true;
+  @Input() visible = false;
+  @Output() hide: EventEmitter<boolean> = new EventEmitter();
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-  hideModal() {
-    this.visible = false;
-  }
-
-  showModal() {
-    this.visible = true;
+  onConfirm(cb) {
+    cb(true);
   }
 }

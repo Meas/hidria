@@ -1,5 +1,8 @@
 @import "../../../assets/partials/variables.scss";
 
+:host {
+}
+
 .modal {
   position: absolute;
   top: 0;
@@ -12,11 +15,15 @@
   align-items: center;
   justify-content: center;
   overflow: auto;
+}
 
-  .modal-box {
-    min-width: 300px;
-    min-height: 300px;
-    padding: 15px;
-    background: #eff3f5;
-  }
+.modal-box {
+  position: absolute;
+  top: calc(50% - (300px / 2));
+  left: calc(50% - (300px / 2));
+  z-index: 1001;
+  min-width: 300px;
+  min-height: 300px;
+  padding: 15px;
+  background: #eff3f5;
 }

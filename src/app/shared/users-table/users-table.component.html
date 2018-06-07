@@ -8,7 +8,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let dt of tableData.data; let i = index">
+    <tr *ngFor="let dt of tableData.data | search:['name', search]">
       <td *ngIf="isSelectable"><input type="checkbox"></td>
       <td>{{ dt.name }}</td>
       <td>{{ dt.email }}</td>
@@ -16,9 +16,9 @@
       <td>{{ dt.registered }}</td>
       <td></td>
       <td>
-        <button class="h-btn" routerLink="/users/edit">Edit</button>
-        <button class="h-btn btn-warn">Delete</button>
-        <button class="h-btn btn-success">Ban</button>
+        <button class="h-btn" routerLink="/users/edit/{{dt.pk}}">Edit</button>
+        <button class="h-btn btn-warn" (click)="delete.emit(dt.pk)">Delete</button>
+        <button class="h-btn btn-success" (click)="ban.emit(dt.pk)">Ban</button>
       </td>
     </tr>
     </tbody>

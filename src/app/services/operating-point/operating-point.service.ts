@@ -89,6 +89,10 @@ export class OperatingPointService {
     // }
   }
 
+  generateCard(id): Observable<any> {
+    return this.service.post(`choose-model/operating-point/${id}/datasheet/${this.helper.getUserId()}`);
+  }
+
   calculate(event): Observable<any> {
     return this.service.get('choose-model/operating-point/calculate/id');
   }

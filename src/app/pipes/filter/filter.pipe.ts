@@ -16,9 +16,9 @@ export class FilterPipe implements PipeTransform {
 export class SearchPipe implements PipeTransform {
 
   transform(value: any, args: any[]) {
-    if (args[0]) {
-      return value.data.filter(function (el: any) {
-        return el[args[1]].toLowerCase().indexOf(args[0].toLowerCase()) > -1;
+    if (args[1]) {
+      return value.filter(function (el: any) {
+        return el[args[0]].toLowerCase().indexOf(args[1].toLowerCase()) > -1;
       });
     }
     return value;

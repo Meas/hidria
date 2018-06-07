@@ -15,8 +15,4 @@ export class MyProjectsTitleComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  deleteThisProject() {
-    const self = this;
-  }
 }

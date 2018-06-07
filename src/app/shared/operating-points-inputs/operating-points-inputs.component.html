@@ -2,44 +2,45 @@
   <div class="row input-row" *ngFor="let item of inputData; let i = index">
     <div class="col-lg-2">
       {{ item.name }}
+      <div class="input-description">
+        {{ item.description }}
+      </div>
     </div>
     <div class="col-lg-8">
       <input type="number"
-        [(ngModel)]="item.defaultValue"
-        name="{{ item.id }}"
-        class="input"
-        (ngModelChange)="inputChanged()"
-        [style.color]="item.color ? item.color : ''">
-    </div>
-    <div class="col-lg-2 input-description">
-      {{ item.description }}
-    </div>
+             [(ngModel)]="item.defaultValue"
+             name="{{ item.id }}"
+             class="input"
+             (ngModelChange)="inputChanged()"
+             [style.color]="item.color ? item.color : ''">
 
-    <div *ngIf="item.hasOwnProperty('subparameter')">
-      <div style="width: calc(100% / 3); float: left" *ngFor="let obj of item.subparameter">
-        <div class="col-lg-2">
-          {{ obj.name }}
-        </div>
-        <div class="col-lg-8">
-          <input type="number"
-                 [(ngModel)]="obj.defaultValue"
-                 name="{{ obj.id }}"
-                 class="input"
-                 (ngModelChange)="inputChanged()"
-                 [style.color]="obj.color ? obj.color : ''">
-        </div>
-        <div class="col-lg-2 input-description">
-          {{ obj.description }}
+      <div *ngIf="i === 3" class="accordion" [ngClass]="{'show-accordion': showAccordion}">
+        <div style="width: calc(100% / 3); float: left" *ngFor="let obj of item.subparameter">
+          <div class="col-lg-2 no-gutters">
+            {{ obj.name }} {{ obj.description }}
+          </div>
+          <div class="col-lg-10 no-gutters">
+            <input type="number"
+                   [(ngModel)]="obj.defaultValue"
+                   name="{{ obj.id }}"
+                   class="input"
+                   (ngModelChange)="inputChanged()"
+                   [style.color]="obj.color ? obj.color : ''">
+          </div>
         </div>
       </div>
     </div>
+    <div *ngIf="i === 3" class="col-lg-2 no-gutters">
+      <button style="width: 30px; height: 30px" class="btn btn-default button" *ngIf="i === 3" (click)="showAccordion = !showAccordion">+</button>
+    </div>
+
   </div>
   <div class="row input-row">
-  	<input type="submit"
-  	  [disabled]="changeButtonDisabled"
-  	  class="change-button"
-  	  value="calculate"
-  	  [ngClass]="changeButtonDisabled ? 'change-button-disabled' : ''"
-  	  (click)="changeClick()">
+    <input type="submit"
+           [disabled]="changeButtonDisabled"
+           class="change-button"
+           value="calculate"
+           [ngClass]="changeButtonDisabled ? 'change-button-disabled' : ''"
+           (click)="changeClick()">
   </div>
 </div>

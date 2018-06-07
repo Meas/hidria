@@ -151,3 +151,10 @@ $green: #44d577;
     border: solid 3px $green;
   }
 }
+
+.project-list {
+  display: none;
+}
+.show-project-list {
+  display: flex;
+}

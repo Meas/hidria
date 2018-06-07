@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { MyProjectsService } from './../../services/my-projects/my-projects.service';
 import {CustomNotificationsService} from '../../services/notifications/notifications.service';
 import {TranslateService} from '@ngx-translate/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ModalComponent} from '../../shared/modal/modal.component';
 
 @Component({
   selector: 'app-my-projects',
@@ -15,14 +16,19 @@ export class MyProjectsComponent implements OnInit {
 
   feature: any = {};
   searchTerm: String = '';
-  selectedProject: {};
+  selectedProject;
   sortBy: String = '';
   modelList: any = [];
   projectsList: any = [];
 
   projectForm: FormGroup;
+  projectID;
 
   view = '';
+  visible = false;
+
+  // @ViewChild(ModalComponent) myModal: ModalComponent
+  @ViewChild('myModal') myModal: ModalComponent;
 
   constructor(private myProjectsService: MyProjectsService,
               private notification: CustomNotificationsService,
@@ -93,10 +99,18 @@ export class MyProjectsComponent implements OnInit {
 
   }
 
-  onDeleteProject(id): void {
-    this.myProjectsService.deleteProject(id).subscribe((response: any) => {
+  confirmDelete(id) {
+    this.projectID = id;
+    this.myModal.visible = true;
+    this.myModal.onConfirm((event) => console.log(event));
+  }
+  onDeleteProject(): void {
+    this.myProjectsService.deleteProject(this.projectID).subscribe((response: any) => {
       console.log(response);
+      this.notification.message('success', 'Success', 'Project successfully deleted');
       this.getItems();
+      this.visible = false;
+      this.selectedProject = null;
     });
     // this.projectsList = this.projectsList.filter(project => {
     //   return project.id !== id;

@@ -4,12 +4,12 @@
   </div>
   <div *ngIf="!loading">
     <div class="row title-model no-gutters align-items-center">
-      <div class="col-lg-8">
+      <div class="col-lg-6">
         <div>
           <!--<a routerLink="/choose-model/{{ operationPointId }}">Choose model</a> | Operating point | {{ card.name }}-->
         </div>
       </div>
-      <div class="col-lg-4">
+      <div class="col-lg-6">
         <app-display-options [selectedTab]="selectedTab"
                              [downloads]="links"></app-display-options>
       </div>
@@ -46,6 +46,7 @@
                                   [canvasId]="'canvas1'"
                                   [chartSetData]="graphData"
                                   [interactive]="true"
+                                  [secondLabel]="secondLabel"
                                   (points)="onPointSelected($event)"></app-chart-area-component>
         <div>
           <div class="info-box">
@@ -74,7 +75,7 @@
                     [ngClass]="[soundOption.id === graphOptions.fanPosition ? 'active-option' : '']"
                     (click)="graphOptions.fanPosition = soundOption.id">
               <span>
-                <img style="width: 100%; height: 100%" src="/assets/images/option-{{i + 1}}.png" alt="">
+                <img style="width: 100%; height: 100%" src="assets/images/option-{{i + 1}}.png" alt="">
               </span>
             </button>
           </div>
@@ -116,9 +117,9 @@
       </div>
       <div class="col-lg-4">
         <div class="project-section">
-          <app-project-selection [projects]="projects" (close)="showProjectSelection = false"
-                                 (selected)="addToProject($event)"></app-project-selection>
-          <button class="button" (click)="showProjectSelection = true" [hidden]="showProjectSelection">
+          <app-project-selection *ngIf="showProjectSelection" [projects]="projects" (close)="showProjectSelection = false"
+                                 (select)="addToProject($event)" (create)="createProject($event)"></app-project-selection>
+          <button class="button" *ngIf="!showProjectSelection" (click)="showProjectSelection = true">
             ADD TO PROJECT
           </button>
         </div>

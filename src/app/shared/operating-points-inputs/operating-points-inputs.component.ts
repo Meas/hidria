@@ -8,6 +8,8 @@ import {Component, Input, OnInit, EventEmitter, Output, ChangeDetectionStrategy}
 })
 export class OperatingPointsInputsComponent implements OnInit {
 
+  showAccordion: false;
+
   @Input() inputData;
   @Input() set graphDataInput(graphDataInput: any) {
     for (let i = 0; i < graphDataInput.length; i++) {

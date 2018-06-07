@@ -37,11 +37,11 @@
             </div>
             <div class="col-12">
               <app-label-box [parameter]="{ description: 'Email' }"></app-label-box>
-              <input class="full-size" [(ngModel)]="loginData.userName"/>
+              <input class="full-size" [(ngModel)]="loginData.userName" (keyup.enter)="onLoginClicked()"/>
             </div>
             <div class="col-12">
               <app-label-box [parameter]="{ description: 'Password' }"></app-label-box>
-              <input class="full-size" type="password" [(ngModel)]="loginData.password"/>
+              <input class="full-size" type="password" [(ngModel)]="loginData.password" (keyup.enter)="onLoginClicked()"/>
             </div>
           </div>
           <div class="row">

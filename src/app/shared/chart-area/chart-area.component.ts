@@ -16,6 +16,7 @@ import Chart from 'chart.js';
 })
 export class ChartAreaComponent implements OnInit, AfterViewInit {
   @Input() canvasId: string;
+  @Input() secondLabel = 'B';
   chartData;
   areaChart;
   @Input() set chartSetData(data) {
@@ -70,10 +71,10 @@ export class ChartAreaComponent implements OnInit, AfterViewInit {
           'data': dataValue,
           'yValue': dataValue,
           'xValue': this.chartData.xpoints,
-          'yLabel': this.chartData.yLabel,
-          'xUnit': this.chartData.xUnit,
-          'yUnit': this.chartData.yUnit,
           'xLabel': this.chartData.xLabel,
+          'xUnit': this.chartData.xUnit,
+          'yLabel': this.chartData.yLabel,
+          'yUnit': this.chartData.yUnit,
           'percentageLabel': this.chartData.percentage,
           'percentage': j,
           'borderColor': borderColor,
@@ -99,7 +100,8 @@ export class ChartAreaComponent implements OnInit, AfterViewInit {
         },
         scales: {
           yAxes: [{
-            position: 'right',
+            id: 'A',
+            position: 'left',
             ticks: {
               beginAtZero: true,
               maxTicksLimit: 10,
@@ -114,10 +116,11 @@ export class ChartAreaComponent implements OnInit, AfterViewInit {
               labelString: self.chartData.yUnit
             }
           }, {
-              position: 'left',
+              id: 'B',
+              position: 'right',
               ticks: {
                 beginAtZero: true,
-                maxTicksLimit: 10,
+                maxTicksLimit: 1,
                 userCallback: function(label, index, labels) {
                   if (Math.floor(label) === label) {
                     return label;
@@ -126,7 +129,7 @@ export class ChartAreaComponent implements OnInit, AfterViewInit {
               },
               scaleLabel: {
                 display: true,
-                labelString: self.chartData.yUnit
+                labelString: this.secondLabel
               }
             }
           ],

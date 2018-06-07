@@ -29,7 +29,7 @@
       <div class="col-lg-9 no-gutters" *ngIf="selectedProject">
         <div>
           <app-my-projects-title [project]="selectedProject"
-            (deleteProject)="onDeleteProject($event)"></app-my-projects-title>
+            (deleteProject)="confirmDelete($event)"></app-my-projects-title>
         </div>
         <div>
           <app-my-projects-model-list [modelList]="modelList"
@@ -46,3 +46,7 @@
                       [type]="'project'"
                       (postForm)="saveProject($event)"></app-add-to-project>
 </div>
+
+<app-modal #myModal [visible]="visible" (hide)="visible = false">
+  <button (click)="onDeleteProject()">Delete</button>
+</app-modal>

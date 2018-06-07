@@ -21,20 +21,21 @@ import {AuthComponent} from './components/auth/auth.component';
 const routes: Routes = [
   { path: '', redirectTo: '/catalogue', pathMatch: 'full' },
   { path: 'auth', component: AuthComponent },
-  { path: 'catalogue', component: CatalogueComponent },
-  { path: 'parameter', component: ParametersComponent },
-  { path: 'details', component: FanDetailsComponent },
-  { path: 'choose-model/:slug', component: ChooseModelComponent },
-  { path: 'choose-model', component: ChooseModelComponent },
-  { path: 'choose-model/operating-point/:id', component: OperatingPointComponent },
-  { path: 'my-projects', component: MyProjectsComponent },
-  { path: 'comparisons', component: ComparisonComponent },
-  { path: 'statistics', component: StatisticsComponent },
-  { path: 'users', component: UsersComponent },
-  { path: 'history', component: HistoryComponent },
-  { path: 'users/edit', component: AdminComponent },
-  { path: '**', component: RouteNotFoundComponent }
+  { path: 'catalogue', component: CatalogueComponent, canActivate: [SecurityService] },
+  { path: 'parameter', component: ParametersComponent, canActivate: [SecurityService] },
+  { path: 'details', component: FanDetailsComponent, canActivate: [SecurityService] },
+  { path: 'choose-model/:slug', component: ChooseModelComponent, canActivate: [SecurityService] },
+  { path: 'choose-model', component: ChooseModelComponent, canActivate: [SecurityService] },
+  { path: 'choose-model/operating-point/:id', component: OperatingPointComponent, canActivate: [SecurityService] },
+  { path: 'my-projects', component: MyProjectsComponent, canActivate: [SecurityService] },
+  { path: 'comparisons', component: ComparisonComponent, canActivate: [SecurityService] },
+  { path: 'statistics', component: StatisticsComponent, canActivate: [SecurityService] },
+  { path: 'users', component: UsersComponent, canActivate: [SecurityService] },
+  { path: 'history', component: HistoryComponent, canActivate: [SecurityService] },
+  { path: 'users/edit/:id', component: AdminComponent, canActivate: [SecurityService] },
+  { path: '**', component: RouteNotFoundComponent, canActivate: [SecurityService] }
 ];
+// canActivate: [SecurityService]
 
 @NgModule({
   imports: [ RouterModule.forRoot(routes, { useHash: true }) ],

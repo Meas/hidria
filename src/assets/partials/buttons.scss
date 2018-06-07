@@ -33,6 +33,7 @@ button {
 .btn-default {
   color: white;
   background: $main-color;
+  border: none;
 
   &:hover {
     background: #333886;
