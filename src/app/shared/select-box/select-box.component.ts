@@ -8,7 +8,7 @@ import * as _ from 'lodash';
     <div *ngIf="hasRequiredError()" class="error-input">*Field is required</div>
     <select (change)="onChange($event.target.value)"
     [formControlName]="name">
-      <option disabled value="">Select option</option>
+      <option value="">Select option</option>
       <option *ngFor="let obj of localSelect" [value]="obj.value">{{ obj.description }}</option>
     </select>
   </div>

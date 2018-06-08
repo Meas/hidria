@@ -4,7 +4,7 @@
 }
 
 .modal {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
@@ -18,12 +18,11 @@
 }
 
 .modal-box {
-  position: absolute;
+  position: fixed;
   top: calc(50% - (300px / 2));
   left: calc(50% - (300px / 2));
   z-index: 1001;
   min-width: 300px;
-  min-height: 300px;
-  padding: 15px;
+  padding: 20px;
   background: #eff3f5;
 }

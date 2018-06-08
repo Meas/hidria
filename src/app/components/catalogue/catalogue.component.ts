@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
 })
 export class CatalogueComponent implements OnInit {
 
-  categoryId = 0;
+  categoryId = -1;
   series = 0;
 
   feature = [];
@@ -30,18 +30,15 @@ export class CatalogueComponent implements OnInit {
   onSectionSelected(subCategory, id): void {
     this.subSections = subCategory;
     this.series = id;
+    this.categoryId = -2;
   }
 
   onItemSelected(event): void {
-    this.router.navigate(['choose-model', event.id], {queryParams: {series: this.series}});
+    this.router.navigate(['choose-model', event.id]);
   }
 
   onFilterSelected(event): void {
-    if (event === -1) {
-      this.categoryId = 0;
-    } else {
-      this.categoryId = event;
-      this.subSections = [];
-    }
+    this.categoryId = event;
+    this.subSections = [];
   }
 }

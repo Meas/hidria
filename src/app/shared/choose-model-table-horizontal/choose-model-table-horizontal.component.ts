@@ -11,13 +11,17 @@ export class ChooseModelTableHorizontalComponent implements OnInit {
   @Input() isSelectable = false;
   @Output() modelSelected: EventEmitter<string> = new EventEmitter();
 
+  search = '';
+  sort = 'price';
+  orientation = false;
+
   constructor() { }
 
   ngOnInit() {
   }
 
-  sortColumn() {
-    console.log('sort')
+  sortData(sort, orientation) {
+    this.sort = sort;
+    this.orientation = orientation;
   }
-
 }

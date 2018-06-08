@@ -3,22 +3,23 @@
     <thead>
     <tr>
       <th *ngIf="isSelectable"></th>
-      <th *ngFor="let title of tableData.headers" (click)="sortData(title, 1)">{{ title }}</th>
+      <th *ngFor="let title of tableData.headers" (click)="sortData(title, orientation = !orientation)">{{ title }} <b>{{!orientation && title.toLowerCase() === sort ? '▲' : '▼'}}</b></th>
       <th></th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let dt of tableData.data | search:['name', search]">
+    <tr *ngFor="let dt of tableData.data | search:['name', search] | sort:[sort, orientation]" [ngClass]="[!dt.active ? 'active' : '', dt.deactivated ? 'deleted' : '']">
       <td *ngIf="isSelectable"><input type="checkbox"></td>
       <td>{{ dt.name }}</td>
       <td>{{ dt.email }}</td>
       <td>{{ dt.userGroup }}</td>
-      <td>{{ dt.registered }}</td>
+      <td>{{ dt.registered }} {{ dt.active }} {{ dt.deactivated }}</td>
       <td></td>
       <td>
         <button class="h-btn" routerLink="/users/edit/{{dt.pk}}">Edit</button>
         <button class="h-btn btn-warn" (click)="delete.emit(dt.pk)">Delete</button>
-        <button class="h-btn btn-success" (click)="ban.emit(dt.pk)">Ban</button>
+        <button *ngIf="dt.active" class="h-btn btn-success" (click)="ban.emit(dt.pk)">Ban</button>
+        <button *ngIf="!dt.active" class="h-btn btn-success" (click)="activate.emit(dt.pk)">Activate</button>
       </td>
     </tr>
     </tbody>

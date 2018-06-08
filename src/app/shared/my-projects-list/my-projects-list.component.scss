@@ -5,38 +5,41 @@
 }
 
 .one-project {
-    border-top: 2px solid #1D4686;
-    height: 80px;
-    background-color: #fff;
-    cursor: pointer;
+  border-top: 2px solid #1D4686;
+  min-height: 80px;
+  background-color: #fff;
+  cursor: pointer;
+  position: relative;
+
+  &:hover {
+    background-color: #e3e3e3;
+  }
 }
+
 .entry-number {
-    background-color: #1D4686;
-    width: 25%;
-    height: 20px;
-    line-height: 20px;
-    padding-left:10px;
-    color: #fff;
-    font-size: 14px;
-    font-weight: 600;
+  background-color: #1D4686;
+  width: 25%;
+  height: 20px;
+  line-height: 20px;
+  padding-left: 10px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
 }
-.project-name-outer {
-    text-align: center;
-}
+
 .project-name {
-    margin-top: 10px;
-    font-weight: 700;
-    font-size: 16px;
+  font-weight: 700;
+  font-size: 16px;
+  word-break: break-word;
+
+  p {
+    margin: 10px;
+  }
 }
-.project-created-outer {
-    font-weight: 600;
-}
+
 .project-created {
-    color: #999;
-}
-.outer-arrow {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #999;
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: gray;
 }

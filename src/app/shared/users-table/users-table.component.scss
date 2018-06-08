@@ -20,3 +20,10 @@ table {
     }
   }
 }
+
+.active {
+  opacity: 0.5;
+}
+.deleted {
+  background: #ff696d;
+}

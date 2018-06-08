@@ -2,7 +2,6 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import { MyProjectsService } from './../../services/my-projects/my-projects.service';
 import {CustomNotificationsService} from '../../services/notifications/notifications.service';
 import {TranslateService} from '@ngx-translate/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ModalComponent} from '../../shared/modal/modal.component';
 
 @Component({
@@ -21,14 +20,15 @@ export class MyProjectsComponent implements OnInit {
   modelList: any = [];
   projectsList: any = [];
 
-  projectForm: FormGroup;
   projectID;
+  modelID;
 
   view = '';
   visible = false;
+  editing = false;
 
-  // @ViewChild(ModalComponent) myModal: ModalComponent
   @ViewChild('myModal') myModal: ModalComponent;
+  @ViewChild('myItemModal') myItemModal: ModalComponent;
 
   constructor(private myProjectsService: MyProjectsService,
               private notification: CustomNotificationsService,
@@ -71,73 +71,73 @@ export class MyProjectsComponent implements OnInit {
     });
   }
 
-  findByType(object, type, assignee): void {
-    /* for (const x in object) {
-      if (object.hasOwnProperty(x)) {
-        if (typeof object[x] === 'object') {
-          this.findByType(object[x], type, assignee);
-        }
-        if (x === 'type' && object[x] === type) {
-          this.selectedProject = Object.assign({}, object.children[0]);
-        }
-      }
-    } */
-  }
-
   onSortChange(event): void {
     this.sortBy = event;
   }
 
-  onRemoveModel(id): void {
-    this.myProjectsService.deleteModel(this.selectedProject['id'], id).subscribe((response: any) => {
+  confirmModelDelete(id) {
+    this.modelID = id;
+    console.log(id);
+    this.myItemModal.visible = true;
+  }
+  onRemoveModel(): void {
+    this.myProjectsService.deleteModel(this.selectedProject['id'], this.modelID).subscribe((response: any) => {
       console.log(response);
       this.modelList = this.modelList.filter(model => {
-        return model.id !== id;
+        return model.id !== this.modelID;
       });
+      this.myItemModal.visible = false;
+      this.notification.message('success', 'Success', 'Model successfully deleted');
       this.getItems();
     });
-
+  }
+  cancelItemDelition() {
+    this.myItemModal.visible = false;
   }
 
   confirmDelete(id) {
     this.projectID = id;
     this.myModal.visible = true;
-    this.myModal.onConfirm((event) => console.log(event));
   }
   onDeleteProject(): void {
     this.myProjectsService.deleteProject(this.projectID).subscribe((response: any) => {
       console.log(response);
       this.notification.message('success', 'Success', 'Project successfully deleted');
       this.getItems();
-      this.visible = false;
       this.selectedProject = null;
+      this.myModal.visible = false;
     });
-    // this.projectsList = this.projectsList.filter(project => {
-    //   return project.id !== id;
-    // });
-    // if (this.selectedProject['id'] === id) {
-    //   this.selectedProject = this.projectsList[0] ?  this.projectsList[0] : {};
-    //   this.myProjectsService.getModels(this.selectedProject['id']).subscribe((response: any) => {
-    //     if (response.constructor === Array) {
-    //       this.modelList = response;
-    //     } else {
-    //       this.modelList = [];
-    //     }
-    //   });
-    // }
+  }
+  cancelDelition() {
+    this.myModal.visible = false;
   }
   onNoteSave(event) {
-    // note[0] => message, note[1] => modelId
-    this.myProjectsService.saveNote({ note: event.note }, event.id).subscribe((response: any) => {
+    this.myProjectsService.saveNote({ note: event.note }, this.selectedProject.id, event.id).subscribe((response: any) => {
       console.log(response);
     });
   }
+  onPositionSave(event) {
+    this.myProjectsService.savePosition(event.position, this.selectedProject.id, event.id).subscribe((response: any) => {
+      console.log(response);
+    });
+  }
+  onItemsSave(event) {
+    this.myProjectsService.saveItems(event.items, this.selectedProject.id, event.id).subscribe((response: any) => {
+      console.log(response);
+    });
+  }
+
   createProject() {
     this.view = 'create-project';
   }
+  editProject() {
+    this.view = 'create-project';
+    this.editing = true;
+  }
+
   saveProject(data) {
     const obj = {};
-    data.forEach(el => {
+    data.data.forEach(el => {
       Object.defineProperty(obj, el.parameter, {
         enumerable: true,
         configurable: true,
@@ -145,7 +145,36 @@ export class MyProjectsComponent implements OnInit {
         value: el.defaultOption
       });
     });
+    if (data.id) {
+      Object.defineProperty(obj, 'id', {
+        enumerable: true,
+        configurable: true,
+        writable: true,
+        value: data.id
+      });
+    }
     this.myProjectsService.createProject(obj).subscribe((response: any) => {
+      if (response.messageType !== 'error') {
+        this.view = '';
+        this.getItems();
+      }
+      this.translate.get(response.message).subscribe((res: string) => {
+        this.notification.message(response.messageType, response.messageType, res);
+      });
+    });
+
+    this.myProjectsService.updateProject(obj).subscribe((response: any) => {
+      if (response.messageType !== 'error') {
+        this.view = '';
+        this.getItems();
+      }
+      this.translate.get(response.message).subscribe((res: string) => {
+        this.notification.message(response.messageType, response.messageType, res);
+      });
+    });
+  }
+  updateProject() {
+    this.myProjectsService.updateProject(this.selectedProject).subscribe((response: any) => {
       if (response.messageType !== 'error') {
         this.view = '';
         this.getItems();

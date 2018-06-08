@@ -5,7 +5,10 @@
   <div *ngIf="!loading">
     <div class="display-space-between">
       <h4>{{ 'TRANSLATE.MY-PROJECTS' | translate }} </h4>
-      <button class="h-btn btn-default btn-add-new" (click)="createProject()">Create Project</button>
+      <div>
+        <button *ngIf="selectedProject" class="h-btn btn-default btn-add-new" (click)="editProject()" style="margin-right: 10px">Edit Project</button>
+        <button class="h-btn btn-default btn-add-new" (click)="createProject()">Create Project</button>
+      </div>
     </div>
     <hr class="title-line">
     <div class="row no-gutter">
@@ -33,8 +36,10 @@
         </div>
         <div>
           <app-my-projects-model-list [modelList]="modelList"
-            (removeModel)="onRemoveModel($event)"
-            (saveNoteEmitter)="onNoteSave($event)"></app-my-projects-model-list>
+            (removeModel)="confirmModelDelete($event)"
+            (saveNoteEmitter)="onNoteSave($event)"
+            (savePositionEmitter)="onPositionSave($event)"
+            (saveItemsEmitter)="onItemsSave($event)"></app-my-projects-model-list>
         </div>
       </div>
     </div>
@@ -44,9 +49,22 @@
 <div *ngIf="view ==='create-project'">
   <app-add-to-project (cancel)="view = ''"
                       [type]="'project'"
+                      [projectData]="selectedProject"
                       (postForm)="saveProject($event)"></app-add-to-project>
 </div>
 
-<app-modal #myModal [visible]="visible" (hide)="visible = false">
-  <button (click)="onDeleteProject()">Delete</button>
+<app-modal #myModal [visible]="visible">
+  <h2>Do you want to delete this project?</h2>
+  <div class="delete-modal-buttons">
+    <button class="h-btn btn-default" (click)="onDeleteProject()">Delete</button>
+    <button class="h-btn" (click)="cancelDelition()">Cancel</button>
+  </div>
+</app-modal>
+
+<app-modal #myItemModal [visible]="visible">
+  <h2>Do you want to delete this project?</h2>
+  <div class="delete-modal-buttons">
+    <button class="h-btn btn-default" (click)="onRemoveModel()">Delete</button>
+    <button class="h-btn" (click)="cancelItemDelition()">Cancel</button>
+  </div>
 </app-modal>

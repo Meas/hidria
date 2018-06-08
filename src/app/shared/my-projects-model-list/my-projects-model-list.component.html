@@ -23,7 +23,7 @@
     {{ model.id }}
   </div>
   <div class="col-lg-1 entry-box">
-
+    <input #position type="number" on-focusout="savePosition(position.value, model.id)" [value]="model.positionNumber">
   </div>
   <div class="col-lg-6 no-gutters model-box">
     <div class="row no-gutters">
@@ -40,21 +40,21 @@
       </div>
       <div class="col-lg-3 image-outer cursor-pointer">
         <a href="{{model.link}}" download class="download-button">
-            <img src="assets/icons/download.png">
+            <img style="width: 40px" src="assets/icons/download.png">
         </a>
       </div>
     </div>
   </div>
   <div class="col-lg-1 entry-box">
-    1
+    <input #items type="number" on-focusout="saveItems(items.value, model.id)" [value]="model.count">
   </div>
   <div class="col-lg-2 entry-box textarea-outer">
     <textarea on-focusout="saveNote(textArea, model.id)" #textArea
       (click)="editNote(textArea)"
       class="disabled">{{ model.note }}</textarea>
   </div>
-  <div class="col-lg-1 entry-box cursor-pointer" (click)="deleteItem(model.id)">
-    <img src="assets/icons/delete.png">
+  <div class="col-lg-1 entry-box cursor-pointer" (click)="removeModel.emit(model.id)">
+    <img style="width: 40px" src="assets/icons/delete.png">
   </div>
 </div>
 <div *ngIf="modelList.length === 0">

@@ -11,10 +11,15 @@ export class UsersTableComponent {
   @Input() tableData = [];
   @Input() isSelectable = false;
   @Input() search = '';
+  @Input() sort = 'name';
+  @Input() orientation = false;
   @Output() delete: EventEmitter<number> = new EventEmitter();
   @Output() ban: EventEmitter<number> = new EventEmitter();
+  @Output() activate: EventEmitter<number> = new EventEmitter();
 
   sortData(option, orientation) {
-    this.tableData['data'] = orderBy(this.tableData['data'], ['name'], [orientation === 1 ? 'asc' : 'desc']);
+    // this.tableData['data'] = orderBy(this.tableData['data'], ['name'], [orientation === 1 ? 'asc' : 'desc']);
+    this.sort = option.toLowerCase();
+    this.orientation = orientation;
   }
 }

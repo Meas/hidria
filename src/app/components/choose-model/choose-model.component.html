@@ -27,15 +27,14 @@
           <div class="fan-table">
             <div class="row" *ngIf="features.table">
               <app-filters class="col-lg-12"
-                           [filters]="filters"
+                           [filters]="features.table"
                            [active]="selectedTab"
                            (filterSelected)="selectTab($event)"></app-filters>
-              <app-choose-model-table-horizontal *ngIf="features.table[0][0] && this.selectedTab == 0"
-                                                 [tableData]="features.table[0][0]"
-                                                 (modelSelected)="selectModel($event)"></app-choose-model-table-horizontal>
-              <app-choose-model-table-horizontal *ngIf="features.table[0][1] && this.selectedTab == 1"
-                                                 [tableData]="features.table[0][1]"
-                                                 (modelSelected)="selectModel($event)"></app-choose-model-table-horizontal>
+              <div *ngFor="let table of features.table">
+                <app-choose-model-table-horizontal *ngIf="table && this.selectedTab == table.id"
+                                                   [tableData]="table"
+                                                   (modelSelected)="selectModel($event)"></app-choose-model-table-horizontal>
+              </div>
             </div>
           </div>
         </div>

@@ -2,7 +2,7 @@ import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { CustomNotificationsService } from '../../services/notifications/notifications.service';
-import * as _ from 'lodash';
+import { find } from 'lodash';
 
 @Component({
   selector: 'app-add-to-project',
@@ -11,7 +11,6 @@ import * as _ from 'lodash';
 })
 export class AddToProjectComponent implements OnInit {
 
-  localProjects: any;
   elements = [
     {
       id: 1,
@@ -104,9 +103,26 @@ export class AddToProjectComponent implements OnInit {
       defaultOption: null
     }
   ];
+  projectId;
 
   @Input() type: String;
   @Input() card: Object;
+  @Input() set projectData(data: any) {
+    if (data) {
+      for (const obj in data) {
+        if (obj) {
+          this.elements.forEach(el => {
+            if (el.parameter === obj) {
+              el.defaultOption = data[obj];
+            }
+          });
+        }
+        if (obj === 'id') {
+          this.projectId = data[obj];
+        }
+      }
+    }
+  }
   @Input() set projects(data: any) {
     this.fillFormValues();
     this.createForm();
@@ -130,7 +146,10 @@ export class AddToProjectComponent implements OnInit {
   }
 
   onSubmit() {
-    this.postForm.emit(this.elements);
+    this.postForm.emit({
+      data: this.elements,
+      id: this.projectId
+    });
     // this.projectForm['submitted'] = true;
     // if (this.projectForm.valid) {
     //   this.onValidForm();

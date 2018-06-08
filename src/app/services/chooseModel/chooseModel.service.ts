@@ -35,4 +35,8 @@ export class ChooseModelService {
   getCard(data): Observable<any> {
     return this.service.post(`choose-model/card`);
   }
+
+  search(data): Observable<any> {
+    return this.service.post(`selection/search`, data);
+  }
 }

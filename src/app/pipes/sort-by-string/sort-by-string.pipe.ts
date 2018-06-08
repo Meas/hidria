@@ -12,12 +12,12 @@ export class SortByStringPipe implements PipeTransform {
       }
       case 'name-asc': {
         return value.sort(function(a, b) {
-          return a.name > b.name;
+          return a.name.toLowerCase() > b.name.toLowerCase();
         });
       }
       case 'name-desc': {
         return value.sort(function(a, b) {
-          return a.name < b.name;
+          return a.name.toLowerCase() < b.name.toLowerCase();
         });
       }
       case 'date-asc': {

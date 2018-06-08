@@ -20,10 +20,8 @@ export class ChooseModelComponent implements OnInit {
     graph: undefined
   };
 
-  filters = [{id: 0, name: 'Nominal Data'}, {id: 1, name: 'Construction Data'}];
-  selectedTab = 0;
+  selectedTab = 1;
   data = [];
-  tableTab = 0;
   model = 0;
 
   constructor(private chooseModelService: ChooseModelService,
@@ -31,6 +29,7 @@ export class ChooseModelComponent implements OnInit {
               private router: Router,
               private notifications: CustomNotificationsService) {
     this.data = this.getDataFromParams();
+
     localStorage.setItem('operation-point', this.data[0].value);
     activatedRoute.params.subscribe((params: Params) => {
       this.model = params['slug'];
@@ -38,9 +37,25 @@ export class ChooseModelComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getCard();
-    this.getTable();
-    this.getGraph();
+    if (this.data.length > 2) {
+      this.chooseModelService.search(this.getDataFromParams()).subscribe((response: any) => {
+        if (response.length !== 0) {
+          this.model = response[0].modelId;
+          console.log(this.model);
+          this.getCard();
+          this.getTable();
+          this.getGraph();
+        } else {
+          this.getCard();
+          this.getTable();
+          this.getGraph();
+        }
+      });
+    } else {
+      this.getCard();
+      this.getTable();
+      this.getGraph();
+    }
   }
 
   postCard(): void {
@@ -50,7 +65,6 @@ export class ChooseModelComponent implements OnInit {
       }
     ];
     this.chooseModelService.postItems(obj).subscribe((response: any) => {
-      console.log(response);
     });
   }
   getCard(): void {
@@ -60,13 +74,11 @@ export class ChooseModelComponent implements OnInit {
   }
   getTable(): void {
     this.chooseModelService.getItems(this.model || this.data[0].value, 'table').subscribe((response: any) => {
-      console.log(response);
       this.features.table = response;
     });
   }
   getGraph(): void {
     this.chooseModelService.getGraph(this.model || this.data[0].value).subscribe((response: any) => {
-      console.log(response)
       if (response.length !== 0) {
         this.features.graph = response[0];
       }
@@ -80,12 +92,7 @@ export class ChooseModelComponent implements OnInit {
   }
 
   selectModel(event) {
-    console.log(event);
-    this.router.navigate(['/choose-model/operating-point/1']);
-  }
-
-  sortColumn() {
-
+    this.router.navigate([`/choose-model/operating-point/${event}`]);
   }
 
   getDataFromParams() {

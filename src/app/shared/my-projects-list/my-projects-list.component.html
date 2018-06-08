@@ -1,23 +1,15 @@
 <div class="list-outer" *ngFor="let item of projectsList |
-  filterByString:['name', searchTerm] | sortByString:sortBy">
+  filterByString:['name', searchTerm] | sortByString: sortBy">
   <div class="one-project" (click)="selectProject.emit(item)">
     <div class="entry-number">
       #{{ item.id }}
     </div>
-    <div class="row no-gutters project-name-outer">
-      <div class="project-name col-lg-6">
-        {{ item.name }}
-      </div>
-      <div class="col-lg-5 project-created-outer">
-        <div class="project-created">
-          Created
-        </div>
-        <div class="project-date">
-          {{ dateFromTimestamp(item.created) }}
-        </div>
-      </div>
-      <div class="col-lg-1 outer-arrow">
-        <i class="fa fa-caret-right"></i>
+    <div class="project-created">
+      <b>Created</b> {{ dateFromTimestamp(item.created) }}
+    </div>
+    <div class="row no-gutters">
+      <div class="project-name col-lg-12">
+        <p>{{ item.name }}</p>
       </div>
     </div>
   </div>

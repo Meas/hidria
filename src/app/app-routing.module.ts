@@ -35,7 +35,6 @@ const routes: Routes = [
   { path: 'users/edit/:id', component: AdminComponent, canActivate: [SecurityService] },
   { path: '**', component: RouteNotFoundComponent, canActivate: [SecurityService] }
 ];
-// canActivate: [SecurityService]
 
 @NgModule({
   imports: [ RouterModule.forRoot(routes, { useHash: true }) ],

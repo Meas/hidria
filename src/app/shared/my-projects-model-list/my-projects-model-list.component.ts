@@ -10,6 +10,8 @@ export class MyProjectsModelListComponent implements OnInit {
   @Input() modelList;
   @Output() removeModel: EventEmitter<any> = new EventEmitter;
   @Output() saveNoteEmitter: EventEmitter<any> = new EventEmitter;
+  @Output() savePositionEmitter: EventEmitter<any> = new EventEmitter;
+  @Output() saveItemsEmitter: EventEmitter<any> = new EventEmitter;
 
   constructor() {
   }
@@ -27,6 +29,20 @@ export class MyProjectsModelListComponent implements OnInit {
       note: note.value
     });
   }
+
+  savePosition(position, modelId) {
+    this.savePositionEmitter.emit({
+      id: modelId,
+      position: position
+    });
+  }
+  saveItems(items, modelId) {
+    this.saveItemsEmitter.emit({
+      id: modelId,
+      items: items
+    });
+  }
+
   editNote(note) {
     note.classList.remove('disabled');
   }

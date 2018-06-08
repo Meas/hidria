@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, NgZone, OnInit} from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
-import { OperatingPointService } from '../../services/operating-point/operating-point.service';
-import { remove, find } from 'lodash';
+import {Router, ActivatedRoute, Params} from '@angular/router';
+import {OperatingPointService} from '../../services/operating-point/operating-point.service';
+import {remove, find} from 'lodash';
 import {MyProjectsService} from '../../services/my-projects/my-projects.service';
 import {CustomNotificationsService} from '../../services/notifications/notifications.service';
 
@@ -14,11 +14,8 @@ export class OperatingPointComponent implements OnInit {
 
   loading = true;
   feature: any = {};
-  downloads: any = {};
   showProjectSelection = false;
   projects: any = [];
-  addToComparison: any = {};
-  showProjectList = false;
   operatingPointInputs;
   operationPointId = 0;
 
@@ -42,7 +39,6 @@ export class OperatingPointComponent implements OnInit {
     data: true,
     sound: true
   };
-  fanOption = 0;
 
   legend = [];
   types = [
@@ -151,11 +147,8 @@ export class OperatingPointComponent implements OnInit {
       this.getInputs(id);
       this.getTable(id);
       this.getProjects();
-      this.postCharts(id)
+      this.postCharts(id);
       this.loading = false;
-      setTimeout(() => {
-        this.zone.run(() => this.cd.markForCheck());
-      }, 2000);
     });
 
     this.modelsToCompare = JSON.parse(localStorage.getItem('comparison')) !== null ? JSON.parse(localStorage.getItem('comparison')) : [];
@@ -172,10 +165,10 @@ export class OperatingPointComponent implements OnInit {
       this.card = response;
     });
   }
+
   getGraph(id, type = 'static_pressure', push = false): void {
     this.operatingPointService.getGraph(id, type, this.getGraphData()).subscribe((response: any) => {
       if (push) {
-        console.log(response);
         this.secondLabel = response.yUnit;
         this.graphData.ypoints = this.graphData.ypoints.concat(response.ypoints);
       } else {
@@ -184,15 +177,15 @@ export class OperatingPointComponent implements OnInit {
     });
     this.notification.message('success', 'Graph', 'Graph calculations finished!');
   }
+
   getLegend(): void {
     this.operatingPointService.getLegend().subscribe((response: any) => {
       this.legend = response;
     });
   }
+
   getGraphData() {
-    console.log(this.inputData)
     this.inputData.forEach(param => {
-      console.log(param);
       switch (param.name) {
         case 'Q':
           this.graphOptions.staticPressure = param.value;
@@ -211,36 +204,36 @@ export class OperatingPointComponent implements OnInit {
   getCharts(id): void {
     this.operatingPointService.getCharts(id).subscribe((response: any) => {
       this.graphs = response;
-      this.zone.run(() => this.cd.markForCheck());
     });
   }
+
   postCharts(id): void {
     this.operatingPointService.postCharts(id, this.graphOptions).subscribe((response: any) => {
       this.graphs = response;
-      console.log(this.graphs);
       this.notification.message('success', 'Sound graph', 'Graph calculations finished!');
-      this.zone.run(() => this.cd.markForCheck());
     });
   }
+
   getInputs(id): void {
     this.operatingPointService.getInputs(id).subscribe((response: any) => {
       this.operatingPointInputs = response;
       this.getCalculate(id, this.operatingPointInputs);
     });
   }
+
   getLinks(id): void {
     this.operatingPointService.getLinks(id).subscribe((response: any) => {
       this.links = response;
     });
   }
+
   getTable(id): void {
     this.operatingPointService.getTable(id).subscribe((response: any) => {
       this.tables = response;
-      console.log(this.tables);
     });
   }
+
   getCalculate(id, data): void {
-    console.log(data)
     this.graphOptions.airFlow = data[0].defaultValue;
     this.graphOptions.staticPressure = data[1].defaultValue;
     this.graphOptions.altitude = data[2].defaultValue;
@@ -251,23 +244,17 @@ export class OperatingPointComponent implements OnInit {
     if (this.tables.length !== 0) {
       this.graphOptions.rpm = this.tables[0].data[1].value;
     }
-      // airFlow: Math.round(data[0].defaultValue),
-      // staticPressure: Math.round(data[1].defaultValue)
     this.operatingPointService.getGraph(id, this.types[0], this.graphOptions).subscribe((response: any) => {
-      console.log(response)
 
       this.graphData = response;
-      // this.graphData.ypoints = this.graphData.ypoints.concat(response.ypoints);
     });
     this.operatingPointService.getCalculate(id, this.graphOptions).subscribe((response: any) => {
-      console.log(response);
       this.tables = response;
     });
   }
 
   onPointSelected(event): void {
     this.inputData = [...event];
-    // this.getCalculate(this.id, this.operatingPointInputs);
   }
 
   findAndReplace(object, types, replaceValues) {
@@ -288,28 +275,13 @@ export class OperatingPointComponent implements OnInit {
       }
     }
   }
-  find(object, type, objectPut) {
-    for (const x in object) {
-      if (object.hasOwnProperty(x)) {
-        if (typeof object[x] === 'object') {
-          this.find(object[x], type, objectPut);
-        } else if (object[x] === type && x === 'type') {
-          objectPut['info'] = object;
-        }
-      }
-    }
-  }
-  selectTab(newTab) {
-    this.selectedTab = newTab;
-  }
+
   getProjects() {
     this.operatingPointService.getProjects().subscribe((response: any) => {
       this.projects = response;
     });
   }
-  selectProject(event) {
-    this.projectId = event;
-  }
+
   addToComparisonFunc() {
     if (Array.isArray(this.tables)) {
       this.modelsToCompare.push({
@@ -346,7 +318,6 @@ export class OperatingPointComponent implements OnInit {
       projectant: '',
       business: ''
     }).subscribe((response: any) => {
-      console.log(response);
       this.notification.message('success', 'Success', 'Project created and Item added to project');
     });
   }
@@ -360,7 +331,6 @@ export class OperatingPointComponent implements OnInit {
       }
     }
     this.getId((id) => {
-      // this.getGraph(id, this.types[0], false);
       this.types.forEach((type, i) => {
         this.getGraph(id, type, i > 0);
       });

@@ -19,6 +19,9 @@ export class MyProjectsService {
   createProject(data) {
     return this.service.post(`${this.helper.getUserId()}/projects`, data);
   }
+  updateProject(data) {
+    return this.service.post(`${this.helper.getUserId()}/projects`, data);
+  }
   deleteProject(projectId): Observable<any> {
     return this.service.delete(`projects/${projectId}`);
   }
@@ -33,7 +36,13 @@ export class MyProjectsService {
     return this.service.delete(`projects/${projectId}/models/${modelId}`);
   }
 
-  saveNote(note, modelId) {
-    return this.service.post(`models/${modelId}/notes`, note);
+  saveNote(note, projectId, modelId) {
+    return this.service.post(`projects/${projectId}/models/${modelId}/notes`, note);
+  }
+  savePosition(position, projectId, modelId) {
+    return this.service.post(`projects/${projectId}/models/${modelId}/position/${position}`);
+  }
+  saveItems(items, projectId, modelId) {
+    return this.service.post(`projects/${projectId}/models/${modelId}/items/${items}`);
   }
 }

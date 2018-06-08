@@ -27,20 +27,23 @@ export class UsersComponent implements OnInit {
   }
 
   onDeleteUser(id) {
-    this.userService.updateUser({
-      pk: id,
-      deactivated: false,
-    }).subscribe((response: any) => {
+    this.userService.deleteUser(id).subscribe((response: any) => {
       console.log(response);
+      this.getUsers();
     });
   }
 
   onBanUser(id) {
-    this.userService.updateUser({
-      pk: id,
-      active: false,
-    }).subscribe((response: any) => {
+    this.userService.banUser(id).subscribe((response: any) => {
       console.log(response);
+      this.getUsers();
+    });
+  }
+
+  onActivateUser(id) {
+    this.userService.activateUser(id).subscribe((response: any) => {
+      console.log(response);
+      this.getUsers();
     });
   }
 }

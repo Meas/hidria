@@ -1,7 +1,8 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, NgZone } from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, NgZone, ViewChild} from '@angular/core';
 import { ComparisonService } from '../../services/comparison/comparison.service';
 import * as _ from 'lodash';
 import {OperatingPointService} from '../../services/operating-point/operating-point.service';
+import {ModalComponent} from '../../shared/modal/modal.component';
 
 @Component({
   selector: 'app-comparison',
@@ -21,6 +22,8 @@ export class ComparisonComponent implements OnInit {
   graph: any = {};
   tables;
   comparisonList: any = [];
+
+  @ViewChild('myModal') myModal: ModalComponent;
 
   constructor(private comparisonService: ComparisonService,
               private cd: ChangeDetectorRef) { }
@@ -70,5 +73,9 @@ export class ComparisonComponent implements OnInit {
   clearAll() {
     localStorage.setItem('comparison', JSON.stringify([]));
     this.comparisonList = [];
+  }
+
+  clearAllConfirm() {
+
   }
 }

@@ -13,7 +13,7 @@
         <app-comparison-table
           [headers]="tables[filterSelected]" [filterSelected]="filterSelected"
           [modelList]="comparisonList"
-          (deleteFromComparison)="onDeleteFromComparison($event)" (clearAll)="clearAll()"></app-comparison-table>
+          (deleteFromComparison)="onDeleteFromComparison($event)" (clearAll)="clearAllConfirm()"></app-comparison-table>
       </div>
     </div>
     <div class="row no-gutters" *ngIf="comparisonList.length === 0">
@@ -21,3 +21,11 @@
     </div>
   </div>
 </div>
+
+<app-modal #myModal>
+  <h2>Do you want to delete all from comparison?</h2>
+  <div class="delete-modal-buttons">
+    <button class="h-btn btn-default" (click)="clearAll()">Delete</button>
+    <button class="h-btn" (click)="cancel()">Cancel</button>
+  </div>
+</app-modal>

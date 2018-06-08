@@ -1,13 +1,38 @@
+<!--<div>-->
+  <!--<table>-->
+    <!--<thead>-->
+    <!--<tr>-->
+      <!--<th *ngFor="let row of tableData.data; let i = index" (click)="sortColumn()">{{ row.name }}</th>-->
+    <!--</tr>-->
+    <!--</thead>-->
+    <!--<tbody>-->
+    <!--<tr (click)="modelSelected.emit(tableData.data[0].value)">-->
+      <!--<td *ngFor="let row of tableData.data; let i = index">{{ row.value }}</td>-->
+    <!--</tr>-->
+    <!--</tbody>-->
+  <!--</table>-->
+<!--</div>-->
+
 <div>
+  <input type="text" placeholder="Search" [(ngModel)]="search">
   <table>
     <thead>
     <tr>
-      <th *ngFor="let row of tableData.data; let i = index" (click)="sortColumn()">{{ row.name }}</th>
+      <th *ngFor="let title of tableData.headers.slice(1, tableData.headers.length)" (click)="sortData(title, orientation = !orientation)">{{ title }} <b>{{!orientation && title.toLowerCase() === sort ? '▲' : '▼'}}</b></th>
     </tr>
     </thead>
     <tbody>
-    <tr (click)="modelSelected.emit(tableData.data[0].value)">
-      <td *ngFor="let row of tableData.data; let i = index">{{ row.value }}</td>
+    <tr *ngFor="let dt of tableData.data | search:['value', search] | sortModels:[sort, orientation]" (click)="modelSelected.emit(dt[0].value)">
+      <td *ngIf="isSelectable"><input type="checkbox"></td>
+      <td>{{ dt[1].value }}</td>
+      <td>{{ dt[2].value }}</td>
+      <td>{{ dt[3].value }}</td>
+      <td>{{ dt[4].value }}</td>
+      <td>{{ dt[5].value }}</td>
+      <td>{{ dt[6].value }}</td>
+      <td>{{ dt[7].value }}</td>
+      <td>{{ dt[8].value }}</td>
+      <td></td>
     </tr>
     </tbody>
   </table>
