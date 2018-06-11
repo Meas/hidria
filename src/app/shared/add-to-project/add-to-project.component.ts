@@ -107,6 +107,7 @@ export class AddToProjectComponent implements OnInit {
 
   @Input() type: String;
   @Input() card: Object;
+  @Input() editing: boolean;
   @Input() set projectData(data: any) {
     if (data) {
       for (const obj in data) {

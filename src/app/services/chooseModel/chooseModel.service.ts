@@ -32,8 +32,14 @@ export class ChooseModelService {
    * Gets array of items
    * @returns {Observable<any>}
    */
-  getCard(data): Observable<any> {
-    return this.service.post(`choose-model/card`);
+  getSearchCard(data): Observable<any> {
+    return this.service.post(`choose-model/card`, data);
+  }
+  getSearchTable(data): Observable<any> {
+    return this.service.post(`choose-model/table`, data);
+  }
+  getSearchGraph(data): Observable<any> {
+    return this.service.post(`choose-model/graph/static_pressure`, data);
   }
 
   search(data): Observable<any> {

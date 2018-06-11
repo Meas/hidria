@@ -57,7 +57,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
     data.labels = this.chartData.xpoints;
     data.datasets = [];
     for (let i = 0; i < this.chartData.ypoints.length; i++) {
-      const fill = (i === 0 && this.toFill);
+      // const fill = (i === 0 && this.toFill);
       data.datasets.push({
         'label': this.chartData.labels[i],
         'data': this.chartData.ypoints[i],
@@ -69,7 +69,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
         'xLabel': this.chartData.xLabel,
         'borderColor': this.chartData.borderColor[i],
         'links': this.chartData.links[i],
-        'fill': fill
+        'fill': false
       });
     }
     return data;

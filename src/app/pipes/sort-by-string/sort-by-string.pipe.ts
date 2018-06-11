@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { orderBy } from 'lodash';
 
 @Pipe({
   name: 'sortByString'
@@ -11,24 +12,16 @@ export class SortByStringPipe implements PipeTransform {
         return value;
       }
       case 'name-asc': {
-        return value.sort(function(a, b) {
-          return a.name.toLowerCase() > b.name.toLowerCase();
-        });
+        return orderBy(value, ['name'], ['asc']);
       }
       case 'name-desc': {
-        return value.sort(function(a, b) {
-          return a.name.toLowerCase() < b.name.toLowerCase();
-        });
+        return orderBy(value, ['name'], ['desc']);
       }
       case 'date-asc': {
-        return value.sort(function(a, b) {
-          return a.created > b.created;
-        });
+        return orderBy(value, ['created'], ['asc']);
       }
       case 'date-desc': {
-        return value.sort(function(a, b) {
-          return a.created < b.created;
-        });
+        return orderBy(value, ['created'], ['desc']);
       }
     }
   }

@@ -51,7 +51,7 @@ import { SearchPipe } from '../pipes/filter/filter.pipe';
 import { SortPipe, SortModelsPipe } from '../pipes/sort/sort.pipe';
 
 export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/translations/', '.json');
+  return new TranslateHttpLoader(http, 'http://13.93.51.225/hidriaAPI/api/translation/', '');
 }
 
 @NgModule({

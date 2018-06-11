@@ -5,8 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NvD3Module } from 'ng2-nvd3';
 
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -40,12 +38,6 @@ import { UserService } from './services/user/user.service';
 
 import { FilterPipe } from './pipes/filter/filter.pipe';
 import { RouteNotFoundComponent } from './components/route-not-found/route-not-found.component';
-
-
-
-/* export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/translations/', '.json');
-} */
 
 @NgModule({
   declarations: [

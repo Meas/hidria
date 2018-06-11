@@ -47,7 +47,7 @@ export class ParametersComponent implements OnInit {
       this.formValues
     );
     this.paramsForm.valueChanges.subscribe(data => {
-      console.log(data);
+      // console.log(data);
     });
   }
 

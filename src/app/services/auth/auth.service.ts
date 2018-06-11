@@ -51,4 +51,8 @@ export class AuthService {
   getRegisterFields(): Observable<any> {
     return this.service.get(`register`);
   }
+
+  getUser(id): Observable<any> {
+    return this.service.get(`users/${id}`);
+  }
 }

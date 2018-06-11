@@ -128,7 +128,9 @@ export class MyProjectsComponent implements OnInit {
   }
 
   createProject() {
+    this.selectedProject = {};
     this.view = 'create-project';
+    this.editing = false;
   }
   editProject() {
     this.view = 'create-project';
@@ -145,33 +147,39 @@ export class MyProjectsComponent implements OnInit {
         value: el.defaultOption
       });
     });
+    console.log(data.id);
     if (data.id) {
-      Object.defineProperty(obj, 'id', {
+      Object.defineProperty(obj, 'projectId', {
         enumerable: true,
         configurable: true,
         writable: true,
         value: data.id
       });
-    }
-    this.myProjectsService.createProject(obj).subscribe((response: any) => {
-      if (response.messageType !== 'error') {
-        this.view = '';
-        this.getItems();
-      }
-      this.translate.get(response.message).subscribe((res: string) => {
-        this.notification.message(response.messageType, response.messageType, res);
-      });
-    });
 
-    this.myProjectsService.updateProject(obj).subscribe((response: any) => {
-      if (response.messageType !== 'error') {
-        this.view = '';
-        this.getItems();
-      }
-      this.translate.get(response.message).subscribe((res: string) => {
-        this.notification.message(response.messageType, response.messageType, res);
+      console.log(obj)
+      this.myProjectsService.updateProject(obj).subscribe((response: any) => {
+        if (response.messageType !== 'error') {
+          this.view = '';
+          this.getItems();
+          this.selectedProject = null;
+        }
+        this.translate.get(response.message).subscribe((res: string) => {
+          this.notification.message(response.messageType, response.messageType, res);
+        });
       });
-    });
+    } else {
+      this.myProjectsService.createProject(obj).subscribe((response: any) => {
+        if (response.messageType !== 'error') {
+          this.view = '';
+          this.getItems();
+          this.selectedProject = null;
+        }
+        this.translate.get(response.message).subscribe((res: string) => {
+          console.log(response, res)
+          this.notification.message(response.messageType, response.messageType, res);
+        });
+      });
+    }
   }
   updateProject() {
     this.myProjectsService.updateProject(this.selectedProject).subscribe((response: any) => {

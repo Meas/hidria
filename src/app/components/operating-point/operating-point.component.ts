@@ -148,7 +148,9 @@ export class OperatingPointComponent implements OnInit {
       this.getTable(id);
       this.getProjects();
       this.postCharts(id);
-      this.loading = false;
+      setTimeout(() => {
+        this.loading = false;
+      }, 1000);
     });
 
     this.modelsToCompare = JSON.parse(localStorage.getItem('comparison')) !== null ? JSON.parse(localStorage.getItem('comparison')) : [];
@@ -168,9 +170,12 @@ export class OperatingPointComponent implements OnInit {
 
   getGraph(id, type = 'static_pressure', push = false): void {
     this.operatingPointService.getGraph(id, type, this.getGraphData()).subscribe((response: any) => {
+      console.log(response)
       if (push) {
         this.secondLabel = response.yUnit;
         this.graphData.ypoints = this.graphData.ypoints.concat(response.ypoints);
+
+        this.graphData.borderColor = this.graphData.borderColor.concat(response.borderColor);
       } else {
         this.graphData = response;
       }
@@ -234,15 +239,15 @@ export class OperatingPointComponent implements OnInit {
   }
 
   getCalculate(id, data): void {
-    this.graphOptions.airFlow = data[0].defaultValue;
-    this.graphOptions.staticPressure = data[1].defaultValue;
-    this.graphOptions.altitude = data[2].defaultValue;
-    this.graphOptions.density = data[3].defaultValue;
-    this.graphOptions.temperature = data[3].subparameter[0].defaultValue;
-    this.graphOptions.humidity = data[3].subparameter[1].defaultValue;
-    this.graphOptions.pressure = data[3].subparameter[2].defaultValue;
+    this.graphOptions.airFlow = Math.ceil(data[0].defaultValue);
+    this.graphOptions.staticPressure = Math.ceil(data[1].defaultValue);
+    this.graphOptions.altitude = Math.ceil(data[2].defaultValue);
+    this.graphOptions.density = Math.ceil(data[3].defaultValue);
+    this.graphOptions.temperature = Math.ceil(data[3].subparameter[0].defaultValue);
+    this.graphOptions.humidity = Math.ceil(data[3].subparameter[1].defaultValue);
+    this.graphOptions.pressure = Math.ceil(data[3].subparameter[2].defaultValue);
     if (this.tables.length !== 0) {
-      this.graphOptions.rpm = this.tables[0].data[1].value;
+      this.graphOptions.rpm = Math.ceil(this.tables[0].data[1].value);
     }
     this.operatingPointService.getGraph(id, this.types[0], this.graphOptions).subscribe((response: any) => {
 
@@ -318,7 +323,14 @@ export class OperatingPointComponent implements OnInit {
       projectant: '',
       business: ''
     }).subscribe((response: any) => {
-      this.notification.message('success', 'Success', 'Project created and Item added to project');
+      if (response.projectId) {
+        this.projectService.insertModels(response.projectId, {
+          model: [this.id]
+        }).subscribe((res: any) => {
+          this.notification.message('success', 'Success', 'Project created and Item added to project');
+        });
+      }
+
     });
   }
 

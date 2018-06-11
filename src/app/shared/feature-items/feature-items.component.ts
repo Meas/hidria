@@ -25,13 +25,4 @@ export class FeatureItemsComponent implements OnInit {
     return this.paramsForm.submitted && this.paramsForm.get(this.name).errors &&
     (this.paramsForm.get(this.name).errors.max || this.paramsForm.get(this.name).errors.min);
   }
-
-  setSourceOptions(options): Array<number | string> {
-    const parsedOptions = [];
-    if (options) {
-      options.forEach(option => parsedOptions.push(option.value));
-    }
-    return parsedOptions;
-  }
-
 }

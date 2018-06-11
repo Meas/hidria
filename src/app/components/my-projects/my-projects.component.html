@@ -49,6 +49,7 @@
 <div *ngIf="view ==='create-project'">
   <app-add-to-project (cancel)="view = ''"
                       [type]="'project'"
+                      [editing]="editing"
                       [projectData]="selectedProject"
                       (postForm)="saveProject($event)"></app-add-to-project>
 </div>

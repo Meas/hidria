@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../services/auth/auth.service';
+import {ActivatedRoute, Params} from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -89,7 +90,11 @@ export class AdminComponent implements OnInit {
     admin: false
   };
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private activetedRoute: ActivatedRoute) {
+    activetedRoute.params.subscribe((params: Params) => {
+      this.getUser(params.id);
+    });
+  }
 
   ngOnInit() {
     this.getRegisterFields();
@@ -99,6 +104,13 @@ export class AdminComponent implements OnInit {
     this.authService.getRegisterFields().subscribe((response: any) => {
       console.log(response);
       this.registrationOptions = response;
+    });
+  }
+
+  getUser(id) {
+    this.authService.getUser(id).subscribe((response: any) => {
+      console.log(response)
+      this.editData = response;
     });
   }
 

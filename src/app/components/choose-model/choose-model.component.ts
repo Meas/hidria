@@ -22,7 +22,7 @@ export class ChooseModelComponent implements OnInit {
 
   selectedTab = 1;
   data = [];
-  model = 0;
+  model;
 
   constructor(private chooseModelService: ChooseModelService,
               private activatedRoute: ActivatedRoute,
@@ -37,24 +37,18 @@ export class ChooseModelComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.data.length > 2) {
-      this.chooseModelService.search(this.getDataFromParams()).subscribe((response: any) => {
-        if (response.length !== 0) {
-          this.model = response[0].modelId;
-          console.log(this.model);
-          this.getCard();
-          this.getTable();
-          this.getGraph();
-        } else {
-          this.getCard();
-          this.getTable();
-          this.getGraph();
-        }
-      });
-    } else {
+    if (this.model) {
+      console.log(this.model, 'select')
       this.getCard();
       this.getTable();
       this.getGraph();
+    } else {
+      this.chooseModelService.search(this.getDataFromParams()).subscribe((response: any) => {
+        console.log(response);
+        this.getSearchCard(response);
+        this.getSearchTable(response);
+        this.getSearchGraph(response);
+      });
     }
   }
 
@@ -79,12 +73,34 @@ export class ChooseModelComponent implements OnInit {
   }
   getGraph(): void {
     this.chooseModelService.getGraph(this.model || this.data[0].value).subscribe((response: any) => {
+      console.log(response)
       if (response.length !== 0) {
         this.features.graph = response[0];
       }
       // this.notifications.getError({'status': 400, 'statusText': 'No results!'});
     });
     this.loading = false;
+  }
+
+  getSearchCard(data) {
+    this.chooseModelService.getSearchCard(data).subscribe((response: any) => {
+      this.features.card = response[0];
+    });
+  }
+  getSearchTable(data) {
+    this.chooseModelService.getSearchTable(data).subscribe((response: any) => {
+      console.log(response, 'table')
+      this.features.table = response;
+    });
+  }
+  getSearchGraph(data) {
+    this.chooseModelService.getSearchGraph(data).subscribe((response: any) => {
+      if (response.length !== 0) {
+        console.log(response, 'graph')
+        this.features.graph = response[0];
+      }
+      this.loading = false;
+    });
   }
 
   selectTab(newTab) {
@@ -111,6 +127,7 @@ export class ChooseModelComponent implements OnInit {
       } else {
         this.activatedRoute.params.subscribe((param: Params) => {
           tempArray.push({'name': 'ID', 'value': param.slug});
+          this.model = param.slug;
         });
       }
     });

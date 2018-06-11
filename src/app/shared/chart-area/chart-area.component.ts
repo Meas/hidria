@@ -61,25 +61,22 @@ export class ChartAreaComponent implements OnInit, AfterViewInit {
     data.labels = this.chartData.xpoints;
     data.datasets = [];
     for (let i = 0; i < this.chartData.ypoints.length; i++) {
-      for (let j = 100; j > 1; j--) {
-        const borderColor = j === 100 ? this.chartData.borderColor[i] : j % 10 === 0 ? 'rgba(0,0,0,0)' : 'rgba(0,0,0,0)';
-        const fill = j === 100;
-        const dataValue = this.chartData.ypoints[i].map(x => Math.round(x * j / 100));
-        data.datasets.push({
-          'label': this.chartData.labels[i],
-          'data': dataValue,
-          'yValue': dataValue,
-          'xValue': this.chartData.xpoints,
-          'xLabel': this.chartData.xLabel,
-          'xUnit': this.chartData.xUnit,
-          'yLabel': this.chartData.yLabel,
-          'yUnit': this.chartData.yUnit,
-          'percentageLabel': this.chartData.percentage,
-          'percentage': j,
-          'borderColor': borderColor,
-          'fill': fill
-        });
-      }
+      // const borderColor = j === 100 ? this.chartData.borderColor[i] : j % 10 === 0 ? 'rgba(0,0,0,0)' : 'rgba(0,0,0,0)';
+      // const fill = j === 100;
+      const dataValue = this.chartData.ypoints[i];
+      data.datasets.push({
+        'label': this.chartData.labels[i],
+        'data': dataValue,
+        'yValue': dataValue,
+        'xValue': this.chartData.xpoints,
+        'xLabel': this.chartData.xLabel,
+        'xUnit': this.chartData.xUnit,
+        'yLabel': this.chartData.yLabel,
+        'yUnit': this.chartData.yUnit,
+        'percentageLabel': this.chartData.percentage,
+        'borderColor': this.chartData.borderColor[i],
+        'fill': false
+      });
     }
     return data;
   }
