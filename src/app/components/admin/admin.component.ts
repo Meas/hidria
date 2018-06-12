@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../services/auth/auth.service';
 import {ActivatedRoute, Params} from '@angular/router';
+import {IMultiSelectOption, IMultiSelectSettings} from 'angular-2-dropdown-multiselect';
 
 @Component({
   selector: 'app-admin',
@@ -34,7 +35,14 @@ export class AdminComponent implements OnInit {
     position: [],
     applications: []
   };
-
+  mySettings: IMultiSelectSettings = {
+    enableSearch: true,
+    checkedStyle: 'fontawesome',
+    buttonClasses: 'h-btn btn-default btn-block',
+    dynamicTitleMaxItems: 1
+  };
+  optionsModel: number[];
+  myOptions: IMultiSelectOption[];
 
   additionalOptions = [
     {
@@ -104,6 +112,7 @@ export class AdminComponent implements OnInit {
     this.authService.getRegisterFields().subscribe((response: any) => {
       console.log(response);
       this.registrationOptions = response;
+      this.myOptions = this.registrationOptions.applications;
     });
   }
 
@@ -111,8 +120,13 @@ export class AdminComponent implements OnInit {
     this.authService.getUser(id).subscribe((response: any) => {
       console.log(response)
       this.editData = response;
+      this.optionsModel = response.applications;
     });
   }
 
+  onChange() {
+    console.log(this.optionsModel);
+    this.editData.applications = this.optionsModel;
+  }
 
 }

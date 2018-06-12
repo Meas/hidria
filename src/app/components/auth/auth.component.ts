@@ -3,6 +3,7 @@ import {generateUrlEncodedData, setStorageData} from '../../helpers/helper';
 import {AuthService} from '../../services/auth/auth.service';
 import {Router} from '@angular/router';
 import {CustomNotificationsService} from '../../services/notifications/notifications.service';
+import {IMultiSelectOption, IMultiSelectSettings} from 'angular-2-dropdown-multiselect';
 
 @Component({
   selector: 'app-auth',
@@ -38,12 +39,22 @@ export class AuthComponent implements OnInit {
     applications: [],
     termsAndConditions: false
   };
+  thanksMessage = false;
 
   registrationOptions = {
     industry: [],
     position: [],
     applications: []
   };
+  mySettings: IMultiSelectSettings = {
+    enableSearch: true,
+    checkedStyle: 'fontawesome',
+    buttonClasses: 'h-btn btn-default btn-block',
+    dynamicTitleMaxItems: 1
+  };
+  optionsModel: number[];
+  myOptions: IMultiSelectOption[];
+
 
   changePasswordData = {
     oldPassword: '',
@@ -72,6 +83,7 @@ export class AuthComponent implements OnInit {
     this.authService.getRegisterFields().subscribe((response: any) => {
       console.log(response);
       this.registrationOptions = response;
+      this.myOptions = this.registrationOptions.applications;
     });
   }
 
@@ -96,6 +108,12 @@ export class AuthComponent implements OnInit {
       this.authService.register(this.registerData).subscribe((response: any) => {
         console.log(response);
         this.notification.message('warn', 'Warning', response.message);
+        this.thanksMessage = true;
+        // if (!response.message) {
+        //   this.loginData.userName = this.registerData.email;
+        //   this.loginData.password = this.registerData.password;
+        //   this.onLoginClicked();
+        // }
       });
     }
   }
@@ -129,6 +147,11 @@ export class AuthComponent implements OnInit {
 
   handleCorrectCaptcha(event) {
     console.log(event);
+  }
+
+  onChange() {
+    console.log(this.optionsModel);
+    this.registerData.applications = this.optionsModel;
   }
 
 }

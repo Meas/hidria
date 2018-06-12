@@ -19,6 +19,7 @@ export class ComparisonComponent implements OnInit {
   searchTerm: String = '';
   sortBy: String = '';
 
+  showGraph = false;
   graph: any = {};
   tables;
   comparisonList: any = [];
@@ -41,6 +42,14 @@ export class ComparisonComponent implements OnInit {
   getComparisonList() {
     console.log(JSON.parse(localStorage.getItem('comparison')));
     this.comparisonList = JSON.parse(localStorage.getItem('comparison')) !== null ? JSON.parse(localStorage.getItem('comparison')) : [];
+    this.comparisonList.forEach((data, i) => {
+      if (i === 0) {
+        this.graph = data.graph;
+      } else {
+        this.graph.ypoints = this.graph.ypoints.concat(data.graph.ypoints);
+        this.graph.borderColor = this.graph.borderColor.concat(data.graph.borderColor);
+      }
+    })
     this.comparisonList.forEach((model, i) => {
       if (i === 0) {
         this.tables.push([], [], []);
@@ -68,13 +77,23 @@ export class ComparisonComponent implements OnInit {
   onDeleteFromComparison (id) {
     this.comparisonList = this.comparisonList.filter(model => model.id !== id);
     localStorage.setItem('comparison', JSON.stringify(this.comparisonList));
+    this.comparisonList = JSON.parse(localStorage.getItem('comparison')) !== null ? JSON.parse(localStorage.getItem('comparison')) : [];
     this.myModal.visible = false;
+    this.comparisonList.forEach((data, i) => {
+      if (i === 0) {
+        this.graph = data.graph;
+      } else {
+        this.graph.ypoints = this.graph.ypoints.concat(data.graph.ypoints);
+        this.graph.borderColor = this.graph.borderColor.concat(data.graph.borderColor);
+      }
+    });
   }
 
   clearAll() {
     localStorage.setItem('comparison', JSON.stringify([]));
     this.comparisonList = [];
     this.myModal.visible = false;
+    this.graph = {};
   }
 
   clearAllConfirm() {

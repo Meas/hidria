@@ -130,9 +130,10 @@
             </div>
             <div class="col-12">
               <app-label-box [parameter]="{ description: 'Applications' }"></app-label-box>
-              <select class="full-size" [(ngModel)]="registerData.applications">
-                <option *ngFor="let value of registrationOptions.applications" [ngValue]="value.id">{{ value.name }}</option>
-              </select>
+              <!--<select class="full-size" [(ngModel)]="registerData.applications">-->
+                <!--<option *ngFor="let value of registrationOptions.applications" [ngValue]="value.id">{{ value.name }}</option>-->
+              <!--</select>-->
+              <ss-multiselect-dropdown [settings]="mySettings" [options]="myOptions" [(ngModel)]="optionsModel" (ngModelChange)="onChange($event)"></ss-multiselect-dropdown>
             </div>
           </div>
           <div class="row border">
@@ -154,7 +155,7 @@
           </div>
           <div class="row">
             <div class="function-buttons">
-              <button class="btn full-size" (click)="onRegisterClicked()">REGISTER</button>
+              <button class="btn full-size" (click)="onRegisterClicked()">{{ thanksMessage ? 'THANK YOU' : 'REGISTER'}}</button>
             </div>
           </div>
         </div>

@@ -18,22 +18,22 @@
   <table>
     <thead>
     <tr>
-      <th *ngFor="let title of tableData.headers.slice(1, tableData.headers.length)" (click)="sortData(title, orientation = !orientation)">{{ title }} <b>{{!orientation && title.toLowerCase() === sort ? '▲' : '▼'}}</b></th>
+      <th *ngFor="let title of tableData.headers.slice(1, tableData.headers.length); let i = index" (click)="sortData(title.code, orientation = !orientation)">{{ title.name }} <b>{{!orientation && title.code === sort ? '▲' : '▼'}}</b></th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let dt of tableData.data | search:['value', search] | sortModels:[sort, orientation]" (click)="modelSelected.emit(dt[0].value)">
-      <td *ngIf="isSelectable"><input type="checkbox"></td>
-      <td>{{ dt[1].value }}</td>
-      <td>{{ dt[2].value }}</td>
-      <td>{{ dt[3].value }}</td>
-      <td>{{ dt[4].value }}</td>
-      <td>{{ dt[5].value }}</td>
-      <td>{{ dt[6].value }}</td>
-      <td>{{ dt[7].value }}</td>
-      <td>{{ dt[8].value }}</td>
-      <td></td>
-    </tr>
+      <tr *ngFor="let item of tableData.data | search:['code', search] | sort:[sort, orientation]" (click)="modelSelected.emit(item.id)">
+        <td *ngIf="isSelectable"><input type="checkbox"></td>
+        <td>{{ item.code }}</td>
+        <td>{{ item.modelType }}</td>
+        <td>{{ item.nominalVoltage || item.rotationalSpeed }}</td>
+        <td>{{ item.nominalVoltageRange || item.airFlow }}</td>
+        <td>{{ item.frequency || item.pressureDrop }}</td>
+        <td>{{ item.inputPower || item.overallEfficiency }}</td>
+        <td>{{ item.inputCurrent || item.efficiencyCategory }}</td>
+        <td>{{ item.price }}</td>
+        <td></td>
+      </tr>
     </tbody>
   </table>
 </div>

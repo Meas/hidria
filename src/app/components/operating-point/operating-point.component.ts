@@ -4,6 +4,7 @@ import {OperatingPointService} from '../../services/operating-point/operating-po
 import {remove, find} from 'lodash';
 import {MyProjectsService} from '../../services/my-projects/my-projects.service';
 import {CustomNotificationsService} from '../../services/notifications/notifications.service';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-operating-point',
@@ -132,7 +133,8 @@ export class OperatingPointComponent implements OnInit {
               private zone: NgZone,
               private cd: ChangeDetectorRef,
               private notification: CustomNotificationsService,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private translate: TranslateService) {
     this.operationPointId = +localStorage.getItem('operation-point');
   }
 
@@ -148,9 +150,7 @@ export class OperatingPointComponent implements OnInit {
       this.getTable(id);
       this.getProjects();
       this.postCharts(id);
-      setTimeout(() => {
-        this.loading = false;
-      }, 1000);
+      this.loading = false;
     });
 
     this.modelsToCompare = JSON.parse(localStorage.getItem('comparison')) !== null ? JSON.parse(localStorage.getItem('comparison')) : [];
@@ -174,7 +174,6 @@ export class OperatingPointComponent implements OnInit {
       if (push) {
         this.secondLabel = response.yUnit;
         this.graphData.ypoints = this.graphData.ypoints.concat(response.ypoints);
-
         this.graphData.borderColor = this.graphData.borderColor.concat(response.borderColor);
       } else {
         this.graphData = response;
@@ -288,13 +287,15 @@ export class OperatingPointComponent implements OnInit {
   }
 
   addToComparisonFunc() {
+    console.log(this.graphData)
     if (Array.isArray(this.tables)) {
       this.modelsToCompare.push({
         id: this.modelsToCompare.length,
         name: this.card['name'],
         color: 'blue',
         image: this.card['image'],
-        data: this.tables
+        data: this.tables,
+        graph: this.graphData
       });
     }
 
@@ -328,6 +329,10 @@ export class OperatingPointComponent implements OnInit {
           model: [this.id]
         }).subscribe((res: any) => {
           this.notification.message('success', 'Success', 'Project created and Item added to project');
+        });
+      } else {
+        this.translate.get(response.message).subscribe((res: string) => {
+          this.notification.message(response.messageType, response.messageType, res);
         });
       }
 

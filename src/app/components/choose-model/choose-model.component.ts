@@ -3,7 +3,7 @@ import {ChooseModelService} from '../../services/chooseModel/chooseModel.service
 import {ActivatedRoute, Params, Router} from '@angular/router';
 
 import {CustomNotificationsService} from '../../services/notifications/notifications.service';
-import * as _ from 'lodash';
+import { isEmpty, assign } from 'lodash';
 
 @Component({
   selector: 'app-choose-model',
@@ -68,7 +68,29 @@ export class ChooseModelComponent implements OnInit {
   }
   getTable(): void {
     this.chooseModelService.getItems(this.model || this.data[0].value, 'table').subscribe((response: any) => {
-      this.features.table = response;
+      console.log(response)
+
+      this.features.table = response.map(obj => {
+        obj.data = obj.data.map((el, i) => {
+          const t = {};
+          el.map((o, j) => {
+            if (i === 0) {
+              obj.headers[j] = {
+                name: obj.headers[j],
+                code: o.name
+              };
+            }
+            assign(t, Object.defineProperty({}, o.name, {
+              enumerable: true,
+              configurable: true,
+              writable: true,
+              value: o.value
+            }));
+          });
+          return t;
+        });
+        return obj;
+      });
     });
   }
   getGraph(): void {
@@ -89,8 +111,27 @@ export class ChooseModelComponent implements OnInit {
   }
   getSearchTable(data) {
     this.chooseModelService.getSearchTable(data).subscribe((response: any) => {
-      console.log(response, 'table')
-      this.features.table = response;
+      this.features.table = response.map(obj => {
+        obj.data = obj.data.map((el, i) => {
+          const t = {};
+          el.map((o, j) => {
+            if (i === 0) {
+              obj.headers[j] = {
+                name: obj.headers[j],
+                code: o.name
+              };
+            }
+            assign(t, Object.defineProperty({}, o.name, {
+              enumerable: true,
+              configurable: true,
+              writable: true,
+              value: o.value
+            }));
+          });
+          return t;
+        });
+        return obj;
+      });
     });
   }
   getSearchGraph(data) {
@@ -114,7 +155,7 @@ export class ChooseModelComponent implements OnInit {
   getDataFromParams() {
     const tempArray: Array<any> = [];
     this.activatedRoute.queryParams.subscribe((queryParams: Params) => {
-      if (!_.isEmpty(queryParams)) {
+      if (!isEmpty(queryParams)) {
         for (const attribute in queryParams) {
           if (queryParams[attribute]) {
             const tempObject = {

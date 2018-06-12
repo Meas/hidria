@@ -152,7 +152,6 @@ export class ChartAreaComponent implements OnInit, AfterViewInit {
           callbacks: {
             label: function(tooltipItem, data) {
               return [
-                data.datasets[tooltipItem.datasetIndex].percentageLabel + ': ' + data.datasets[tooltipItem.datasetIndex].percentage + '%',
                 data.datasets[tooltipItem.datasetIndex].xLabel + ' ' + data.datasets[tooltipItem.datasetIndex].xUnit
                 + ': ' + data.datasets[tooltipItem.datasetIndex].xValue[tooltipItem.index],
                 data.datasets[tooltipItem.datasetIndex].yLabel + ' ' + data.datasets[tooltipItem.datasetIndex].yUnit

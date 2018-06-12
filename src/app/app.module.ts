@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NvD3Module } from 'ng2-nvd3';
+import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -66,6 +67,7 @@ import { RouteNotFoundComponent } from './components/route-not-found/route-not-f
     HttpClientModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    MultiselectDropdownModule
   ],
   providers: [
     MainService,

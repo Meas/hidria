@@ -48,7 +48,7 @@ import { LegendComponent } from './legend/legend.component';
 import { SwitchButtonComponent } from './switch-button/switch-button.component';
 import { ProjectSelectionComponent } from './project-selection/project-selection.component';
 import { SearchPipe } from '../pipes/filter/filter.pipe';
-import { SortPipe, SortModelsPipe } from '../pipes/sort/sort.pipe';
+import { SortPipe } from '../pipes/sort/sort.pipe';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'http://13.93.51.225/hidriaAPI/api/translation/', '');
@@ -110,8 +110,7 @@ export function createTranslateLoader(http: HttpClient) {
     SwitchButtonComponent,
     ProjectSelectionComponent,
     SearchPipe,
-    SortPipe,
-    SortModelsPipe
+    SortPipe
   ],
   exports: [
     HeaderComponent,
@@ -151,8 +150,7 @@ export function createTranslateLoader(http: HttpClient) {
     SwitchButtonComponent,
     ProjectSelectionComponent,
     SearchPipe,
-    SortPipe,
-    SortModelsPipe
+    SortPipe
   ],
   providers: [
     ChartServiceService
