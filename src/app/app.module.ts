@@ -36,6 +36,7 @@ import { CustomNotificationsService } from './services/notifications/notificatio
 import { MyProjectsService } from './services/my-projects/my-projects.service';
 import { ComparisonService } from './services/comparison/comparison.service';
 import { UserService } from './services/user/user.service';
+import { StatisticsService } from './services/statistics/statistics.service';
 
 import { FilterPipe } from './pipes/filter/filter.pipe';
 import { RouteNotFoundComponent } from './components/route-not-found/route-not-found.component';
@@ -82,7 +83,8 @@ import { RouteNotFoundComponent } from './components/route-not-found/route-not-f
     CustomNotificationsService,
     MyProjectsService,
     ComparisonService,
-    UserService
+    UserService,
+    StatisticsService
   ],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

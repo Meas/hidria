@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { MainService } from '../main.service';
+import { HelperService } from '../helper/helper.service';
 
 @Injectable()
 export class UserService {
 
-  constructor(private service: MainService) { }
+  constructor(private service: MainService, private helper: HelperService) { }
 
   /**
    * Gets array of items
@@ -14,6 +15,10 @@ export class UserService {
    */
   getItems(): Observable<any> {
     return this.service.get('users');
+  }
+
+  updateMetricSystem(metric): Observable<any> {
+    return this.service.get(`users/${this.helper.getUserId()}/metric/${metric}`);
   }
 
   updateUser(data): Observable<any> {

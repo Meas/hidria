@@ -41,15 +41,21 @@ export class MainService {
    */
   post(route: string, data?: {}, queryParams?: {}): Observable<any> {
     let headers = new HttpHeaders();
-    this.helper.createAuthorizationHeader(headers);
 
     if (route === 'login') {
       headers = headers.append('Content-Type', 'application/x-www-form-urlencoded');
+      return this.http.post(this.helper.generateRoute(route, queryParams), data, {
+        headers: headers
+      }).pipe(map(res => this.helper.checkDataValidity(res)));
+    } else {
+      headers = this.helper.createAuthorizationHeader(headers);
+
+      return this.http.post(this.helper.generateRoute(route, queryParams), data, {
+        headers: headers
+      }).pipe(map(res => this.helper.checkDataValidity(res)));
     }
 
-    return this.http.post(this.helper.generateRoute(route, queryParams), data, {
-      headers: headers
-    }).pipe(map(res => this.helper.checkDataValidity(res)));
+
   }
 
   /**

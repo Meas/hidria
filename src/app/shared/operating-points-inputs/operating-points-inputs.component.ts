@@ -1,7 +1,6 @@
-import {Component, Input, OnInit, EventEmitter, Output, ChangeDetectionStrategy} from '@angular/core';
+import {Component, Input, OnInit, EventEmitter, Output} from '@angular/core';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-operating-points-inputs',
   templateUrl: './operating-points-inputs.component.html',
   styleUrls: ['./operating-points-inputs.component.scss']

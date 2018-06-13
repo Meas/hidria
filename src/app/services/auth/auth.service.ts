@@ -3,7 +3,9 @@ import { Observable } from 'rxjs';
 import {MainService} from '../main.service';
 import {HttpClient} from '@angular/common/http';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthService {
 
   constructor(private service: MainService, private http: HttpClient) {}

@@ -6,15 +6,15 @@
           <div class="row border">
             <div class="col-12">
               <app-label-box [parameter]="{ description: 'Enter your password'}"></app-label-box>
-              <input class="full-size" type="password" [(ngModel)]="changePasswordData.oldPassword"/>
+              <input name="oldPassword" class="full-size" type="password" [(ngModel)]="changePasswordData.oldPassword"/>
             </div>
             <div class="col-12">
               <app-label-box [parameter]="{ description: 'Enter new password'}"></app-label-box>
-              <input class="full-size" type="password" [(ngModel)]="changePasswordData.newPassword"/>
+              <input name="newPassword" class="full-size" type="password" [(ngModel)]="changePasswordData.newPassword"/>
             </div>
             <div class="col-12">
               <app-label-box [parameter]="{ description: 'Confirm new password'}"></app-label-box>
-              <input class="full-size" type="password" [(ngModel)]="changePasswordData.mewPasswordConfirm"/>
+              <input name="newConfirmPassword" class="full-size" type="password" [(ngModel)]="changePasswordData.mewPasswordConfirm"/>
             </div>
           </div>
           <div class="row">
@@ -37,11 +37,11 @@
             </div>
             <div class="col-12">
               <app-label-box [parameter]="{ description: 'Email' }"></app-label-box>
-              <input class="full-size" [(ngModel)]="loginData.userName" (keyup.enter)="onLoginClicked()"/>
+              <input name="email" class="full-size" [(ngModel)]="loginData.userName" (keyup.enter)="onLoginClicked()"/>
             </div>
             <div class="col-12">
               <app-label-box [parameter]="{ description: 'Password' }"></app-label-box>
-              <input class="full-size" type="password" [(ngModel)]="loginData.password" (keyup.enter)="onLoginClicked()"/>
+              <input name="password" class="full-size" type="password" [(ngModel)]="loginData.password" (keyup.enter)="onLoginClicked()"/>
             </div>
           </div>
           <div class="row">
@@ -94,37 +94,37 @@
             </div>
             <div class="col-6">
               <app-label-box [parameter]="{ description: 'First name' }"></app-label-box>
-              <input class="full-size" [(ngModel)]="registerData.firstName"/>
+              <input name="firstName" class="full-size" [(ngModel)]="registerData.firstName"/>
             </div>
             <div class="col-6">
               <app-label-box [parameter]="{ description: 'Last name' }"></app-label-box>
-              <input class="full-size" [(ngModel)]="registerData.lastName"/>
+              <input name="LatName" class="full-size" [(ngModel)]="registerData.lastName"/>
             </div>
             <div class="col-6">
               <app-label-box [parameter]="{ description: 'Email' }"></app-label-box>
-              <input class="full-size" [(ngModel)]="registerData.email"/>
+              <input name="email" class="full-size" [(ngModel)]="registerData.email"/>
             </div>
             <div class="col-6">
               <app-label-box [parameter]="{ description: 'Country' }"></app-label-box>
-              <input class="full-size" [(ngModel)]="registerData.country"/>
+              <input name="country" class="full-size" [(ngModel)]="registerData.country"/>
             </div>
             <div class="col-6">
               <app-label-box [parameter]="{ description: 'Company' }"></app-label-box>
-              <input class="full-size" [(ngModel)]="registerData.company"/>
+              <input name="company" class="full-size" [(ngModel)]="registerData.company"/>
             </div>
             <div class="col-6">
               <app-label-box [parameter]="{ description: 'Address' }"></app-label-box>
-              <input class="full-size" [(ngModel)]="registerData.address"/>
+              <input name="address" class="full-size" [(ngModel)]="registerData.address"/>
             </div>
             <div class="col-6">
               <app-label-box [parameter]="{ description: 'Industry' }"></app-label-box>
-              <select class="full-size" [(ngModel)]="registerData.industry">
+              <select name="industry" class="full-size" [(ngModel)]="registerData.industry">
                 <option *ngFor="let value of registrationOptions.industry" [ngValue]="value.id">{{ value.name }}</option>
               </select>
             </div>
             <div class="col-6">
               <app-label-box [parameter]="{ description: 'Position' }"></app-label-box>
-              <select class="full-size" [(ngModel)]="registerData.position">
+              <select name="position" class="full-size" [(ngModel)]="registerData.position">
                 <option *ngFor="let value of registrationOptions.position" [ngValue]="value.id">{{ value.name }}</option>
               </select>
             </div>
@@ -139,15 +139,15 @@
           <div class="row border">
             <div class="col-6">
               <app-label-box [parameter]="{ description: 'Password' }"></app-label-box>
-              <input class="full-size" type="password" [(ngModel)]="registerData.password"/>
+              <input name="password" class="full-size" type="password" [(ngModel)]="registerData.password"/>
             </div>
             <div class="col-6">
               <app-label-box [parameter]="{ description: 'Confirm password' }"></app-label-box>
-              <input class="full-size" type="password" [(ngModel)]="registerData.passwordRepeat"/>
+              <input name="passwordRepeat" class="full-size" type="password" [(ngModel)]="registerData.passwordRepeat"/>
             </div>
             <div class="col-12 center-elements-inline">
               <p>Accept <a href="">Terms and Conditions</a></p>
-              <input type="checkbox" [(ngModel)]="registerData.termsAndConditions">
+              <input name="termsAndConditions" type="checkbox" [(ngModel)]="registerData.termsAndConditions">
             </div>
             <div class="col-12 center-elements-inline">
               <re-captcha (captchaResponse)="handleCorrectCaptcha($event)" site_key="6Lcp4FcUAAAAAOFEZL2cVvH1Uf5g5QeMRSDRCUWm"></re-captcha>

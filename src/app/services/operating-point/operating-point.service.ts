@@ -71,6 +71,10 @@ export class OperatingPointService {
     // }
   }
 
+  getDensity(data): Observable<any> {
+    return this.service.post(`choose-model/operating-point/density`, data);
+  }
+
   /**
    * Gets carts data
    * @returns {Observable<any>}

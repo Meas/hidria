@@ -4,7 +4,9 @@ import { Observable } from 'rxjs';
 
 import { AuthService } from '../auth/auth.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class SecurityService {
 
   constructor(private authService: AuthService, private router: Router) {}

@@ -4,7 +4,9 @@ import { Observable } from 'rxjs';
 import { MainService } from '../main.service';
 import {HelperService} from '../helper/helper.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ComparisonService {
 
   constructor(private service: MainService, private helper: HelperService) { }

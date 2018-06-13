@@ -23,8 +23,8 @@
             <a *ngIf="isLoggedIn" href="" class="link" (click)="logout()">{{ 'TRANSLATE.LOGOUT' | translate }}</a>
           </li>
           <li *ngIf="isLoggedIn" class="nav-link measures">
-            <button [ngClass]="measure === 'm' ? 'meters-active' : ''" (click)="changeMetricsClick.emit('m')">m</button>
-            <button [ngClass]="measure === 'ft' ? 'feets-active' : ''" (click)="changeMetricsClick.emit('ft')">ft</button>
+            <button [ngClass]="measure === 'metric' ? 'meters-active' : ''" (click)="changeMetricsClick.emit('metric')">m</button>
+            <button [ngClass]="measure === 'imperial' ? 'feats-active' : ''" (click)="changeMetricsClick.emit('imperial')">ft</button>
           </li>
           <!-- <li class="nav-link languages">
             <ul class="languagepicker roundborders">

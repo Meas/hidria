@@ -47,7 +47,7 @@ import { ChooseModelTableHorizontalComponent } from './choose-model-table-horizo
 import { LegendComponent } from './legend/legend.component';
 import { SwitchButtonComponent } from './switch-button/switch-button.component';
 import { ProjectSelectionComponent } from './project-selection/project-selection.component';
-import { SearchPipe } from '../pipes/filter/filter.pipe';
+import { DatePipe, SearchPipe } from '../pipes/filter/filter.pipe';
 import { SortPipe } from '../pipes/sort/sort.pipe';
 
 export function createTranslateLoader(http: HttpClient) {
@@ -110,7 +110,8 @@ export function createTranslateLoader(http: HttpClient) {
     SwitchButtonComponent,
     ProjectSelectionComponent,
     SearchPipe,
-    SortPipe
+    SortPipe,
+    DatePipe
   ],
   exports: [
     HeaderComponent,

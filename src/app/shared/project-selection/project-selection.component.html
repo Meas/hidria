@@ -5,12 +5,12 @@
         <option disabled value="">Select Project</option>
         <option *ngFor="let project of projects" [value]="project.id">{{ project.name }}</option>
       </select>
-      <button style="height: 30px" class="h-btn btn-default" (click)="select.emit(projectId)">Select</button>
+      <button style="height: 30px" class="h-btn btn-default" (click)="select.emit(projectId)">Confirm</button>
     </div>
 
     <div *ngIf="activeTab === 'create'" style="display: flex">
       <input style="height: 30px" type="text" [(ngModel)]="projectName">
-      <button style="height: 30px" class="h-btn btn-default" (click)="create.emit(projectName)">Add New</button>
+      <button style="height: 30px" class="h-btn btn-default" (click)="create.emit(projectName)">Confirm</button>
     </div>
   </div>
 

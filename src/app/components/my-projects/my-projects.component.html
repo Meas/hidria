@@ -47,7 +47,7 @@
 </div>
 
 <div *ngIf="view ==='create-project'">
-  <app-add-to-project (cancel)="view = ''"
+  <app-add-to-project (cancel)="view = ''; selectedProject = null"
                       [type]="'project'"
                       [editing]="editing"
                       [projectData]="selectedProject"

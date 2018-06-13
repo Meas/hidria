@@ -3,7 +3,9 @@ import { Observable } from 'rxjs';
 
 import { MainService } from '../main.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ChooseModelService {
 
   constructor(private service: MainService) { }

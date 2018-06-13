@@ -128,7 +128,7 @@ export class MyProjectsComponent implements OnInit {
   }
 
   createProject() {
-    this.selectedProject = {};
+    this.selectedProject = null;
     this.view = 'create-project';
     this.editing = false;
   }

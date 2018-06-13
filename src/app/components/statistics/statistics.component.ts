@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {StatisticsService} from '../../services/statistics/statistics.service';
 
 @Component({
   selector: 'app-statistics',
@@ -9,62 +10,38 @@ export class StatisticsComponent implements OnInit {
 
   topApps = {
     headers: ['Type', 'Art No.', 'Sales'],
-    data: [
-      {
-        values: ['AC Axial fans', 'R09-3018H-2M-4248', '€ 11.100']
-      },
-      {
-        values: ['AC Axial fans', 'R09-3018H-2M-4248', '€ 21.100']
-      },
-      {
-        values: ['AC Axial fans', 'R09-3018H-2M-4248', '€ 10.100']
-      },
-      {
-        values: ['AC Axial fans', 'R09-3018H-2M-4248', '€ 5.000']
-      },
-      {
-        values: ['AC Axial fans', 'R09-3018H-2M-4248', '€ 21.100']
-      }
-    ]
+    data: []
   };
   recentOrders = {
     headers: ['Order ID', 'Items', 'Member', 'Date/time', 'Total'],
-    data: [
-      {
-        values: ['1200', 'R09-3018H-2M-4248', 'John Doe', '8/01/2017 12:33:00', '€ 21.100']
-      },
-      {
-        values: ['1200', 'R09-3018H-2M-4248', 'John Doe', '8/01/2017 12:33:00', '€ 21.100']
-      },
-      {
-        values: ['1200', 'R09-3018H-2M-4248', 'John Doe', '8/01/2017 12:33:00', '€ 21.100']
-      },
-      {
-        values: ['1200', 'R09-3018H-2M-4248', 'John Doe', '8/01/2017 12:33:00', '€ 21.100']
-      },
-      {
-        values: ['1200', 'R09-3018H-2M-4248', 'John Doe', '8/01/2017 12:33:00', '€ 21.100']
-      },
-      {
-        values: ['1200', 'R09-3018H-2M-4248', 'John Doe', '8/01/2017 12:33:00', '€ 21.100']
-      },
-      {
-        values: ['1200', 'R09-3018H-2M-4248', 'John Doe', '8/01/2017 12:33:00', '€ 21.100']
-      },
-      {
-        values: ['1200', 'R09-3018H-2M-4248', 'John Doe', '8/01/2017 12:33:00', '€ 21.100']
-      },
-      {
-        values: ['1200', 'R09-3018H-2M-4248', 'John Doe', '8/01/2017 12:33:00', '€ 21.100']
-      },
-      {
-        values: ['1200', 'R09-3018H-2M-4248', 'John Doe', '8/01/2017 12:33:00', '€ 21.100']
-      }
-    ]
+    data: []
   };
-  constructor() { }
+  generalData = [];
+  constructor(private statisticsService: StatisticsService) { }
 
   ngOnInit() {
+    this.getGeneralForm();
+    this.getProductForm();
+    this.getRecentOrders();
+  }
+
+  getGeneralForm() {
+    this.statisticsService.getGeneralForm().subscribe((response: any) => {
+      console.log(response);
+      this.generalData = response;
+    });
+  }
+  getProductForm() {
+    this.statisticsService.getProductForm().subscribe((response: any) => {
+      console.log(response);
+      this.topApps.data = response;
+    });
+  }
+  getRecentOrders() {
+    this.statisticsService.getRecentOrders().subscribe((response: any) => {
+      console.log(response);
+      this.recentOrders.data = response;
+    });
   }
 
 }

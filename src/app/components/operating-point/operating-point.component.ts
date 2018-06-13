@@ -241,10 +241,20 @@ export class OperatingPointComponent implements OnInit {
     this.graphOptions.airFlow = Math.ceil(data[0].defaultValue);
     this.graphOptions.staticPressure = Math.ceil(data[1].defaultValue);
     this.graphOptions.altitude = Math.ceil(data[2].defaultValue);
-    this.graphOptions.density = Math.ceil(data[3].defaultValue);
-    this.graphOptions.temperature = Math.ceil(data[3].subparameter[0].defaultValue);
-    this.graphOptions.humidity = Math.ceil(data[3].subparameter[1].defaultValue);
-    this.graphOptions.pressure = Math.ceil(data[3].subparameter[2].defaultValue);
+
+    if (data[3].subparameter[0].defaultValue && data[3].subparameter[1].defaultValue && data[3].subparameter[2].defaultValue) {
+      this.operatingPointService.getDensity({
+        temperature: data[3].subparameter[0].defaultValue,
+        humidity: data[3].subparameter[1].defaultValue,
+        pressure: data[3].subparameter[2].defaultValue
+      }).subscribe((response: any) => {
+        this.operatingPointInputs[3].defaultValue = response;
+        this.graphOptions.density = response;
+      });
+    } else {
+      this.graphOptions.density = Math.ceil(data[3].defaultValue);
+    }
+
     if (this.tables.length !== 0) {
       this.graphOptions.rpm = Math.ceil(this.tables[0].data[1].value);
     }
@@ -329,6 +339,7 @@ export class OperatingPointComponent implements OnInit {
           model: [this.id]
         }).subscribe((res: any) => {
           this.notification.message('success', 'Success', 'Project created and Item added to project');
+          this.getProjects();
         });
       } else {
         this.translate.get(response.message).subscribe((res: string) => {

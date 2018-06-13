@@ -9,6 +9,7 @@ export class DataTableComponent implements OnInit {
 
   @Input() tableData: Array<any> = [];
   @Input() isIndexed = false;
+  @Input() type = '';
 
   constructor() { }
 

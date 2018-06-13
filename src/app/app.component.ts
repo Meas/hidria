@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { generateUrlEncodedData, setStorageData } from './helpers/helper';
 import { CustomNotificationsService } from './services/notifications/notifications.service';
 import { SearchByCodeService } from './services/search-by-code/search-by-code.service';
+import {UserService} from './services/user/user.service';
+import {HelperService} from './services/helper/helper.service';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +15,7 @@ import { SearchByCodeService } from './services/search-by-code/search-by-code.se
 })
 export class AppComponent {
 
-  measure = 'm';
+  measure = 'metric';
   loggedIn = false;
   isOpenedSearchByCode = false;
   selectedLanguage = localStorage.getItem('lang') ? localStorage.getItem('lang') : 'en';
@@ -22,15 +24,23 @@ export class AppComponent {
               private router: Router,
               private translate: TranslateService,
               private searchByCodeService: SearchByCodeService,
+              private userService: UserService,
+              private helper: HelperService,
               private notification: CustomNotificationsService) {
     this.loggedIn = authService.isLoggedIn();
     translate.use(this.selectedLanguage);
     console.log(this.selectedLanguage);
     router.events.subscribe((val) => this.isOpenedSearchByCode = false);
+    this.authService.getUser(this.helper.getUserId()).subscribe((response: any) => {
+      this.measure = response.metricSystem;
+    });
   }
 
   onChangeMetrics(event): void {
-    this.measure = event;
+    this.userService.updateMetricSystem(event).subscribe((response: any) => {
+      console.log(response);
+      this.measure = event;
+    });
   }
 
   onChangeLanguage(event) {
