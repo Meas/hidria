@@ -6,14 +6,17 @@
     <div class="col-lg-2 offset-lg-1 title">
       {{ project.name | translate }}
     </div>
-    <div class="col-lg-1 offset-lg-7 delete-project" (click)="deleteProject.emit(project.id)">
-      <img style="width: 40px" src="assets/icons/delete.png">
+    <div class="col-lg-1 offset-lg-7 delete-project">
+      <img style="width: 40px" src="assets/icons/delete.png" (click)="deleteProject.emit(project.id)">
+
       <div>
         {{ 'TRANSLATE.DELETE' | translate }}
       </div>
       <div>
         {{ 'TRANSLATE.PROJECT' | translate }}
       </div>
+
+      <img style="width: 40px" src="assets/icons/download.png" (click)="getDatasheet.emit()">
     </div>
   </div>
   <div class="row no-gutters descriptions">

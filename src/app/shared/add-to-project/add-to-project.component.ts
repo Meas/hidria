@@ -13,93 +13,41 @@ export class AddToProjectComponent implements OnInit {
 
   elements = [
     {
-      id: 1,
       parameter: 'projectName',
-      order: '',
-      tag: 'input',
-      type: 'text',
       description: 'Project Name',
-      visibleUI: false,
-      visiblePRT: false,
-      unit: '',
-      required: false,
-      max: null,
-      min: null,
+      required: true,
       defaultOption: null
     },
     {
-      id: 2,
       parameter: 'construction',
-      order: '',
-      tag: 'input',
-      type: 'text',
       description: 'Construction',
-      visibleUI: false,
-      visiblePRT: false,
-      unit: '',
       required: false,
-      max: null,
-      min: null,
       defaultOption: null
     },
     {
-      id: 3,
       parameter: 'address',
-      order: '',
-      tag: 'input',
-      type: 'text',
       description: 'Address',
-      visibleUI: false,
-      visiblePRT: false,
-      unit: '',
       required: false,
       max: null,
       min: null,
       defaultOption: null
     },
     {
-      id: 4,
       parameter: 'purchaser',
-      order: '',
-      tag: 'input',
-      type: 'text',
       description: 'Purchaser',
-      visibleUI: false,
-      visiblePRT: false,
-      unit: '',
       required: false,
-      max: null,
-      min: null,
       defaultOption: null
     },
     {
-      id: 5,
       parameter: 'projectant',
-      order: '',
-      tag: 'input',
-      type: 'text',
       description: 'Projectant',
-      visibleUI: false,
-      visiblePRT: false,
-      unit: '',
       required: false,
-      max: null,
-      min: null,
       defaultOption: null
     },
     {
-      id: 6,
       parameter: 'business',
-      order: '',
-      tag: 'input',
-      type: 'text',
       description: 'Business',
-      visibleUI: false,
-      visiblePRT: false,
-      unit: '',
       required: false,
-      max: null,
-      min: null,
       defaultOption: null
     }
   ];
@@ -123,45 +71,29 @@ export class AddToProjectComponent implements OnInit {
         }
       }
     }
-  }
-  @Input() set projects(data: any) {
     this.fillFormValues();
-    this.createForm();
   }
+  @Input() set projects(data: any) {}
   @Output() cancel: EventEmitter<string> = new EventEmitter();
   @Output() postForm: EventEmitter<any> = new EventEmitter();
 
   projectForm: FormGroup;
-
-
+  preselectedValues = {};
   formValues = {};
 
-  constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute ) {}
+  constructor(private fb: FormBuilder, private notificaton: CustomNotificationsService) {
+    this.fillFormValues();
+    this.createForm();
+  }
 
   ngOnInit() {}
 
   createForm() {
-    this.projectForm = this.fb.group({
-
+    this.projectForm = this.fb.group(
+      this.formValues
+    );
+    this.projectForm.valueChanges.subscribe(data => {
     });
-  }
-
-  onSubmit() {
-    this.postForm.emit({
-      data: this.elements,
-      id: this.projectId
-    });
-    // this.projectForm['submitted'] = true;
-    // if (this.projectForm.valid) {
-    //   this.onValidForm();
-    // }
-  }
-
-  onValidForm():  void {
-    /* this._notification.getSuccess(`Successfully added to ${this.type}!`); */
-    /* console.log(this.projectForm); */
-    /* this.cancel.emit('cancel'); */
-    this.postForm.emit(this.projectForm);
   }
 
   maxValue(max) {
@@ -176,11 +108,43 @@ export class AddToProjectComponent implements OnInit {
     };
   }
 
-  fillFormValues(defaultValues: Boolean = false): void {
-    this.activatedRoute.params.subscribe((param: Params) => {
-      this.formValues['modelId'] = [param.id, []];
-    });
-    this.formValues['userId'] = [localStorage.getItem('id'), []];
+  fillFormValues(defaultValues: Boolean = false) {
+    for (const parameter of this.elements) {
+      let value;
+      if (defaultValues) {
+        value = parameter.defaultOption || '';
+        this.formValues[parameter.parameter] = value;
+      } else {
+        value = this.preselectedValues[parameter.parameter] || (parameter.defaultOption ? parameter.defaultOption : '');
+        this.formValues[parameter.parameter] = [value, []];
+        if (parameter.required) {
+          this.formValues[parameter.parameter][1].push(Validators.required);
+        }
+      }
+    }
   }
 
+  onSubmit() {
+    // this.postForm.emit({
+    //   data: this.elements,
+    //   id: this.projectId
+    // });
+    this.projectForm['submitted'] = true;
+    if (this.projectForm.valid) {
+      this.onValidForm();
+    } else {
+      this.notificaton.message('error', 'Error', 'Project name is required');
+    }
+  }
+
+  onValidForm():  void {
+    /* this._notification.getSuccess(`Successfully added to ${this.type}!`); */
+    /* console.log(this.projectForm); */
+    /* this.cancel.emit('cancel'); */
+    this.postForm.emit(this.projectForm);
+  }
+
+  hasRequiredError() {
+    return this.projectForm['submitted'] && this.projectForm.get('projectName').errors && this.projectForm.get('projectName').errors.required;
+  }
 }

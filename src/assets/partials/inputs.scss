@@ -4,11 +4,16 @@ label {
 }
 
 input {
+  padding: 8px;
   height: 35px;
   font-size: 15px;
   border: solid 1px $main-border-item;
   background: white;
   outline: none;
+
+  &:disabled {
+    opacity: 0.5;
+  }
 }
 
 select {

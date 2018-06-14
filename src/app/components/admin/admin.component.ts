@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../services/auth/auth.service';
 import {ActivatedRoute, Params} from '@angular/router';
 import {IMultiSelectOption, IMultiSelectSettings} from 'angular-2-dropdown-multiselect';
+import {TranslateService} from '@ngx-translate/core';
+import {CustomNotificationsService} from '../../services/notifications/notifications.service';
 
 @Component({
   selector: 'app-admin',
@@ -24,10 +26,10 @@ export class AdminComponent implements OnInit {
     industry: '',
     position: '',
     applications: [],
-    price: true,
+    price: null,
     factor: null,
-    comparison: true,
-    admin: true
+    comparison: null,
+    admin: null
   };
 
   registrationOptions = {
@@ -49,13 +51,13 @@ export class AdminComponent implements OnInit {
       options: [
         {
           id: 0,
-          selection: true,
-          description: 'Yes'
+          selection: false,
+          description: 'No'
         },
         {
           id: 1,
-          selection: false,
-          description: 'No'
+          selection: true,
+          description: 'Yes'
         }
       ],
       type: 'price'
@@ -64,13 +66,13 @@ export class AdminComponent implements OnInit {
       options: [
         {
           id: 0,
-          selection: true,
-          description: 'Yes'
+          selection: false,
+          description: 'No'
         },
         {
           id: 1,
-          selection: false,
-          description: 'No'
+          selection: true,
+          description: 'Yes'
         }
       ],
       type: 'comparison'
@@ -79,26 +81,23 @@ export class AdminComponent implements OnInit {
       options: [
         {
           id: 0,
-          selection: true,
-          description: 'Yes'
+          selection: false,
+          description: 'No'
         },
         {
           id: 1,
-          selection: false,
-          description: 'No'
+          selection: true,
+          description: 'Yes'
         }
       ],
       type: 'admin'
     }
   ];
 
-  adminOptions = {
-    price: false,
-    comparison: false,
-    admin: false
-  };
-
-  constructor(private authService: AuthService, private activetedRoute: ActivatedRoute) {
+  constructor(private authService: AuthService,
+              private activetedRoute: ActivatedRoute,
+              private translate: TranslateService,
+              private notification: CustomNotificationsService) {
     activetedRoute.params.subscribe((params: Params) => {
       this.getUser(params.id);
     });
@@ -118,7 +117,7 @@ export class AdminComponent implements OnInit {
 
   getUser(id) {
     this.authService.getUser(id).subscribe((response: any) => {
-      console.log(response)
+      console.log(response);
       this.editData = response;
       this.optionsModel = response.applications;
     });
@@ -127,6 +126,15 @@ export class AdminComponent implements OnInit {
   onChange() {
     console.log(this.optionsModel);
     this.editData.applications = this.optionsModel;
+  }
+
+  updateUser() {
+    console.log(this.editData);
+    this.authService.updateUser(this.editData).subscribe((response: any) => {
+      this.translate.get(response.message).subscribe((res: string) => {
+        this.notification.message(response.messageType, response.messageType, res);
+      });
+    });
   }
 
 }

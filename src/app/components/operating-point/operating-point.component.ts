@@ -325,29 +325,32 @@ export class OperatingPointComponent implements OnInit {
   }
 
   createProject(event) {
-    this.showProjectSelection = false;
-    this.projectService.createProject({
-      projectName: event,
-      construction: '',
-      address: '',
-      purchaser: '',
-      projectant: '',
-      business: ''
-    }).subscribe((response: any) => {
-      if (response.projectId) {
-        this.projectService.insertModels(response.projectId, {
-          model: [this.id]
-        }).subscribe((res: any) => {
-          this.notification.message('success', 'Success', 'Project created and Item added to project');
-          this.getProjects();
-        });
-      } else {
-        this.translate.get(response.message).subscribe((res: string) => {
-          this.notification.message(response.messageType, response.messageType, res);
-        });
-      }
-
-    });
+    if (event) {
+      this.showProjectSelection = false;
+      this.projectService.createProject({
+        projectName: event,
+        construction: '',
+        address: '',
+        purchaser: '',
+        projectant: '',
+        business: ''
+      }).subscribe((response: any) => {
+        if (response.projectId) {
+          this.projectService.insertModels(response.projectId, {
+            model: [this.id]
+          }).subscribe((res: any) => {
+            this.notification.message('success', 'Success', 'Project created and Item added to project');
+            this.getProjects();
+          });
+        } else {
+          this.translate.get(response.message).subscribe((res: string) => {
+            this.notification.message(response.messageType, response.messageType, res);
+          });
+        }
+      });
+    } else {
+      this.notification.message('warn', 'Warning', 'Project name is required');
+    }
   }
 
   onTypeSelected(event) {

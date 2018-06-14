@@ -47,18 +47,8 @@
               <ss-multiselect-dropdown [settings]="mySettings" [options]="myOptions" [(ngModel)]="optionsModel" (ngModelChange)="onChange($event)"></ss-multiselect-dropdown>
             </div>
           </div>
-          <div class="row border">
-            <div class="col-6">
-              <app-label-box [parameter]="{ description: 'Password' }"></app-label-box>
-              <input class="full-size" type="password" [(ngModel)]="editData.password"/>
-            </div>
-            <div class="col-6">
-              <app-label-box [parameter]="{ description: 'Confirm password' }"></app-label-box>
-              <input class="full-size" type="password" [(ngModel)]="editData.passwordRepeat"/>
-            </div>
-          </div>
           <div class="row" style="margin-top: 20px;">
-            <button class="h-btn full-size btn-default">Confirm</button>
+            <button class="h-btn full-size btn-default" (click)="updateUser()">Confirm</button>
           </div>
         </div>
       </div>
@@ -71,11 +61,11 @@
           <p>{{options.type.toUpperCase()}}</p>
         </div>
         <div class="col-lg-6">
-          <app-switch-button [options]="options.options" [selected]="adminOptions[options.type]"
-                             (select)="adminOptions[options.type] = $event"></app-switch-button>
+          <app-switch-button [options]="options.options" [selected]="editData[options.type]"
+                             (select)="editData[options.type] = $event"></app-switch-button>
         </div>
         <div class="col-lg-2">
-          <input placeholder="Factor" style="width: 100%" type="number" *ngIf="options.type === 'price' && adminOptions[options.type]">
+          <input placeholder="Factor" style="width: 100%" type="number" [(ngModel)]="editData.factor" *ngIf="options.type === 'price' && editData[options.type]">
         </div>
       </div>
     </div>

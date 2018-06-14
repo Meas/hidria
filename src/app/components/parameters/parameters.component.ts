@@ -3,6 +3,7 @@ import { SelectionService } from '../../services/selection/selection.service';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import * as _ from 'lodash';
+import {CustomNotificationsService} from '../../services/notifications/notifications.service';
 
 @Component({
   selector: 'app-parameters',
@@ -22,7 +23,8 @@ export class ParametersComponent implements OnInit {
   constructor(private selectionService: SelectionService,
               private fb: FormBuilder,
               private router: Router,
-              private activatedRoute: ActivatedRoute) {}
+              private activatedRoute: ActivatedRoute,
+              private notification: CustomNotificationsService) {}
 
   ngOnInit() {
     this.getItems();
@@ -55,6 +57,9 @@ export class ParametersComponent implements OnInit {
     this.paramsForm['submitted'] = true;
     if (this.paramsForm.valid) {
       this.onValidForm();
+    } else {
+      console.log('error');
+      this.notification.message('error', 'Required fields', 'Some fields are not filled');
     }
   }
 

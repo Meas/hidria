@@ -33,20 +33,20 @@
         <div class="container">
           <div class="row border">
             <div class="col-12">
-              <h4 class="text-centlogin-buttonser title">Member Login</h4>
+              <h4 class="text-centlogin-buttonser title">{{ 'TRANSLATE.LOGIN.MEMBER' | translate }}</h4>
             </div>
             <div class="col-12">
-              <app-label-box [parameter]="{ description: 'Email' }"></app-label-box>
+              <app-label-box [parameter]="{ description: 'TRANSLATE.LOGIN.EMAIL' }"></app-label-box>
               <input name="email" class="full-size" [(ngModel)]="loginData.userName" (keyup.enter)="onLoginClicked()"/>
             </div>
             <div class="col-12">
-              <app-label-box [parameter]="{ description: 'Password' }"></app-label-box>
+              <app-label-box [parameter]="{ description: 'TRANSLATE.LOGIN.PASSWORD' }"></app-label-box>
               <input name="password" class="full-size" type="password" [(ngModel)]="loginData.password" (keyup.enter)="onLoginClicked()"/>
             </div>
           </div>
           <div class="row">
             <div class="function-buttons">
-              <button class="btn full-size" (click)="onLoginClicked()">LOGIN</button>
+              <button class="btn full-size" (click)="onLoginClicked()">{{ 'TRANSLATE.LOGIN.LOGIN' | translate }}</button>
             </div>
           </div>
         </div>
@@ -54,8 +54,8 @@
     </modal-content>
     <modal-footer>
       <div class="login-buttons">
-        <button class="login-btn" (click)="goTo('register')">Create an account</button>
-        <button class="login-btn" (click)="goTo('resetPassword')">Recover account</button>
+        <button class="login-btn" (click)="goTo('register')">{{ 'TRANSLATE.LOGIN.CREATE' | translate }}</button>
+        <button class="login-btn" (click)="goTo('resetPassword')">{{ 'TRANSLATE.LOGIN.RECOVER' | translate }}</button>
       </div>
     </modal-footer>
   </div>
@@ -67,16 +67,16 @@
           <div class="row border">
             <div class="col-12 center-elements">
               <img width="50" src="assets/images/cube.png" alt="">
-              <h4>EMAIL</h4>
+              <h4>{{ 'TRANSLATE.LOGIN.EMAIL' | translate }}</h4>
             </div>
             <div class="col-12">
-              <app-label-box [parameter]="{ description: 'EMAIL'}"></app-label-box>
+              <app-label-box [parameter]="{ description: 'TRANSLATE.LOGIN.EMAIL'}"></app-label-box>
               <input class="full-size"  [(ngModel)]="restartPasswordData.email"/>
             </div>
           </div>
           <div class="row">
             <div class="function-buttons">
-              <button class="btn full-size" (click)="onResetPasswordClicked()">RESET PASSWORD</button>
+              <button class="btn full-size" (click)="onResetPasswordClicked()">{{ 'TRANSLATE.LOGIN.RECOVER' | translate }}</button>
             </div>
           </div>
         </div>
@@ -90,40 +90,40 @@
         <div class="container">
           <div class="row border">
             <div class="col-12">
-              <h4 class="text-centlogin-buttonser title">Register</h4>
+              <h4 class="text-centlogin-buttonser title">{{ 'TRANSLATE.REGISTER.REGISTER' | translate }}</h4>
             </div>
             <div class="col-6">
-              <app-label-box [parameter]="{ description: 'First name' }"></app-label-box>
+              <app-label-box [parameter]="{ description: 'TRANSLATE.REGISTER.FIRST_NAME' }"></app-label-box>
               <input name="firstName" class="full-size" [(ngModel)]="registerData.firstName"/>
             </div>
             <div class="col-6">
-              <app-label-box [parameter]="{ description: 'Last name' }"></app-label-box>
+              <app-label-box [parameter]="{ description: 'TRANSLATE.REGISTER.LAST_NAME' }"></app-label-box>
               <input name="LatName" class="full-size" [(ngModel)]="registerData.lastName"/>
             </div>
             <div class="col-6">
-              <app-label-box [parameter]="{ description: 'Email' }"></app-label-box>
+              <app-label-box [parameter]="{ description: 'TRANSLATE.REGISTER.EMAIL' }"></app-label-box>
               <input name="email" class="full-size" [(ngModel)]="registerData.email"/>
             </div>
             <div class="col-6">
-              <app-label-box [parameter]="{ description: 'Country' }"></app-label-box>
+              <app-label-box [parameter]="{ description: 'TRANSLATE.REGISTER.COUNTRY' }"></app-label-box>
               <input name="country" class="full-size" [(ngModel)]="registerData.country"/>
             </div>
             <div class="col-6">
-              <app-label-box [parameter]="{ description: 'Company' }"></app-label-box>
+              <app-label-box [parameter]="{ description: 'TRANSLATE.REGISTER.COMPANY' }"></app-label-box>
               <input name="company" class="full-size" [(ngModel)]="registerData.company"/>
             </div>
             <div class="col-6">
-              <app-label-box [parameter]="{ description: 'Address' }"></app-label-box>
+              <app-label-box [parameter]="{ description: 'TRANSLATE.REGISTER.ADDRESS' }"></app-label-box>
               <input name="address" class="full-size" [(ngModel)]="registerData.address"/>
             </div>
             <div class="col-6">
-              <app-label-box [parameter]="{ description: 'Industry' }"></app-label-box>
+              <app-label-box [parameter]="{ description: 'TRANSLATE.REGISTER.INDUSTRY' }"></app-label-box>
               <select name="industry" class="full-size" [(ngModel)]="registerData.industry">
                 <option *ngFor="let value of registrationOptions.industry" [ngValue]="value.id">{{ value.name }}</option>
               </select>
             </div>
             <div class="col-6">
-              <app-label-box [parameter]="{ description: 'Position' }"></app-label-box>
+              <app-label-box [parameter]="{ description: 'TRANSLATE.REGISTER.POSITION' }"></app-label-box>
               <select name="position" class="full-size" [(ngModel)]="registerData.position">
                 <option *ngFor="let value of registrationOptions.position" [ngValue]="value.id">{{ value.name }}</option>
               </select>
@@ -138,15 +138,15 @@
           </div>
           <div class="row border">
             <div class="col-6">
-              <app-label-box [parameter]="{ description: 'Password' }"></app-label-box>
+              <app-label-box [parameter]="{ description: 'TRANSLATE.REGISTER.PASSWORD' }"></app-label-box>
               <input name="password" class="full-size" type="password" [(ngModel)]="registerData.password"/>
             </div>
             <div class="col-6">
-              <app-label-box [parameter]="{ description: 'Confirm password' }"></app-label-box>
+              <app-label-box [parameter]="{ description: 'TRANSLATE.REGISTER.CONFIRM_PASSWORD' }"></app-label-box>
               <input name="passwordRepeat" class="full-size" type="password" [(ngModel)]="registerData.passwordRepeat"/>
             </div>
             <div class="col-12 center-elements-inline">
-              <p>Accept <a href="">Terms and Conditions</a></p>
+              <p>{{ 'TRANSLATE.REGISTER.ACCEPT' | translate }} <a href="">{{ 'TRANSLATE.REGISTER.TERMS' | translate }}</a></p>
               <input name="termsAndConditions" type="checkbox" [(ngModel)]="registerData.termsAndConditions">
             </div>
             <div class="col-12 center-elements-inline">
@@ -155,7 +155,7 @@
           </div>
           <div class="row">
             <div class="function-buttons">
-              <button class="btn full-size" (click)="onRegisterClicked()">{{ thanksMessage ? 'THANK YOU' : 'REGISTER'}}</button>
+              <button class="btn full-size" (click)="onRegisterClicked()">{{ thanksMessage ? 'THANK YOU' : 'TRANSLATE.REGISTER.REGISTER'}}</button>
             </div>
           </div>
         </div>
@@ -164,10 +164,10 @@
     <modal-footer>
       <div class="register-buttons">
         <div>
-          Already have account
+          {{ 'TRANSLATE.REGISTER.ALREADY_HAVE_ACCOUNT' | translate }}
         </div>
         <div>
-          <button class="login-btn" (click)="goTo('login')">Sign in</button>
+          <button class="login-btn" (click)="goTo('login')">{{ 'TRANSLATE.REGISTER.SIGN_IN' | translate }}</button>
         </div>
       </div>
     </modal-footer>

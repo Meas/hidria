@@ -3,7 +3,7 @@
     <app-loading></app-loading>
   </div>
   <div *ngIf="feature !== undefined">
-    <form  (ngSubmit)="onSubmit()" #heroForm="ngForm">
+    <form  (ngSubmit)="onSubmit()" #myForm="ngForm">
       <div class="forms-section" *ngIf="feature">
         <div *ngFor="let obj of feature.featureObjects; let i = index" [ngClass]="obj.classesUI">
           <app-form-box

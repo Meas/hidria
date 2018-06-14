@@ -1,6 +1,10 @@
 button {
   font-family: 'Rajdhani', sans-serif;
   outline: none;
+
+  &:disabled {
+    opacity: 0.5;
+  }
 }
 
 .h-btn {

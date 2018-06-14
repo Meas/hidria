@@ -32,7 +32,7 @@
       <div class="col-lg-9 no-gutters" *ngIf="selectedProject">
         <div>
           <app-my-projects-title [project]="selectedProject"
-            (deleteProject)="confirmDelete($event)"></app-my-projects-title>
+            (deleteProject)="confirmDelete($event)" (getDatasheet)="getDatasheet()"></app-my-projects-title>
         </div>
         <div>
           <app-my-projects-model-list [modelList]="modelList"

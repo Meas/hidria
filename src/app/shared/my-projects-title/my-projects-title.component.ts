@@ -9,6 +9,7 @@ export class MyProjectsTitleComponent implements OnInit {
 
   @Input() project;
   @Output() deleteProject: EventEmitter<any> = new EventEmitter;
+  @Output() getDatasheet: EventEmitter<any> = new EventEmitter;
 
   constructor() {
   }

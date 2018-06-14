@@ -31,9 +31,11 @@ export class AppComponent {
     translate.use(this.selectedLanguage);
     console.log(this.selectedLanguage);
     router.events.subscribe((val) => this.isOpenedSearchByCode = false);
-    this.authService.getUser(this.helper.getUserId()).subscribe((response: any) => {
-      this.measure = response.metricSystem;
-    });
+    if (this.helper.getUserId()) {
+      this.authService.getUser(this.helper.getUserId()).subscribe((response: any) => {
+        this.measure = response.metricSystem;
+      });
+    }
   }
 
   onChangeMetrics(event): void {

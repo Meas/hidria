@@ -1,22 +1,22 @@
 <div class="segment">
   <div>
     <div *ngIf="activeTab === 'select'" style="display: flex">
-      <select style="height: 30px" (change)="projectId = $event.target.value">
+      <select style="width: 70% !important;" (change)="projectId = $event.target.value">
         <option disabled value="">Select Project</option>
         <option *ngFor="let project of projects" [value]="project.id">{{ project.name }}</option>
       </select>
-      <button style="height: 30px" class="h-btn btn-default" (click)="select.emit(projectId)">Confirm</button>
+      <button class="confirm-button" (click)="select.emit(projectId)">Confirm</button>
     </div>
 
     <div *ngIf="activeTab === 'create'" style="display: flex">
-      <input style="height: 30px" type="text" [(ngModel)]="projectName">
-      <button style="height: 30px" class="h-btn btn-default" (click)="create.emit(projectName)">Confirm</button>
+      <input style="width: 70% !important;" placeholder="name" type="text" [(ngModel)]="projectName">
+      <button class="confirm-button" (click)="create.emit(projectName)">Confirm</button>
     </div>
   </div>
 
   <div class="project-options">
-    <button class="h-btn btn-default" (click)="activeTab = 'create'">Add New</button>
-    <button class="h-btn btn-default" (click)="activeTab = 'select'">Select</button>
-    <button class="h-btn btn-default" (click)="close.emit(true)">Close</button>
+    <button class="button" (click)="activeTab = 'create'">Add New</button>
+    <button class="button" (click)="activeTab = 'select'">Select</button>
+    <button class="button" (click)="close.emit(true)">Close</button>
   </div>
 </div>

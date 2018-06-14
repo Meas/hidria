@@ -1,7 +1,7 @@
 <div>
   <div *ngIf="parameter.tag === 'select'">
     <app-select-box
-      [select]="parameter.options" [defaultOption]="parameter.defaultOption"
+      [select]="parameter.options" [required]="parameter.required" [defaultOption]="parameter.defaultOption"
       [paramsForm]="paramsForm"
       [name]="name"></app-select-box>
   </div>
@@ -11,7 +11,8 @@
       [paramsForm]="paramsForm" [name]="name"></app-switch-options>
   </div>
   <div *ngIf="parameter.tag === 'input'" [formGroup]="paramsForm">
-    <input name="nums" id="nums" class="full-size" [formControlName]="name" [value]="parameter.defaultValue"
+    <div *ngIf="hasRequiredError()" class="error-input">*Field is required</div>
+    <input [required]="parameter.required" name="nums" id="nums" class="full-size" [formControlName]="name" [value]="parameter.defaultValue"
           [type]="parameter.type"/>
   </div>
   <div *ngIf="parameter.tag === 'image'" class="image-box">

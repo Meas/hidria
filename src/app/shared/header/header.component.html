@@ -19,7 +19,7 @@
           <li class="nav-link"><a class="link" routerLink="history">{{ 'TRANSLATE.HISTORY' | translate }}</a></li>
           <li class="nav-link"><a class="link" target="_blank" href="http://www.hidria.com/">{{ 'TRANSLATE.HELP' | translate }}</a></li>
           <li class="nav-link">
-            <a *ngIf="!isLoggedIn" href="" class="link" routerLink="auth">{{ 'TRANSLATE.REGISTER' | translate }} / {{ 'TRANSLATE.LOGIN' | translate }}</a>
+            <a *ngIf="!isLoggedIn" href="" class="link" routerLink="auth">{{ 'TRANSLATE.REGISTER.REGISTER' | translate }} / {{ 'TRANSLATE.LOGIN.LOGIN' | translate }}</a>
             <a *ngIf="isLoggedIn" href="" class="link" (click)="logout()">{{ 'TRANSLATE.LOGOUT' | translate }}</a>
           </li>
           <li *ngIf="isLoggedIn" class="nav-link measures">

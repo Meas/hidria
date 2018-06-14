@@ -30,7 +30,9 @@ export class ChooseModelComponent implements OnInit {
               private notifications: CustomNotificationsService) {
     this.data = this.getDataFromParams();
 
-    localStorage.setItem('operation-point', this.data[0].value);
+    if (this.data.length !== 0) {
+      localStorage.setItem('operation-point', this.data[0].value);
+    }
     activatedRoute.params.subscribe((params: Params) => {
       this.model = params['slug'];
     });
@@ -44,7 +46,6 @@ export class ChooseModelComponent implements OnInit {
       this.getGraph();
     } else {
       this.chooseModelService.search(this.getDataFromParams()).subscribe((response: any) => {
-        console.log(response);
         this.getSearchCard(response);
         this.getSearchTable(response);
         this.getSearchGraph(response);

@@ -57,4 +57,8 @@ export class AuthService {
   getUser(id): Observable<any> {
     return this.service.get(`users/${id}`);
   }
+
+  updateUser(data): Observable<any> {
+    return this.service.post(`users/edit`, data);
+  }
 }

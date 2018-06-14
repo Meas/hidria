@@ -10,6 +10,9 @@
       width: 100%;
       display: flex;
 
+      * {
+        width: calc(100% / 3);
+      }
     }
   }
   .show-project-list {
@@ -18,6 +21,27 @@
   }
 }
 
-button {
-  width: calc(100% / 3) !important;
+.button {
+  height: auto;
+  width: calc(100% / 3);
+  background: #1E4686;
+  border: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+}
+.confirm-button {
+  height: 35px;
+  width: calc(30% - 1px);
+  background: #1E4686;
+  border: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
 }

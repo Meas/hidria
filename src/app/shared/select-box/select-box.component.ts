@@ -6,7 +6,7 @@ import * as _ from 'lodash';
   template: `
   <div [formGroup]="paramsForm">
     <div *ngIf="hasRequiredError()" class="error-input">*Field is required</div>
-    <select (change)="onChange($event.target.value)"
+    <select (change)="onChange($event.target.value)" [required]="required" [ngClass]="{'none': none}"
     [formControlName]="name">
       <option value="">Select option</option>
       <option *ngFor="let obj of localSelect" [value]="obj.value">{{ obj.description }}</option>
@@ -23,8 +23,16 @@ import * as _ from 'lodash';
       text-align-last: center;
     }
 
-    select option {
+    option {
       text-align: center;
+      color: #000;
+    }
+    option:first-child
+    {
+      color: #ccc;
+    }
+    .none {
+      color: #ccc;
     }
   `]
 })
@@ -36,6 +44,7 @@ export class SelectBoxComponent implements OnInit {
   @Input() set defaultOption(data: number) {
     if (data) {
       this.selectedOption = _.cloneDeep(data);
+      this.none = data === 0;
     }
   }
   @Input() set select(data: Array<object>) {
@@ -48,6 +57,8 @@ export class SelectBoxComponent implements OnInit {
   @Input() items;
   @Input() paramsForm;
   @Input() name;
+  @Input() required;
+  none = true;
 
   constructor() {
   }
@@ -57,6 +68,7 @@ export class SelectBoxComponent implements OnInit {
 
   onChange(value) {
     this.value.emit(value);
+    this.none = value === '';
   }
 
   hasRequiredError() {

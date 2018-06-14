@@ -18,6 +18,9 @@ export class MyProjectsService {
   getProjects(): Observable<any> {
     return this.service.get(`users/${this.helper.getUserId()}/projects`);
   }
+  getDatasheet(projectId): Observable<any> {
+    return this.service.post(`projects/${projectId}/datasheet`);
+  }
   createProject(data) {
     return this.service.post(`${this.helper.getUserId()}/projects`, data);
   }

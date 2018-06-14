@@ -26,6 +26,7 @@ export class MyProjectsComponent implements OnInit {
   view = '';
   visible = false;
   editing = false;
+  selectedProjectId;
 
   @ViewChild('myModal') myModal: ModalComponent;
   @ViewChild('myItemModal') myItemModal: ModalComponent;
@@ -135,28 +136,18 @@ export class MyProjectsComponent implements OnInit {
   editProject() {
     this.view = 'create-project';
     this.editing = true;
+    this.selectedProjectId = this.selectedProject.id;
   }
 
   saveProject(data) {
-    const obj = {};
-    data.data.forEach(el => {
-      Object.defineProperty(obj, el.parameter, {
-        enumerable: true,
-        configurable: true,
-        writable: true,
-        value: el.defaultOption
-      });
-    });
-    console.log(data.id);
-    if (data.id) {
+    if (this.editing) {
+      const obj = data.value;
       Object.defineProperty(obj, 'projectId', {
+        writable: true,
         enumerable: true,
         configurable: true,
-        writable: true,
-        value: data.id
+        value: this.selectedProjectId
       });
-
-      console.log(obj)
       this.myProjectsService.updateProject(obj).subscribe((response: any) => {
         if (response.messageType !== 'error') {
           this.view = '';
@@ -168,7 +159,7 @@ export class MyProjectsComponent implements OnInit {
         });
       });
     } else {
-      this.myProjectsService.createProject(obj).subscribe((response: any) => {
+      this.myProjectsService.createProject(data.value).subscribe((response: any) => {
         if (response.messageType !== 'error') {
           this.view = '';
           this.getItems();
@@ -190,6 +181,13 @@ export class MyProjectsComponent implements OnInit {
       this.translate.get(response.message).subscribe((res: string) => {
         this.notification.message(response.messageType, response.messageType, res);
       });
+    });
+  }
+
+  getDatasheet() {
+    this.myProjectsService.getDatasheet(this.selectedProject.id).subscribe((response: any) => {
+
+      window.open(response, '_blank');
     });
   }
 }
