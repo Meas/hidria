@@ -1,7 +1,7 @@
 <div class="button-item">
   <button *ngIf="allFilter" class="button-box" [ngClass]="{'button-box-active': active === -1}"
           (click)="filterSelected.emit(-1)">
-    All
+    {{ 'TRANSLATE.CATALOGUE.ALL' | translate }}
   </button>
   <button class="button-box" [ngClass]="{'button-box-active': active === filter.id}" *ngFor="let filter of filters"
           (click)="filterSelected.emit(filter.id)">

@@ -4,6 +4,7 @@ import {ActivatedRoute, Params} from '@angular/router';
 import {IMultiSelectOption, IMultiSelectSettings} from 'angular-2-dropdown-multiselect';
 import {TranslateService} from '@ngx-translate/core';
 import {CustomNotificationsService} from '../../services/notifications/notifications.service';
+import {UserService} from '../../services/user/user.service';
 
 @Component({
   selector: 'app-admin',
@@ -29,7 +30,16 @@ export class AdminComponent implements OnInit {
     price: null,
     factor: null,
     comparison: null,
-    admin: null
+    admin: null,
+    active: null,
+    accountDuration: null
+  };
+
+  changePasswordData = {
+    oldPassword: '',
+    newPassword: '',
+    newPasswordRepeat: '',
+    langId: 1
   };
 
   registrationOptions = {
@@ -52,52 +62,94 @@ export class AdminComponent implements OnInit {
         {
           id: 0,
           selection: false,
-          description: 'No'
+          description: 'TRANSLATE.USERS.NO'
         },
         {
           id: 1,
           selection: true,
-          description: 'Yes'
+          description: 'TRANSLATE.USERS.YES'
         }
       ],
-      type: 'price'
+      type: 'price',
+      text: 'TRANSLATE.USERS.PRICE'
     },
     {
       options: [
         {
           id: 0,
           selection: false,
-          description: 'No'
+          description: 'TRANSLATE.USERS.NO'
         },
         {
           id: 1,
           selection: true,
-          description: 'Yes'
+          description: 'TRANSLATE.USERS.YES'
         }
       ],
-      type: 'comparison'
+      type: 'comparison',
+      text: 'TRANSLATE.USERS.COMPARISON'
     },
     {
       options: [
         {
           id: 0,
           selection: false,
-          description: 'No'
+          description: 'TRANSLATE.USERS.NO'
         },
         {
           id: 1,
           selection: true,
-          description: 'Yes'
+          description: 'TRANSLATE.USERS.YES'
         }
       ],
-      type: 'admin'
+      type: 'admin',
+      text: 'TRANSLATE.USERS.ADMIN'
+    },
+    {
+      options: [
+        {
+          id: 0,
+          selection: false,
+          description: 'TRANSLATE.ACTIVE.NO'
+        },
+        {
+          id: 1,
+          selection: true,
+          description: 'TRANSLATE.ACTIVE.YES'
+        }
+      ],
+      type: 'active',
+      text: 'TRANSLATE.USERS.ACTIVE'
+    }
+  ];
+  time = [
+    {
+      value: 1,
+      text: '1 day'
+    },
+    {
+      value: 3,
+      text: '3 days'
+    },
+    {
+      value: 6,
+      text: '6 days'
+    },
+    {
+      value: 365,
+      text: '365 days'
+    },
+    {
+      value: 0,
+      text: 'Unlimited'
     }
   ];
 
   constructor(private authService: AuthService,
               private activetedRoute: ActivatedRoute,
               private translate: TranslateService,
-              private notification: CustomNotificationsService) {
+              private notification: CustomNotificationsService,
+              private userService: UserService) {
     activetedRoute.params.subscribe((params: Params) => {
       this.getUser(params.id);
     });
@@ -137,4 +189,14 @@ export class AdminComponent implements OnInit {
     });
   }
 
+  changePassword() {
+    if (this.changePasswordData.newPasswordRepeat === this.changePasswordData.newPassword) {
+      this.authService.changePassword(this.changePasswordData).subscribe((response: any) => {
+        console.log(response);
+        this.notification.message('success', 'Success', response.message);
+      });
+    } else {
+      this.notification.message('warn', 'Warning', 'New password does not match with repeated password');
+    }
+  }
 }

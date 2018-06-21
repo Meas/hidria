@@ -16,11 +16,13 @@ import {UsersComponent} from './components/users/users.component';
 import {HistoryComponent} from './components/history/history.component';
 import {AdminComponent} from './components/admin/admin.component';
 import {AuthComponent} from './components/auth/auth.component';
+import {ChangePasswordComponent} from './components/change-password/change-password.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: '/catalogue', pathMatch: 'full' },
   { path: 'auth', component: AuthComponent },
+  { path: 'changePassword', component: ChangePasswordComponent },
   { path: 'catalogue', component: CatalogueComponent, canActivate: [SecurityService] },
   { path: 'parameter', component: ParametersComponent, canActivate: [SecurityService] },
   { path: 'details', component: FanDetailsComponent, canActivate: [SecurityService] },

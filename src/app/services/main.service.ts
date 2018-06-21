@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import {HelperService} from './helper/helper.service';
-import { CustomNotificationsService } from './notifications/notifications.service';
-import {catchError, finalize, tap,  map} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
+import {catchError} from 'rxjs/internal/operators';
 
 
 @Injectable()
 export class MainService {
 
-  constructor(private http: HttpClient, private helper: HelperService,
-              private notifications: CustomNotificationsService) { }
+  constructor(private http: HttpClient, private helper: HelperService) { }
 
   /**
    * Get Request
@@ -28,7 +27,7 @@ export class MainService {
     return this.http.get(this.helper.generateRoute(route, queryParams), {
       headers: headers,
       observe: 'response'
-    }).pipe(map(res => this.helper.checkDataValidity(res)));
+    }).pipe(catchError(this.helper.checkAuth), map(res => this.helper.checkDataValidity(res)));
   }
 
   /**
@@ -46,7 +45,7 @@ export class MainService {
       headers = headers.append('Content-Type', 'application/x-www-form-urlencoded');
       return this.http.post(this.helper.generateRoute(route, queryParams), data, {
         headers: headers
-      }).pipe(map(res => this.helper.checkDataValidity(res)));
+      }).pipe(catchError(this.helper.checkAuth), map(res => this.helper.checkDataValidity(res)));
     } else {
       headers = this.helper.createAuthorizationHeader(headers);
 
@@ -54,8 +53,6 @@ export class MainService {
         headers: headers
       }).pipe(map(res => this.helper.checkDataValidity(res)));
     }
-
-
   }
 
   /**
@@ -73,7 +70,7 @@ export class MainService {
 
     return this.http.put(this.helper.generateRoute(route, queryParams), data, {
       headers: headers
-    }).pipe(map(res => this.helper.checkDataValidity(res)));
+    }).pipe(catchError(this.helper.checkAuth), map(res => this.helper.checkDataValidity(res)));
   }
 
   /**
@@ -90,7 +87,6 @@ export class MainService {
 
     return this.http.delete(this.helper.generateRoute(route, queryParams), {
       headers: headers
-    }).pipe(map(res => this.helper.checkDataValidity(res)));
+    }).pipe(catchError(this.helper.checkAuth), map(res => this.helper.checkDataValidity(res)));
   }
-
 }

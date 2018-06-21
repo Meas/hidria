@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {UserService} from '../../services/user/user.service';
+import {ModalComponent} from '../../shared/modal/modal.component';
 
 @Component({
   selector: 'app-users',
@@ -12,7 +13,10 @@ export class UsersComponent implements OnInit {
     headers: ['Name', 'Email', 'User group', 'Registered', 'Last active'],
     data: []
   };
+  userId;
   search = '';
+
+  @ViewChild('myModal') myModal: ModalComponent;
 
   constructor(private userService: UserService) { }
 
@@ -26,24 +30,19 @@ export class UsersComponent implements OnInit {
     });
   }
 
-  onDeleteUser(id) {
-    this.userService.deleteUser(id).subscribe((response: any) => {
+  confirmDeleteUser(id) {
+    this.userId = id;
+    this.myModal.visible = true;
+  }
+  onDeleteUser() {
+    this.userService.deleteUser(this.userId).subscribe((response: any) => {
       console.log(response);
       this.getUsers();
+      this.myModal.visible = false;
     });
   }
-
-  onBanUser(id) {
-    this.userService.banUser(id).subscribe((response: any) => {
-      console.log(response);
-      this.getUsers();
-    });
-  }
-
-  onActivateUser(id) {
-    this.userService.activateUser(id).subscribe((response: any) => {
-      console.log(response);
-      this.getUsers();
-    });
+  cancelDelition() {
+    this.userId = null;
+    this.myModal.visible = false;
   }
 }

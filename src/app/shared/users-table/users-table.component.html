@@ -16,10 +16,8 @@
       <td>{{ dt.registered }}</td>
       <td></td>
       <td>
-        <button class="h-btn" routerLink="/users/edit/{{dt.pk}}">Edit</button>
-        <button class="h-btn btn-warn" (click)="delete.emit(dt.pk)">Delete</button>
-        <button *ngIf="dt.active" class="h-btn btn-success" (click)="ban.emit(dt.pk)">Ban</button>
-        <button *ngIf="!dt.active" class="h-btn btn-success" (click)="activate.emit(dt.pk)">Activate</button>
+        <button class="h-btn" routerLink="/users/edit/{{dt.pk}}">{{ 'TRANSLATE.USERS.EDIT' | translate }}</button>
+        <button class="h-btn btn-warn" (click)="delete.emit(dt.pk)">{{ 'TRANSLATE.USERS.DELETE' | translate }}</button>
       </td>
     </tr>
     </tbody>

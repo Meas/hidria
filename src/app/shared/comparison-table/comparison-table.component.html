@@ -1,6 +1,6 @@
 <div class="one-table-header">
   <div class="one-table-row first-row">
-    <button class="h-btn btn-default" (click)="clearAll.emit(true)">Clear all</button>
+    <button class="h-btn btn-default" (click)="clearAll.emit(true)">{{ 'TRANSLATE.COMPARISON.CLEAR_ALL' | translate }}</button>
   </div>
   <div class="one-table-row" *ngFor="let header of headers">{{ header }}</div>
 </div>

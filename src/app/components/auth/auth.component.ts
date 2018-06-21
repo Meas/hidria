@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {generateUrlEncodedData, setStorageData} from '../../helpers/helper';
+import { generateUrlEncodedData, setStorageData } from '../../helpers/helper';
 import {AuthService} from '../../services/auth/auth.service';
 import {Router} from '@angular/router';
 import {CustomNotificationsService} from '../../services/notifications/notifications.service';
 import {IMultiSelectOption, IMultiSelectSettings} from 'angular-2-dropdown-multiselect';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-auth',
@@ -65,11 +66,13 @@ export class AuthComponent implements OnInit {
 
   restartPasswordData = {
     email: '',
+    langId: 1
   };
 
   constructor(private authService: AuthService,
               private router: Router,
-              private notification: CustomNotificationsService) {
+              private notification: CustomNotificationsService,
+              private translate: TranslateService) {
     if (authService.isLoggedIn()) {
       router.navigate(['catalogue']);
     }
@@ -89,12 +92,12 @@ export class AuthComponent implements OnInit {
 
   onLoginClicked() {
     this.authService.login(generateUrlEncodedData(this.loginData)).subscribe((response: any) => {
-      console.log(response);
-      if (response.hasOwnProperty('access_token')) {
+      if (!response.hasOwnProperty('error')) {
         setStorageData(['access_token', 'username', 'expires_in', 'id'], response);
         this.router.navigate(['catalogue']);
       } else {
         console.log('Error on login happened');
+        this.notification.message('error', 'Error', 'Invalid username or password');
       }
     });
   }
@@ -109,24 +112,17 @@ export class AuthComponent implements OnInit {
         console.log(response);
         this.notification.message('warn', 'Warning', response.message);
         this.thanksMessage = true;
-        // if (!response.message) {
-        //   this.loginData.userName = this.registerData.email;
-        //   this.loginData.password = this.registerData.password;
-        //   this.onLoginClicked();
-        // }
       });
     }
   }
 
-  onChangePasswordClicked() {
-    this.authService.changePassword(generateUrlEncodedData(this.changePasswordData)).subscribe((response: any) => {
-      console.log(response);
-    });
-  }
-
   onResetPasswordClicked() {
+    console.log(generateUrlEncodedData(this.restartPasswordData))
     this.authService.resetPassword(generateUrlEncodedData(this.restartPasswordData)).subscribe((response: any) => {
       console.log(response);
+      this.translate.get(response.message).subscribe((res: string) => {
+        this.notification.message(response.messageType === 'error' ? 'warn' : response.messageType, response.messageType, res);
+      });
     });
   }
 

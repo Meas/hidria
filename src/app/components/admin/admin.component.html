@@ -5,67 +5,91 @@
         <div class="container">
           <div class="row border">
             <div class="col-6">
-              <app-label-box [parameter]="{ description: 'First name' }"></app-label-box>
+              <app-label-box [parameter]="{ description: 'TRANSLATE.REGISTER.FIRST_NAME' }"></app-label-box>
               <input class="full-size" [(ngModel)]="editData.firstName"/>
             </div>
             <div class="col-6">
-              <app-label-box [parameter]="{ description: 'Last name' }"></app-label-box>
+              <app-label-box [parameter]="{ description: 'TRANSLATE.REGISTER.LAST_NAME' }"></app-label-box>
               <input class="full-size" [(ngModel)]="editData.lastName"/>
             </div>
             <div class="col-6">
-              <app-label-box [parameter]="{ description: 'Email' }"></app-label-box>
+              <app-label-box [parameter]="{ description: 'TRANSLATE.REGISTER.EMAIL' }"></app-label-box>
               <input class="full-size" [(ngModel)]="editData.email"/>
             </div>
             <div class="col-6">
-              <app-label-box [parameter]="{ description: 'Country' }"></app-label-box>
+              <app-label-box [parameter]="{ description: 'TRANSLATE.REGISTER.COUNTRY' }"></app-label-box>
               <input class="full-size" [(ngModel)]="editData.country"/>
             </div>
             <div class="col-6">
-              <app-label-box [parameter]="{ description: 'Company' }"></app-label-box>
+              <app-label-box [parameter]="{ description: 'TRANSLATE.REGISTER.COMPANY' }"></app-label-box>
               <input class="full-size" [(ngModel)]="editData.company"/>
             </div>
             <div class="col-6">
-              <app-label-box [parameter]="{ description: 'Address' }"></app-label-box>
+              <app-label-box [parameter]="{ description: 'TRANSLATE.REGISTER.ADDRESS' }"></app-label-box>
               <input class="full-size" [(ngModel)]="editData.address"/>
             </div>
             <div class="col-6">
-              <app-label-box [parameter]="{ description: 'Industry' }"></app-label-box>
+              <app-label-box [parameter]="{ description: 'TRANSLATE.REGISTER.INDUSTRY' }"></app-label-box>
               <select class="full-size" [(ngModel)]="editData.industry">
                 <option *ngFor="let value of registrationOptions.industry" [ngValue]="value.id">{{ value.name }}
                 </option>
               </select>
             </div>
             <div class="col-6">
-              <app-label-box [parameter]="{ description: 'Position' }"></app-label-box>
+              <app-label-box [parameter]="{ description: 'TRANSLATE.REGISTER.POSITION' }"></app-label-box>
               <select class="full-size" [(ngModel)]="editData.position">
                 <option *ngFor="let value of registrationOptions.position" [ngValue]="value.id">{{ value.name }}
                 </option>
               </select>
             </div>
             <div class="col-12">
-              <app-label-box [parameter]="{ description: 'Applications' }"></app-label-box>
+              <app-label-box [parameter]="{ description: 'TRANSLATE.REGISTER.APPLICATIONS' }"></app-label-box>
               <ss-multiselect-dropdown [settings]="mySettings" [options]="myOptions" [(ngModel)]="optionsModel" (ngModelChange)="onChange($event)"></ss-multiselect-dropdown>
             </div>
           </div>
           <div class="row" style="margin-top: 20px;">
-            <button class="h-btn full-size btn-default" (click)="updateUser()">Confirm</button>
+            <button class="h-btn full-size btn-success" (click)="updateUser()">{{ 'TRANSLATE.REGISTER.CONFIRM' | translate }}</button>
+          </div>
+        </div>
+      </div>
+      <div class="info-box">
+        <div class="container">
+          <div class="row border">
+            <div class="col-12">
+              <app-label-box [parameter]="{ description: 'TRANSLATE.REGISTER.OLD_PASSWORD' }"></app-label-box>
+              <input class="full-size" [(ngModel)]="changePasswordData.oldPassword"/>
+            </div>
+            <div class="col-12">
+              <app-label-box [parameter]="{ description: 'TRANSLATE.REGISTER.NEW_PASSWORD' }"></app-label-box>
+              <input class="full-size" [(ngModel)]="changePasswordData.newPassword"/>
+            </div>
+            <div class="col-12">
+              <app-label-box [parameter]="{ description: 'TRANSLATE.REGISTER.NEW_PASSWORD_REPEAT' }"></app-label-box>
+              <input class="full-size" [(ngModel)]="changePasswordData.newPasswordRepeat"/>
+            </div>
+          </div>
+          <div class="row" style="margin-top: 20px;">
+            <button class="h-btn full-size btn-success" (click)="changePassword()">{{ 'TRANSLATE.REGISTER.RESET_PASSWORD' | translate }}</button>
           </div>
         </div>
       </div>
     </div>
     <div class="col-lg-6">
-      <h3>Lorem Ipsum dolor</h3>
+      <h3>{{ 'TRANSLATE.USERS.PERMISSIONS' | translate }}</h3>
 
       <div class="row" *ngFor="let options of additionalOptions">
         <div class="col-lg-4" style="display: flex; justify-content: flex-end">
-          <p>{{options.type.toUpperCase()}}</p>
+          <p>{{options.text.toUpperCase() | translate}}</p>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-5">
           <app-switch-button [options]="options.options" [selected]="editData[options.type]"
                              (select)="editData[options.type] = $event"></app-switch-button>
         </div>
-        <div class="col-lg-2">
+        <div class="col-lg-3">
           <input placeholder="Factor" style="width: 100%" type="number" [(ngModel)]="editData.factor" *ngIf="options.type === 'price' && editData[options.type]">
+          <select *ngIf="options.type === 'active' && editData[options.type]" name="industry" class="full-size" [(ngModel)]="editData.accountDuration">
+            <option *ngFor="let value of time" [ngValue]="value.value">{{ value.text }}</option>
+          </select>
         </div>
       </div>
     </div>

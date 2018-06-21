@@ -30,8 +30,8 @@
   <div *ngIf="isLoggedIn" class="filter-item">
     <div class="code-section" [ngClass]="{'show-code-section': isOpenedSearchByCode}">
       <input style="width: 150px" type="text" [(ngModel)]="code">
-      <button (click)="onSearchByCodeClicked(true)">Search</button>
-      <button (click)="onSearchByCodeClicked()">Close</button>
+      <button (click)="onSearchByCodeClicked(true)">{{ 'TRANSLATE.SEARCH_BY_CODE.SEARCH' | translate }}</button>
+      <button (click)="onSearchByCodeClicked()">{{ 'TRANSLATE.SEARCH_BY_CODE.CLOSE' | translate }}</button>
     </div>
     <div class="icon" (click)="onSearchByCodeClicked()">
       <img src="assets/icons/search-by-code.png">

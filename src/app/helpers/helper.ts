@@ -1,14 +1,16 @@
+import {HttpParams} from '@angular/common/http';
+
 import * as moment from 'moment';
 
 export function generateUrlEncodedData(data) {
-  const body = new URLSearchParams();
+  let body = '';
   const objNames = Object.getOwnPropertyNames(data);
 
   objNames.forEach((name) => {
-    body.set(name, data[name]);
+    body += `${name}=${data[name]}&`;
   });
 
-  return body.toString();
+  return body;
 }
 
 export function setStorageData(storage, params): void {
@@ -21,3 +23,19 @@ export function setStorageData(storage, params): void {
   });
   location.reload();
 }
+
+export function randomColor(i) {
+  const colors = [
+    '#D32F2F',
+    '#7B1FA2',
+    '#512DA8',
+    '#1976D2',
+    '#0097A7',
+    '#689F38',
+    '#FFA000',
+    '#5D4037',
+    '#455A64',
+  ];
+  return colors[i];
+}
+

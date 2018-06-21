@@ -5,18 +5,18 @@
         <option disabled value="">Select Project</option>
         <option *ngFor="let project of projects" [value]="project.id">{{ project.name }}</option>
       </select>
-      <button class="confirm-button" (click)="select.emit(projectId)">Confirm</button>
+      <button class="confirm-button" (click)="select.emit(projectId)">{{ 'TRANSLATE.OPERATING_POINT.CONFIRM' | translate }}</button>
     </div>
 
     <div *ngIf="activeTab === 'create'" style="display: flex">
       <input style="width: 70% !important;" placeholder="name" type="text" [(ngModel)]="projectName">
-      <button class="confirm-button" (click)="create.emit(projectName)">Confirm</button>
+      <button class="confirm-button" (click)="create.emit(projectName)">{{ 'TRANSLATE.OPERATING_POINT.CONFIRM' | translate }}</button>
     </div>
   </div>
 
   <div class="project-options">
-    <button class="button" (click)="activeTab = 'create'">Add New</button>
-    <button class="button" (click)="activeTab = 'select'">Select</button>
-    <button class="button" (click)="close.emit(true)">Close</button>
+    <button class="button" (click)="activeTab = 'create'">{{ 'TRANSLATE.OPERATING_POINT.ADD_NEW' | translate }}</button>
+    <button class="button" (click)="activeTab = 'select'">{{ 'TRANSLATE.OPERATING_POINT.SELECT' | translate }}</button>
+    <button class="button" (click)="close.emit(true)">{{ 'TRANSLATE.OPERATING_POINT.CLOSE' | translate }}</button>
   </div>
 </div>

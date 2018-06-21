@@ -5,6 +5,7 @@ import {remove, find} from 'lodash';
 import {MyProjectsService} from '../../services/my-projects/my-projects.service';
 import {CustomNotificationsService} from '../../services/notifications/notifications.service';
 import {TranslateService} from '@ngx-translate/core';
+import {randomColor} from '../../helpers/helper';
 
 @Component({
   selector: 'app-operating-point',
@@ -297,20 +298,27 @@ export class OperatingPointComponent implements OnInit {
   }
 
   addToComparisonFunc() {
-    console.log(this.graphData)
-    if (Array.isArray(this.tables)) {
-      this.modelsToCompare.push({
-        id: this.modelsToCompare.length,
-        name: this.card['name'],
-        color: 'blue',
-        image: this.card['image'],
-        data: this.tables,
-        graph: this.graphData
-      });
-    }
+    const compArr: {}[] = JSON.parse(localStorage.getItem('comparison')) || [];
+    if (compArr.length <= 8) {
+      const color = randomColor(compArr.length);
 
-    this.notification.message('success', 'Success', 'Item added to comparison');
-    localStorage.setItem('comparison', JSON.stringify(this.modelsToCompare));
+      this.graphData.borderColor = [color];
+      if (Array.isArray(this.tables)) {
+        this.modelsToCompare.push({
+          id: this.modelsToCompare.length,
+          name: this.card['name'],
+          color: color,
+          image: this.card['image'],
+          data: this.tables,
+          graph: this.graphData
+        });
+      }
+
+      this.notification.message('success', 'Success', 'Item added to comparison');
+      localStorage.setItem('comparison', JSON.stringify(this.modelsToCompare));
+    } else {
+      this.notification.message('warn', 'Warning', 'You can select only 8 items for comparison');
+    }
   }
 
   addToProject(event) {
@@ -344,7 +352,7 @@ export class OperatingPointComponent implements OnInit {
           });
         } else {
           this.translate.get(response.message).subscribe((res: string) => {
-            this.notification.message(response.messageType, response.messageType, res);
+            this.notification.message(response.messageType === 'error' ? 'warn' : response.messageType, response.messageType, res);
           });
         }
       });

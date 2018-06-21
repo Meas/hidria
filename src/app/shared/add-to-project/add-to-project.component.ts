@@ -14,19 +14,19 @@ export class AddToProjectComponent implements OnInit {
   elements = [
     {
       parameter: 'projectName',
-      description: 'Project Name',
+      description: 'TRANSLATE.PROJECTS.PROJECT_NAME',
       required: true,
       defaultOption: null
     },
     {
       parameter: 'construction',
-      description: 'Construction',
+      description: 'TRANSLATE.PROJECTS.CONSTRUCTION',
       required: false,
       defaultOption: null
     },
     {
       parameter: 'address',
-      description: 'Address',
+      description: 'TRANSLATE.PROJECTS.ADDRESS',
       required: false,
       max: null,
       min: null,
@@ -34,19 +34,19 @@ export class AddToProjectComponent implements OnInit {
     },
     {
       parameter: 'purchaser',
-      description: 'Purchaser',
+      description: 'TRANSLATE.PROJECTS.PURCHASER',
       required: false,
       defaultOption: null
     },
     {
       parameter: 'projectant',
-      description: 'Projectant',
+      description: 'TRANSLATE.PROJECTS.PROJECTANT',
       required: false,
       defaultOption: null
     },
     {
       parameter: 'business',
-      description: 'Business',
+      description: 'TRANSLATE.PROJECTS.BUSINESS',
       required: false,
       defaultOption: null
     }

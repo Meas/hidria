@@ -18,13 +18,13 @@
     <div class="row">
       <div class="col-lg-4">
         <button class="tab-button" [ngClass]="{'active': sections.main}" (click)="sections.main = !sections.main">
-          MAIN CHART
+          {{ 'TRANSLATE.OPERATING_POINT.MAIN_CHART' | translate }}
         </button>
         <button class="tab-button" [ngClass]="{'active': sections.data}" (click)="sections.data = !sections.data">
-          DATA SHEET
+          {{ 'TRANSLATE.OPERATING_POINT.DATA_SHEET' | translate }}
         </button>
         <button class="tab-button" [ngClass]="{'active': sections.sound}" (click)="sections.sound = !sections.sound">
-          SOUND CHART
+          {{ 'TRANSLATE.OPERATING_POINT.SOUND_CHART' | translate }}
         </button>
       </div>
       <div class="col-lg-8 mb-2">
@@ -67,7 +67,7 @@
       <div class="col-lg-5 mb-2" *ngIf="sections.sound">
         <div class="sound-chart-options row">
           <div class="col-lg-12">
-            <p>Fan position</p>
+            <p>{{ 'TRANSLATE.OPERATING_POINT.FAN_POSITION' | translate }}</p>
           </div>
           <div class="fan-positions col-lg-12">
             <button style="padding: 0" class="box"
@@ -88,7 +88,7 @@
             <input type="number" placeholder="Distance (m)" [(ngModel)]="graphOptions.distance">
           </div>
           <div class="additional-options col-lg-6">
-            <button class="button" (click)="this.postCharts(id)">REFRESH</button>
+            <button class="button" (click)="this.postCharts(id)">{{ 'TRANSLATE.OPERATING_POINT.REFRESH' | translate }}</button>
           </div>
         </div>
       </div>
@@ -112,7 +112,7 @@
       <!--</div>-->
       <div class="col-lg-4">
         <button class="button" (click)="addToComparisonFunc($event)">
-          ADD TO COMPARE
+          {{ 'TRANSLATE.OPERATING_POINT.ADD_TO_COMPARE' | translate }}
         </button>
       </div>
       <div class="col-lg-4">
@@ -120,7 +120,7 @@
           <app-project-selection *ngIf="showProjectSelection" [projects]="projects" (close)="showProjectSelection = false"
                                  (select)="addToProject($event)" (create)="createProject($event)"></app-project-selection>
           <button class="button" *ngIf="!showProjectSelection" (click)="showProjectSelection = true">
-            ADD TO PROJECT
+            {{ 'TRANSLATE.OPERATING_POINT.ADD_TO_PROJECT' | translate }}
           </button>
         </div>
       </div>
@@ -128,7 +128,7 @@
         <ng-container *ngFor="let download of links">
           <a *ngIf="download.name == 'TRANSLATE.OPERATING-POINT.GENERATE-CARD'" (click)="downloadCard(download.link)">
             <button class="button">
-              GENERATE CARD
+              {{ 'TRANSLATE.OPERATING_POINT.GENERATE_CARD' | translate }}
             </button>
           </a>
         </ng-container>

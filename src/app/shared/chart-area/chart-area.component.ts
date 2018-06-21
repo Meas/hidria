@@ -19,6 +19,7 @@ export class ChartAreaComponent implements OnInit, AfterViewInit {
   @Input() secondLabel = 'B';
   chartData;
   areaChart;
+  maxRight = 10;
   @Input() set chartSetData(data) {
     if (data) {
       this.chartData = data;
@@ -61,22 +62,24 @@ export class ChartAreaComponent implements OnInit, AfterViewInit {
     data.labels = this.chartData.xpoints;
     data.datasets = [];
     for (let i = 0; i < this.chartData.ypoints.length; i++) {
-      // const borderColor = j === 100 ? this.chartData.borderColor[i] : j % 10 === 0 ? 'rgba(0,0,0,0)' : 'rgba(0,0,0,0)';
-      // const fill = j === 100;
       const dataValue = this.chartData.ypoints[i];
-      data.datasets.push({
-        'label': this.chartData.labels[i],
-        'data': dataValue,
-        'yValue': dataValue,
-        'xValue': this.chartData.xpoints,
-        'xLabel': this.chartData.xLabel,
-        'xUnit': this.chartData.xUnit,
-        'yLabel': this.chartData.yLabel,
-        'yUnit': this.chartData.yUnit,
-        'percentageLabel': this.chartData.percentage,
-        'borderColor': this.chartData.borderColor[i],
-        'fill': false
-      });
+      if (this.chartData.ypoints[i].length !== 0) {
+        this.maxRight = Math.ceil(Math.max.apply(Math, this.chartData.ypoints[i]));
+        data.datasets.push({
+          'label': this.chartData.labels[i],
+          'data': dataValue,
+          'yValue': dataValue,
+          'xValue': this.chartData.xpoints,
+          'xLabel': this.chartData.xLabel,
+          'xUnit': this.chartData.xUnit,
+          'yLabel': this.chartData.yLabel,
+          'yUnit': this.chartData.yUnit,
+          'yAxisID': i > 0 ? 'B' : 'A',
+          'percentageLabel': this.chartData.percentage,
+          'borderColor': this.chartData.borderColor[i],
+          'fill': false
+        });
+      }
     }
     return data;
   }
@@ -98,15 +101,6 @@ export class ChartAreaComponent implements OnInit, AfterViewInit {
           yAxes: [{
             id: 'A',
             position: 'left',
-            ticks: {
-              beginAtZero: true,
-              maxTicksLimit: 10,
-              userCallback: function(label, index, labels) {
-                if (Math.floor(label) === label) {
-                  return label;
-                }
-              }
-            },
             scaleLabel: {
               display: true,
               labelString: self.chartData.yUnit
@@ -115,13 +109,7 @@ export class ChartAreaComponent implements OnInit, AfterViewInit {
               id: 'B',
               position: 'right',
               ticks: {
-                beginAtZero: true,
-                maxTicksLimit: 1,
-                userCallback: function(label, index, labels) {
-                  if (Math.floor(label) === label) {
-                    return label;
-                  }
-                }
+                max: this.maxRight
               },
               scaleLabel: {
                 display: true,
@@ -171,7 +159,7 @@ export class ChartAreaComponent implements OnInit, AfterViewInit {
           const x = this.data.labels[activeElements[0]._index];
           const y = this.data.datasets[activeElements[0]._datasetIndex].data[activeElements[0]._index];
           if (self.interactive) {
-            self.points.emit([x, y]);
+            self.points.emit([(Math.round(x * 100) / 100).toString(), Number(Math.round(y * 100) / 100).toString()]);
           }
         },
       };

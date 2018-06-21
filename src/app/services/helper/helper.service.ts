@@ -68,6 +68,13 @@ export class HelperService {
     };
   }
 
+  checkAuth(error: any): any {
+    if (error.status === 401) {
+      localStorage.clear();
+      window.location.reload();
+    }
+  }
+
   getUserId() {
     return localStorage.getItem('id');
   }

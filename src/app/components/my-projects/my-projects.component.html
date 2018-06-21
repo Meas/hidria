@@ -6,8 +6,8 @@
     <div class="display-space-between">
       <h4>{{ 'TRANSLATE.MY-PROJECTS' | translate }} </h4>
       <div>
-        <button *ngIf="selectedProject" class="h-btn btn-default btn-add-new" (click)="editProject()" style="margin-right: 10px">Edit Project</button>
-        <button class="h-btn btn-default btn-add-new" (click)="createProject()">Create Project</button>
+        <button *ngIf="selectedProject" class="h-btn btn-default btn-add-new" (click)="editProject()" style="margin-right: 10px">{{ 'TRANSLATE.PROJECTS.EDIT' | translate }}</button>
+        <button class="h-btn btn-default btn-add-new" (click)="createProject()">{{ 'TRANSLATE.PROJECTS.CREATE' | translate }}</button>
       </div>
     </div>
     <hr class="title-line">
@@ -27,7 +27,7 @@
         </div>
       </div>
       <div class="col-lg-9 no-gutters" *ngIf="!selectedProject">
-        <h1>Please select project</h1>
+        <h1>{{ 'TRANSLATE.PROJECTS.PLEASE_SELECT' | translate }}</h1>
       </div>
       <div class="col-lg-9 no-gutters" *ngIf="selectedProject">
         <div>
@@ -63,7 +63,7 @@
 </app-modal>
 
 <app-modal #myItemModal [visible]="visible">
-  <h2>Do you want to delete this project?</h2>
+  <h2>Do you want to delete this item?</h2>
   <div class="delete-modal-buttons">
     <button class="h-btn btn-default" (click)="onRemoveModel()">Delete</button>
     <button class="h-btn" (click)="cancelItemDelition()">Cancel</button>

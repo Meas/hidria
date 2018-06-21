@@ -47,6 +47,10 @@ export class AuthService {
    * @returns {Observable<any>}
    */
   resetPassword(data): Observable<any> {
+    return this.service.get(`reset-password?${data}`);
+  }
+
+  resetPass(data): Observable<any> {
     return this.service.post(`reset-password`, data);
   }
 

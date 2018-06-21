@@ -11,7 +11,7 @@
       <div class="section-content">
 
         <ul *ngIf="isLoggedIn" class="nav-links left">
-          <li class="nav-link"><a class="link" routerLink="statistics">{{ 'TRANSLATE.STATISTICS' | translate }}</a></li>
+          <li class="nav-link"><a class="link" routerLink="statistics">{{ 'TRANSLATE.STATISTICS.STATISTICS' | translate }}</a></li>
           <li class="nav-link"><a class="link" routerLink="users">{{ 'TRANSLATE.USER' | translate }}</a></li>
         </ul>
 
@@ -37,13 +37,19 @@
             </ul>
           </li> -->
           <li class="nav-link fun-with-flags">
-            <img src="assets/images/flag-gb.png" *ngIf="selectedLanguage=='en'">
-            <img src="assets/images/flag-italy.png" *ngIf="selectedLanguage=='it'">
+            <img src="assets/icons/flags/great-britain.svg" *ngIf="selectedLanguage=='en'">
+            <img src="assets/icons/flags/italy.svg" *ngIf="selectedLanguage=='it'">
+            <img src="assets/icons/flags/france.svg" *ngIf="selectedLanguage=='fr'">
+            <img src="assets/icons/flags/germany.svg" *ngIf="selectedLanguage=='de'">
+            <img src="assets/icons/flags/china.svg" *ngIf="selectedLanguage=='chi'">
           </li>
           <select class="nav-links right select-language" [ngModel]="selectedLanguage"
           (ngModelChange)="changeLanguage.emit($event)">
             <option value="en"> EN </option>
             <option value="it"> IT </option>
+            <option value="fr"> FR </option>
+            <option value="de"> DE </option>
+            <option value="chi"> CHI </option>
           </select>
         </ul>
       </div>

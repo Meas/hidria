@@ -20,19 +20,19 @@ export class StatisticsComponent implements OnInit {
   constructor(private statisticsService: StatisticsService) { }
 
   ngOnInit() {
-    this.getGeneralForm();
-    this.getProductForm();
+    this.getGeneral();
+    this.getProduct();
     this.getRecentOrders();
   }
 
-  getGeneralForm() {
-    this.statisticsService.getGeneralForm().subscribe((response: any) => {
+  getGeneral() {
+    this.statisticsService.getGeneral().subscribe((response: any) => {
       console.log(response);
       this.generalData = response;
     });
   }
-  getProductForm() {
-    this.statisticsService.getProductForm().subscribe((response: any) => {
+  getProduct() {
+    this.statisticsService.getProduct().subscribe((response: any) => {
       console.log(response);
       this.topApps.data = response;
     });

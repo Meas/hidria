@@ -9,12 +9,26 @@ export class StatisticsService {
 
   constructor(private service: MainService) { }
 
-  getGeneralForm(): Observable<any> {
+  /**
+   * Get general statistics
+   * @returns {Observable<any>}
+   */
+  getGeneral(): Observable<any> {
     return this.service.get('statistics/general');
   }
-  getProductForm(): Observable<any> {
+
+  /**
+   * Get product statistics
+   * @returns {Observable<any>}
+   */
+  getProduct(): Observable<any> {
     return this.service.get('statistics/top/products');
   }
+
+  /**
+   * Get recent orders statistics
+   * @returns {Observable<any>}
+   */
   getRecentOrders(): Observable<any> {
     return this.service.get('statistics/recent/orders');
   }

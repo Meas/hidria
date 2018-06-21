@@ -6,10 +6,10 @@ import { MainService } from '../main.service';
 @Injectable()
 export class MyTranslationService {
 
-  constructor(private service: MainService, private translationService: MyTranslationService) { }
+  constructor(private service: MainService) { }
 
   /**
-   * Gets array of items
+   * Gets translations
    * @returns {Observable<any>}
    */
   getTranslations(langId: number): Observable<any> {

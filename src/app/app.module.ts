@@ -40,6 +40,7 @@ import { StatisticsService } from './services/statistics/statistics.service';
 
 import { FilterPipe } from './pipes/filter/filter.pipe';
 import { RouteNotFoundComponent } from './components/route-not-found/route-not-found.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { RouteNotFoundComponent } from './components/route-not-found/route-not-f
     UsersComponent,
     HistoryComponent,
     AdminComponent,
-    AuthComponent
+    AuthComponent,
+    ChangePasswordComponent
   ],
   imports: [
     FormsModule,

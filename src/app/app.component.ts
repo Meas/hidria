@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { AuthService } from './services/auth/auth.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
-import { generateUrlEncodedData, setStorageData } from './helpers/helper';
 import { CustomNotificationsService } from './services/notifications/notifications.service';
 import { SearchByCodeService } from './services/search-by-code/search-by-code.service';
 import {UserService} from './services/user/user.service';
@@ -42,6 +41,7 @@ export class AppComponent {
     this.userService.updateMetricSystem(event).subscribe((response: any) => {
       console.log(response);
       this.measure = event;
+      window.location.reload();
     });
   }
 
