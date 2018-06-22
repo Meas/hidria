@@ -272,25 +272,6 @@ export class OperatingPointComponent implements OnInit {
     this.inputData = [...event];
   }
 
-  findAndReplace(object, types, replaceValues) {
-    for (const x in object) {
-      if (object.hasOwnProperty(x)) {
-        if (typeof object[x] === 'object') {
-          this.findAndReplace(object[x], types, replaceValues);
-        }
-        for (const type of types) {
-          if (object[x] === type && x === 'type') {
-            for (const replaceValue of replaceValues) {
-              if (object[x] === replaceValue['type']) {
-                object['children'] = replaceValue['children'];
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-
   getProjects() {
     this.operatingPointService.getProjects().subscribe((response: any) => {
       this.projects = response;

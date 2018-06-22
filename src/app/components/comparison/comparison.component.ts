@@ -48,6 +48,7 @@ export class ComparisonComponent implements OnInit {
       } else {
         this.graph.ypoints = this.graph.ypoints.concat(data.graph.ypoints);
         this.graph.borderColor = this.graph.borderColor.concat(data.graph.borderColor);
+        this.graph.labels = this.graph.labels.concat(data.graph.labels);
       }
     })
     this.comparisonList.forEach((model, i) => {

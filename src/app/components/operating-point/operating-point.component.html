@@ -43,6 +43,7 @@
       </div>
       <div class="col-lg-8 mb-2" *ngIf="sections.main">
         <app-chart-area-component *ngIf="graphData"
+                                  [showYColors]="true"
                                   [canvasId]="'canvas1'"
                                   [chartSetData]="graphData"
                                   [interactive]="true"

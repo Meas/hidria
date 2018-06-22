@@ -1,7 +1,4 @@
-import {Component, OnInit, AfterViewInit, Input, Output, EventEmitter, ChangeDetectionStrategy} from '@angular/core';
-/*import * as _ from 'lodash';
-import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';*/
+import {Component, Input, Output, EventEmitter, ChangeDetectionStrategy} from '@angular/core';
 import Chart from 'chart.js';
 
 @Component({
@@ -14,12 +11,16 @@ import Chart from 'chart.js';
   `,
   styleUrls: ['./chart-area.component.css']
 })
-export class ChartAreaComponent implements OnInit, AfterViewInit {
-  @Input() canvasId: string;
-  @Input() secondLabel = 'B';
+export class ChartAreaComponent {
+
   chartData;
   areaChart;
   maxRight = 10;
+
+  @Input() canvasId: string;
+  @Input() secondLabel = 'B';
+  @Input() showYColors = false;
+  @Input() interactive: boolean;
   @Input() set chartSetData(data) {
     if (data) {
       this.chartData = data;
@@ -28,18 +29,8 @@ export class ChartAreaComponent implements OnInit, AfterViewInit {
       }, 300);
     }
   }
-  @Input() interactive: boolean;
+
   @Output() points: EventEmitter<Array<string>> = new EventEmitter();
-
-  constructor() {
-  }
-
-  ngOnInit() {
-
-  }
-
-  ngAfterViewInit() {
-  }
 
   generateGraph() {
     if (this.areaChart) {
@@ -61,9 +52,11 @@ export class ChartAreaComponent implements OnInit, AfterViewInit {
     const data: any = {};
     data.labels = this.chartData.xpoints;
     data.datasets = [];
+    let j = 0;
     for (let i = 0; i < this.chartData.ypoints.length; i++) {
       const dataValue = this.chartData.ypoints[i];
       if (this.chartData.ypoints[i].length !== 0) {
+        console.log(this.chartData.borderColor, j);
         this.maxRight = Math.ceil(Math.max.apply(Math, this.chartData.ypoints[i]));
         data.datasets.push({
           'label': this.chartData.labels[i],
@@ -76,9 +69,10 @@ export class ChartAreaComponent implements OnInit, AfterViewInit {
           'yUnit': this.chartData.yUnit,
           'yAxisID': i > 0 ? 'B' : 'A',
           'percentageLabel': this.chartData.percentage,
-          'borderColor': this.chartData.borderColor[i],
+          'borderColor': this.chartData.borderColor[j],
           'fill': false
         });
+        j++;
       }
     }
     return data;
@@ -89,7 +83,7 @@ export class ChartAreaComponent implements OnInit, AfterViewInit {
     {
       return {
         legend: {
-          display: false
+          display: false,
         },
         elements: {
           point: {
@@ -101,6 +95,9 @@ export class ChartAreaComponent implements OnInit, AfterViewInit {
           yAxes: [{
             id: 'A',
             position: 'left',
+            ticks: {
+              fontColor: this.showYColors ? this.chartData.borderColor[0] : undefined
+            },
             scaleLabel: {
               display: true,
               labelString: self.chartData.yUnit
@@ -109,7 +106,8 @@ export class ChartAreaComponent implements OnInit, AfterViewInit {
               id: 'B',
               position: 'right',
               ticks: {
-                max: this.maxRight
+                max: this.maxRight,
+                fontColor: this.showYColors ? this.chartData.borderColor[1] : undefined
               },
               scaleLabel: {
                 display: true,
@@ -140,10 +138,9 @@ export class ChartAreaComponent implements OnInit, AfterViewInit {
           callbacks: {
             label: function(tooltipItem, data) {
               return [
-                data.datasets[tooltipItem.datasetIndex].xLabel + ' ' + data.datasets[tooltipItem.datasetIndex].xUnit
-                + ': ' + data.datasets[tooltipItem.datasetIndex].xValue[tooltipItem.index],
-                data.datasets[tooltipItem.datasetIndex].yLabel + ' ' + data.datasets[tooltipItem.datasetIndex].yUnit
-                + ': ' + data.datasets[tooltipItem.datasetIndex].yValue[tooltipItem.index],
+                `label: ${data.datasets[tooltipItem.datasetIndex].label}`,
+                `${data.datasets[tooltipItem.datasetIndex].xLabel} ${data.datasets[tooltipItem.datasetIndex].xUnit} ${data.datasets[tooltipItem.datasetIndex].xValue[tooltipItem.index]}`,
+                `${data.datasets[tooltipItem.datasetIndex].yLabel} ${data.datasets[tooltipItem.datasetIndex].yUnit} ${data.datasets[tooltipItem.datasetIndex].yValue[tooltipItem.index]}`
               ];
             },
             title: function(tooltipItem, data) {

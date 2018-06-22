@@ -11,7 +11,7 @@
       <button class="h-btn btn-default" (click)="showGraph = !showGraph">{{ showGraph ? 'TRANSLATE.COMPARISON.HIDE_GRAPH' : 'TRANSLATE.COMPARISON.SHOW_GRAPH' | translate}}</button>
     </div>
     <div class="row no-gutters" *ngIf="comparisonList.length !== 0">
-      <div class="col-lg-12">
+      <div class="col-lg-6">
         <app-chart-area-component class="col-lg-12"
                                   *ngIf="graph && showGraph"
                                   [canvasId]="'canvas1'"
