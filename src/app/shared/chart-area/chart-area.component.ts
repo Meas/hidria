@@ -56,7 +56,7 @@ export class ChartAreaComponent {
     for (let i = 0; i < this.chartData.ypoints.length; i++) {
       const dataValue = this.chartData.ypoints[i];
       if (this.chartData.ypoints[i].length !== 0) {
-        console.log(this.chartData.borderColor, j);
+        console.log(this.chartData, i);
         this.maxRight = Math.ceil(Math.max.apply(Math, this.chartData.ypoints[i]));
         data.datasets.push({
           'label': this.chartData.labels[i],
@@ -67,7 +67,7 @@ export class ChartAreaComponent {
           'xUnit': this.chartData.xUnit,
           'yLabel': this.chartData.yLabel,
           'yUnit': this.chartData.yUnit,
-          'yAxisID': i > 0 ? 'B' : 'A',
+          'yAxisID': i > 1 ? 'B' : 'A',
           'percentageLabel': this.chartData.percentage,
           'borderColor': this.chartData.borderColor[j],
           'fill': false
