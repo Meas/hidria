@@ -1,12 +1,12 @@
-import {HttpErrorResponse, HttpHeaders} from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import {CustomNotificationsService} from '../notifications/notifications.service';
+import {Observable} from 'rxjs';
 
 @Injectable()
 export class HelperService {
 
-  constructor(private notifications: CustomNotificationsService) {}
+  constructor() {}
 
   /**
    * Function combines route url and query params
@@ -51,28 +51,15 @@ export class HelperService {
     return response.hasOwnProperty('body') ? response.body : response;
   }
 
-  handleError(error: HttpErrorResponse) {
-    if (error.error) {
-      // this.notifications.message('error', 'Error', error.error.error_description);
-      // A client-side or network error occurred. Handle it accordingly.
-      console.error('An error occurred:', error.error.error_description);
-    } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong,
-      console.error(`Backend returned code ${error.status}, ` +
-                    `body was: ${error.error}`);
-    }
-    // return an ErrorObservable with a user-facing error message
-    return {
-      message: error.error.error_description
-    };
-  }
-
   checkAuth(error: any): any {
     if (error.status === 401) {
       localStorage.clear();
       window.location.reload();
     }
+    if (error.hasOwnProperty('error')) {
+      alert(error.error.text);
+    }
+    return Observable.create(false);
   }
 
   getUserId() {
