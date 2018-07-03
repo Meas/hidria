@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NvD3Module } from 'ng2-nvd3';
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -70,7 +71,8 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
     HttpClientModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    MultiselectDropdownModule
+    MultiselectDropdownModule,
+    NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [
     MainService,

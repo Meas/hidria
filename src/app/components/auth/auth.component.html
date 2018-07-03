@@ -130,10 +130,13 @@
             </div>
             <div class="col-12">
               <app-label-box [parameter]="{ description: 'TRANSLATE.USERS.APPLICATIONS' }"></app-label-box>
-              <!--<select class="full-size" [(ngModel)]="registerData.applications">-->
-                <!--<option *ngFor="let value of registrationOptions.applications" [ngValue]="value.id">{{ value.name }}</option>-->
-              <!--</select>-->
-              <ss-multiselect-dropdown [settings]="mySettings" [options]="myOptions" [(ngModel)]="optionsModel" (ngModelChange)="onChange($event)"></ss-multiselect-dropdown>
+              <ng-multiselect-dropdown
+                [placeholder]="'custom placeholder'"
+                [data]="registrationOptions.applications"
+                [(ngModel)]="optionsModel"
+                [settings]="dropdownSettings"
+                (onSelect)="onChange($event)">
+              </ng-multiselect-dropdown>
             </div>
           </div>
           <div class="row border">

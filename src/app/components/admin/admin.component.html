@@ -44,11 +44,17 @@
             </div>
             <div class="col-12">
               <app-label-box [parameter]="{ description: 'TRANSLATE.REGISTER.APPLICATIONS' }"></app-label-box>
-              <ss-multiselect-dropdown [settings]="mySettings" [options]="myOptions" [(ngModel)]="optionsModel" (ngModelChange)="onChange($event)"></ss-multiselect-dropdown>
+              <ng-multiselect-dropdown
+                [placeholder]="'custom placeholder'"
+                [data]="registrationOptions.applications"
+                [(ngModel)]="optionsModel"
+                [settings]="dropdownSettings"
+                (onSelect)="onChange($event)">
+              </ng-multiselect-dropdown>
             </div>
           </div>
-          <div class="row" style="margin-top: 20px;">
-            <button class="h-btn full-size btn-success" (click)="updateUser()">{{ 'TRANSLATE.REGISTER.CONFIRM' | translate }}</button>
+          <div class="row" style="margin-top: 20px">
+            <button style="height: 40px; font-weight: bold" class="h-btn full-size btn-default" (click)="updateUser()">{{ 'TRANSLATE.REGISTER.CONFIRM' | translate }}</button>
           </div>
         </div>
       </div>
@@ -69,7 +75,7 @@
             </div>
           </div>
           <div class="row" style="margin-top: 20px;">
-            <button class="h-btn full-size btn-success" (click)="changePassword()">{{ 'TRANSLATE.REGISTER.RESET_PASSWORD' | translate }}</button>
+            <button style="height: 40px; font-weight: bold" class="h-btn full-size btn-default" (click)="changePassword()">{{ 'TRANSLATE.REGISTER.RESET_PASSWORD' | translate }}</button>
           </div>
         </div>
       </div>

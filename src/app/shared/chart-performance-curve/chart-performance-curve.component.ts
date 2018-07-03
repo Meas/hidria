@@ -65,8 +65,8 @@ export class ChartPerformanceCurveComponent implements OnInit, AfterViewInit {
         'xUnit': this.chartData.xUnit,
         'yUnit': this.chartData.yUnit,
         'xLabel': this.chartData.xLabel,
-        'borderColor': this.chartData.borderColor[i],
-        'fill': false
+        'backgroundColor': this.chartData.borderColor[i],
+        'fill': true
       });
     }
     return data;

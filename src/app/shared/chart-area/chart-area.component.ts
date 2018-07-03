@@ -21,6 +21,7 @@ export class ChartAreaComponent {
   @Input() secondLabel = 'B';
   @Input() showYColors = false;
   @Input() interactive: boolean;
+  @Input() type = 'sound';
   @Input() set chartSetData(data) {
     if (data) {
       this.chartData = data;
@@ -52,29 +53,54 @@ export class ChartAreaComponent {
     const data: any = {};
     data.labels = this.chartData.xpoints;
     data.datasets = [];
-    let j = 0;
-    for (let i = 0; i < this.chartData.ypoints.length; i++) {
-      const dataValue = this.chartData.ypoints[i];
-      if (this.chartData.ypoints[i].length !== 0) {
-        console.log(this.chartData, i);
-        this.maxRight = Math.ceil(Math.max.apply(Math, this.chartData.ypoints[i]));
-        data.datasets.push({
-          'label': this.chartData.labels[i],
-          'data': dataValue,
-          'yValue': dataValue,
-          'xValue': this.chartData.xpoints,
-          'xLabel': this.chartData.xLabel,
-          'xUnit': this.chartData.xUnit,
-          'yLabel': this.chartData.yLabel,
-          'yUnit': this.chartData.yUnit,
-          'yAxisID': i > 1 ? 'B' : 'A',
-          'percentageLabel': this.chartData.percentage,
-          'borderColor': this.chartData.borderColor[j],
-          'fill': false
-        });
-        j++;
+    if (this.type === 'sound') {
+      let k = 0;
+      for (let i = 0; i < this.chartData.ypoints.length; i++) {
+        const dataValue = this.chartData.ypoints[i];
+        if (this.chartData.ypoints[i].length !== 0) {
+          console.log(this.chartData, i);
+          this.maxRight = Math.ceil(Math.max.apply(Math, this.chartData.ypoints[i]));
+          data.datasets.push({
+            'label': this.chartData.labels[i],
+            'data': dataValue,
+            'yValue': dataValue,
+            'xValue': this.chartData.xpoints,
+            'xLabel': this.chartData.xLabel,
+            'xUnit': this.chartData.xUnit,
+            'yLabel': this.chartData.yLabel,
+            'yUnit': this.chartData.yUnit,
+            'yAxisID': i > 0 ? 'B' : 'A',
+            'percentageLabl': this.chartData.percentage,
+            'borderColor': this.chartData.borderColor[k],
+            'fill': false
+          });
+          k++;
+        }
+      }
+    } else {
+      for (let i = 0; i < this.chartData.ypoints.length; i++) {
+        for (let j = 100; j > 1; j--) {
+          const borderColor = j === 100 ? this.chartData.borderColor[i] : j % 10 === 0 ? 'rgba(0,0,0,0)' : 'rgba(0,0,0,0)';
+          const fill = j === 100;
+          const dataValue = this.chartData.ypoints[i].map(x => Math.round(x * j / 100));
+          data.datasets.push({
+            'label': this.chartData.labels[i],
+            'data': dataValue,
+            'yValue': dataValue,
+            'xValue': this.chartData.xpoints,
+            'yLabel': this.chartData.yLabel,
+            'xUnit': this.chartData.xUnit,
+            'yUnit': this.chartData.yUnit,
+            'xLabel': this.chartData.xLabel,
+            'percentageLabel': this.chartData.percentage,
+            'percentage': j,
+            'borderColor': borderColor,
+            'fill': fill
+          });
+        }
       }
     }
+
     return data;
   }
 
@@ -105,6 +131,9 @@ export class ChartAreaComponent {
           }, {
               id: 'B',
               position: 'right',
+              gridLines: {
+                color: 'rgba(0, 0, 0, 0)',
+              },
               ticks: {
                 max: this.maxRight,
                 fontColor: this.showYColors ? this.chartData.borderColor[1] : undefined

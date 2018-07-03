@@ -15,7 +15,12 @@ export class CatalogueComponent implements OnInit {
   feature = [];
   subSections = [];
 
-  constructor(private catalogueService: CatalogueService, private router: Router) {}
+  constructor(private catalogueService: CatalogueService, private router: Router) {
+    history.pushState(null, null, 'no-back-button');
+    window.addEventListener('popstate', function(event) {
+      history.pushState(null, null, 'no-back-button');
+    });
+  }
 
   ngOnInit() {
     this.getItems();

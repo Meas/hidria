@@ -47,15 +47,8 @@ export class AuthComponent implements OnInit {
     position: [],
     applications: []
   };
-  mySettings: IMultiSelectSettings = {
-    enableSearch: true,
-    checkedStyle: 'fontawesome',
-    buttonClasses: 'h-btn btn-default btn-block',
-    dynamicTitleMaxItems: 1
-  };
-  optionsModel: number[];
-  myOptions: IMultiSelectOption[];
 
+  optionsModel: {}[];
 
   changePasswordData = {
     oldPassword: '',
@@ -67,6 +60,16 @@ export class AuthComponent implements OnInit {
   restartPasswordData = {
     email: '',
     langId: 1
+  };
+
+  dropdownSettings = {
+    singleSelection: false,
+    idField: 'id',
+    textField: 'name',
+    selectAllText: 'Select All',
+    unSelectAllText: 'UnSelect All',
+    itemsShowLimit: 4,
+    allowSearchFilter: true
   };
 
   constructor(private authService: AuthService,
@@ -86,7 +89,6 @@ export class AuthComponent implements OnInit {
     this.authService.getRegisterFields().subscribe((response: any) => {
       console.log(response);
       this.registrationOptions = response;
-      this.myOptions = this.registrationOptions.applications;
     });
   }
 
@@ -117,7 +119,7 @@ export class AuthComponent implements OnInit {
   }
 
   onResetPasswordClicked() {
-    console.log(generateUrlEncodedData(this.restartPasswordData))
+    console.log(generateUrlEncodedData(this.restartPasswordData));
     this.authService.resetPassword(generateUrlEncodedData(this.restartPasswordData)).subscribe((response: any) => {
       console.log(response);
       this.translate.get(response.message).subscribe((res: string) => {
@@ -146,8 +148,8 @@ export class AuthComponent implements OnInit {
   }
 
   onChange() {
-    console.log(this.optionsModel);
-    this.registerData.applications = this.optionsModel;
+    this.registerData.applications = this.optionsModel.map((option: any) => option.id);
+    console.log(this.registerData.applications);
   }
 
 }
