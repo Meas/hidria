@@ -19,6 +19,7 @@ export class ChartAreaComponent {
 
   @Input() canvasId: string;
   @Input() secondLabel = 'B';
+  @Input() secondLine = true;
   @Input() showYColors = false;
   @Input() interactive: boolean;
   @Input() type = 'sound';
@@ -69,7 +70,7 @@ export class ChartAreaComponent {
             'xUnit': this.chartData.xUnit,
             'yLabel': this.chartData.yLabel,
             'yUnit': this.chartData.yUnit,
-            'yAxisID': i > 0 ? 'B' : 'A',
+            'yAxisID': this.secondLine ? i > 0 ? 'B' : 'A' : 'A',
             'percentageLabl': this.chartData.percentage,
             'borderColor': this.chartData.borderColor[k],
             'fill': false
@@ -130,6 +131,7 @@ export class ChartAreaComponent {
             }
           }, {
               id: 'B',
+              display: this.secondLine,
               position: 'right',
               gridLines: {
                 color: 'rgba(0, 0, 0, 0)',

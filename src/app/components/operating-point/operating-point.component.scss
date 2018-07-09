@@ -158,3 +158,29 @@ $green: #44d577;
 .show-project-list {
   display: flex;
 }
+
+
+.section-title {
+  display: flex;
+  width: 100%;
+  height: 20px;
+  margin: 10px 0;
+  font-weight: bolder;
+}
+.section-for-items {
+  width: 100%;
+  height: auto;
+}
+.parent-name {
+  cursor: pointer;
+  color: #1D4686;
+  &:hover {
+    color: #19376e;
+  }
+}
+.separetor {
+  border-right: 2px solid #bbb;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+

@@ -5,8 +5,12 @@
   <div *ngIf="!loading">
     <div class="row title-model no-gutters align-items-center">
       <div class="col-lg-6">
-        <div>
-          <!--<a routerLink="/choose-model/{{ operationPointId }}">Choose model</a> | Operating point | {{ card.name }}-->
+        <div class="section-title">
+          <span class="parent-name" routerLink="/choose-model/{{ operationPointId }}">
+            {{ 'TRANSLATE.OPERATING.CHOOSE-MODEL' | translate }}
+          </span>
+          <span class="separetor"></span>
+          <span> {{ 'TRANSLATE.OPERATING.OPERATING-POINT' | translate }} </span>
         </div>
       </div>
       <div class="col-lg-6">

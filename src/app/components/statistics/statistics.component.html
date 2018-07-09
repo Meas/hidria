@@ -13,11 +13,11 @@
       </div>
     </div>
     <div class="col-lg-6">
-      <h4>Top 5 products</h4>
+      <h4>{{ 'TRANSLATE.STATISTICS.RIGHT_TITLE' | translate }}</h4>
       <app-data-table [tableData]="topApps" [type]="'top'"></app-data-table>
     </div>
     <div class="col-lg-12">
-      <h4>10 most recent orders</h4>
+      <h4>{{ 'TRANSLATE.STATISTICS.BOTTOM_TITLE' | translate }}</h4>
       <app-data-table [tableData]="recentOrders" [type]="'orders'" [isIndexed]="true"></app-data-table>
     </div>
   </div>

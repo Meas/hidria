@@ -1,12 +1,13 @@
 import { HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import { environment } from '../../../environments/environment';
-import {Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class HelperService {
 
-  constructor() {}
+  constructor() {
+  }
 
   /**
    * Function combines route url and query params
@@ -56,9 +57,7 @@ export class HelperService {
       localStorage.clear();
       window.location.reload();
     }
-    if (error.hasOwnProperty('error')) {
-      alert(error.error.text);
-    }
+
     return Observable.create(false);
   }
 

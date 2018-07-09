@@ -3,7 +3,6 @@ import { generateUrlEncodedData, setStorageData } from '../../helpers/helper';
 import {AuthService} from '../../services/auth/auth.service';
 import {Router} from '@angular/router';
 import {CustomNotificationsService} from '../../services/notifications/notifications.service';
-import {IMultiSelectOption, IMultiSelectSettings} from 'angular-2-dropdown-multiselect';
 import {TranslateService} from '@ngx-translate/core';
 
 @Component({
@@ -98,8 +97,9 @@ export class AuthComponent implements OnInit {
         setStorageData(['access_token', 'username', 'expires_in', 'id'], response);
         this.router.navigate(['catalogue']);
       } else {
-        console.log('Error on login happened');
-        this.notification.message('error', 'Error', 'Invalid username or password');
+        this.translate.get(response.error).subscribe((res: string) => {
+          this.notification.message('error', 'Error', res);
+        });
       }
     });
   }
@@ -107,15 +107,24 @@ export class AuthComponent implements OnInit {
   onRegisterClicked() {
     // console.log(generateUrlEncodedData(this.registerData));
     this.registerData.applications = [this.registerData.applications];
-    if (this.registerData.password !== this.registerData.passwordRepeat) {
-      this.notification.message('error', 'Error', 'Password not same');
+    if (this.registerData.termsAndConditions) {
+      if (this.registerData.password !== this.registerData.passwordRepeat) {
+        this.notification.message('error', 'Error', 'Password not same');
+      } else {
+        this.authService.register(this.registerData).subscribe((response: any) => {
+          console.log(response);
+          this.notification.message(response.type, response.type.toUpperCase(), response.message);
+          if (response.type === 'success') {
+            this.thanksMessage = true;
+            this.modalRegister = false;
+            this.modalLogin = true;
+          }
+        });
+      }
     } else {
-      this.authService.register(this.registerData).subscribe((response: any) => {
-        console.log(response);
-        this.notification.message('warn', 'Warning', response.message);
-        this.thanksMessage = true;
-      });
+      this.notification.message('info', 'Info', 'Please fill all info and check terms and conditions!');
     }
+
   }
 
   onResetPasswordClicked() {

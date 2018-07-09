@@ -9,11 +9,11 @@ import {StatisticsService} from '../../services/statistics/statistics.service';
 export class StatisticsComponent implements OnInit {
 
   topApps = {
-    headers: ['Type', 'Art No.', 'Sales'],
+    headers: ['Type', 'Model', 'Sales'],
     data: []
   };
   recentOrders = {
-    headers: ['Order ID', 'Items', 'Member', 'Date/time', 'Total'],
+    headers: ['Project ID', 'Items', 'Member', 'Date/time', 'Total'],
     data: []
   };
   generalData = [];

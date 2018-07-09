@@ -55,6 +55,7 @@ export class ChartPerformanceCurveComponent implements OnInit, AfterViewInit {
     const data: any = {};
     data.labels = this.chartData.xpoints;
     data.datasets = [];
+    this.chartData.xpoints[this.chartData.xpoints.length - 1] = 'Total';
     for (let i = 0; i < this.chartData.ypoints.length; i++) {
       data.datasets.push({
         'label': this.chartData.labels[i],

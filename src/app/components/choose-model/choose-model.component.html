@@ -4,8 +4,14 @@
   </div>
   <div *ngIf="!loading">
     <div class="container-fluid">
-      <div class="row">
-        <p class="title-model">{{ 'TRANSLATE.CHOOSE_MODEL.CHOOSE_MODEL' | translate }}</p>
+      <div class="row title-model">
+        <div class="section-title">
+          <span class="parent-name" routerLink="/catalogue">
+            {{ 'TRANSLATE.CHOOSE_MODEL.CATALOGUE' | translate }}
+          </span>
+          <span class="separetor"></span>
+          <span> {{ 'TRANSLATE.CHOOSE_MODEL.CHOOSE_MODEL' | translate }} </span>
+        </div>
       </div>
       <div class="row">
         <div class="col-lg-4">

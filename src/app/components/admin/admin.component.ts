@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../services/auth/auth.service';
 import {ActivatedRoute, Params} from '@angular/router';
-import {IMultiSelectOption, IMultiSelectSettings} from 'angular-2-dropdown-multiselect';
 import {TranslateService} from '@ngx-translate/core';
 import {CustomNotificationsService} from '../../services/notifications/notifications.service';
 import {UserService} from '../../services/user/user.service';
@@ -197,6 +196,7 @@ export class AdminComponent implements OnInit {
 
   changePassword() {
     if (this.changePasswordData.newPasswordRepeat === this.changePasswordData.newPassword) {
+      this.changePasswordData['email'] = this.editData.email;
       this.authService.changePassword(this.changePasswordData).subscribe((response: any) => {
         console.log(response);
         this.notification.message('success', 'Success', response.message);

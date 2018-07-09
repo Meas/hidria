@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NvD3Module } from 'ng2-nvd3';
-import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 import { SharedModule } from './shared/shared.module';
@@ -71,7 +70,6 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
     HttpClientModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    MultiselectDropdownModule,
     NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [
@@ -88,7 +86,7 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
     MyProjectsService,
     ComparisonService,
     UserService,
-    StatisticsService
+    StatisticsService,
   ],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

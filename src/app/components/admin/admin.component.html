@@ -63,15 +63,15 @@
           <div class="row border">
             <div class="col-12">
               <app-label-box [parameter]="{ description: 'TRANSLATE.REGISTER.OLD_PASSWORD' }"></app-label-box>
-              <input class="full-size" [(ngModel)]="changePasswordData.oldPassword"/>
+              <input type="password" class="full-size" [(ngModel)]="changePasswordData.oldPassword"/>
             </div>
             <div class="col-12">
               <app-label-box [parameter]="{ description: 'TRANSLATE.REGISTER.NEW_PASSWORD' }"></app-label-box>
-              <input class="full-size" [(ngModel)]="changePasswordData.newPassword"/>
+              <input type="password" class="full-size" [(ngModel)]="changePasswordData.newPassword"/>
             </div>
             <div class="col-12">
               <app-label-box [parameter]="{ description: 'TRANSLATE.REGISTER.NEW_PASSWORD_REPEAT' }"></app-label-box>
-              <input class="full-size" [(ngModel)]="changePasswordData.newPasswordRepeat"/>
+              <input type="password" class="full-size" [(ngModel)]="changePasswordData.newPasswordRepeat"/>
             </div>
           </div>
           <div class="row" style="margin-top: 20px;">
@@ -97,6 +97,9 @@
             <option *ngFor="let value of time" [ngValue]="value.value">{{ value.text }}</option>
           </select>
         </div>
+      </div>
+      <div class="row" style="margin-top: 20px">
+        <button style="height: 40px; font-weight: bold" class="h-btn full-size btn-default" (click)="updateUser()">{{ 'TRANSLATE.REGISTER.PERMISSIONS_SAVE' | translate }}</button>
       </div>
     </div>
   </div>

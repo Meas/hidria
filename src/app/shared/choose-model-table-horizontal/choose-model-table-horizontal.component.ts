@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
-  selector: 'app-choose-model-table-horizontal',
+  selector: 'app-choose-model-table-horizontal, [appChooseModelTableHorizontal]',
   templateUrl: './choose-model-table-horizontal.component.html',
   styleUrls: ['./choose-model-table-horizontal.component.scss']
 })
