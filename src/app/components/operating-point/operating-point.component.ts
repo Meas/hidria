@@ -150,7 +150,6 @@ export class OperatingPointComponent implements OnInit {
       this.getInputs(id);
       this.getTable(id);
       this.getProjects();
-      this.postCharts(id);
       this.loading = false;
     });
 

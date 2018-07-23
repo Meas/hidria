@@ -22,7 +22,7 @@
     </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of tableData.data | search:['code', search] | sort:[sort, orientation]; let j = index" (click)="modelSelected.emit(item.id)">
+      <tr *ngFor="let item of tableData.data | search:[tableData.headers.slice(1, tableData.headers.length), search] | sort:[sort, orientation]; let j = index" (click)="modelSelected.emit(item.id)">
         <ng-container *ngFor="let header of tableData.headers.slice(1, tableData.headers.length)">
           <td>{{ item[header.code] }}</td>
         </ng-container>

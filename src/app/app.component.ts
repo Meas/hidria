@@ -32,6 +32,11 @@ export class AppComponent {
     router.events.subscribe((val) => this.isOpenedSearchByCode = false);
     if (this.helper.getUserId()) {
       this.authService.getUser(this.helper.getUserId()).subscribe((response: any) => {
+        console.log(response);
+        authService.setPermissions({
+          admin: response.admin,
+          comparison: response.comparison
+        });
         this.measure = response.metricSystem;
       });
     }

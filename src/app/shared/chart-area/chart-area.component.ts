@@ -2,7 +2,6 @@ import {Component, Input, Output, EventEmitter, ChangeDetectionStrategy} from '@
 import Chart from 'chart.js';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-chart-area-component',
   template: `
     <div style="background: #fff !important">

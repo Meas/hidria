@@ -1,14 +1,31 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import {MainService} from '../main.service';
-import {HttpClient} from '@angular/common/http';
+import { MainService } from '../main.service';
+import { HttpClient } from '@angular/common/http';
+import { Subject } from 'rxjs/internal/Subject';
+import {HelperService} from '../helper/helper.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private service: MainService, private http: HttpClient) {}
+  permissions: Subject<any> = new Subject();
+
+  constructor(private service: MainService, private http: HttpClient, private helper: HelperService) {}
+
+  setPermissions(payload) {
+    if (payload) {
+      this.permissions.next(payload);
+    } else {
+      this.getUser(this.helper.getUserId()).subscribe((res: any) => {
+        this.permissions.next({
+          admin: res.admin,
+          comparison: res.comparison
+        });
+      });
+    }
+  }
 
   /**
    * Is Logged In
@@ -16,6 +33,14 @@ export class AuthService {
    */
   isLoggedIn(): boolean {
     return !!localStorage.getItem('access_token') && localStorage.getItem('access_token') !== undefined;
+  }
+
+  /**
+   * Is Allowed to access
+   * @returns {Observable<boolean>}
+   */
+  isAllowed(): boolean {
+    return  !!localStorage.getItem('permissions') && JSON.parse(localStorage.getItem('permissions'));
   }
 
   /**

@@ -20,7 +20,12 @@ export class SearchPipe implements PipeTransform {
   transform(value: any, args: any[]) {
     if (args[1]) {
       return value.filter(function (el: any) {
-        return el[args[0]].toLowerCase().indexOf(args[1].toLowerCase()) > -1;
+        // return el[cd.code].toString().toLowerCase().indexOf(args[1].toLowerCase()) > -1;
+        return !!find(el, function(o) {
+          if (o) {
+            return o.toString().toLowerCase().indexOf(args[1].toLowerCase()) > -1;
+          }
+        });
       });
     }
     return value;

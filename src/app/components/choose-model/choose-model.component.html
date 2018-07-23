@@ -25,7 +25,7 @@
               [setChartData]="features.graph"
               [toFill]="true"></app-chart-component>
             <div *ngIf="!features.graph">
-              <h3>There is no data to show!</h3>
+              <h3>{{ 'TRANSLATE.CHOOSE_MODEL.NO_DATA_MESSAGE' | translate }}</h3>
             </div>
           </div>
         </div>

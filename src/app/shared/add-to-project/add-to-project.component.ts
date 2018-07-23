@@ -83,7 +83,6 @@ export class AddToProjectComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private notificaton: CustomNotificationsService) {
     this.fillFormValues();
-    this.createForm();
   }
 
   ngOnInit() {}
@@ -93,24 +92,14 @@ export class AddToProjectComponent implements OnInit {
       this.formValues
     );
     this.projectForm.valueChanges.subscribe(data => {
+      console.log(data);
     });
-  }
-
-  maxValue(max) {
-    return (input: FormControl) => {
-      return input.value <= max ? null : {max: true};
-    };
-  }
-
-  minValue(min) {
-    return (input: FormControl) => {
-      return input.value >= min ? null : {max: true};
-    };
   }
 
   fillFormValues(defaultValues: Boolean = false) {
     for (const parameter of this.elements) {
       let value;
+      console.log(defaultValues);
       if (defaultValues) {
         value = parameter.defaultOption || '';
         this.formValues[parameter.parameter] = value;
@@ -122,6 +111,7 @@ export class AddToProjectComponent implements OnInit {
         }
       }
     }
+    this.createForm();
   }
 
   onSubmit() {

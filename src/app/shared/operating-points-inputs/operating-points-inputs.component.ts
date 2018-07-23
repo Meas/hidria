@@ -14,9 +14,9 @@ export class OperatingPointsInputsComponent implements OnInit {
     for (let i = 0; i < graphDataInput.length; i++) {
       this.inputData[i].defaultValue = graphDataInput[i];
     }
-    this.changeButtonDisabled = false;
+    this.changeButtonDisabled = true;
   }
-  changeButtonDisabled = true;
+  changeButtonDisabled = false;
   @Output() calculate: EventEmitter<any> = new EventEmitter();
 
   constructor() {
@@ -26,7 +26,7 @@ export class OperatingPointsInputsComponent implements OnInit {
     // for (let i = 0; i < this.inputData.children.length; i++) {
     //   this.graphData.push(this.inputData.children[i]);
     // }
-    this.changeButtonDisabled = true;
+    this.changeButtonDisabled = false;
   }
 
   inputChanged() {

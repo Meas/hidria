@@ -24,11 +24,11 @@
         <button class="tab-button" [ngClass]="{'active': sections.main}" (click)="sections.main = !sections.main">
           {{ 'TRANSLATE.OPERATING_POINT.MAIN_CHART' | translate }}
         </button>
-        <button class="tab-button" [ngClass]="{'active': sections.data}" (click)="sections.data = !sections.data">
-          {{ 'TRANSLATE.OPERATING_POINT.DATA_SHEET' | translate }}
-        </button>
         <button class="tab-button" [ngClass]="{'active': sections.sound}" (click)="sections.sound = !sections.sound">
           {{ 'TRANSLATE.OPERATING_POINT.SOUND_CHART' | translate }}
+        </button>
+        <button class="tab-button" [ngClass]="{'active': sections.data}" (click)="sections.data = !sections.data">
+          {{ 'TRANSLATE.OPERATING_POINT.DATA_SHEET' | translate }}
         </button>
       </div>
       <div class="col-lg-8 mb-2">
@@ -68,6 +68,11 @@
             {{ graphs[0]?.notes }}
           </div>
         </app-chart-performance-curve-component>
+        <div style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%">
+          <h3 *ngIf="graphs.length === 0">
+            {{ 'TRANSLATE.OPERATING_POINT.SOUND_GRAPH_MESSAGE' | translate }}
+          </h3>
+        </div>
       </div>
       <div class="col-lg-5 mb-2" *ngIf="sections.sound">
         <div class="sound-chart-options row">
@@ -93,7 +98,7 @@
             <input style="width: 100%" type="number" placeholder="Distance (m)" [(ngModel)]="graphOptions.distance">
           </div>
           <div class="additional-options col-lg-6">
-            <button class="button" (click)="this.postCharts(id)">{{ 'TRANSLATE.OPERATING_POINT.REFRESH' | translate }}</button>
+            <button [disabled]="graphOptions.rpm === 1" class="button" (click)="this.postCharts(id)">{{ 'TRANSLATE.OPERATING_POINT.REFRESH' | translate }}</button>
           </div>
         </div>
       </div>

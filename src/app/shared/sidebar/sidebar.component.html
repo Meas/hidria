@@ -21,7 +21,7 @@
     </div>
     <div class="text"> {{ 'TRANSLATE.MY-PROJECTS' | translate }}</div>
   </div>
-  <div *ngIf="isLoggedIn" class="filter-item" routerLink="comparisons" routerLinkActive="active">
+  <div *ngIf="isLoggedIn && permissions.comparison" class="filter-item" routerLink="comparisons" routerLinkActive="active">
     <div class="icon">
       <img src="assets/icons/comparison.png">
     </div>
