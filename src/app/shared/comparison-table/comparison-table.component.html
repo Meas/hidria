@@ -6,10 +6,10 @@
 </div>
 
 <div style="overflow-x: scroll; display: flex">
-  <div class="one-table-entry" *ngFor="let model of modelList">
+  <div class="one-table-entry" *ngFor="let model of modelList; let i = index">
     <div class="one-table-row first-row">
       <div class="x-button-outer" [style.background-color]="model.color"
-           (click)="deleteFromComparison.emit(model.id)">
+           (click)="deleteFromComparison.emit(i)">
         <i class="fa fa-times" aria-hidden="true"></i>
       </div>
       <div class="image-outer">

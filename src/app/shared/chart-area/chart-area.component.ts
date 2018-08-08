@@ -1,7 +1,9 @@
-import {Component, Input, Output, EventEmitter, ChangeDetectionStrategy} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
 import Chart from 'chart.js';
+import { isEmpty } from 'lodash';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-chart-area-component',
   template: `
     <div style="background: #fff !important">
@@ -51,14 +53,15 @@ export class ChartAreaComponent {
 
   getGraphData() {
     const data: any = {};
-    data.labels = this.chartData.xpoints;
+    this.chartData.ypoints = this.chartData.ypoints.filter(point => !isEmpty(point))
+    data.labels = this.chartData.xpoints.map(point => isEmpty(point) ? point : null);
     data.datasets = [];
-    if (this.type === 'sound') {
+    if (this.chartData.fanType !== 'SC') {
       let k = 0;
+      console.log('TEST', this.chartData.ypoints)
       for (let i = 0; i < this.chartData.ypoints.length; i++) {
         const dataValue = this.chartData.ypoints[i];
-        if (this.chartData.ypoints[i].length !== 0) {
-          console.log(this.chartData, i);
+        if (dataValue.length !== 0) {
           this.maxRight = Math.ceil(Math.max.apply(Math, this.chartData.ypoints[i]));
           data.datasets.push({
             'label': this.chartData.labels[i],
@@ -69,7 +72,7 @@ export class ChartAreaComponent {
             'xUnit': this.chartData.xUnit,
             'yLabel': this.chartData.yLabel,
             'yUnit': this.chartData.yUnit,
-            'yAxisID': this.secondLine ? i > 0 ? 'B' : 'A' : 'A',
+            'yAxisID': this.chartData.type === 'static_pressure' || this.chartData.type === 'total_pressure' ? i > 1 ? 'B' : 'A' : i > 0 ? 'B' : 'A',
             'percentageLabl': this.chartData.percentage,
             'borderColor': this.chartData.borderColor[k],
             'fill': false
@@ -91,6 +94,7 @@ export class ChartAreaComponent {
             'yLabel': this.chartData.yLabel,
             'xUnit': this.chartData.xUnit,
             'yUnit': this.chartData.yUnit,
+            'yAxisID': this.secondLine ? i > 0 ? 'B' : 'A' : 'A',
             'xLabel': this.chartData.xLabel,
             'percentageLabel': this.chartData.percentage,
             'percentage': j,

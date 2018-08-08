@@ -22,7 +22,7 @@
       <div class="col-lg-12">
         <app-comparison-table
           [headers]="tables[filterSelected]" [filterSelected]="filterSelected"
-          [modelList]="comparisonList"
+          [modelList]="comparison$ | async"
           (deleteFromComparison)="onDeleteFromComparison($event)" (clearAll)="clearAllConfirm()"></app-comparison-table>
       </div>
     </div>

@@ -11,8 +11,8 @@
       <div class="section-content">
 
         <ul *ngIf="isLoggedIn" class="nav-links left">
-          <li class="nav-link" *ngIf="permissions.admin"><a class="link" routerLink="statistics">{{ 'TRANSLATE.STATISTICS.STATISTICS' | translate }}</a></li>
-          <li class="nav-link" *ngIf="permissions.admin"><a class="link" routerLink="users">{{ 'TRANSLATE.USER' | translate }}</a></li>
+          <li class="nav-link" *ngIf="permissions?.admin"><a class="link" routerLink="statistics">{{ 'TRANSLATE.STATISTICS.STATISTICS' | translate }}</a></li>
+          <li class="nav-link" *ngIf="permissions?.admin"><a class="link" routerLink="users">{{ 'TRANSLATE.USER' | translate }}</a></li>
         </ul>
 
         <ul class="nav-links right">

@@ -96,7 +96,7 @@ export class ChooseModelComponent implements OnInit {
   }
   getGraph(): void {
     this.chooseModelService.getGraph(this.model || this.data[0].value).subscribe((response: any) => {
-      console.log(response)
+      console.log('GRAPH', response)
       if (response.length !== 0) {
         this.features.graph = response[0];
       }
@@ -137,8 +137,8 @@ export class ChooseModelComponent implements OnInit {
   }
   getSearchGraph(data) {
     this.chooseModelService.getSearchGraph(data).subscribe((response: any) => {
+      console.log('GRAPH', response)
       if (response.length !== 0) {
-        console.log(response, 'graph')
         this.features.graph = response[0];
       }
       this.loading = false;

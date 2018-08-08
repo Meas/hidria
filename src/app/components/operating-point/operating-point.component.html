@@ -46,17 +46,22 @@
         </div>
       </div>
       <div class="col-lg-8 mb-2" *ngIf="sections.main">
-        <app-chart-area-component *ngIf="graphData"
-                                  [showYColors]="true"
-                                  [canvasId]="'canvas1'"
-                                  [chartSetData]="graphData"
-                                  [interactive]="true"
-                                  [secondLabel]="secondLabel"
-                                  (points)="onPointSelected($event)"></app-chart-area-component>
-        <div>
-          <div class="info-box">
-            {{ graphData?.notes }}
+        <div *ngIf="graphData">
+          <app-chart-area-component *ngIf="graphData"
+                                    [showYColors]="true"
+                                    [canvasId]="'canvas1'"
+                                    [chartSetData]="graphData"
+                                    [interactive]="true"
+                                    [secondLabel]="secondLabel"
+                                    (points)="onPointSelected($event)"></app-chart-area-component>
+          <div>
+            <div class="info-box">
+              {{ graphData?.notes }}
+            </div>
           </div>
+        </div>
+        <div *ngIf="!graphData">
+          <h1>Waiting for graph ...</h1>
         </div>
       </div>
       <div class="col-lg-7 mb-2" *ngIf="sections.sound">

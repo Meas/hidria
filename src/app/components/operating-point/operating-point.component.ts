@@ -6,6 +6,8 @@ import {MyProjectsService} from '../../services/my-projects/my-projects.service'
 import {CustomNotificationsService} from '../../services/notifications/notifications.service';
 import {TranslateService} from '@ngx-translate/core';
 import {randomColor} from '../../helpers/helper';
+import { Store } from '@ngxs/store';
+import { SetComparison } from '../../store/app.actions';
 
 @Component({
   selector: 'app-operating-point',
@@ -21,7 +23,7 @@ export class OperatingPointComponent implements OnInit {
   operatingPointInputs;
   operationPointId = 0;
 
-  graphData: any = {};
+  graphData;
   graphs = [];
   secondLabel = '';
 
@@ -49,18 +51,10 @@ export class OperatingPointComponent implements OnInit {
   limitTypes = 2;
 
   soundOptions = [
-    {
-      id: 1
-    },
-    {
-      id: 2
-    },
-    {
-      id: 4
-    },
-    {
-      id: 8
-    }
+    { id: 1 },
+    { id: 2 },
+    { id: 4 },
+    { id: 8 }
   ];
 
   additionalOptions = [
@@ -135,7 +129,8 @@ export class OperatingPointComponent implements OnInit {
               private cd: ChangeDetectorRef,
               private notification: CustomNotificationsService,
               private activatedRoute: ActivatedRoute,
-              private translate: TranslateService) {
+              private translate: TranslateService,
+              private store: Store) {
     this.operationPointId = +localStorage.getItem('operation-point');
   }
 
@@ -143,9 +138,7 @@ export class OperatingPointComponent implements OnInit {
     this.getId((id) => {
       this.id = id;
       this.getCard(id);
-      this.getGraph(id, this.types[0]);
       this.getLegend();
-      // this.getCharts(id);
       this.getLinks(id);
       this.getInputs(id);
       this.getTable(id);
@@ -205,12 +198,6 @@ export class OperatingPointComponent implements OnInit {
     return this.graphOptions;
   }
 
-  getCharts(id): void {
-    this.operatingPointService.getCharts(id).subscribe((response: any) => {
-      this.graphs = response;
-    });
-  }
-
   postCharts(id): void {
     this.operatingPointService.postCharts(id, this.graphOptions).subscribe((response: any) => {
       this.graphs = response;
@@ -222,6 +209,10 @@ export class OperatingPointComponent implements OnInit {
     this.operatingPointService.getInputs(id).subscribe((response: any) => {
       this.operatingPointInputs = response;
       this.getCalculate(id, this.operatingPointInputs);
+      setTimeout(() => {
+        this.getCalculate(id, this.operatingPointInputs);
+        this.postCharts(id);
+      }, 2000);
     });
   }
 
@@ -252,14 +243,13 @@ export class OperatingPointComponent implements OnInit {
         this.graphOptions.density = response;
       });
     } else {
-      this.graphOptions.density = Math.ceil(data[3].defaultValue);
+      this.graphOptions.density = data[3].defaultValue;
     }
 
     if (this.tables.length !== 0) {
       this.graphOptions.rpm = Math.ceil(this.tables[0].data[1].value);
     }
     this.operatingPointService.getGraph(id, this.types[0], this.graphOptions).subscribe((response: any) => {
-
       this.graphData = response;
     });
     this.operatingPointService.getCalculate(id, this.graphOptions).subscribe((response: any) => {
@@ -277,25 +267,25 @@ export class OperatingPointComponent implements OnInit {
     });
   }
 
-  addToComparisonFunc() {
-    const compArr: {}[] = JSON.parse(localStorage.getItem('comparison')) || [];
+  async addToComparisonFunc() {
+    let compArr: {}[] = [];
+    this.store.select(state => state.app.comparison).subscribe((res) => {
+      compArr = res;
+    });
     if (compArr.length <= 8) {
       const color = randomColor(compArr.length);
 
       this.graphData.borderColor = [color];
-      if (Array.isArray(this.tables)) {
-        this.modelsToCompare.push({
-          id: this.modelsToCompare.length,
-          name: this.card['name'],
-          color: color,
-          image: this.card['image'],
-          data: this.tables,
-          graph: this.graphData
-        });
-      }
+      this.store.dispatch(new SetComparison([{
+        id: this.modelsToCompare.length,
+        name: this.card['name'],
+        color: color,
+        image: this.card['image'],
+        data: this.tables,
+        graph: this.graphData
+      }]));
 
       this.notification.message('success', 'Success', 'Item added to comparison');
-      localStorage.setItem('comparison', JSON.stringify(this.modelsToCompare));
     } else {
       this.notification.message('warn', 'Warning', 'You can select only 8 items for comparison');
     }

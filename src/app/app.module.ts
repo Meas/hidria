@@ -5,6 +5,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NvD3Module } from 'ng2-nvd3';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { NgxsModule } from '@ngxs/store';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
+import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -42,6 +46,8 @@ import { FilterPipe } from './pipes/filter/filter.pipe';
 import { RouteNotFoundComponent } from './components/route-not-found/route-not-found.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
+import { AppState } from './store/app.state';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,7 +76,13 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
     HttpClientModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    NgMultiSelectDropDownModule.forRoot()
+    NgMultiSelectDropDownModule.forRoot(),
+    NgxsModule.forRoot([
+      AppState
+    ]),
+    NgxsReduxDevtoolsPluginModule.forRoot(),
+    NgxsLoggerPluginModule.forRoot(),
+    NgxsStoragePluginModule.forRoot()
   ],
   providers: [
     MainService,
