@@ -1,7 +1,5 @@
-import {Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, NgZone, ViewChild} from '@angular/core';
+import {Component, OnInit, ChangeDetectorRef, ViewChild} from '@angular/core';
 import { ComparisonService } from '../../services/comparison/comparison.service';
-import * as _ from 'lodash';
-import {OperatingPointService} from '../../services/operating-point/operating-point.service';
 import {ModalComponent} from '../../shared/modal/modal.component';
 import {Select, Store} from '@ngxs/store';
 import {Observable} from 'rxjs';
@@ -21,7 +19,7 @@ export class ComparisonComponent implements OnInit {
   filterSelected = 0;
 
   showGraph = false;
-  graph: any = {};
+  graph;
   tables;
   comparisonList: any = [];
 
@@ -44,14 +42,17 @@ export class ComparisonComponent implements OnInit {
   }
 
   getComparisonList() {
+    this.graph = undefined;
     this.comparison$.subscribe((comparisonList) => {
       this.comparisonList = comparisonList;
       this.comparisonList.forEach((data, i) => {
-        this.graph = data.graph;
-
-        this.graph.ypoints = this.graph.ypoints.concat(data.graph.ypoints);
-        this.graph.borderColor = this.graph.borderColor.concat(data.graph.borderColor);
-        this.graph.labels = this.graph.labels.concat(data.graph.labels);
+        if (i > 1) {
+          this.graph.ypoints = this.graph.ypoints.concat(data.graph.ypoints);
+          this.graph.borderColor = this.graph.borderColor.concat(data.graph.borderColor);
+          this.graph.labels = this.graph.labels.concat(data.graph.labels);
+        } else {
+          this.graph = data.graph;
+        }
       });
       this.comparisonList.forEach((model, i) => {
         if (i === 0) {
@@ -65,7 +66,7 @@ export class ComparisonComponent implements OnInit {
       });
     });
 
-    console.log(this.tables);
+    console.log(this.graph);
   }
 
   onFilterSelected(event) {
@@ -73,14 +74,16 @@ export class ComparisonComponent implements OnInit {
   }
 
   onDeleteFromComparison (index) {
-    this.store.dispatch(new UnsetComparison(index));
+    this.store.dispatch(new UnsetComparison(index)).subscribe((res) => {
+      this.getComparisonList();
+    });
     this.myModal.visible = false;
   }
 
   clearAll() {
     this.store.dispatch(new ClearComparison());
     this.myModal.visible = false;
-    this.graph = {};
+    this.graph = undefined;
   }
 
   clearAllConfirm() {

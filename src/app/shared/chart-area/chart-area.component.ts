@@ -56,9 +56,8 @@ export class ChartAreaComponent {
     this.chartData.ypoints = this.chartData.ypoints.filter(point => !isEmpty(point))
     data.labels = this.chartData.xpoints.map(point => isEmpty(point) ? point : null);
     data.datasets = [];
-    if (this.chartData.fanType !== 'SC') {
+    if (this.chartData.fanType !== 'EC') {
       let k = 0;
-      console.log('TEST', this.chartData.ypoints)
       for (let i = 0; i < this.chartData.ypoints.length; i++) {
         const dataValue = this.chartData.ypoints[i];
         if (dataValue.length !== 0) {
@@ -94,7 +93,7 @@ export class ChartAreaComponent {
             'yLabel': this.chartData.yLabel,
             'xUnit': this.chartData.xUnit,
             'yUnit': this.chartData.yUnit,
-            'yAxisID': this.secondLine ? i > 0 ? 'B' : 'A' : 'A',
+            'yAxisID': this.chartData.type === 'static_pressure' || this.chartData.type === 'total_pressure' ? i > 1 ? 'B' : 'A' : i > 0 ? 'B' : 'A',
             'xLabel': this.chartData.xLabel,
             'percentageLabel': this.chartData.percentage,
             'percentage': j,

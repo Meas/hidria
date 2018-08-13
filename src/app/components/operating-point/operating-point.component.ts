@@ -126,6 +126,8 @@ export class OperatingPointComponent implements OnInit {
     typeWeighted: true
   };
 
+  compArr = [];
+
   constructor(private operatingPointService: OperatingPointService,
               private projectService: MyProjectsService,
               private zone: NgZone,
@@ -140,6 +142,9 @@ export class OperatingPointComponent implements OnInit {
   ngOnInit() {
     this.getId(async (id) => {
       this.id = id;
+      this.store.select(state => state.app.comparison).subscribe((res) => {
+        this.compArr = res;
+      });
       this.getCard(id);
       this.getLegend();
       this.getLinks(id);
@@ -162,19 +167,27 @@ export class OperatingPointComponent implements OnInit {
   }
 
   async getGraph(id, types): Promise<void> {
-    await types.forEach(async (type, i) => {
-      await this.operatingPointService.getGraph(id, type, this.getGraphData()).subscribe((response: any) => {
-        if (i > 0) {
-          this.secondLabel = response.yUnit;
-          this.graphData.ypoints = this.graphData.ypoints.concat(response.ypoints);
-          this.graphData.borderColor = this.graphData.borderColor.concat(response.borderColor);
-        } else {
-          this.graphData = response;
+
+    if (types.length > 0) {
+      await this.operatingPointService.getGraph(id, types[0], this.getGraphData()).subscribe(async (response: any) => {
+
+        this.graphData = response;
+
+        if (types.length > 1) {
+          await this.operatingPointService.getGraph(id, types[1], this.getGraphData()).subscribe((res: any) => {
+            this.secondLabel = res.yUnit;
+            this.graphData.ypoints = this.graphData.ypoints.concat(res.ypoints);
+            this.graphData.borderColor = this.graphData.borderColor.concat(res.borderColor);
+          });
         }
       });
-    });
+    } else {
+      this.graphData = undefined;
+    }
+
     this.notification.message('success', 'Graph', 'Graph calculations finished!');
     setTimeout(() => {
+      console.log(this.graphData);
       this.graphLoading = false;
     }, 1000);
   }
@@ -241,9 +254,7 @@ export class OperatingPointComponent implements OnInit {
       this.graphOptions.density = data[3].defaultValue;
     }
 
-    this.operatingPointService.getGraph(id, this.types[0], this.graphOptions).subscribe((response: any) => {
-      this.graphData = response;
-    });
+    await this.getGraph(id, this.types);
 
     this.operatingPointService.getCalculate(id, this.graphOptions).subscribe((response: any) => {
       this.tables = response;
@@ -272,24 +283,24 @@ export class OperatingPointComponent implements OnInit {
     });
   }
 
-  async addToComparisonFunc() {
-    let compArr: {}[] = [];
-    this.store.select(state => state.app.comparison).subscribe((res) => {
-      compArr = res;
-    });
-    if (compArr.length <= 8) {
-      const color = randomColor(compArr.length);
+  addToComparisonFunc() {
+    if (this.compArr.length < 4) {
+      this.getId(async (id) => {
+        this.operatingPointService.getGraph(id, ['static_pressure'], this.getGraphData()).subscribe((response: any) => {
+          console.log('COMP', response)
+          const color = randomColor(this.compArr.length);
 
-      this.graphData.borderColor = [color];
-      this.store.dispatch(new SetComparison([{
-        id: this.modelsToCompare.length,
-        name: this.card['name'],
-        color: color,
-        image: this.card['image'],
-        data: this.tables,
-        graph: this.graphData
-      }]));
-
+          this.graphData.borderColor = [color];
+          this.store.dispatch(new SetComparison([{
+            id: this.modelsToCompare.length,
+            name: this.card['name'],
+            color: color,
+            image: this.card['image'],
+            data: this.tables,
+            graph: response
+          }]));
+        });
+      });
       this.notification.message('success', 'Success', 'Item added to comparison');
     } else {
       this.notification.message('warn', 'Warning', 'You can select only 8 items for comparison');

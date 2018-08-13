@@ -62,8 +62,8 @@
             </div>
           </div>
         </div>
-        <div *ngIf="!graphData">
-          <h1>Waiting for graph ...</h1>
+        <div *ngIf="!graphData" class="text-center">
+          <h1>{{ 'TRANSLATE.OPERATING_POINT.GRAPH_MAIN' | translate }}</h1>
         </div>
       </div>
       <div class="col-lg-7 mb-2" *ngIf="sections.sound">
@@ -101,8 +101,8 @@
             <app-switch-button [options]="options.options" [selected]="graphOptions[options.type]" (select)="graphOptions[options.type] = $event"></app-switch-button>
           </div>
 
-          <div class="additional-options col-lg-6">
-            <input style="width: 100%" type="number" placeholder="Distance (m)" [(ngModel)]="graphOptions.distance">
+          <div class="additional-options col-lg-6" style="display: flex; align-items: center; justify-content: space-between">
+            At Distance: <input style="width: 50%" type="number" placeholder="Distance (m)" [(ngModel)]="graphOptions.distance">
           </div>
           <div class="additional-options col-lg-6">
             <button class="button" (click)="this.postCharts(id)">{{ 'TRANSLATE.OPERATING_POINT.REFRESH' | translate }}</button>
