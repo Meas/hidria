@@ -1,11 +1,11 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, NgZone, OnInit} from '@angular/core';
-import {Router, ActivatedRoute, Params} from '@angular/router';
-import {OperatingPointService} from '../../services/operating-point/operating-point.service';
-import {remove, find} from 'lodash';
-import {MyProjectsService} from '../../services/my-projects/my-projects.service';
-import {CustomNotificationsService} from '../../services/notifications/notifications.service';
-import {TranslateService} from '@ngx-translate/core';
-import {randomColor} from '../../helpers/helper';
+import { ChangeDetectorRef, Component, NgZone, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { OperatingPointService } from '../../services/operating-point/operating-point.service';
+import { remove, find } from 'lodash';
+import { MyProjectsService } from '../../services/my-projects/my-projects.service';
+import { CustomNotificationsService } from '../../services/notifications/notifications.service';
+import { TranslateService } from '@ngx-translate/core';
+import { randomColor } from '../../helpers/helper';
 import { Store } from '@ngxs/store';
 import { SetComparison } from '../../store/app.actions';
 
@@ -33,6 +33,9 @@ export class OperatingPointComponent implements OnInit {
   selectedTab = 0;
   inputData = [];
   links = [];
+
+  calculateLoading = true;
+  graphLoading = true;
 
   modelsToCompare = [];
   projectId;
@@ -135,18 +138,15 @@ export class OperatingPointComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getId((id) => {
+    this.getId(async (id) => {
       this.id = id;
       this.getCard(id);
       this.getLegend();
       this.getLinks(id);
-      this.getInputs(id);
-      this.getTable(id);
+      await this.getInputs(id);
       this.getProjects();
       this.loading = false;
     });
-
-    this.modelsToCompare = JSON.parse(localStorage.getItem('comparison')) !== null ? JSON.parse(localStorage.getItem('comparison')) : [];
   }
 
   getId(cb) {
@@ -161,18 +161,22 @@ export class OperatingPointComponent implements OnInit {
     });
   }
 
-  getGraph(id, type = 'static_pressure', push = false): void {
-    this.operatingPointService.getGraph(id, type, this.getGraphData()).subscribe((response: any) => {
-      console.log(response)
-      if (push) {
-        this.secondLabel = response.yUnit;
-        this.graphData.ypoints = this.graphData.ypoints.concat(response.ypoints);
-        this.graphData.borderColor = this.graphData.borderColor.concat(response.borderColor);
-      } else {
-        this.graphData = response;
-      }
+  async getGraph(id, types): Promise<void> {
+    await types.forEach(async (type, i) => {
+      await this.operatingPointService.getGraph(id, type, this.getGraphData()).subscribe((response: any) => {
+        if (i > 0) {
+          this.secondLabel = response.yUnit;
+          this.graphData.ypoints = this.graphData.ypoints.concat(response.ypoints);
+          this.graphData.borderColor = this.graphData.borderColor.concat(response.borderColor);
+        } else {
+          this.graphData = response;
+        }
+      });
     });
     this.notification.message('success', 'Graph', 'Graph calculations finished!');
+    setTimeout(() => {
+      this.graphLoading = false;
+    }, 1000);
   }
 
   getLegend(): void {
@@ -205,14 +209,10 @@ export class OperatingPointComponent implements OnInit {
     });
   }
 
-  getInputs(id): void {
-    this.operatingPointService.getInputs(id).subscribe((response: any) => {
+  async getInputs(id): Promise<any> {
+    await this.operatingPointService.getInputs(id).subscribe(async (response: any) => {
       this.operatingPointInputs = response;
-      this.getCalculate(id, this.operatingPointInputs);
-      setTimeout(() => {
-        this.getCalculate(id, this.operatingPointInputs);
-        this.postCharts(id);
-      }, 2000);
+      await this.getCalculate(id, response);
     });
   }
 
@@ -222,19 +222,14 @@ export class OperatingPointComponent implements OnInit {
     });
   }
 
-  getTable(id): void {
-    this.operatingPointService.getTable(id).subscribe((response: any) => {
-      this.tables = response;
-    });
-  }
-
-  getCalculate(id, data): void {
+  async getCalculate(id, data): Promise<any> {
+    this.calculateLoading = true;
     this.graphOptions.airFlow = Math.ceil(data[0].defaultValue);
     this.graphOptions.staticPressure = Math.ceil(data[1].defaultValue);
     this.graphOptions.altitude = Math.ceil(data[2].defaultValue);
 
     if (data[3].subparameter[0].defaultValue && data[3].subparameter[1].defaultValue && data[3].subparameter[2].defaultValue) {
-      this.operatingPointService.getDensity({
+      await this.operatingPointService.getDensity({
         temperature: data[3].subparameter[0].defaultValue,
         humidity: data[3].subparameter[1].defaultValue,
         pressure: data[3].subparameter[2].defaultValue
@@ -246,15 +241,25 @@ export class OperatingPointComponent implements OnInit {
       this.graphOptions.density = data[3].defaultValue;
     }
 
-    if (this.tables.length !== 0) {
-      this.graphOptions.rpm = Math.ceil(this.tables[0].data[1].value);
-    }
     this.operatingPointService.getGraph(id, this.types[0], this.graphOptions).subscribe((response: any) => {
       this.graphData = response;
     });
+
     this.operatingPointService.getCalculate(id, this.graphOptions).subscribe((response: any) => {
       this.tables = response;
+      if (this.tables.length !== 0) {
+        this.graphOptions.rpm = this.tables[0].data[1].value;
+      }
+      setTimeout(() => {
+        this.postCharts(id);
+      }, 1000);
     });
+
+    setTimeout(() => {
+      this.graphLoading = false;
+      this.calculateLoading = false;
+    }, 1000);
+    return this.graphOptions;
   }
 
   onPointSelected(event): void {
@@ -331,7 +336,8 @@ export class OperatingPointComponent implements OnInit {
     }
   }
 
-  onTypeSelected(event) {
+  async onTypeSelected(event) {
+    this.graphLoading = true;
     if (find(this.types, (o) => o === event)) {
       remove(this.types, (o) => o === event);
     } else {
@@ -339,10 +345,8 @@ export class OperatingPointComponent implements OnInit {
         this.types.push(event);
       }
     }
-    this.getId((id) => {
-      this.types.forEach((type, i) => {
-        this.getGraph(id, type, i > 0);
-      });
+    await this.getId(async (id) => {
+      await this.getGraph(id, this.types);
     });
   }
 

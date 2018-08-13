@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { find } from 'lodash';
-import * as moment from 'moment';
+import { unix } from 'moment';
 
 @Pipe({
   name: 'filter'
@@ -39,6 +39,6 @@ export class SearchPipe implements PipeTransform {
 export class DatePipe implements PipeTransform {
 
   transform(value: any, args: any[]) {
-    return moment.unix(value).format('DD.MM.YYYY');
+    return unix(value).format('DD.MM.YYYY');
   }
 }

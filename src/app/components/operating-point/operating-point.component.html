@@ -31,7 +31,8 @@
           {{ 'TRANSLATE.OPERATING_POINT.DATA_SHEET' | translate }}
         </button>
       </div>
-      <div class="col-lg-8 mb-2">
+      <div class="col-lg-8 mb-2 loading-cover-wrap">
+        <div *ngIf="calculateLoading" class="loading-cover">Calculating graph ...</div>
         <app-operating-points-inputs
           [inputData]="operatingPointInputs"
           [graphDataInput]="inputData"
@@ -41,7 +42,8 @@
         <div class="model">
           <app-fan-info [item]="card"></app-fan-info>
         </div>
-        <div class="legend">
+        <div class="legend loading-cover-wrap">
+          <div *ngIf="graphLoading" class="loading-cover">Loading new graph ...</div>
           <app-legend [options]="legend" [types]="types" [limit]="limitTypes" (typeSelected)="onTypeSelected($event)"></app-legend>
         </div>
       </div>
@@ -103,7 +105,7 @@
             <input style="width: 100%" type="number" placeholder="Distance (m)" [(ngModel)]="graphOptions.distance">
           </div>
           <div class="additional-options col-lg-6">
-            <button [disabled]="graphOptions.rpm === 1" class="button" (click)="this.postCharts(id)">{{ 'TRANSLATE.OPERATING_POINT.REFRESH' | translate }}</button>
+            <button class="button" (click)="this.postCharts(id)">{{ 'TRANSLATE.OPERATING_POINT.REFRESH' | translate }}</button>
           </div>
         </div>
       </div>
