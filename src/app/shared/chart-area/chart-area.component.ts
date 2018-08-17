@@ -1,9 +1,8 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import Chart from 'chart.js';
 import { isEmpty } from 'lodash';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-chart-area-component',
   template: `
     <div style="background: #fff !important">
@@ -75,7 +74,11 @@ export class ChartAreaComponent {
             'xUnit': this.chartData.xUnit,
             'yLabel': this.chartData.yLabel,
             'yUnit': this.chartData.yUnit,
-            'yAxisID': this.chartData.type === 'static_pressure' || this.chartData.type === 'total_pressure' ? i > 1 ? 'B' : 'A' : i > 0 ? 'B' : 'A',
+            'yAxisID':
+              this.chartData.type === 'static_pressure'
+              ? i > 1 ? 'B' : 'A'
+              : i > 0 ? 'B' : 'A'
+            ,
             'percentageLabel': this.chartData.percentage,
             'borderColor': this.chartData.borderColor[k],
             'fill': false
@@ -88,7 +91,7 @@ export class ChartAreaComponent {
         for (let j = 100; j > 1; j--) {
           const borderColor = j === 100 ? this.chartData.borderColor[i] : j % 10 === 0 ? 'rgba(0,0,0,0)' : 'rgba(0,0,0,0)';
           const fill = j === 100;
-          const dataValue = this.chartData.ypoints[i].map(x => Math.round(x * j / 100));
+          const dataValue = this.chartData.ypoints[i].map(x => x * j / 100);
           data.datasets.push({
             'label': this.chartData.labels[i],
             'data': dataValue,
@@ -97,7 +100,11 @@ export class ChartAreaComponent {
             'yLabel': this.chartData.yLabel,
             'xUnit': this.chartData.xUnit,
             'yUnit': this.chartData.yUnit,
-            'yAxisID': this.chartData.type === 'static_pressure' || this.chartData.type === 'total_pressure' ? i > 1 ? 'B' : 'A' : i > 0 ? 'B' : 'A',
+            'yAxisID':
+              this.chartData.type === 'static_pressure'
+                ? i > 1 ? 'B' : 'A'
+                : i > 0 ? 'B' : 'A'
+            ,
             'xLabel': this.chartData.xLabel,
             'percentageLabel': this.chartData.percentage,
             'percentage': j,
@@ -174,6 +181,7 @@ export class ChartAreaComponent {
           },
           callbacks: {
             label: function(tooltipItem, data) {
+              // console.log(tooltipItem, data)
               return [
                 `Model: ${data.datasets[tooltipItem.datasetIndex].label}`,
                 `${data.datasets[tooltipItem.datasetIndex].xLabel} ${data.datasets[tooltipItem.datasetIndex].xUnit}: ${data.datasets[tooltipItem.datasetIndex].xValue[tooltipItem.index]}`,

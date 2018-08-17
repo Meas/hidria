@@ -4,6 +4,7 @@ import {ModalComponent} from '../../shared/modal/modal.component';
 import {Select, Store} from '@ngxs/store';
 import {Observable} from 'rxjs';
 import {UnsetComparison, ClearComparison} from '../../store/app.actions';
+import { clone } from 'lodash';
 
 @Component({
   selector: 'app-comparison',
@@ -42,18 +43,21 @@ export class ComparisonComponent implements OnInit {
   }
 
   getComparisonList() {
+    console.log('set to undef graph')
     this.graph = undefined;
     this.comparison$.subscribe((comparisonList) => {
       this.comparisonList = comparisonList;
       this.comparisonList.forEach((data, i) => {
-        if (i > 1) {
+        console.log('DT', data)
+        if (i > 0) {
           this.graph.ypoints = this.graph.ypoints.concat(data.graph.ypoints);
           this.graph.borderColor = this.graph.borderColor.concat(data.graph.borderColor);
           this.graph.labels = this.graph.labels.concat(data.graph.labels);
         } else {
-          this.graph = data.graph;
+          this.graph = clone(data.graph);
         }
       });
+      console.log('GRAPH COMP', this.graph)
       this.comparisonList.forEach((model, i) => {
         if (i === 0) {
           this.tables.push([], [], []);
