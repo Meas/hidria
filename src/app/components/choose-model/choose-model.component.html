@@ -18,9 +18,9 @@
           <div class="model" *ngIf="features.card">
             <app-fan-info [item]="features.card"></app-fan-info>
           </div>
-          <div class="graf">
+          <div class="graf" *ngIf="features.graph">
             <app-chart-component
-              *ngIf="features.graph"
+              *ngIf="features.graph.length !== 0"
               [canvasId]="'canvas1'"
               [setChartData]="features.graph"
               [toFill]="true"></app-chart-component>

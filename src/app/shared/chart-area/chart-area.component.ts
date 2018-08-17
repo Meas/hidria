@@ -54,6 +54,10 @@ export class ChartAreaComponent {
   getGraphData() {
     const data: any = {};
     this.chartData.ypoints = this.chartData.ypoints.filter(point => !isEmpty(point))
+    if (this.chartData.xpoints[0] !== 0) {
+      this.chartData.xpoints.unshift(0);
+    }
+
     data.labels = this.chartData.xpoints.map(point => isEmpty(point) ? point : null);
     data.datasets = [];
     if (this.chartData.fanType !== 'EC') {
@@ -72,7 +76,7 @@ export class ChartAreaComponent {
             'yLabel': this.chartData.yLabel,
             'yUnit': this.chartData.yUnit,
             'yAxisID': this.chartData.type === 'static_pressure' || this.chartData.type === 'total_pressure' ? i > 1 ? 'B' : 'A' : i > 0 ? 'B' : 'A',
-            'percentageLabl': this.chartData.percentage,
+            'percentageLabel': this.chartData.percentage,
             'borderColor': this.chartData.borderColor[k],
             'fill': false
           });
@@ -133,7 +137,7 @@ export class ChartAreaComponent {
             }
           }, {
               id: 'B',
-              display: this.secondLine,
+              display: this.secondLine && this.secondLabel,
               position: 'right',
               gridLines: {
                 color: 'rgba(0, 0, 0, 0)',
@@ -152,7 +156,7 @@ export class ChartAreaComponent {
             ticks: {
               beginAtZero: true,
               maxRotation: 0,
-              maxTicksLimit: 5,
+              // maxTicksLimit: 5,
             },
             scaleLabel: {
               display: true,
@@ -171,9 +175,9 @@ export class ChartAreaComponent {
           callbacks: {
             label: function(tooltipItem, data) {
               return [
-                `label: ${data.datasets[tooltipItem.datasetIndex].label}`,
-                `${data.datasets[tooltipItem.datasetIndex].xLabel} ${data.datasets[tooltipItem.datasetIndex].xUnit} ${data.datasets[tooltipItem.datasetIndex].xValue[tooltipItem.index]}`,
-                `${data.datasets[tooltipItem.datasetIndex].yLabel} ${data.datasets[tooltipItem.datasetIndex].yUnit} ${data.datasets[tooltipItem.datasetIndex].yValue[tooltipItem.index]}`
+                `Model: ${data.datasets[tooltipItem.datasetIndex].label}`,
+                `${data.datasets[tooltipItem.datasetIndex].xLabel} ${data.datasets[tooltipItem.datasetIndex].xUnit}: ${data.datasets[tooltipItem.datasetIndex].xValue[tooltipItem.index]}`,
+                `${data.datasets[tooltipItem.datasetIndex].yLabel} ${data.datasets[tooltipItem.datasetIndex].yUnit}: ${data.datasets[tooltipItem.datasetIndex].yValue[tooltipItem.index]}`
               ];
             },
             title: function(tooltipItem, data) {

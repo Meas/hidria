@@ -350,6 +350,7 @@ export class OperatingPointComponent implements OnInit {
   async onTypeSelected(event) {
     this.graphLoading = true;
     if (find(this.types, (o) => o === event)) {
+      this.secondLabel = '';
       remove(this.types, (o) => o === event);
     } else {
       if (this.types.length < this.limitTypes) {
