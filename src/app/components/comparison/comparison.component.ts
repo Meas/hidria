@@ -51,7 +51,7 @@ export class ComparisonComponent implements OnInit {
         console.log('DT', data)
         if (i > 0) {
           this.graph.ypoints = this.graph.ypoints.concat(data.graph.ypoints);
-          this.graph.borderColor = this.graph.borderColor.concat(data.graph.borderColor);
+          this.graph.borderColor = this.graph.borderColor.concat(data.color);
           this.graph.labels = this.graph.labels.concat(data.graph.labels);
         } else {
           this.graph = clone(data.graph);

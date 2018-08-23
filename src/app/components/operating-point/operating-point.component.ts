@@ -284,13 +284,13 @@ export class OperatingPointComponent implements OnInit {
   }
 
   addToComparisonFunc() {
-    if (this.compArr.length < 4) {
+    if (this.compArr.length < 8) {
       this.getId(async (id) => {
         this.operatingPointService.getGraph(id, ['static_pressure'], this.getGraphData()).subscribe((response: any) => {
           console.log('COMP', response)
           const color = randomColor(this.compArr.length);
 
-          this.graphData.borderColor = [color];
+          response.borderColor = [color];
           this.store.dispatch(new SetComparison([{
             id: this.modelsToCompare.length,
             name: this.card['name'],

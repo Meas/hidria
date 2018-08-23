@@ -29,7 +29,8 @@ import { ParameterListComponent } from './parameter-list/parameter-list.componen
 import { LoadingComponent } from './loading/loading.component';
 import { DisplayOptionsComponent } from './display-options/display-options.component';
 import { ChartAreaComponent } from './chart-area/chart-area.component';
-import {ChartServiceService} from '../services/chart-service/chart-service.service';
+import { ComparisonGraphComponent } from './comparison-graph/comparison-graph.component';
+import { ChartServiceService } from '../services/chart-service/chart-service.service';
 import { ChartPerformanceCurveComponent } from './chart-performance-curve/chart-performance-curve.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { SimpleNotificationsModule } from 'angular2-notifications';
@@ -91,6 +92,7 @@ export function createTranslateLoader(http: HttpClient) {
     LoadingComponent,
     DisplayOptionsComponent,
     ChartAreaComponent,
+    ComparisonGraphComponent,
     ChartPerformanceCurveComponent,
     NotificationsComponent,
     ModalComponent,
@@ -132,6 +134,7 @@ export function createTranslateLoader(http: HttpClient) {
     LoadingComponent,
     DisplayOptionsComponent,
     ChartAreaComponent,
+    ComparisonGraphComponent,
     ChartPerformanceCurveComponent,
     NotificationsComponent,
     ModalComponent,
