@@ -10,7 +10,10 @@ import {HelperService} from '../helper/helper.service';
 })
 export class SecurityService {
 
-  permissions;
+  permissions = {
+    comparison: false,
+    admin: false
+  };
 
   constructor(private authService: AuthService, private router: Router, private helper: HelperService) {
     this.authService.permissions.subscribe((data) => {

@@ -75,8 +75,8 @@ export class ChartAreaComponent {
             'yLabel': this.chartData.yLabel,
             'yUnit': this.chartData.yUnit,
             'yAxisID':
-              this.chartData.type === 'static_pressure'
-              ? i > 1 ? 'B' : 'A'
+              this.chartData.type === 'static_pressure' || this.chartData.type === 'total_pressure'
+              ? i > 1 ? 'A' : 'B'
               : i > 0 ? 'B' : 'A'
             ,
             'percentageLabel': this.chartData.percentage,
@@ -101,8 +101,8 @@ export class ChartAreaComponent {
             'xUnit': this.chartData.xUnit,
             'yUnit': this.chartData.yUnit,
             'yAxisID':
-              this.chartData.type === 'static_pressure'
-                ? i > 1 ? 'B' : 'A'
+              this.chartData.type === 'static_pressure' || this.chartData.type === 'total_pressure'
+                ? i > 1 ? 'A' : 'B'
                 : i > 0 ? 'B' : 'A'
             ,
             'xLabel': this.chartData.xLabel,
@@ -150,7 +150,7 @@ export class ChartAreaComponent {
                 color: 'rgba(0, 0, 0, 0)',
               },
               ticks: {
-                max: this.maxRight,
+                // max: this.maxRight,
                 fontColor: this.showYColors ? this.chartData.borderColor[1] : undefined
               },
               scaleLabel: {
