@@ -200,8 +200,8 @@ export class ChartAreaComponent {
           intersect: false
         },
         onClick: function (clickEvt, activeElements) {
-          const x = this.data.labels[activeElements[0]._index];
-          const y = this.data.datasets[activeElements[0]._datasetIndex].data[activeElements[0]._index];
+          const x = this.data.datasets[activeElements[0]._datasetIndex].data[activeElements[0]._index].x;
+          const y = this.data.datasets[activeElements[0]._datasetIndex].data[activeElements[0]._index].y;
           if (self.interactive) {
             self.points.emit([(Math.round(x * 100) / 100).toString(), Number(Math.round(y * 100) / 100).toString()]);
           }
