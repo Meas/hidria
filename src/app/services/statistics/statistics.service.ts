@@ -21,15 +21,15 @@ export class StatisticsService {
    * Get product statistics
    * @returns {Observable<any>}
    */
-  getProduct(): Observable<any> {
-    return this.service.get('statistics/top/products');
+  getTopSearch(): Observable<any> {
+    return this.service.get('statistics/top/search');
   }
 
   /**
    * Get recent orders statistics
    * @returns {Observable<any>}
    */
-  getRecentOrders(): Observable<any> {
-    return this.service.get('statistics/recent/orders');
+  getRecentRegistrations(): Observable<any> {
+    return this.service.get('statistics/recent/registrations');
   }
 }

@@ -9,11 +9,11 @@ import {StatisticsService} from '../../services/statistics/statistics.service';
 export class StatisticsComponent implements OnInit {
 
   topApps = {
-    headers: ['Type', 'Model', 'Sales'],
+    headers: ['Code', 'Type', 'Total', 'User'],
     data: []
   };
   recentOrders = {
-    headers: ['Project ID', 'Items', 'Member', 'Date/time', 'Total'],
+    headers: ['Name', 'Email', 'Active', 'Brand', 'Company', 'Country'],
     data: []
   };
   generalData = [];
@@ -21,8 +21,8 @@ export class StatisticsComponent implements OnInit {
 
   ngOnInit() {
     this.getGeneral();
-    this.getProduct();
-    this.getRecentOrders();
+    this.getTopSearch();
+    this.getRecentRegistrations();
   }
 
   getGeneral() {
@@ -31,14 +31,14 @@ export class StatisticsComponent implements OnInit {
       this.generalData = response;
     });
   }
-  getProduct() {
-    this.statisticsService.getProduct().subscribe((response: any) => {
+  getTopSearch() {
+    this.statisticsService.getTopSearch().subscribe((response: any) => {
       console.log(response);
       this.topApps.data = response;
     });
   }
-  getRecentOrders() {
-    this.statisticsService.getRecentOrders().subscribe((response: any) => {
+  getRecentRegistrations() {
+    this.statisticsService.getRecentRegistrations().subscribe((response: any) => {
       console.log(response);
       this.recentOrders.data = response;
     });

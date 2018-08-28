@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, Input, Output, EventEmitter } from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import Chart from 'chart.js';
 import {ChartServiceService} from '../../services/chart-service/chart-service.service';
 import {Router} from '@angular/router';
@@ -56,12 +56,16 @@ export class ChartComponent implements OnInit, AfterViewInit {
     const data: any = {};
     data.labels = this.chartData.xpoints;
     data.datasets = [];
+
     for (let i = 0; i < this.chartData.ypoints.length; i++) {
-      // const fill = (i === 0 && this.toFill);
+      const dataValue = this.chartData.ypoints[i].map((y, index) => ({
+        x: this.chartData.xpoints[index],
+        y: y
+      }))
       data.datasets.push({
         'label': this.chartData.labels[i],
-        'data': this.chartData.ypoints[i],
-        'yValue': this.chartData.ypoints[i],
+        'data': dataValue,
+        'yValue': dataValue,
         'xValue': this.chartData.xpoints,
         'yLabel': this.chartData.yLabel,
         'xUnit': this.chartData.xUnit,
@@ -100,10 +104,9 @@ export class ChartComponent implements OnInit, AfterViewInit {
             }
           }],
           xAxes: [{
+            type: 'linear',
             ticks: {
-              beginAtZero: true,
-              maxRotation: 0,
-              maxTicksLimit: 5,
+              beginAtZero: true
             },
             scaleLabel: {
               display: true,
@@ -123,10 +126,8 @@ export class ChartComponent implements OnInit, AfterViewInit {
             label: function(tooltipItem, data) {
               return [
                 data.datasets[tooltipItem.datasetIndex].label,
-                data.datasets[tooltipItem.datasetIndex].xLabel + ' ' + data.datasets[tooltipItem.datasetIndex].xUnit
-                + ': ' + data.datasets[tooltipItem.datasetIndex].xValue[tooltipItem.index],
-                data.datasets[tooltipItem.datasetIndex].yLabel + ' ' + data.datasets[tooltipItem.datasetIndex].yUnit
-                + ': ' + data.datasets[tooltipItem.datasetIndex].yValue[tooltipItem.index],
+                `${data.datasets[tooltipItem.datasetIndex].xUnit}: ${data.datasets[tooltipItem.datasetIndex].yValue[tooltipItem.index].x}`,
+                `${data.datasets[tooltipItem.datasetIndex].yUnit}: ${data.datasets[tooltipItem.datasetIndex].yValue[tooltipItem.index].y}`
               ];
             },
             title: function(tooltipItem, data) {

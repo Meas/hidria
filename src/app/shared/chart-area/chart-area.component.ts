@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import Chart from 'chart.js';
-import { isEmpty } from 'lodash';
+import { isEmpty, cloneDeep } from 'lodash';
 
 @Component({
   selector: 'app-chart-area-component',
@@ -53,37 +53,35 @@ export class ChartAreaComponent {
   getGraphData() {
     const data: any = {};
     this.chartData.ypoints = this.chartData.ypoints.filter(point => !isEmpty(point))
-    if (this.chartData.xpoints[0] !== 0) {
-      this.chartData.xpoints.unshift(0);
-    }
 
     data.labels = this.chartData.xpoints.map(point => isEmpty(point) ? point : null);
     data.datasets = [];
     if (this.chartData.fanType !== 'EC') {
-      let k = 0;
       for (let i = 0; i < this.chartData.ypoints.length; i++) {
-        const dataValue = this.chartData.ypoints[i];
+        const dataValue = cloneDeep(this.chartData.ypoints[i]);
         if (dataValue.length !== 0) {
           this.maxRight = Math.ceil(Math.max.apply(Math, this.chartData.ypoints[i]));
           data.datasets.push({
-            'label': this.chartData.labels[i],
-            'data': dataValue,
-            'yValue': dataValue,
-            'xValue': this.chartData.xpoints,
-            'xLabel': this.chartData.xLabel,
-            'xUnit': this.chartData.xUnit,
-            'yLabel': this.chartData.yLabel,
-            'yUnit': this.chartData.yUnit,
-            'yAxisID':
+            label: this.chartData.labels[i],
+            data: dataValue.map((y, index) => ({
+              x: this.chartData.xpoints[index],
+              y: y
+            })),
+            yValue: dataValue,
+            xValue: this.chartData.xpoints,
+            xLabel: this.chartData.xLabel,
+            xUnit: this.chartData.xUnit,
+            yLabel: this.chartData.yLabel,
+            yUnit: this.chartData.yUnit,
+            yAxisID:
               this.chartData.type === 'static_pressure' || this.chartData.type === 'total_pressure'
-              ? i > 1 ? 'A' : 'B'
+              ? i < 2 ? 'A' : 'B'
               : i > 0 ? 'B' : 'A'
             ,
-            'percentageLabel': this.chartData.percentage,
-            'borderColor': this.chartData.borderColor[k],
-            'fill': false
+            percentageLabel: this.chartData.percentage,
+            borderColor: this.chartData.borderColor[i],
+            fill: false
           });
-          k++;
         }
       }
     } else {
@@ -91,25 +89,28 @@ export class ChartAreaComponent {
         for (let j = 100; j > 1; j--) {
           const borderColor = j === 100 ? this.chartData.borderColor[i] : j % 10 === 0 ? 'rgba(0,0,0,0)' : 'rgba(0,0,0,0)';
           const fill = j === 100;
-          const dataValue = this.chartData.ypoints[i].map(x => x * j / 100);
+          const dataValue = i < 1 && this.chartData.type === 'static_pressure' ? this.chartData.ypoints[i].map(x => x * j / 100) : this.chartData.ypoints[i];
           data.datasets.push({
-            'label': this.chartData.labels[i],
-            'data': dataValue,
-            'yValue': dataValue,
-            'xValue': this.chartData.xpoints,
-            'yLabel': this.chartData.yLabel,
-            'xUnit': this.chartData.xUnit,
-            'yUnit': this.chartData.yUnit,
-            'yAxisID':
+            label: this.chartData.labels[i],
+            data: dataValue.map((y, index) => ({
+              x: this.chartData.xpoints[index],
+              y: y
+            })),
+            yValue: dataValue,
+            xValue: this.chartData.xpoints,
+            yLabel: this.chartData.yLabel,
+            xUnit: this.chartData.xUnit,
+            yUnit: this.chartData.yUnit,
+            yAxisID:
               this.chartData.type === 'static_pressure' || this.chartData.type === 'total_pressure'
-                ? i > 1 ? 'A' : 'B'
+                ? i < 2 ? 'A' : 'B'
                 : i > 0 ? 'B' : 'A'
             ,
-            'xLabel': this.chartData.xLabel,
-            'percentageLabel': this.chartData.percentage,
-            'percentage': j,
-            'borderColor': borderColor,
-            'fill': fill
+            xLabel: this.chartData.xLabel,
+            percentageLabel: this.chartData.percentage,
+            percentage: j,
+            borderColor: borderColor,
+            fill: fill
           });
         }
       }
@@ -160,6 +161,7 @@ export class ChartAreaComponent {
             }
           ],
           xAxes: [{
+            type: 'linear',
             ticks: {
               beginAtZero: true,
               maxRotation: 0,

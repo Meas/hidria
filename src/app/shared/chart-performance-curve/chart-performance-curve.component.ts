@@ -109,32 +109,30 @@ export class ChartPerformanceCurveComponent implements OnInit, AfterViewInit {
             }
           }]
         },
-        tooltips: {
-          mode: 'nearest',
-          intersect: false,
-          custom: function(tooltip) {
-            if (!tooltip) { return; }
-            // disable displaying the color box;
-            tooltip.displayColors = false;
-          },
-          callbacks: {
-            label: function(tooltipItem, data) {
-              return [
-                data.datasets[tooltipItem.datasetIndex].label,
-                data.datasets[tooltipItem.datasetIndex].xLabel + ' ' + data.datasets[tooltipItem.datasetIndex].xUnit
-                + ': ' + data.datasets[tooltipItem.datasetIndex].xValue[tooltipItem.index],
-                data.datasets[tooltipItem.datasetIndex].yLabel + ' ' + data.datasets[tooltipItem.datasetIndex].yUnit
-                + ': ' + data.datasets[tooltipItem.datasetIndex].yValue[tooltipItem.index],
-              ];
-            },
-            title: function(tooltipItem, data) {
-              return;
-            }
+        animation: {
+          duration: 1,
+          onComplete: function () {
+            const chartInstance = this.chart,
+              ctx = chartInstance.ctx;
+
+            ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'bottom';
+
+            this.data.datasets.forEach(function (dataset, i) {
+              const meta = chartInstance.controller.getDatasetMeta(i);
+              meta.data.forEach(function (bar, index) {
+                const data = dataset.data[index];
+                ctx.fillText(data, bar._model.x, bar._model.y - 5);
+              });
+            });
           }
         },
+        tooltips: {
+          enabled: false,
+        },
         hover: {
-          mode: 'nearest',
-          intersect: false
+          animationDuration: 0
         },
         title: {
           display: true,
