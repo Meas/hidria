@@ -52,14 +52,13 @@ export class ComparisonGraphComponent {
   getGraphData() {
     const data: any = {};
     this.chartData.ypoints = this.chartData.ypoints.filter(point => !isEmpty(point))
-    if (this.chartData.xpoints[0] !== 0) {
-      this.chartData.xpoints.unshift(0);
-    }
-
     data.labels = this.chartData.xpoints.map(point => isEmpty(point) ? point : null);
     data.datasets = [];
     for (let i = 0; i < this.chartData.ypoints.length; i++) {
-      const dataValue = this.chartData.ypoints[i];
+      const dataValue = this.chartData.ypoints[i].map((y, index) => ({
+        x: this.chartData.xpoints[index],
+        y: y
+      }));
       console.log('VAL', dataValue)
       data.datasets.push({
         label: this.chartData.labels[i],
@@ -93,6 +92,7 @@ export class ComparisonGraphComponent {
         },
         scales: {
           xAxes: [{
+            type: 'linear',
             ticks: {
               beginAtZero: true,
               maxRotation: 0,

@@ -274,6 +274,9 @@ export class OperatingPointComponent implements OnInit {
   }
 
   onPointSelected(event): void {
+    if (!event[0]) {
+      event[0] = this.inputData[0];
+    }
     this.inputData = [...event];
   }
 

@@ -62,6 +62,7 @@ export class ChartAreaComponent {
         if (dataValue.length !== 0) {
           this.maxRight = Math.ceil(Math.max.apply(Math, this.chartData.ypoints[i]));
           data.datasets.push({
+            mytype: this.chartData.type,
             label: this.chartData.labels[i],
             data: dataValue.map((y, index) => ({
               x: this.chartData.xpoints[index],
@@ -91,6 +92,7 @@ export class ChartAreaComponent {
           const fill = j === 100;
           const dataValue = i < 1 && this.chartData.type === 'static_pressure' ? this.chartData.ypoints[i].map(x => x * j / 100) : this.chartData.ypoints[i];
           data.datasets.push({
+            mytype: this.chartData.type,
             label: this.chartData.labels[i],
             data: dataValue.map((y, index) => ({
               x: this.chartData.xpoints[index],
@@ -110,7 +112,7 @@ export class ChartAreaComponent {
             percentageLabel: this.chartData.percentage,
             percentage: j,
             borderColor: borderColor,
-            fill: fill
+            fill: fill && this.chartData.type === 'static_pressure'
           });
         }
       }
@@ -200,10 +202,13 @@ export class ChartAreaComponent {
           intersect: false
         },
         onClick: function (clickEvt, activeElements) {
-          const x = this.data.datasets[activeElements[0]._datasetIndex].data[activeElements[0]._index].x;
+          console.log()
+          const x = this.data.datasets[activeElements[0]._datasetIndex].mytype === 'static_pressure' ?
+            this.data.datasets[activeElements[0]._datasetIndex].data[activeElements[0]._index].x :
+            undefined;
           const y = this.data.datasets[activeElements[0]._datasetIndex].data[activeElements[0]._index].y;
           if (self.interactive) {
-            self.points.emit([(Math.round(x * 100) / 100).toString(), Number(Math.round(y * 100) / 100).toString()]);
+            self.points.emit([x ? (Math.round(x * 100) / 100).toString() : undefined, Number(Math.round(y * 100) / 100).toString()]);
           }
         },
       };
