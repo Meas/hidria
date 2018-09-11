@@ -8,13 +8,14 @@ import { find } from 'lodash';
 })
 export class LegendComponent {
 
+  @Input() group;
+  @Input() selected;
   @Input() options = [];
-  @Input() types = [];
   @Input() limit = 1;
 
-  @Output() typeSelected: EventEmitter<string> = new EventEmitter();
+  @Output() typeSelected: EventEmitter<{}> = new EventEmitter();
 
   isActiveType(code) {
-    return !!find(this.types, (o) => o === code);
+    return this.selected === code;
   }
 }

@@ -44,7 +44,8 @@
         </div>
         <div class="legend loading-cover-wrap">
           <div *ngIf="graphLoading" class="loading-cover">Loading new graph ...</div>
-          <app-legend [options]="legend" [types]="types" [limit]="limitTypes" (typeSelected)="onTypeSelected($event)"></app-legend>
+          <app-legend [group]="'left'" [selected]="types[0]" [options]="legend.slice(0,2)" (typeSelected)="onTypeSelected($event)"></app-legend>
+          <app-legend [group]="'right'" [selected]="types[1]" [options]="legend.slice(2,legend.length)" (typeSelected)="onTypeSelected($event)"></app-legend>
         </div>
       </div>
       <div class="col-lg-8 mb-2" *ngIf="sections.main">

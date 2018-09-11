@@ -351,15 +351,12 @@ export class OperatingPointComponent implements OnInit {
   }
 
   async onTypeSelected(event) {
-    this.graphLoading = true;
-    if (find(this.types, (o) => o === event)) {
-      this.secondLabel = '';
-      remove(this.types, (o) => o === event);
+    if (event.group === 'left') {
+      this.types[0] = event.type
     } else {
-      if (this.types.length < this.limitTypes) {
-        this.types.push(event);
-      }
+      this.types[1] = event.type
     }
+    this.graphLoading = true;
     await this.getId(async (id) => {
       await this.getGraph(id, this.types);
     });

@@ -15,11 +15,11 @@
              [style.color]="item.color ? item.color : ''">
 
       <div *ngIf="i === 3" class="accordion" [ngClass]="{'show-accordion': showAccordion}">
-        <div style="width: calc(100% / 3); float: left" *ngFor="let obj of item.subparameter">
+        <div style="width: 100%" *ngFor="let obj of item.subparameter">
           <div class="col-lg-2 no-gutters">
             {{ obj.name }} {{ obj.description }}
           </div>
-          <div class="col-lg-10 no-gutters">
+          <div class="col-lg-12 no-gutters">
             <input type="number"
                    [(ngModel)]="obj.defaultValue"
                    name="{{ obj.id }}"

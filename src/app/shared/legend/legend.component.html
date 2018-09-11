@@ -1,12 +1,12 @@
 <div class="card">
   <ul>
-    <li *ngFor="let option of options; let i = index" [ngClass]="[types.length === limit && !isActiveType(option.code) ? 'disabled' : '']">
+    <li *ngFor="let option of options; let i = index">
 
       <label class="container"><b>{{ option.name }}</b> {{ option.description }}
-        <input type="checkbox"
-               (click)="typeSelected.emit(option.code)"
-               [disabled]="types.length === limit && !isActiveType(option.code)"
-               [checked]="isActiveType(option.code)">
+        <input type="radio"
+               [name]="group" 
+               (click)="typeSelected.emit({ type: option.code, group: group })"
+               [value]="isActiveType(option.code)">
         <span class="checkmark"></span>
       </label>
     </li>
