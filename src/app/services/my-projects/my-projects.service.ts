@@ -50,4 +50,8 @@ export class MyProjectsService {
   saveItems(items, projectId, modelId) {
     return this.service.post(`projects/${projectId}/models/${modelId}/items/${items}`);
   }
+
+  downloadFile(projectId, modelId) {
+    return this.service.post(`projects/${projectId}/datasheet/${modelId}`);
+  }
 }

@@ -12,6 +12,7 @@ export class MyProjectsModelListComponent implements OnInit {
   @Output() saveNoteEmitter: EventEmitter<any> = new EventEmitter;
   @Output() savePositionEmitter: EventEmitter<any> = new EventEmitter;
   @Output() saveItemsEmitter: EventEmitter<any> = new EventEmitter;
+  @Output() downloadFile: EventEmitter<any> = new EventEmitter;
 
   constructor() {
   }

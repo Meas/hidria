@@ -6,7 +6,7 @@
         <input type="radio"
                [name]="group" 
                (click)="typeSelected.emit({ type: option.code, group: group })"
-               [value]="isActiveType(option.code)">
+               [checked]="selected === option.code">
         <span class="checkmark"></span>
       </label>
     </li>

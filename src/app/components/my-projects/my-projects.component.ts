@@ -190,4 +190,10 @@ export class MyProjectsComponent implements OnInit {
       window.open(response, '_blank');
     });
   }
+
+  downloadFile(modelId) {
+    this.myProjectsService.downloadFile(this.selectedProject.id, modelId).subscribe((response: any) => {
+      window.open(response, '_blank');
+    });
+  }
 }

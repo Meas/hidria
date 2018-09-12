@@ -38,4 +38,15 @@ export class OperatingPointsInputsComponent implements OnInit {
     this.calculate.emit(this.inputData);
   }
 
+  clearOptions() {
+    this.inputData.map(data => {
+      if (data.subparameter) {
+        data.subparameter.map(obj => {
+          obj.defaultValue = '';
+        });
+      }
+      return data;
+    });
+  }
+
 }

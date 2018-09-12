@@ -14,8 +14,4 @@ export class LegendComponent {
   @Input() limit = 1;
 
   @Output() typeSelected: EventEmitter<{}> = new EventEmitter();
-
-  isActiveType(code) {
-    return this.selected === code;
-  }
 }

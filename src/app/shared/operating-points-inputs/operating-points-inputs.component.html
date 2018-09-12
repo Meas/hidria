@@ -31,7 +31,7 @@
       </div>
     </div>
     <div *ngIf="i === 3" class="col-lg-2 no-gutters">
-      <button style="width: 30px; height: 30px" class="btn btn-default button" *ngIf="i === 3" (click)="showAccordion = !showAccordion">+</button>
+      <button style="width: 30px; height: 30px" class="btn btn-default button" *ngIf="i === 3" (click)="showAccordion = !showAccordion; clearOptions()">+</button>
     </div>
 
   </div>
